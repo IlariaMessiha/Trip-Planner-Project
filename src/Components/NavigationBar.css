@@ -1,0 +1,28 @@
+nav {
+    border-bottom: 1px solid;
+}
+
+.navbar-container {
+    display: flex;
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    font-size: x-large;
+    justify-content: space-between;
+
+}
+
+.right-side {
+    display: flex;
+
+}
+
+.right-side div {
+    padding-left: 20px;
+}
+
+#logo {
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}

@@ -1,9 +1,14 @@
 import React from "react";
 
 import "./App.css";
+import { NavigationBar } from "./Components/NavigationBar";
 
 function App() {
-  return <h1>hi</h1>;
+  return (
+    <div className="app">
+      <NavigationBar />
+    </div>
+  );
 }
 
 export default App;
