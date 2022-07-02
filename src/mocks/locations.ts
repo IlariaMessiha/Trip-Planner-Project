@@ -9,7 +9,7 @@ export const location1: Location = {
 }
 export const location2: Location = {
     id: '2',
-    name: 'Proto',
+    name: 'Porto',
     activities: 200,
     country: 'Portugal',
     continent: 'Europe'
@@ -32,7 +32,7 @@ export const location4: Location = {
 
 }
 export const location5: Location = {
-    id: '4',
+    id: '5',
     name: 'Paris',
     activities: 400,
     country: 'France',

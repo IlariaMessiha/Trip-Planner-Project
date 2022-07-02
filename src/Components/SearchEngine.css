@@ -9,18 +9,19 @@
 
 
 
+
+
 }
 
 .search-container {
     display: flex;
     font-size: x-large;
-    height: 400px;
+
     align-items: center;
     /* padding-left: 30%; */
-    background-image: url('../../images/b8659390962c300177d0c594fc89a300.jpg');
-    width: 60%;
-    margin: auto;
     margin-top: 50px;
+    padding-top: 15%;
+
 
 
 
@@ -32,5 +33,35 @@
     /* margin: auto; */
     padding-left: 13%;
 
+}
+
+.search {
+    text-align: center;
+    background-image: url('../../images/b8659390962c300177d0c594fc89a300.jpg');
+    width: 60%;
+    margin: auto;
+    height: 400px;
+
+
+}
+
+.search-result {
+    background-color: white;
+    margin: auto;
+    display: block;
+    width: 50%;
+    text-align: left;
+    box-shadow: 5px 5px 20px black;
+    font-size: larger;
+
+}
+
+.result-element {
+    padding: 10px;
+
+}
+
+.result-element:hover {
+    text-decoration: underline;
 
 }
