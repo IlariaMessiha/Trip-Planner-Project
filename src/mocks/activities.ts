@@ -53,3 +53,11 @@ export const activity7: Activity = {
     numberOfReviews: 80,
     description: 'The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.'
 }
+export const activities: Activity[] = [
+    activity1,
+    activity2,
+    activity3,
+    activity4,
+    activity5,
+    activity7
+]

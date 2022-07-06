@@ -1,15 +1,18 @@
-.location {
+.location,
+.activity {
     display: block;
     padding-left: 20px;
 }
 
-.locations {
+.locations,
+.activities {
     display: flex;
     text-align: center;
     justify-content: space-between;
 }
 
-.location-name {
+.location-name,
+.activity-name {
     font-weight: bolder;
 }
 
@@ -19,7 +22,8 @@
 
 }
 
-.location-activities {
+.location-activities,
+.activity-reviews {
     font-weight: light;
     font-size: smaller
 }
