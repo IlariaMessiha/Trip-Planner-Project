@@ -38,10 +38,26 @@ export const location5: Location = {
     country: 'France',
     continent: 'Europe'
 }
+export const location6: Location = {
+    id: '6',
+    name: 'New York',
+    activities: 100,
+    country: 'America',
+    continent: 'America'
+}
+export const location7: Location = {
+    id: '7',
+    name: 'Egypt',
+    activities: 400,
+    country: 'Egypt',
+    continent: 'Africa'
+}
 export const locations: Location[] = [
     location1,
     location2,
     location3,
     location4,
-    location5
+    location5,
+    location6,
+    location7
 ]

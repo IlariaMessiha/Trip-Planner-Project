@@ -1,7 +1,9 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Location } from "../models/Location";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./SearchEngine.css";
+import { SearchPage } from "../Pages/SearchPage";
 export const SearchEngine: FC<{ data: Location[] }> = ({ data }) => {
   const [fiteredData, setFilteredData] = useState<Location[]>([]);
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -11,8 +13,8 @@ export const SearchEngine: FC<{ data: Location[] }> = ({ data }) => {
     const newFilter: Location[] = data.filter((value) => {
       if (
         value.name.toLowerCase().includes(searchWord) ||
-        value.continent.toLowerCase().includes(searchWord) ||
-        value.country.toLowerCase().includes(searchWord)
+        value.continent.toLowerCase().startsWith(searchWord) ||
+        value.country.toLowerCase().startsWith(searchWord)
       ) {
         return value;
       }
@@ -29,26 +31,28 @@ export const SearchEngine: FC<{ data: Location[] }> = ({ data }) => {
 
   return (
     <div className="search">
-      <div className="search-container">
-        <div className="search-icon">
-          <FaSearch />
+      <form>
+        <div className="search-container">
+          <div className="search-icon">
+            <FaSearch />
+          </div>
+          <input
+            type="search"
+            className="search-bar"
+            value={wordEntered}
+            onChange={handleFilter}
+          />
         </div>
-        <input
-          type="search"
-          className="search-bar"
-          value={wordEntered}
-          onChange={handleFilter}
-        />
-      </div>
-      <div className="search-result">
-        {fiteredData.map((value, key) => {
-          return (
-            <div key={key} className="result-element">
-              {value.name}
-            </div>
-          );
-        })}
-      </div>
+        <div className="search-result">
+          {fiteredData.map((value, key) => {
+            return (
+              <div key={key} className="result-element">
+                {value.name}
+              </div>
+            );
+          })}
+        </div>
+      </form>
     </div>
   );
 };

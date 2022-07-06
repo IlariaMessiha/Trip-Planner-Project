@@ -1,4 +1,25 @@
-dashboard-container {
-    width: 60%;
+.location {
+    display: block;
+    padding-left: 20px;
+}
 
+.locations {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.location-name {
+    font-weight: bolder;
+}
+
+.dashboard-container {
+    width: 60%;
+    margin: auto;
+
+}
+
+.location-activities {
+    font-weight: light;
+    font-size: smaller
 }

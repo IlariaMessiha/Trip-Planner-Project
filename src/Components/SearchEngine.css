@@ -7,10 +7,6 @@
     margin: auto;
     border: 0px;
 
-
-
-
-
 }
 
 .search-container {
@@ -21,10 +17,6 @@
     /* padding-left: 30%; */
     margin-top: 50px;
     padding-top: 15%;
-
-
-
-
 
 }
 
@@ -41,8 +33,6 @@
     width: 60%;
     margin: auto;
     height: 400px;
-
-
 }
 
 .search-result {
@@ -53,6 +43,7 @@
     text-align: left;
     box-shadow: 5px 5px 20px black;
     font-size: larger;
+    max-height: 400px;
 
 }
 
@@ -63,5 +54,6 @@
 
 .result-element:hover {
     text-decoration: underline;
+    opacity: 0.5;
 
 }
