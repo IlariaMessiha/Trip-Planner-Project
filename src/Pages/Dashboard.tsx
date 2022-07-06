@@ -5,7 +5,10 @@ import "./Dashboard.css";
 
 export const Dashboard = () => {
   return (
-    <div>
+    <div className="page-container">
+      <h1 className="slogan">
+        Enjoy the best things to do, in every destination!
+      </h1>
       <SearchEngine data={locations} />
       <div className="dashboard-container">
         <h2>Locations</h2>

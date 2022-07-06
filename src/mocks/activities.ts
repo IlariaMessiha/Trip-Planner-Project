@@ -6,7 +6,7 @@ export const activity1: Activity = {
     city: 'Barcelona',
     country: 'Spain',
     numberOfReviews: 80,
-    description: 'The Basílica i Temple Expiatori de la Sagrada Família (Catalan: [bəˈzilikə ðə lə səˈɣɾaðə fəˈmiljə]; Spanish: Basílica de la Sagrada Familia; Basilica of the Holy Family),[6] also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica.'
+    description: 'The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica.'
 }
 export const activity2: Activity = {
     id: '2',
@@ -37,7 +37,7 @@ export const activity4: Activity = {
 }
 export const activity5: Activity = {
     id: '5',
-    name: 'Ffishing trip, Ain Sokhna',
+    name: 'Fishing trip, Ain Sokhna',
     address: 'km 46 Suez - Hurghada Road، Ain Soukhna، Suez Governorate 43111',
     city: 'Suez',
     country: 'Egypt',

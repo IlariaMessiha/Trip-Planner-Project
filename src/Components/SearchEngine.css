@@ -15,7 +15,7 @@
 
     align-items: center;
     /* padding-left: 30%; */
-    margin-top: 50px;
+
     padding-top: 15%;
 
 }
@@ -30,7 +30,6 @@
 .search {
     text-align: center;
     background-image: url('../../images/b8659390962c300177d0c594fc89a300.jpg');
-    width: 60%;
     margin: auto;
     height: 400px;
 }
