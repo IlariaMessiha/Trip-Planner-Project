@@ -42,7 +42,7 @@ export const location6: Location = {
     id: '6',
     name: 'New York',
     activities: 100,
-    country: 'America',
+    country: 'United States',
     continent: 'America'
 }
 export const location7: Location = {
