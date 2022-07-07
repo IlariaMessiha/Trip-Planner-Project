@@ -1,16 +1,20 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Location } from "../models/Location";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./SearchEngine.css";
 import { SearchPage } from "../Pages/SearchPage";
-export const SearchEngine: FC<{ data: Location[] }> = ({ data }) => {
+import { Activity } from "../models/Activity";
+import { Link as RouterLink } from "react-router-dom";
+export const SearchEngine: FC<{
+  location: Location[];
+  activity: Activity[];
+}> = ({ location }) => {
   const [fiteredData, setFilteredData] = useState<Location[]>([]);
   const [wordEntered, setWordEntered] = useState<string>("");
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
     const searchWord: string = target.value.toLowerCase();
     setWordEntered(searchWord);
-    const newFilter: Location[] = data.filter((value) => {
+    const newFilter: Location[] = location.filter((value) => {
       if (
         value.name.toLowerCase().includes(searchWord) ||
         value.continent.toLowerCase().startsWith(searchWord) ||
@@ -19,6 +23,7 @@ export const SearchEngine: FC<{ data: Location[] }> = ({ data }) => {
         return value;
       }
     });
+
     // console.log(searchWord);
 
     if (searchWord === "") {
@@ -46,9 +51,11 @@ export const SearchEngine: FC<{ data: Location[] }> = ({ data }) => {
         <div className="search-result">
           {fiteredData.map((value, key) => {
             return (
-              <div key={key} className="result-element">
-                {value.name}
-              </div>
+              <a href="/locationPage">
+                <div key={key} className="result-element">
+                  {value.name}
+                </div>
+              </a>
             );
           })}
         </div>
