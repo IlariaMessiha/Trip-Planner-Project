@@ -1,10 +1,10 @@
 import { Activity } from "../models/Activity";
-import { location1, location5, location6, location7 } from "./locations";
+import { barcelonaLocation, location5, location6, location7 } from "./locations";
 export const activity1: Activity = {
     id: '1',
     name: 'Sagrada Familia',
     address: 'C/ de Mallorca, 401, 08013 Barcelona',
-    city: location1,
+    city: barcelonaLocation,
     country: 'Spain',
     numberOfReviews: 80,
     description: 'The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica.'
@@ -13,7 +13,7 @@ export const activity2: Activity = {
     id: '2',
     name: 'Park Guell',
     address: '08024 Barcelona',
-    city: location1,
+    city: barcelonaLocation,
     country: 'Spain',
     numberOfReviews: 40,
     description: 'Parc Güell is a privatized park system composed of gardens and architectural elements located on Carmel Hill, in Barcelona, Catalonia, Spain. Carmel Hill belongs to the mountain range of Collserola – the Parc del Carmel is located on the northern face. Park Güell is located in La Salut, a neighborhood in the Gràcia district of Barcelona. With urbanization in mind, Eusebi Güell assigned the design of the park to Antoni Gaudí, a renowned architect and the face of Catalan modernism.'

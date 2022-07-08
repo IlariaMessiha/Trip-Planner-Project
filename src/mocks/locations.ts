@@ -1,11 +1,12 @@
 import { Location } from "../models/Location";
-export const location1: Location = {
+import BarcelonaCover from "../assets/images/Barcelona.jpg"
+export const barcelonaLocation: Location = {
     id: '1',
     name: 'Barcelona',
     activities: 400,
     country: 'Spain',
-    continent: 'Europe'
-
+    continent: 'Europe',
+    coverImage: BarcelonaCover
 }
 export const location2: Location = {
     id: '2',
@@ -53,7 +54,7 @@ export const location7: Location = {
     continent: 'Africa'
 }
 export const locations: Location[] = [
-    location1,
+    barcelonaLocation,
     location2,
     location3,
     location4,

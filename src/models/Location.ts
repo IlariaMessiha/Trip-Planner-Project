@@ -3,5 +3,7 @@ export interface Location {
     name: string;
     activities: number;
     country: string;
-    continent: string
+    continent: string;
+
+    coverImage?: string;
 }
