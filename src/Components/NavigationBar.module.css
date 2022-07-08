@@ -4,12 +4,9 @@ nav {
 
 .navbarContainer {
     display: flex;
-    width: 70%;
-    margin: auto;
-    padding: 20px;
-    font-size: x-large;
     justify-content: space-between;
-
+    align-items: center;
+    padding: 16px 0;
 }
 
 .rightSide {

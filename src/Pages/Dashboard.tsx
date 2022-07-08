@@ -1,3 +1,4 @@
+import { Container } from "../Components/core/Container";
 import { Typography } from "../Components/core/Typography";
 import { SearchEngine } from "../Components/SearchEngine";
 import { activities } from "../mocks/activities";
@@ -6,7 +7,7 @@ import styles from "./Dashboard.module.css";
 
 export const Dashboard = () => {
   return (
-    <div className={styles.pageContainer}>
+    <Container>
       <Typography
         text="Enjoy the best things to do, in every destination!"
         variant="h1"
@@ -41,6 +42,6 @@ export const Dashboard = () => {
           })}
         </div>
       </div>
-    </div>
+    </Container>
   );
 };

@@ -1,0 +1,14 @@
+.container {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+/* 1184px */
+
+@media (min-width: 1184px) {
+    .container {
+        width: 1184px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

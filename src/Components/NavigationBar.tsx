@@ -2,11 +2,12 @@ import { FC } from "react";
 import styles from "./NavigationBar.module.css";
 import { FaPen, FaUser } from "react-icons/fa";
 import { Typography } from "./core/Typography";
+import { Container } from "./core/Container";
 
 export const NavigationBar = () => {
   return (
     <nav>
-      <div className={styles.navbarContainer}>
+      <Container className={styles.navbarContainer}>
         <div className={styles.leftSide}>
           <div className={styles.logo}>Trip Planner</div>
         </div>
@@ -17,7 +18,7 @@ export const NavigationBar = () => {
             <FaUser />
           </div>
         </div>
-      </div>
+      </Container>
     </nav>
   );
 };
