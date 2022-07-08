@@ -1,6 +1,6 @@
 import { Container } from "../Components/core/Container";
 import { Typography } from "../Components/core/Typography";
-import { SearchEngine } from "../Components/SearchEngine";
+import { SearchEngine } from "../Components/widgets/SearchEngine";
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
 import styles from "./Dashboard.module.css";

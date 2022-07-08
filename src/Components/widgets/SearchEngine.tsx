@@ -1,8 +1,8 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Activity } from "../models/Activity";
-import { Location } from "../models/Location";
-import { Typography } from "./core/Typography";
+import { Activity } from "../../models/Activity";
+import { Location } from "../../models/Location";
+import { Typography } from "../core/Typography";
 import styles from "./SearchEngine.module.css";
 export const SearchEngine: FC<{
   location: Location[];
