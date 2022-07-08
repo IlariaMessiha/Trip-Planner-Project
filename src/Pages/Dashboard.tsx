@@ -33,7 +33,7 @@ export const Dashboard = () => {
             return (
               <div key={value.id} className={styles.activity}>
                 <Typography text={value.name} variant="h4" />
-                <Typography text={value.city.name} />
+                <Typography text={value.location.name} />
                 <Typography text={value.numberOfReviews} variant="body2" />
 
                 <Typography text="reviews" variant="body2" />

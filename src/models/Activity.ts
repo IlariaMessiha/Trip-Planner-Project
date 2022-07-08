@@ -3,8 +3,7 @@ export interface Activity {
     id: string
     name: string,
     address: string,
-    city: Location,
-    country: string,
+    location: Location,
     numberOfReviews: number,
     description: string
 }
