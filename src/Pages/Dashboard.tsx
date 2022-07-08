@@ -15,9 +15,9 @@ export const Dashboard = () => {
       <div className={styles.dashboardContainer}>
         <Typography text="Locations" variant="h2" />
         <div className={styles.locations}>
-          {locations.map((value, key) => {
+          {locations.map((value) => {
             return (
-              <div className={styles.location}>
+              <div key={value.id} className={styles.location}>
                 <Typography text={value.name} variant="h4" />
                 <Typography text={value.country} />
                 <Typography text={value.activities} variant="body2" />
@@ -28,9 +28,9 @@ export const Dashboard = () => {
         </div>
         <Typography text="Activities" variant="h2" />
         <div className={styles.activities}>
-          {activities.map((value, key) => {
+          {activities.map((value) => {
             return (
-              <div className={styles.activity}>
+              <div key={value.id} className={styles.activity}>
                 <Typography text={value.name} variant="h4" />
                 <Typography text={value.city.name} />
                 <Typography text={value.numberOfReviews} variant="body2" />

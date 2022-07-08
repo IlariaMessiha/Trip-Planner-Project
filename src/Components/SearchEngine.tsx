@@ -50,9 +50,9 @@ export const SearchEngine: FC<{
           />
         </div>
         <div className={styles.searchResult}>
-          {fiteredData.map((value, key) => {
+          {fiteredData.map((value) => {
             return (
-              <a href="/locationPage">
+              <a key={value.id} href="/locationPage">
                 <Typography
                   text={value.name}
                   className={styles.searchResultElement}
