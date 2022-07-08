@@ -1,20 +1,20 @@
 import { FC } from "react";
-import "./NavigationBar.css";
+import styles from "./NavigationBar.module.css";
 import { FaPen, FaUser } from "react-icons/fa";
 
 export const NavigationBar = () => {
   return (
     <nav>
-      <div className="navbar-container">
-        <div className="left-side">
-          <div id="logo">Trip Planner</div>
+      <div className={styles.navbarContainer}>
+        <div className={styles.leftSide}>
+          <div className={styles.logo}>Trip Planner</div>
         </div>
-        <div className="right-side">
-          <div id="review-button">
+        <div className={styles.rightSide}>
+          <div className={styles.reviewButton}>
             <FaPen />
             Review
           </div>
-          <div id="profile-page">
+          <div className={styles.profilePage}>
             <FaUser />
           </div>
         </div>

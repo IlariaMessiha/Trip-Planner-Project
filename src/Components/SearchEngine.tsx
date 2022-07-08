@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Location } from "../models/Location";
-import "./SearchEngine.css";
 import { SearchPage } from "../Pages/SearchPage";
 import { Activity } from "../models/Activity";
 import { Link as RouterLink } from "react-router-dom";
+import styles from "./SearchEngine.module.css";
 export const SearchEngine: FC<{
   location: Location[];
   activity: Activity[];
@@ -35,24 +35,24 @@ export const SearchEngine: FC<{
   };
 
   return (
-    <div className="search">
+    <div className={styles.search}>
       <form>
-        <div className="search-container">
-          <div className="search-icon">
+        <div className={styles.searchContainer}>
+          <div className={styles.searchIcon}>
             <FaSearch />
           </div>
           <input
             type="search"
-            className="search-bar"
+            className={styles.searchBar}
             value={wordEntered}
             onChange={handleFilter}
           />
         </div>
-        <div className="search-result">
+        <div className={styles.searchResult}>
           {fiteredData.map((value, key) => {
             return (
               <a href="/locationPage">
-                <div key={key} className="result-element">
+                <div key={key} className={styles.resultElement}>
                   {value.name}
                 </div>
               </a>

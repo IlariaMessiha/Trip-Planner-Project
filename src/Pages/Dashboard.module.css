@@ -11,24 +11,24 @@
     justify-content: space-between;
 }
 
-.location-name,
-.activity-name {
+.locationName,
+.activityName {
     font-weight: bolder;
 }
 
-.dashboard-container {
+.dashboardContainer {
 
     margin: auto;
 
 }
 
-.location-activities,
-.activity-reviews {
+.locationActivities,
+.activityReviews {
     font-weight: light;
     font-size: smaller
 }
 
-.page-container {
+.pageContainer {
     width: 60%;
     margin: auto;
 }

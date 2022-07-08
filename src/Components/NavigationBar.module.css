@@ -2,7 +2,7 @@ nav {
     border-bottom: 1px solid;
 }
 
-.navbar-container {
+.navbarContainer {
     display: flex;
     width: 70%;
     margin: auto;
@@ -12,16 +12,16 @@ nav {
 
 }
 
-.right-side {
+.rightSide {
     display: flex;
 
 }
 
-.right-side div {
+.rightSide div {
     padding-left: 20px;
 }
 
-#logo {
+.logo {
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 

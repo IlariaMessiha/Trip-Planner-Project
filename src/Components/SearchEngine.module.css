@@ -1,4 +1,4 @@
-.search-bar {
+.searchBar {
     width: 60%;
     border-radius: 30px;
     text-align: center;
@@ -9,7 +9,7 @@
 
 }
 
-.search-container {
+.searchContainer {
     display: flex;
     font-size: x-large;
     align-items: center;
@@ -18,7 +18,7 @@
 
 }
 
-.search-icon {
+.searchIcon {
     position: absolute;
     /* margin: auto; */
     padding-left: 13%;
@@ -32,7 +32,7 @@
     height: 400px;
 }
 
-.search-result {
+.searchResult {
     background-color: white;
 
     display: block;
@@ -50,7 +50,7 @@
 
 }
 
-.result-element {
+.resultElement {
     padding: 10px;
 
 
@@ -58,7 +58,7 @@
 
 }
 
-.result-element:hover {
+.resultElement:hover {
     text-decoration: underline;
     opacity: 0.5;
 
