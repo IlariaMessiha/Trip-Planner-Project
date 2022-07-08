@@ -1,11 +1,9 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Location } from "../models/Location";
-import { SearchPage } from "../Pages/SearchPage";
 import { Activity } from "../models/Activity";
-import { Link as RouterLink } from "react-router-dom";
-import styles from "./SearchEngine.module.css";
+import { Location } from "../models/Location";
 import { Typography } from "./core/Typography";
+import styles from "./SearchEngine.module.css";
 export const SearchEngine: FC<{
   location: Location[];
   activity: Activity[];
