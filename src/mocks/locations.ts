@@ -1,5 +1,11 @@
 import { Location } from "../models/Location";
 import BarcelonaCover from "../assets/images/Barcelona.jpg"
+import portoCover from "../assets/images/porto.jpg"
+import niceCover from "../assets/images/nice.jpg"
+import rioDeJaneroCover from "../assets/images/rio de janeiro.jpg"
+import parisCover from "../assets/images/paris.jpg"
+import newYorkCover from "../assets/images/new york.jpg"
+import egyptCover from "../assets/images/egypt.jpg"
 export const barcelonaLocation: Location = {
     id: '1',
     name: 'Barcelona',
@@ -8,57 +14,63 @@ export const barcelonaLocation: Location = {
     continent: 'Europe',
     coverImage: BarcelonaCover
 }
-export const location2: Location = {
+export const portoLocation: Location = {
     id: '2',
     name: 'Porto',
     activities: 200,
     country: 'Portugal',
-    continent: 'Europe'
+    continent: 'Europe',
+    coverImage: portoCover
 
 }
-export const location3: Location = {
+export const niceLocation: Location = {
     id: '3',
     name: 'Nice',
     activities: 200,
     country: 'France',
-    continent: 'Europe'
+    continent: 'Europe',
+    coverImage: niceCover
 
 }
-export const location4: Location = {
+export const rioDeJaneroLocation: Location = {
     id: '4',
     name: 'Rio de janero',
     activities: 300,
     country: 'Brasil',
-    continent: 'Latin America'
+    continent: 'Latin America',
+    coverImage: rioDeJaneroCover
 
 }
-export const location5: Location = {
+export const parisLocation: Location = {
     id: '5',
     name: 'Paris',
     activities: 400,
     country: 'France',
-    continent: 'Europe'
+    continent: 'Europe',
+    coverImage: parisCover
 }
-export const location6: Location = {
+export const newYorkLocation: Location = {
     id: '6',
     name: 'New York',
     activities: 100,
     country: 'United States',
-    continent: 'America'
+    continent: 'America',
+    coverImage: newYorkCover
 }
-export const location7: Location = {
+export const egyptLocation: Location = {
     id: '7',
     name: 'Egypt',
     activities: 400,
     country: 'Egypt',
-    continent: 'Africa'
+    continent: 'Africa',
+    coverImage: egyptCover
 }
 export const locations: Location[] = [
     barcelonaLocation,
-    location2,
-    location3,
-    location4,
-    location5,
-    location6,
-    location7
+    portoLocation,
+    niceLocation,
+    rioDeJaneroLocation,
+    parisLocation,
+    newYorkLocation,
+    egyptLocation
 ]
