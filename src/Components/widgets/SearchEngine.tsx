@@ -2,12 +2,16 @@ import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Activity } from "../../models/Activity";
 import { Location } from "../../models/Location";
+import { InputText } from "../core/InputText";
 import { Typography } from "../core/Typography";
 import styles from "./SearchEngine.module.css";
-export const SearchEngine: FC<{
+
+interface SearchEngineProps {
   location: Location[];
   activity: Activity[];
-}> = ({ location }) => {
+}
+
+export const SearchEngine: FC<SearchEngineProps> = ({ location }) => {
   const [fiteredData, setFilteredData] = useState<Location[]>([]);
   const [wordEntered, setWordEntered] = useState<string>("");
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
@@ -36,17 +40,7 @@ export const SearchEngine: FC<{
   return (
     <div className={styles.search}>
       <form>
-        <div className={styles.searchContainer}>
-          <div className={styles.searchIcon}>
-            <FaSearch />
-          </div>
-          <input
-            type="search"
-            className={styles.searchBar}
-            value={wordEntered}
-            onChange={handleFilter}
-          />
-        </div>
+        <InputText onChange={handleFilter} inputValue={wordEntered} />
         <div className={styles.searchResult}>
           {fiteredData.map((value) => {
             return (
