@@ -1,10 +1,6 @@
-.item {
-    display: block;
-
-}
-
 .items {
     display: flex;
     text-align: center;
     justify-content: space-between;
+
 }

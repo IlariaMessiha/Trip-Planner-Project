@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import { Container } from "../core/Container";
 import styles from "./Swiper.module.css";
 interface SwiperProps {
   children: ReactNode;

@@ -10,6 +10,7 @@ interface CardLocationProps {
 export const CardLocation: FC<CardLocationProps> = ({ location }) => {
   return (
     <div key={location.id} className={styles.item}>
+      <img src={location.coverImage} alt="" />
       <Typography text={location.name} variant="h4" />
       <Typography text={location.country} />
       <Typography text={location.activities} variant="body2" />
