@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styles from "./NavigationBar.module.css";
 import { FaPen, FaUser } from "react-icons/fa";
+import { Typography } from "./core/Typography";
 
 export const NavigationBar = () => {
   return (
@@ -10,10 +11,8 @@ export const NavigationBar = () => {
           <div className={styles.logo}>Trip Planner</div>
         </div>
         <div className={styles.rightSide}>
-          <div className={styles.reviewButton}>
-            <FaPen />
-            Review
-          </div>
+          {/*  TODO ADD ICON */}
+          <Typography text="Review" />
           <div className={styles.profilePage}>
             <FaUser />
           </div>

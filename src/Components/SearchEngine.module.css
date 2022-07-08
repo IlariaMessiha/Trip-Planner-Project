@@ -50,22 +50,19 @@
 
 }
 
-.resultElement {
-    padding: 10px;
-
-
-
-
-}
-
-.resultElement:hover {
-    text-decoration: underline;
-    opacity: 0.5;
-
-}
-
 a {
     color: black;
     text-decoration: none;
 
+}
+
+.searchResultElement {
+    margin: 0;
+    padding: 10px;
+
+}
+
+.searchResultElement:hover {
+    text-decoration: underline;
+    opacity: 0.5;
 }

@@ -1,0 +1,23 @@
+.base {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.body1 {
+    margin: 0;
+}
+
+.body2 {
+    margin: 0;
+    font-weight: lighter;
+    font-size: x-small;
+}
+
+.h2 {
+    font-weight: bolder;
+}
+
+.h4 {
+    margin: 0;
+
+}

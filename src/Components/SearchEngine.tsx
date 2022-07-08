@@ -5,6 +5,7 @@ import { SearchPage } from "../Pages/SearchPage";
 import { Activity } from "../models/Activity";
 import { Link as RouterLink } from "react-router-dom";
 import styles from "./SearchEngine.module.css";
+import { Typography } from "./core/Typography";
 export const SearchEngine: FC<{
   location: Location[];
   activity: Activity[];
@@ -52,9 +53,10 @@ export const SearchEngine: FC<{
           {fiteredData.map((value, key) => {
             return (
               <a href="/locationPage">
-                <div key={key} className={styles.resultElement}>
-                  {value.name}
-                </div>
+                <Typography
+                  text={value.name}
+                  className={styles.searchResultElement}
+                />
               </a>
             );
           })}

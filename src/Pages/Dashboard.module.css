@@ -11,10 +11,7 @@
     justify-content: space-between;
 }
 
-.locationName,
-.activityName {
-    font-weight: bolder;
-}
+
 
 .dashboardContainer {
 
@@ -22,17 +19,9 @@
 
 }
 
-.locationActivities,
-.activityReviews {
-    font-weight: light;
-    font-size: smaller
-}
+
 
 .pageContainer {
     width: 60%;
     margin: auto;
-}
-
-.slogan {
-    font-family: 'Times New Roman', Times, serif;
 }
