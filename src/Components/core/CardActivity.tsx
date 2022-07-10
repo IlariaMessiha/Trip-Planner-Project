@@ -10,6 +10,11 @@ interface CardActivityProps {
 export const CardActivity: FC<CardActivityProps> = ({ activity }) => {
   return (
     <div key={activity.id} className={styles.item}>
+      <img
+        src={activity.coverImage}
+        alt="activity-photo"
+        className={styles.image}
+      />
       <Typography text={activity.name} variant="h4" />
       <Typography text={activity.location.name} />
       <Typography text={activity.numberOfReviews} variant="body2" />

@@ -5,5 +5,6 @@ export interface Activity {
     address: string,
     location: Location,
     numberOfReviews: number,
-    description: string
+    description: string,
+    coverImage?: string;
 }
