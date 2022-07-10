@@ -4,6 +4,6 @@ export interface Location {
     activities: number;
     country: string;
     continent: string;
-
+    description: string
     coverImage?: string;
 }
