@@ -12,7 +12,7 @@ const result = activities.filter(
 export const LocationPage = () => {
   return (
     <Container className={styles.container}>
-      <Typography text={locations[1].name} variant="h2" />
+      <Typography text={locations[1].name} variant="h1" />
 
       <img src={locations[1].coverImage} alt="" className={styles.image} />
       <Typography
