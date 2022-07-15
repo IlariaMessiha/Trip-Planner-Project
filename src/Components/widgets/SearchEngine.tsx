@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Activity } from "../../models/Activity";
 import { Location } from "../../models/Location";
 import { InputText } from "../core/InputText";
@@ -36,10 +37,14 @@ export const SearchEngine: FC<SearchEngineProps> = ({ location }) => {
     }
     console.log(newFilter);
   };
+  const navigate = useNavigate();
+  const onSubmit = () => {
+    navigate("/SearchPage");
+  };
 
   return (
     <div className={styles.search}>
-      <form>
+      <form onSubmit={onSubmit}>
         <InputText onChange={handleFilter} inputValue={wordEntered} />
         <div className={styles.searchResult}>
           {fiteredData.map((value) => {
