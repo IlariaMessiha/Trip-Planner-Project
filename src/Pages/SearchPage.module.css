@@ -1,0 +1,24 @@
+.searchResult {
+    background-color: white;
+    display: block;
+    text-align: left;
+    box-shadow: 5px 5px 20px black;
+    font-size: larger;
+    max-height: 400px;
+
+    width: 50%;
+    left: 0;
+    right: 0;
+
+}
+
+.searchResultElement {
+    margin: 0;
+    padding: 10px;
+
+}
+
+.searchResultElement:hover {
+    text-decoration: underline;
+    opacity: 0.5;
+}

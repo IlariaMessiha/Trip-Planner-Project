@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    font-size: x-large;
+    padding-top: 20px;
+    width: 50%;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    padding-left: 17px;
+}
+
+.searchBar {
+    width: 100%;
+    text-align: left;
+    font-size: x-large;
+    height: 50px;
+    padding-left: 50px;
+
+
+
+}
