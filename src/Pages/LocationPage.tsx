@@ -4,19 +4,40 @@ import { Typography } from "../Components/core/Typography";
 import { Swiper } from "../Components/widgets/Swiper";
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
+import { Location } from "../models/Location";
 import styles from "./LocationPage.module.css";
-const result = activities.filter(
-  (activity) => activity.location.name === locations[1].name
-);
+import { useParams } from "react-router";
+import React, { FC } from "react";
 
 export const LocationPage = () => {
+  const [location, setLocation] = React.useState<Location | undefined>(
+    undefined
+  );
+  const { id } = useParams();
+  React.useEffect(() => {
+    if (id) {
+      const _location = locations.find((obj) => {
+        return obj.id === id;
+      });
+      setLocation(_location);
+    }
+  }, [id]);
+
+  if (!location) {
+    return null;
+  }
+
+  const result = activities.filter(
+    (activity) => activity.location.name === location.name
+  );
+
   return (
     <Container className={styles.container}>
-      <Typography text={locations[1].name} variant="h1" />
+      <Typography text={location.name} variant="h1" />
 
-      <img src={locations[1].coverImage} alt="" className={styles.image} />
+      <img src={location.coverImage} alt="" className={styles.image} />
       <Typography
-        text={locations[1].description}
+        text={location.description}
         className={styles.locationDescription}
       />
       <Typography text="Top attraction" variant="h2" />
