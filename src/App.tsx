@@ -6,6 +6,7 @@ import { LocationPage } from "./Pages/LocationPage";
 import { SearchPage } from "./Pages/SearchPage";
 import { locations } from "./mocks/locations";
 import { activities } from "./mocks/activities";
+import { ActivityPage } from "./Pages/ActivityPage";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/locationPage/:id" element={<LocationPage />} />
+          <Route path="/location/:id" element={<LocationPage />} />
+          <Route path="/activity/:id" element={<ActivityPage />} />
           <Route
             path="/SearchPage"
             element={<SearchPage location={locations} activity={activities} />}

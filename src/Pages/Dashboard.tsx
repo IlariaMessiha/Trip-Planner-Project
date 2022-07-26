@@ -19,7 +19,7 @@ export const Dashboard = () => {
         <Typography text="Locations" variant="h2" />
         <Swiper>
           {apiCalls.getLocations().map((location) => (
-            <a key={location.id} href={`/locationPage/${location.id}`}>
+            <a key={location.id} href={`/location/${location.id}`}>
               <CardLocation location={location} key={location.id} />
             </a>
           ))}
@@ -29,7 +29,9 @@ export const Dashboard = () => {
 
         <Swiper>
           {apiCalls.getActivities().map((activity) => (
-            <CardActivity activity={activity} key={activity.id} />
+            <a key={activity.id} href={`/activity/${activity.id}`}>
+              <CardActivity activity={activity} />
+            </a>
           ))}
         </Swiper>
       </div>
