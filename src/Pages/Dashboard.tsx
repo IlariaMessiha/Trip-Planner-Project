@@ -1,3 +1,4 @@
+import { apiCalls } from "../api/api";
 import { CardActivity } from "../Components/core/CardActivity";
 import { CardLocation } from "../Components/core/CardLocation";
 import { Container } from "../Components/core/Container";
@@ -5,7 +6,6 @@ import { Typography } from "../Components/core/Typography";
 import { SearchEngine } from "../Components/widgets/SearchEngine";
 import { Swiper } from "../Components/widgets/Swiper";
 import styles from "./Dashboard.module.css";
-import { apiCalls } from "../api/api";
 
 export const Dashboard = () => {
   return (
@@ -14,10 +14,7 @@ export const Dashboard = () => {
         text="Enjoy the best things to do, in every destination!"
         variant="h1"
       />
-      <SearchEngine
-        location={apiCalls.getLocations()}
-        activity={apiCalls.getActivities()}
-      />
+      <SearchEngine />
       <div className={styles.dashboardContainer}>
         <Typography text="Locations" variant="h2" />
         <Swiper>

@@ -1,21 +1,15 @@
 import { ChangeEvent, FC, useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { apiCalls } from "../../api/api";
-import { activities } from "../../mocks/activities";
-import { Activity } from "../../models/Activity";
-import { Location } from "../../models/Location";
+import { SearchResult } from "../../types/SearchResult";
 import { InputText } from "../core/InputText";
 import { Typography } from "../core/Typography";
 import styles from "./SearchEngine.module.css";
 
-interface SearchEngineProps {
-  location: Location[];
-  activity: Activity[];
-}
+interface SearchEngineProps {}
 
-export const SearchEngine: FC<SearchEngineProps> = ({ location, activity }) => {
-  const [results, setResults] = useState<(Location | Activity)[]>([]);
+export const SearchEngine: FC<SearchEngineProps> = () => {
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [query, setQuery] = useState<string>("");
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
     const _query: string = target.value.toLowerCase();
@@ -39,11 +33,11 @@ export const SearchEngine: FC<SearchEngineProps> = ({ location, activity }) => {
       <form onSubmit={onSubmit}>
         <InputText onChange={handleFilter} inputValue={query} />
         <div className={styles.searchResult}>
-          {results.map((result) => {
+          {results.map(({ type, item }) => {
             return (
-              <a key={result.id} href={`/locationPage/${result.id}`}>
+              <a key={`${type}-${item.id}`} href={`/locationPage/${item.id}`}>
                 <Typography
-                  text={result.name}
+                  text={item.name}
                   className={styles.searchResultElement}
                 />
               </a>

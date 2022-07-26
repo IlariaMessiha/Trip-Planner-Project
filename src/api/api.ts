@@ -1,7 +1,9 @@
+
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
 import { Activity } from "../models/Activity";
 import { Location } from "../models/Location"
+import { SearchResult } from "../types/SearchResult";
 
 export class ApiCalls {
     public getLocations() {
@@ -20,7 +22,8 @@ export class ApiCalls {
         return activities.filter((activity) => activity.location.name === location.name);
     }
 
-    public search(query: string): (Location | Activity)[] {
+    public search(query: string): SearchResult[] {
+        const searchResults: SearchResult[] = []
         const filteredLocations = locations.filter((value) => {
             return (
                 value.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -28,13 +31,36 @@ export class ApiCalls {
                 value.country.toLowerCase().startsWith(query.toLowerCase())
             )
         });
+
+        filteredLocations.forEach((filteredLocation) => {
+            searchResults.push(
+                {
+                    type: "location",
+                    item: filteredLocation
+                }
+            )
+
+
+        })
+
         const filteredActivities = activities.filter((value) => {
             return (
                 value.name.toLowerCase().includes(query.toLowerCase()) ||
                 value.location.name.toLowerCase().startsWith(query.toLowerCase())
             )
         });
-        return [...filteredActivities, ...filteredLocations]
+        filteredActivities.forEach((filteredActivity) => {
+            searchResults.push(
+                {
+                    type: "activity",
+                    item: filteredActivity
+                }
+            )
+
+
+        })
+        return searchResults
+
     }
 }
 export const apiCalls = new ApiCalls()
