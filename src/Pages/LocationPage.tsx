@@ -2,13 +2,13 @@ import { CardActivity } from "../Components/core/CardActivity";
 import { Container } from "../Components/core/Container";
 import { Typography } from "../Components/core/Typography";
 import { Swiper } from "../Components/widgets/Swiper";
-import { activities } from "../mocks/activities";
-import { locations } from "../mocks/locations";
+
 import { Location } from "../models/Location";
 import styles from "./LocationPage.module.css";
 import { useParams } from "react-router";
 import React, { FC } from "react";
-
+import { ApiCalls } from "../api/api";
+const apiCalls = new ApiCalls();
 export const LocationPage = () => {
   const [location, setLocation] = React.useState<Location | undefined>(
     undefined
@@ -16,7 +16,7 @@ export const LocationPage = () => {
   const { id } = useParams();
   React.useEffect(() => {
     if (id) {
-      const _location = locations.find((obj) => {
+      const _location = apiCalls.getLocation().find((obj) => {
         return obj.id === id;
       });
       setLocation(_location);
@@ -27,9 +27,9 @@ export const LocationPage = () => {
     return null;
   }
 
-  const result = activities.filter(
-    (activity) => activity.location.name === location.name
-  );
+  const result = apiCalls
+    .getActivity()
+    .filter((activity) => activity.location.name === location.name);
 
   return (
     <Container className={styles.container}>

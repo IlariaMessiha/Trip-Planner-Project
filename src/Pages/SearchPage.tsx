@@ -1,10 +1,12 @@
 import { ChangeEvent, FC, useState } from "react";
+import { getModeForUsageLocation } from "typescript";
 import { Container } from "../Components/core/Container";
 import { InputTextSearchPage } from "../Components/core/InputTextSearchPage";
 import { Typography } from "../Components/core/Typography";
 import { Activity } from "../models/Activity";
 import { Location } from "../models/Location";
 import styles from "./SearchPage.module.css";
+import { ApiCalls } from "../api/api";
 interface SearchEngineProps {
   location: Location[];
   activity: Activity[];
@@ -34,6 +36,7 @@ export const SearchPage: FC<SearchEngineProps> = ({ location }) => {
     }
     console.log(newFilter);
   };
+
   return (
     <Container>
       <InputTextSearchPage onChange={handleFilter} inputValue={wordEntered} />

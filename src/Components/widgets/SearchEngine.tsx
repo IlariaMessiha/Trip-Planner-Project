@@ -49,7 +49,7 @@ export const SearchEngine: FC<SearchEngineProps> = ({ location }) => {
         <div className={styles.searchResult}>
           {fiteredData.map((value) => {
             return (
-              <a key={value.id} href="/locationPage">
+              <a key={value.id} href={`/locationPage/${value.id}`}>
                 <Typography
                   text={value.name}
                   className={styles.searchResultElement}

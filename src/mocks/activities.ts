@@ -19,7 +19,7 @@ export const activity2: Activity = {
     id: '2',
     name: 'Park Guell',
     address: '08024 Barcelona',
-    location: portoLocation,
+    location: barcelonaLocation,
     numberOfReviews: 40,
     description: 'Parc Güell is a privatized park system composed of gardens and architectural elements located on Carmel Hill, in Barcelona, Catalonia, Spain. Carmel Hill belongs to the mountain range of Collserola – the Parc del Carmel is located on the northern face. Park Güell is located in La Salut, a neighborhood in the Gràcia district of Barcelona. With urbanization in mind, Eusebi Güell assigned the design of the park to Antoni Gaudí, a renowned architect and the face of Catalan modernism.',
     coverImage: parkGuellCover
