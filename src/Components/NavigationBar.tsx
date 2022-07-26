@@ -9,7 +9,9 @@ export const NavigationBar = () => {
     <nav>
       <Container className={styles.navbarContainer}>
         <div className={styles.leftSide}>
-          <div className={styles.logo}>Trip Planner</div>
+          <a href="/">
+            <div className={styles.logo}>Trip Planner</div>
+          </a>
         </div>
         <div className={styles.rightSide}>
           {/*  TODO ADD ICON */}
