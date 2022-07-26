@@ -35,12 +35,23 @@ export const SearchEngine: FC<SearchEngineProps> = () => {
         <div className={styles.searchResult}>
           {results.map(({ type, item }) => {
             return (
-              <a key={`${type}-${item.id}`} href={`/locationPage/${item.id}`}>
-                <Typography
-                  text={item.name}
-                  className={styles.searchResultElement}
-                />
-              </a>
+              <div key={`${type}-${item.id}`}>
+                {type === "location" ? (
+                  <a href={`/location/${item.id}`}>
+                    <Typography
+                      text={item.name}
+                      className={styles.searchResultElement}
+                    />
+                  </a>
+                ) : (
+                  <a href={`/activity/${item.id}`}>
+                    <Typography
+                      text={item.name}
+                      className={styles.searchResultElement}
+                    />
+                  </a>
+                )}
+              </div>
             );
           })}
         </div>

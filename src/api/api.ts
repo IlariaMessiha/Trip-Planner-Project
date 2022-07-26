@@ -21,6 +21,11 @@ export class ApiCalls {
     public getActivitiesForLocation(location: Location) {
         return activities.filter((activity) => activity.location.name === location.name);
     }
+    public getActivityById(id: string) {
+        return activities.find((obj) => {
+            return obj.id === id;
+        })
+    }
 
     public search(query: string): SearchResult[] {
         const searchResults: SearchResult[] = []
