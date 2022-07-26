@@ -7,8 +7,8 @@ import { Location } from "../models/Location";
 import styles from "./LocationPage.module.css";
 import { useParams } from "react-router";
 import React, { FC } from "react";
-import { ApiCalls } from "../api/api";
-const apiCalls = new ApiCalls();
+import { apiCalls } from "../api/api";
+
 export const LocationPage = () => {
   const [location, setLocation] = React.useState<Location | undefined>(
     undefined
@@ -16,9 +16,7 @@ export const LocationPage = () => {
   const { id } = useParams();
   React.useEffect(() => {
     if (id) {
-      const _location = apiCalls.getLocation().find((obj) => {
-        return obj.id === id;
-      });
+      const _location = apiCalls.getLocationById(id);
       setLocation(_location);
     }
   }, [id]);
@@ -27,9 +25,7 @@ export const LocationPage = () => {
     return null;
   }
 
-  const result = apiCalls
-    .getActivity()
-    .filter((activity) => activity.location.name === location.name);
+  const result = apiCalls.getActivitiesForLocation(location);
 
   return (
     <Container className={styles.container}>

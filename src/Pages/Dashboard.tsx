@@ -5,8 +5,8 @@ import { Typography } from "../Components/core/Typography";
 import { SearchEngine } from "../Components/widgets/SearchEngine";
 import { Swiper } from "../Components/widgets/Swiper";
 import styles from "./Dashboard.module.css";
-import { ApiCalls } from "../api/api";
-const apiCalls = new ApiCalls();
+import { apiCalls } from "../api/api";
+
 export const Dashboard = () => {
   return (
     <Container>
@@ -15,13 +15,13 @@ export const Dashboard = () => {
         variant="h1"
       />
       <SearchEngine
-        location={apiCalls.getLocation()}
-        activity={apiCalls.getActivity()}
+        location={apiCalls.getLocations()}
+        activity={apiCalls.getActivities()}
       />
       <div className={styles.dashboardContainer}>
         <Typography text="Locations" variant="h2" />
         <Swiper>
-          {apiCalls.getLocation().map((location) => (
+          {apiCalls.getLocations().map((location) => (
             <a href={`/locationPage/${location.id}`}>
               <CardLocation location={location} key={location.id} />
             </a>
@@ -31,7 +31,7 @@ export const Dashboard = () => {
         <Typography text="Activities" variant="h2" />
 
         <Swiper>
-          {apiCalls.getActivity().map((activity) => (
+          {apiCalls.getActivities().map((activity) => (
             <CardActivity activity={activity} key={activity.id} />
           ))}
         </Swiper>

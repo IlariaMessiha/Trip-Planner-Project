@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useState } from "react";
-import { getModeForUsageLocation } from "typescript";
+
 import { Container } from "../Components/core/Container";
 import { InputTextSearchPage } from "../Components/core/InputTextSearchPage";
 import { Typography } from "../Components/core/Typography";
@@ -43,12 +43,11 @@ export const SearchPage: FC<SearchEngineProps> = ({ location }) => {
       <div className={styles.searchResult}>
         {fiteredData.map((value) => {
           return (
-            <a key={value.id} href="/locationPage">
-              <Typography
-                text={value.name}
-                className={styles.searchResultElement}
-              />
-            </a>
+            <Typography
+              key={value.id}
+              text={value.name}
+              className={styles.searchResultElement}
+            />
           );
         })}
       </div>
