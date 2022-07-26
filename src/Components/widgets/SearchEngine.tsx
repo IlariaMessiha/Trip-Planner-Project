@@ -1,6 +1,8 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Navigate, useNavigate } from "react-router-dom";
+import { apiCalls } from "../../api/api";
+import { activities } from "../../mocks/activities";
 import { Activity } from "../../models/Activity";
 import { Location } from "../../models/Location";
 import { InputText } from "../core/InputText";
@@ -12,31 +14,21 @@ interface SearchEngineProps {
   activity: Activity[];
 }
 
-export const SearchEngine: FC<SearchEngineProps> = ({ location }) => {
-  const [fiteredData, setFilteredData] = useState<Location[]>([]);
+export const SearchEngine: FC<SearchEngineProps> = ({ location, activity }) => {
+  const [fiteredData, setFilteredData] = useState<(Location | Activity)[]>([]);
   const [wordEntered, setWordEntered] = useState<string>("");
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
     const searchWord: string = target.value.toLowerCase();
     setWordEntered(searchWord);
-    const newFilter: Location[] = location.filter((value) => {
-      if (
-        value.name.toLowerCase().includes(searchWord) ||
-        value.continent.toLowerCase().startsWith(searchWord) ||
-        value.country.toLowerCase().startsWith(searchWord)
-      ) {
-        return value;
-      }
-    });
 
-    // console.log(searchWord);
-
+    const results = apiCalls.search(searchWord);
     if (searchWord === "") {
       setFilteredData([]);
     } else {
-      setFilteredData(newFilter);
+      setFilteredData(results);
     }
-    console.log(newFilter);
   };
+
   const navigate = useNavigate();
   const onSubmit = () => {
     navigate("/SearchPage");
