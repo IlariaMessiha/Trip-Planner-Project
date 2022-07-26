@@ -15,17 +15,17 @@ interface SearchEngineProps {
 }
 
 export const SearchEngine: FC<SearchEngineProps> = ({ location, activity }) => {
-  const [fiteredData, setFilteredData] = useState<(Location | Activity)[]>([]);
-  const [wordEntered, setWordEntered] = useState<string>("");
+  const [results, setResults] = useState<(Location | Activity)[]>([]);
+  const [query, setQuery] = useState<string>("");
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-    const searchWord: string = target.value.toLowerCase();
-    setWordEntered(searchWord);
+    const _query: string = target.value.toLowerCase();
+    setQuery(_query);
 
-    const results = apiCalls.search(searchWord);
-    if (searchWord === "") {
-      setFilteredData([]);
+    const _results = apiCalls.search(_query);
+    if (_query === "") {
+      setResults([]);
     } else {
-      setFilteredData(results);
+      setResults(_results);
     }
   };
 
@@ -37,13 +37,13 @@ export const SearchEngine: FC<SearchEngineProps> = ({ location, activity }) => {
   return (
     <div className={styles.search}>
       <form onSubmit={onSubmit}>
-        <InputText onChange={handleFilter} inputValue={wordEntered} />
+        <InputText onChange={handleFilter} inputValue={query} />
         <div className={styles.searchResult}>
-          {fiteredData.map((value) => {
+          {results.map((result) => {
             return (
-              <a key={value.id} href={`/locationPage/${value.id}`}>
+              <a key={result.id} href={`/locationPage/${result.id}`}>
                 <Typography
-                  text={value.name}
+                  text={result.name}
                   className={styles.searchResultElement}
                 />
               </a>
