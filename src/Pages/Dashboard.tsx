@@ -22,7 +22,9 @@ export const Dashboard = () => {
         <Typography text="Locations" variant="h2" />
         <Swiper>
           {apiCalls.getLocation().map((location) => (
-            <CardLocation location={location} key={location.id} />
+            <a href={`/locationPage/${location.id}`}>
+              <CardLocation location={location} key={location.id} />
+            </a>
           ))}
         </Swiper>
 
