@@ -17,10 +17,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/location/:id" element={<LocationPage />} />
           <Route path="/activity/:id" element={<ActivityPage />} />
-          <Route
-            path="/SearchPage"
-            element={<SearchPage location={locations} activity={activities} />}
-          />
+          <Route path="/SearchPage" element={<SearchPage />} />
         </Routes>
       </BrowserRouter>
     </div>

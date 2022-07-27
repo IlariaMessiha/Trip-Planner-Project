@@ -3,7 +3,7 @@ import { CardActivity } from "../Components/core/CardActivity";
 import { CardLocation } from "../Components/core/CardLocation";
 import { Container } from "../Components/core/Container";
 import { Typography } from "../Components/core/Typography";
-import { SearchEngine } from "../Components/widgets/SearchEngine";
+import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { Swiper } from "../Components/widgets/Swiper";
 import styles from "./Dashboard.module.css";
 
@@ -14,7 +14,7 @@ export const Dashboard = () => {
         text="Enjoy the best things to do, in every destination!"
         variant="h1"
       />
-      <SearchEngine />
+      <SearchEngineAutocomplete />
       <div className={styles.dashboardContainer}>
         <Typography text="Locations" variant="h2" />
         <Swiper>
