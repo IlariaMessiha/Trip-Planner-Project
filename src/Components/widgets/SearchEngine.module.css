@@ -1,0 +1,39 @@
+.searchContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+
+
+}
+
+.searchButton {
+    width: 100px;
+    height: 50px;
+
+}
+
+
+
+.searchResultContainer {
+    background-color: lightgray;
+
+    padding-top: 20px;
+}
+
+.searchResult {
+    background-color: white;
+}
+
+.searchResultElement {
+    padding: 20px;
+    display: flex;
+    border-bottom: 1px solid black;
+
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
