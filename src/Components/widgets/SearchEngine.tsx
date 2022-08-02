@@ -28,7 +28,7 @@ export const SearchEngine = () => {
         }
       }
     }
-  }, [searchWord]);
+  }, []);
 
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
     const _query: string = target.value.toLowerCase();
@@ -37,7 +37,6 @@ export const SearchEngine = () => {
   const handleOnClick = (event: MouseEvent<HTMLInputElement>): void => {
     if (query) {
       navigate(`/Search?q=${query}`);
-
       const _results = apiCalls.search(query);
       if (query === "") {
         setResults([]);
@@ -50,7 +49,6 @@ export const SearchEngine = () => {
     e.preventDefault();
     if (query) {
       navigate(`/Search?q=${query}`);
-
       const _results = apiCalls.search(query);
       if (query === "") {
         setResults([]);
@@ -65,6 +63,11 @@ export const SearchEngine = () => {
       <Container>
         <form className={styles.searchContainer} onSubmit={onSubmit}>
           <InputTextSearchPage onChange={handleFilter} inputValue={query} />
+          {/* <input list="filters" />
+          <datalist id="filters">
+            <option value="Location"></option>
+            <option value="Activities"></option>
+          </datalist> */}
           <input
             type="button"
             className={styles.searchButton}

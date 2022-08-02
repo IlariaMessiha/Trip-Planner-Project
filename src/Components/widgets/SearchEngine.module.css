@@ -6,6 +6,7 @@
 
 
 
+
 }
 
 .searchButton {
@@ -16,20 +17,26 @@
 
 
 
-.searchResultContainer {
-    background-color: lightgray;
 
-    padding-top: 20px;
+
+.searchResultContainer {
+    background-color: #F0F0F0;
+
+
+
 }
 
 .searchResult {
     background-color: white;
+
+
 }
 
 .searchResultElement {
     padding: 20px;
     display: flex;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
 
 }
 
