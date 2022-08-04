@@ -15,11 +15,13 @@ nav {
 }
 
 .rightSide div {
-    padding-left: 20px;
+    padding-left: 15px;
+    font-size: larger;
 }
 
 .logo {
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
 
 }

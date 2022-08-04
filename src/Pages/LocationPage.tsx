@@ -39,7 +39,9 @@ export const LocationPage = () => {
       <Typography text="Top attraction" variant="h2" />
       <Swiper>
         {result.map((activity) => (
-          <CardActivity activity={activity} key={activity.id} />
+          <a key={activity.id} href={`/activity/${activity.id}`}>
+            <CardActivity activity={activity} />
+          </a>
         ))}
       </Swiper>
     </Container>

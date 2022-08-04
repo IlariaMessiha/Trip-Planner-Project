@@ -76,6 +76,7 @@ a {
 .searchResultElement:hover {
     text-decoration: underline;
     opacity: 0.5;
+    background-color: #F0F0F0;
 
 }
 
@@ -86,4 +87,6 @@ a {
 
 .itemName {
     padding-left: 7px;
+    padding-top: 5px;
+
 }
