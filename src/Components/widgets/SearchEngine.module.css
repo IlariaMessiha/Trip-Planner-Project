@@ -15,6 +15,15 @@
 
 }
 
+.filterForm {
+    display: flex;
+    align-items: center;
+}
+
+.filterInput {
+    height: 50px;
+    margin-left: 10px;
+}
 
 
 

@@ -12,68 +12,87 @@ import styles from "./SearchEngine.module.css";
 export const SearchEngine = () => {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [query, setQuery] = useState<string | undefined>("");
+  const [filter, setFilter] = useState<string | undefined>("");
   const params = new URLSearchParams(window.location.search);
   const searchWord = params.get("q");
   const navigate = useNavigate();
+  const filteredResults: SearchResult[] = [];
   React.useEffect(() => {
     if (searchWord) {
       setQuery(searchWord);
+    }
+  }, []);
 
-      if (query) {
-        const _results = apiCalls.search(query);
-        if (query === "") {
-          setResults([]);
+  const handleSearch = ({ target }: ChangeEvent<HTMLInputElement>): void => {
+    const _query: string = target.value.toLowerCase();
+    setQuery(_query);
+  };
+
+  const onSubmit = (e: any): void => {
+    e.preventDefault();
+    console.log("hi");
+    if (query) {
+      navigate(`/Search?q=${query}`);
+      const _results = apiCalls.search(query);
+
+      if (query === "") {
+        setResults([]);
+      } else {
+        if (filter === "location") {
+          _results.map(({ item, type }) => {
+            if (type === "location") {
+              filteredResults.push({
+                type: "location",
+                item: item,
+              });
+            }
+          });
+          setResults(filteredResults);
+        } else if (filter == "activities") {
+          _results.map(({ type, item }) => {
+            if (type === "activity") {
+              filteredResults.push({
+                type: "activity",
+                item: item,
+              });
+            }
+          });
+          setResults(filteredResults);
         } else {
           setResults(_results);
         }
       }
     }
-  }, []);
-
+  };
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-    const _query: string = target.value.toLowerCase();
-    setQuery(_query);
-  };
-  const handleOnClick = (event: MouseEvent<HTMLInputElement>): void => {
-    if (query) {
-      navigate(`/Search?q=${query}`);
-      const _results = apiCalls.search(query);
-      if (query === "") {
-        setResults([]);
-      } else {
-        setResults(_results);
-      }
-    }
-  };
-  const onSubmit = (e: any): void => {
-    e.preventDefault();
-    if (query) {
-      navigate(`/Search?q=${query}`);
-      const _results = apiCalls.search(query);
-      if (query === "") {
-        setResults([]);
-      } else {
-        setResults(_results);
-      }
-    }
+    const _filter: string = target.value.toLowerCase();
+    setFilter(_filter);
   };
 
   return (
     <div>
       <Container>
         <form className={styles.searchContainer} onSubmit={onSubmit}>
-          <InputTextSearchPage onChange={handleFilter} inputValue={query} />
-          {/* <input list="filters" />
-          <datalist id="filters">
-            <option value="Location"></option>
-            <option value="Activities"></option>
-          </datalist> */}
-          <input
-            type="button"
-            className={styles.searchButton}
-            value="Search"
-            onClick={handleOnClick}
-          />
+          <InputTextSearchPage onChange={handleSearch} inputValue={query} />
+          <label className={styles.filterForm}>
+            <Typography
+              text="Filter By:"
+              variant="h4"
+              className={styles.filterLabel}
+            />
+
+            <input
+              list="filters"
+              onChange={handleFilter}
+              className={styles.filterInput}
+            />
+            <datalist id="filters">
+              <option value="Location"></option>
+              <option value="Activities"></option>
+            </datalist>
+          </label>
+
+          <input type="submit" className={styles.searchButton} value="Search" />
         </form>
       </Container>
       <div className={styles.searchResultContainer}>
