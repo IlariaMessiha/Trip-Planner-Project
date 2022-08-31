@@ -12,11 +12,13 @@ nav {
 .rightSide {
     display: flex;
 
+
 }
 
 .rightSide div {
     padding-left: 15px;
-    font-size: larger;
+
+
 }
 
 .logo {
@@ -24,4 +26,50 @@ nav {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: larger;
 
+}
+
+.review {
+    display: flex;
+    gap: 2px;
+}
+
+.dropDownButton {
+    border: 0px;
+    font-size: large;
+    padding: 0px;
+    vertical-align: middle;
+    background-color: white;
+}
+
+.dropDownMenu {
+    display: grid;
+    background-color: white;
+    box-shadow: 5px 5px 20px black;
+    width: 100px;
+}
+
+
+
+.dropDownItem {
+    padding-bottom: 15px;
+    padding-top: 5px;
+    vertical-align: middle;
+    display: flex;
+    gap: 5px;
+}
+
+.dropDownItem:hover {
+    opacity: 0.2;
+    text-decoration: underline;
+}
+
+.dropDownMenu img {
+    width: 25px;
+    height: 15px;
+}
+
+.currentLanguage {
+    width: 25px;
+    height: 15px;
+    padding-left: 5px;
 }
