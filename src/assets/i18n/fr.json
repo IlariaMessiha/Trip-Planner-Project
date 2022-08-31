@@ -1,8 +1,12 @@
 {
-  "logo": "Plannificateur De Voyage",
+  "navBar": {
+    "logo": "Plannificateur De Voyage",
+    "review": "Commenter"
+  },
   "dashboard": {
     "slogan": "Rêve Ton Prochain Voyage",
     "locations": "Locations",
-    "activities": "Activités"
+    "activities": "Activités",
+    "reviews": "Commentaires"
   }
 }

@@ -1,8 +1,13 @@
 {
-  "logo": "Trip Planner",
+  "navBar": {
+    "logo": "Trip Planner",
+    "review": "Review"
+  },
+
   "dashboard": {
     "slogan": "Dream Your Next Trip",
     "locations": "Locations",
-    "activities": "Activities"
+    "activities": "Activities",
+    "reviews": "Reviews"
   }
 }

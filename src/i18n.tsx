@@ -4,12 +4,16 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import translationEN from "./assets/i18n/en.json";
 import translationFR from "./assets/i18n/fr.json";
+import translationSP from "./assets/i18n/sp.json";
 const resources = {
   en: {
     translation: translationEN,
   },
   fr: {
     translation: translationFR,
+  },
+  sp: {
+    translation: translationSP,
   },
 };
 i18n

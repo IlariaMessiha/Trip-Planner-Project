@@ -30,6 +30,7 @@ export const NavigationBar = () => {
   };
   const showSpanishFlag = () => {
     setLanguage(2);
+    i18n.changeLanguage("sp");
   };
 
   return (
@@ -37,14 +38,14 @@ export const NavigationBar = () => {
       <Container className={styles.navbarContainer}>
         <div className={styles.leftSide}>
           <a href="/">
-            <div className={styles.logo}>{t("logo")}</div>
+            <div className={styles.logo}>{t("navBar.logo")}</div>
           </a>
         </div>
         <div className={styles.rightSide}>
           {/*  TODO ADD ICON */}
           <div className={styles.review}>
             <FaPen />
-            <Typography text="Review" />
+            <Typography text={t("navBar.review")} />
           </div>
 
           <div className={styles.profilePage}>

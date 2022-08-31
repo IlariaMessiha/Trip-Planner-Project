@@ -1,0 +1,13 @@
+{
+  "navBar": {
+    "logo": "Planificador De Viajes",
+    "review": "Reseñar"
+  },
+
+  "dashboard": {
+    "slogan": "Sueña Tu Próximo Viaje",
+    "locations": "Ubicaciones",
+    "activities": "Actividades",
+    "reviews": "Reseñas"
+  }
+}

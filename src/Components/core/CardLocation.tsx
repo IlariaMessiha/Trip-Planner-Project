@@ -1,4 +1,6 @@
+import { t } from "i18next";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Location } from "../../models/Location";
 import { Typography } from "../core/Typography";
@@ -9,13 +11,14 @@ interface CardLocationProps {
 }
 
 export const CardLocation: FC<CardLocationProps> = ({ location }) => {
+  const { t } = useTranslation();
   return (
     <div key={location.id} className={styles.item}>
       <img src={location.coverImage} alt="" className={styles.image} />
       <Typography text={location.name} variant="h4" />
       <Typography text={location.country} />
       <Typography text={location.activities} variant="body2" />
-      <Typography text="activities" variant="body2" />
+      <Typography text={t("dashboard.activities")} variant="body2" />
     </div>
   );
 };
