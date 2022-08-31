@@ -11,6 +11,7 @@ nav {
 
 .rightSide {
     display: flex;
+    align-items: center;
 
 
 }
@@ -37,7 +38,6 @@ nav {
     border: 0px;
     font-size: large;
     padding: 0px;
-    vertical-align: middle;
     background-color: white;
 }
 
@@ -46,6 +46,7 @@ nav {
     background-color: white;
     box-shadow: 5px 5px 20px black;
     width: 100px;
+
 }
 
 
@@ -53,7 +54,7 @@ nav {
 .dropDownItem {
     padding-bottom: 15px;
     padding-top: 5px;
-    vertical-align: middle;
+
     display: flex;
     gap: 5px;
 }

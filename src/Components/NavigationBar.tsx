@@ -10,7 +10,7 @@ import frenchFlag from "../assets/images/french flag.jpg";
 import americanFlag from "../assets/images/American flag.jpg";
 import spanishFlag from "../assets/images/Spanish flag.jpg";
 export const NavigationBar = () => {
-  const { i18n, t } = useTranslation(["home"]);
+  const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState<number>(0);
 
   // useEffect(() => {
@@ -22,9 +22,11 @@ export const NavigationBar = () => {
   // }, []);
   const showAmericanFlag = () => {
     setLanguage(0);
+    i18n.changeLanguage("en");
   };
   const showFrenchFlag = () => {
     setLanguage(1);
+    i18n.changeLanguage("fr");
   };
   const showSpanishFlag = () => {
     setLanguage(2);
@@ -49,10 +51,7 @@ export const NavigationBar = () => {
             <FaUser />
           </div>
           <Dropdown>
-            <Dropdown.Toggle
-              variant="success"
-              className={styles.dropDownButton}
-            >
+            <Dropdown.Toggle className={styles.dropDownButton}>
               <FaGlobe />
             </Dropdown.Toggle>
             <Dropdown.Menu className={styles.dropDownMenu}>
