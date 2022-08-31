@@ -1,3 +1,8 @@
 {
-  "logo": "Plannificateur De Voyage"
+  "logo": "Plannificateur De Voyage",
+  "dashboard": {
+    "slogan": "Rêve Ton Prochain Voyage",
+    "locations": "Locations",
+    "activities": "Activités"
+  }
 }

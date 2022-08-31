@@ -6,17 +6,17 @@ import { Typography } from "../Components/core/Typography";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { Swiper } from "../Components/widgets/Swiper";
 import styles from "./Dashboard.module.css";
+import { useTranslation } from "react-i18next";
 
 export const Dashboard = () => {
+  const { t } = useTranslation();
   return (
     <Container>
-      <Typography
-        text="Enjoy the best things to do, in every destination!"
-        variant="h1"
-      />
+      <Typography text={t("dashboard.slogan")} variant="h1" />
+
       <SearchEngineAutocomplete />
       <div className={styles.dashboardContainer}>
-        <Typography text="Locations" variant="h2" />
+        <Typography text={t("dashboard.locations")} variant="h2" />
         <Swiper>
           {apiCalls.getLocations().map((location) => (
             <a key={location.id} href={`/location/${location.id}`}>
@@ -25,7 +25,7 @@ export const Dashboard = () => {
           ))}
         </Swiper>
 
-        <Typography text="Activities" variant="h2" />
+        <Typography text={t("dashboard.activities")} variant="h2" />
 
         <Swiper>
           {apiCalls.getActivities().map((activity) => (
