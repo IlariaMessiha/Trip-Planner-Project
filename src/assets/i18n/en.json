@@ -5,7 +5,10 @@
   },
   "navBar": {
     "logo": "Trip Planner",
-    "review": "Review"
+    "review": "Review",
+    "french": "French",
+    "spanish": "Spanish",
+    "english": "English"
   },
 
   "dashboard": {

@@ -61,21 +61,21 @@ export const NavigationBar = () => {
                 onClick={showAmericanFlag}
               >
                 <img src={americanFlag} />
-                <Typography variant="body2" text="English" />
+                <Typography variant="body2" text={t("navBar.english")} />
               </Dropdown.Item>
               <Dropdown.Item
                 className={styles.dropDownItem}
                 onClick={showSpanishFlag}
               >
                 <img src={spanishFlag} />
-                <Typography variant="body2" text="Spanish" />
+                <Typography variant="body2" text={t("navBar.spanish")} />
               </Dropdown.Item>
               <Dropdown.Item
                 className={styles.dropDownItem}
                 onClick={showFrenchFlag}
               >
                 <img src={frenchFlag} />
-                <Typography variant="body2" text="French" />
+                <Typography variant="body2" text={t("navBar.french")} />
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

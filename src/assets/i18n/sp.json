@@ -5,7 +5,10 @@
   },
   "navBar": {
     "logo": "Planificador De Viajes",
-    "review": "Reseñar"
+    "review": "Reseñar",
+    "french": "Francés",
+    "spanish": "Español",
+    "english": "Inglés"
   },
 
   "dashboard": {

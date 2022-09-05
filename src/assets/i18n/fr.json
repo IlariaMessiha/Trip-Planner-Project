@@ -6,7 +6,10 @@
 
   "navBar": {
     "logo": "Plannificateur De Voyage",
-    "review": "Commenter"
+    "review": "Commenter",
+    "french": "Francais",
+    "spanish": "Espagnole",
+    "english": "Anglais"
   },
   "dashboard": {
     "slogan": "Rêve Ton Prochain Voyage",
