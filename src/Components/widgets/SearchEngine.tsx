@@ -8,6 +8,7 @@ import { Location } from "../../models/Location";
 import { SearchResult } from "../../types/SearchResult";
 import { Container } from "../core/Container";
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
+import { LocationSearchResult } from "../core/LocationSearchResult";
 import { Typography } from "../core/Typography";
 import styles from "./SearchEngine.module.css";
 
@@ -23,8 +24,10 @@ export const SearchEngine = () => {
   React.useEffect(() => {
     if (searchWord) {
       setQuery(searchWord);
+      const _results = apiCalls.search(searchWord);
+      setResults(_results);
     }
-  }, []);
+  }, [searchWord]);
 
   const handleSearch = ({ target }: ChangeEvent<HTMLInputElement>): void => {
     const _query: string = target.value.toLowerCase();
@@ -111,21 +114,12 @@ export const SearchEngine = () => {
         <Container className={styles.searchResult}>
           {results.map(({ type, item }) => {
             return (
-              <div
-                key={`${type}-${item.id}`}
-                className={styles.searchResultElement}
-              >
+              <div key={`${type}-${item.id}`}>
                 {type === "location" ? (
-                  <div>
-                    <a href={`/location/${item.id}`}>
-                      <img src={item.coverImage} alt="" />
-                      <Typography text={item.name} variant="h3" />
-                      <Typography
-                        text={(item as Location).country}
-                        variant="body2"
-                      />
-                    </a>
-                  </div>
+                  <LocationSearchResult
+                    location={item as Location}
+                    key={item.id}
+                  />
                 ) : (
                   <div>
                     <a href={`/activity/${item.id}`}>
