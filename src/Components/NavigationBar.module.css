@@ -41,33 +41,8 @@ nav {
     background-color: white;
 }
 
-.dropDownMenu {
-    display: grid;
-    background-color: white;
-    box-shadow: 5px 5px 20px black;
-    width: 100px;
-
-}
 
 
-
-.dropDownItem {
-    padding-bottom: 15px;
-    padding-top: 5px;
-
-    display: flex;
-    gap: 5px;
-}
-
-.dropDownItem:hover {
-    opacity: 0.2;
-    text-decoration: underline;
-}
-
-.dropDownMenu img {
-    width: 25px;
-    height: 15px;
-}
 
 .currentLanguage {
     width: 25px;

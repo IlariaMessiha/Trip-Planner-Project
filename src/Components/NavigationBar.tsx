@@ -9,6 +9,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import frenchFlag from "../assets/images/french flag.jpg";
 import americanFlag from "../assets/images/American flag.jpg";
 import spanishFlag from "../assets/images/Spanish flag.jpg";
+import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
+
 export const NavigationBar = () => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState<number>(0);
@@ -20,18 +22,6 @@ export const NavigationBar = () => {
   //     }
   //   }
   // }, []);
-  const showAmericanFlag = () => {
-    setLanguage(0);
-    i18n.changeLanguage("en");
-  };
-  const showFrenchFlag = () => {
-    setLanguage(1);
-    i18n.changeLanguage("fr");
-  };
-  const showSpanishFlag = () => {
-    setLanguage(2);
-    i18n.changeLanguage("sp");
-  };
 
   return (
     <nav>
@@ -51,41 +41,8 @@ export const NavigationBar = () => {
           <div className={styles.profilePage}>
             <FaUser />
           </div>
-          <Dropdown>
-            <Dropdown.Toggle className={styles.dropDownButton}>
-              <FaGlobe />
-            </Dropdown.Toggle>
-            <Dropdown.Menu className={styles.dropDownMenu}>
-              <Dropdown.Item
-                className={styles.dropDownItem}
-                onClick={showAmericanFlag}
-              >
-                <img src={americanFlag} />
-                <Typography variant="body2" text={t("navBar.english")} />
-              </Dropdown.Item>
-              <Dropdown.Item
-                className={styles.dropDownItem}
-                onClick={showSpanishFlag}
-              >
-                <img src={spanishFlag} />
-                <Typography variant="body2" text={t("navBar.spanish")} />
-              </Dropdown.Item>
-              <Dropdown.Item
-                className={styles.dropDownItem}
-                onClick={showFrenchFlag}
-              >
-                <img src={frenchFlag} />
-                <Typography variant="body2" text={t("navBar.french")} />
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          {language === 2 ? (
-            <img src={spanishFlag} className={styles.currentLanguage} />
-          ) : language === 1 ? (
-            <img src={frenchFlag} className={styles.currentLanguage} />
-          ) : (
-            <img src={americanFlag} className={styles.currentLanguage} />
-          )}
+
+          <DropDownLanguageMenu />
         </div>
       </Container>
     </nav>

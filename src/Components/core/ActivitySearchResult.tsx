@@ -4,6 +4,7 @@ import { Typography } from "./Typography";
 import styles from "./ActivitySearchResult.module.css";
 import { Activity } from "../../models/Activity";
 import { useTranslation } from "react-i18next";
+import { FaRunning } from "react-icons/fa";
 
 interface ActivitySearchResultProps {
   activity: Activity;
@@ -26,7 +27,8 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({
         </a>
 
         <div className={styles.resultType}>
-          <GrLocation /> <Typography text="Location" variant="body1" />
+          <FaRunning />
+          <Typography text={t("common.activity")} variant="body1" />
         </div>
         <Typography text={activity.location.country} variant="body1" />
         <div className={styles.availableReviews}>

@@ -1,0 +1,21 @@
+.flag {
+    width: 25px;
+    height: 20px;
+    padding-right: 3px;
+}
+
+.menuItem {
+    padding: 15px;
+}
+
+.icon {
+    color: black;
+    font-size: larger;
+}
+
+.currentLanguage {
+    width: 20px;
+    height: 15px;
+    vertical-align: middle;
+
+}
