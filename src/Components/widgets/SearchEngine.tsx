@@ -4,8 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { apiCalls } from "../../api/api";
+import { Activity } from "../../models/Activity";
 import { Location } from "../../models/Location";
 import { SearchResult } from "../../types/SearchResult";
+import { ActivitySearchResult } from "../core/ActivitySearchResult";
 import { Container } from "../core/Container";
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
 import { LocationSearchResult } from "../core/LocationSearchResult";
@@ -121,12 +123,10 @@ export const SearchEngine = () => {
                     key={item.id}
                   />
                 ) : (
-                  <div>
-                    <a href={`/activity/${item.id}`}>
-                      <img src={item.coverImage} alt="" />
-                      <Typography text={item.name} variant="h3" />
-                    </a>
-                  </div>
+                  <ActivitySearchResult
+                    activity={item as Activity}
+                    key={item.id}
+                  />
                 )}
               </div>
             );

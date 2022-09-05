@@ -1,0 +1,24 @@
+.searchResultElement {
+    padding: 10px;
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+
+}
+
+.resultType {
+    display: flex;
+    gap: 3px;
+
+}
+
+.availableReviews {
+    display: flex;
+    gap: 3px;
+    padding-top: 5px;
+}
+
+.rightSide {
+    flex-grow: 1;
+    padding: 20px;
+}

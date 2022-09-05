@@ -18,7 +18,7 @@ export const CardLocation: FC<CardLocationProps> = ({ location }) => {
       <Typography text={location.name} variant="h4" />
       <Typography text={location.country} />
       <Typography text={location.activities} variant="body2" />
-      <Typography text={t("dashboard.activities")} variant="body2" />
+      <Typography text={t("common.activities")} variant="body2" />
     </div>
   );
 };

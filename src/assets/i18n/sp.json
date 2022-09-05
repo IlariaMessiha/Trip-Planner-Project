@@ -1,7 +1,8 @@
 {
   "common": {
     "locations": "Ubicaciones",
-    "activities": "Actividades"
+    "activities": "Actividades",
+    "reviews": "Reseñas"
   },
   "navBar": {
     "logo": "Planificador De Viajes",
@@ -12,9 +13,7 @@
   },
 
   "dashboard": {
-    "slogan": "Sueña Tu Próximo Viaje",
-
-    "reviews": "Reseñas"
+    "slogan": "Sueña Tu Próximo Viaje"
   },
   "Locations": {
     "Barcelona": {

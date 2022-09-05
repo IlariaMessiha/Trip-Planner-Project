@@ -36,7 +36,7 @@ export const activity3: Activity = {
 }
 export const activity4: Activity = {
     id: '4',
-    name: 'The pyramids',
+    name: 'The Pyramids',
     address: 'Al Haram, Giza Governorate 3512201',
     location: egyptLocation,
     coverImage: thePyrmidsCover,

@@ -1,7 +1,8 @@
 {
   "common": {
     "locations": "Locations",
-    "activities": "Activities"
+    "activities": "Activities",
+    "reviews": "Reviews"
   },
   "navBar": {
     "logo": "Trip Planner",
@@ -12,9 +13,7 @@
   },
 
   "dashboard": {
-    "slogan": "Dream Your Next Trip",
-
-    "reviews": "Reviews"
+    "slogan": "Dream Your Next Trip"
   },
   "Locations": {
     "Barcelona": {

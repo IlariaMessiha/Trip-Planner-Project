@@ -1,7 +1,8 @@
 {
   "common": {
     "locations": "Locations",
-    "activities": "Activités"
+    "activities": "Activités",
+    "reviews": "Commentaires"
   },
 
   "navBar": {
@@ -12,9 +13,7 @@
     "english": "Anglais"
   },
   "dashboard": {
-    "slogan": "Rêve Ton Prochain Voyage",
-
-    "reviews": "Commentaires"
+    "slogan": "Rêve Ton Prochain Voyage"
   },
   "Locations": {
     "Barcelona": {

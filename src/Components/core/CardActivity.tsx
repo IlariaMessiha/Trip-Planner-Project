@@ -20,7 +20,7 @@ export const CardActivity: FC<CardActivityProps> = ({ activity }) => {
       <Typography text={activity.name} variant="h4" />
       <Typography text={activity.location.name} />
       <Typography text={activity.numberOfReviews} variant="body2" />
-      <Typography text={t("dashboard.reviews")} variant="body2" />
+      <Typography text={t("common.reviews")} variant="body2" />
     </div>
   );
 };
