@@ -2,7 +2,8 @@
   "common": {
     "locations": "Ubicaciones",
     "activities": "Actividades",
-    "reviews": "Reseñas"
+    "reviews": "Reseñas",
+    "activity": "Actividad"
   },
   "navBar": {
     "logo": "Planificador De Viajes",

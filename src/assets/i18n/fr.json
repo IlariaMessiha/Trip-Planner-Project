@@ -2,7 +2,8 @@
   "common": {
     "locations": "Locations",
     "activities": "Activités",
-    "reviews": "Commentaires"
+    "reviews": "Commentaires",
+    "activity": "Activité"
   },
 
   "navBar": {

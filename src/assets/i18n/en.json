@@ -2,7 +2,8 @@
   "common": {
     "locations": "Locations",
     "activities": "Activities",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "activity": "Activity"
   },
   "navBar": {
     "logo": "Trip Planner",
