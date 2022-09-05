@@ -8,8 +8,10 @@ import styles from "./LocationPage.module.css";
 import { useParams } from "react-router";
 import React, { FC } from "react";
 import { apiCalls } from "../api/api";
+import { useTranslation } from "react-i18next";
 
 export const LocationPage = () => {
+  const { t } = useTranslation();
   const [location, setLocation] = React.useState<Location | undefined>(
     undefined
   );
@@ -33,7 +35,7 @@ export const LocationPage = () => {
 
       <img src={location.coverImage} alt="" className={styles.image} />
       <Typography
-        text={location.description}
+        text={t(`Locations.${location.name}.description`)}
         className={styles.locationDescription}
       />
       <Typography text="Top attraction" variant="h2" />

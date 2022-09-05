@@ -51,7 +51,9 @@ export class ApiCalls {
         const filteredActivities = activities.filter((value) => {
             return (
                 value.name.toLowerCase().includes(query.toLowerCase()) ||
-                value.location.name.toLowerCase().startsWith(query.toLowerCase())
+                value.location.name.toLowerCase().startsWith(query.toLowerCase()) ||
+                value.location.country.toLowerCase().startsWith(query.toLowerCase())
+
             )
         });
         filteredActivities.forEach((filteredActivity) => {

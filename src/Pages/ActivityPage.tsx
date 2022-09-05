@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import { apiCalls } from "../api/api";
 import { Container } from "../Components/core/Container";
@@ -6,6 +7,7 @@ import { Typography } from "../Components/core/Typography";
 import { Activity } from "../models/Activity";
 import styles from "./ActivityPage.module.css";
 export const ActivityPage = () => {
+  const { t, i18n } = useTranslation();
   const [activity, setActivity] = React.useState<Activity | undefined>(
     undefined
   );
@@ -26,7 +28,7 @@ export const ActivityPage = () => {
 
       <img src={activity.coverImage} alt="" className={styles.image} />
       <Typography
-        text={activity.description}
+        text={t(`Activities.${activity.name}.description`)}
         className={styles.activityDescription}
       />
     </Container>

@@ -38,7 +38,7 @@ export const niceLocation: Location = {
 }
 export const rioDeJaneroLocation: Location = {
     id: '4',
-    name: 'Rio de janero',
+    name: 'Rio de Janero',
     activities: 300,
     country: 'Brasil',
     continent: 'Latin America',

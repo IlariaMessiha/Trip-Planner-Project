@@ -1,8 +1,10 @@
 import React, { KeyboardEventHandler } from "react";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { apiCalls } from "../../api/api";
+import { Location } from "../../models/Location";
 import { SearchResult } from "../../types/SearchResult";
 import { Container } from "../core/Container";
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
@@ -10,6 +12,7 @@ import { Typography } from "../core/Typography";
 import styles from "./SearchEngine.module.css";
 
 export const SearchEngine = () => {
+  const { t } = useTranslation();
   const [results, setResults] = useState<SearchResult[]>([]);
   const [query, setQuery] = useState<string | undefined>("");
   const [filter, setFilter] = useState<string | undefined>("");
@@ -30,15 +33,16 @@ export const SearchEngine = () => {
 
   const onSubmit = (e: any): void => {
     e.preventDefault();
-    console.log("hi");
+
     if (query) {
       navigate(`/Search?q=${query}`);
       const _results = apiCalls.search(query);
-
+      console.log(filter);
       if (query === "") {
         setResults([]);
       } else {
-        if (filter === "location") {
+        if (filter === "Locations" || filter === "Ubicaciones") {
+          console.log("hi");
           _results.map(({ item, type }) => {
             if (type === "location") {
               filteredResults.push({
@@ -48,7 +52,11 @@ export const SearchEngine = () => {
             }
           });
           setResults(filteredResults);
-        } else if (filter == "activities") {
+        } else if (
+          filter === "Activities" ||
+          filter === "Actividades" ||
+          filter === "Activités"
+        ) {
           _results.map(({ type, item }) => {
             if (type === "activity") {
               filteredResults.push({
@@ -59,13 +67,17 @@ export const SearchEngine = () => {
           });
           setResults(filteredResults);
         } else {
+          console.log("hi");
           setResults(_results);
         }
       }
     }
+
+    // console.log(query);
+    // console.log(results);
   };
   const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-    const _filter: string = target.value.toLowerCase();
+    const _filter: string = target.value;
     setFilter(_filter);
   };
 
@@ -83,12 +95,12 @@ export const SearchEngine = () => {
 
             <input
               list="filters"
-              onChange={handleFilter}
               className={styles.filterInput}
+              onChange={handleFilter}
             />
             <datalist id="filters">
-              <option value="Location"></option>
-              <option value="Activities"></option>
+              <option value={t(`common.locations`)}></option>
+              <option value={t("common.activities")}></option>
             </datalist>
           </label>
 
@@ -108,6 +120,10 @@ export const SearchEngine = () => {
                     <a href={`/location/${item.id}`}>
                       <img src={item.coverImage} alt="" />
                       <Typography text={item.name} variant="h3" />
+                      <Typography
+                        text={(item as Location).country}
+                        variant="body2"
+                      />
                     </a>
                   </div>
                 ) : (

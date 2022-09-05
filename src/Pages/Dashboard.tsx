@@ -16,7 +16,7 @@ export const Dashboard = () => {
 
       <SearchEngineAutocomplete />
       <div className={styles.dashboardContainer}>
-        <Typography text={t("dashboard.locations")} variant="h2" />
+        <Typography text={t("common.locations")} variant="h2" />
         <Swiper>
           {apiCalls.getLocations().map((location) => (
             <a key={location.id} href={`/location/${location.id}`}>
@@ -25,7 +25,7 @@ export const Dashboard = () => {
           ))}
         </Swiper>
 
-        <Typography text={t("dashboard.activities")} variant="h2" />
+        <Typography text={t("common.activities")} variant="h2" />
 
         <Swiper>
           {apiCalls.getActivities().map((activity) => (
