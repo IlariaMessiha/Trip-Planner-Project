@@ -1,3 +1,4 @@
+import { Autocomplete, TextField } from "@mui/material";
 import React, { KeyboardEventHandler } from "react";
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,7 +10,7 @@ import { Location } from "../../models/Location";
 import { SearchResult } from "../../types/SearchResult";
 import { ActivitySearchResult } from "../core/ActivitySearchResult";
 import { Container } from "../core/Container";
-import { FilterAutocomplete } from "../core/FilterAutocomplete";
+
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
 import { LocationSearchResult } from "../core/LocationSearchResult";
 import { Typography } from "../core/Typography";
@@ -19,7 +20,7 @@ export const SearchEngine = () => {
   const { t } = useTranslation();
   const [results, setResults] = useState<SearchResult[]>([]);
   const [query, setQuery] = useState<string | undefined>("");
-  const [filter, setFilter] = useState<string | undefined>("");
+  const [filter, setFilter] = useState<string | null>(null);
   const params = new URLSearchParams(window.location.search);
   const searchWord = params.get("q");
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ export const SearchEngine = () => {
     if (query) {
       navigate(`/Search?q=${query}`);
       const _results = apiCalls.search(query);
-      console.log(filter);
+
       if (query === "") {
         setResults([]);
       } else {
@@ -78,13 +79,6 @@ export const SearchEngine = () => {
         }
       }
     }
-
-    // console.log(query);
-    // console.log(results);
-  };
-  const handleFilter = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-    const _filter: string = target.value;
-    setFilter(_filter);
   };
 
   return (
@@ -92,10 +86,17 @@ export const SearchEngine = () => {
       <Container>
         <form className={styles.searchContainer} onSubmit={onSubmit}>
           <InputTextSearchPage onChange={handleSearch} inputValue={query} />
-          <FilterAutocomplete
-            onChange={handleFilter}
-            activity={t("common.activities")}
-            location={t("common.locations")}
+          <Autocomplete
+            value={filter}
+            disablePortal
+            options={["Activities", "Locations"]}
+            renderInput={(params) => (
+              <TextField {...params} label="Filter By" />
+            )}
+            onChange={(event: any, newFilter: string | null) => {
+              setFilter(newFilter);
+            }}
+            sx={{ width: 300 }}
           />
           <input type="submit" className={styles.searchButton} value="Search" />
         </form>
