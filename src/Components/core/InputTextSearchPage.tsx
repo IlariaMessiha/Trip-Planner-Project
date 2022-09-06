@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FC } from "react";
 import { FiSearch } from "react-icons/fi";
-import { Container } from "./Container";
+
 import styles from "./InputTextSearchPage.module.css";
 interface InputTextSearchPageProps {
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;

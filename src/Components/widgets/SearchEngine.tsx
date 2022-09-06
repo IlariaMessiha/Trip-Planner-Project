@@ -1,8 +1,8 @@
 import { Autocomplete, TextField } from "@mui/material";
-import React, { KeyboardEventHandler } from "react";
+import React from "react";
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
+
 import { useNavigate } from "react-router-dom";
 import { apiCalls } from "../../api/api";
 import { Activity } from "../../models/Activity";
@@ -13,7 +13,7 @@ import { Container } from "../core/Container";
 
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
 import { LocationSearchResult } from "../core/LocationSearchResult";
-import { Typography } from "../core/Typography";
+
 import styles from "./SearchEngine.module.css";
 
 export const SearchEngine = () => {

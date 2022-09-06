@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { GrLocation } from "react-icons/gr";
+
 import { Typography } from "./Typography";
 import styles from "./ActivitySearchResult.module.css";
 import { Activity } from "../../models/Activity";
