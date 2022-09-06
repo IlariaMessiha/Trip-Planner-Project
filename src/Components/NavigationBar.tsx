@@ -35,6 +35,7 @@ export const NavigationBar = () => {
           {/*  TODO ADD ICON */}
           <div className={styles.review}>
             <FaPen />
+
             <Typography text={t("navBar.review")} />
           </div>
 

@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaGlobe } from "react-icons/fa";
 import { Typography } from "../core/Typography";
-import { Fade } from "@mui/material";
+import { ClickAwayListener, Fade } from "@mui/material";
 import i18n from "../../i18n";
 
 export const DropDownLanguageMenu = () => {
@@ -20,7 +20,9 @@ export const DropDownLanguageMenu = () => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {};
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const showAmericanFlag = () => {
     setLanguage(0);
     i18n.changeLanguage("en");
@@ -37,7 +39,7 @@ export const DropDownLanguageMenu = () => {
     setAnchorEl(null);
   };
   return (
-    <div>
+    <div className={styles.container}>
       <Button
         aria-controls={open ? "fade-menu" : undefined}
         aria-haspopup="true"
@@ -47,11 +49,15 @@ export const DropDownLanguageMenu = () => {
       >
         <FaGlobe className={styles.icon} />
       </Button>
+
       <Menu
+        sx={{ width: 200 }}
         className={styles.menu}
         MenuListProps={{
           "aria-labelledby": "fade-button",
         }}
+        closeAfterTransition
+        hideBackdrop
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

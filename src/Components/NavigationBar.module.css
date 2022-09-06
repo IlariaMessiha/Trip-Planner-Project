@@ -6,21 +6,18 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
+    padding: 16px;
 }
 
 .rightSide {
     display: flex;
+    gap: 10px;
     align-items: center;
 
 
 }
 
-.rightSide div {
-    padding-left: 15px;
 
-
-}
 
 .logo {
     font-weight: bold;
@@ -31,21 +28,5 @@ nav {
 
 .review {
     display: flex;
-    gap: 2px;
-}
-
-.dropDownButton {
-    border: 0px;
-    font-size: large;
-    padding: 0px;
-    background-color: white;
-}
-
-
-
-
-.currentLanguage {
-    width: 25px;
-    height: 15px;
-    padding-left: 5px;
+    gap: 3px;
 }
