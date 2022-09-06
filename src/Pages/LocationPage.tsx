@@ -6,7 +6,7 @@ import { Swiper } from "../Components/widgets/Swiper";
 import { Location } from "../models/Location";
 import styles from "./LocationPage.module.css";
 import { useParams } from "react-router";
-import React, { FC } from "react";
+import React from "react";
 import { apiCalls } from "../api/api";
 import { useTranslation } from "react-i18next";
 
@@ -33,7 +33,7 @@ export const LocationPage = () => {
     <Container className={styles.container}>
       <Typography text={location.name} variant="h1" />
 
-      <img src={location.coverImage} alt="" className={styles.image} />
+      <img src={location.coverImage} className={styles.image} />
       <Typography
         text={t(`Locations.${location.name}.description`)}
         className={styles.locationDescription}

@@ -17,7 +17,7 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({
       {/* <div className={styles.rightSide}></div> */}
 
       <a href={`/location/${location.id}`}>
-        <img src={location.coverImage} alt="" />
+        <img src={location.coverImage} />
       </a>
 
       <div className={styles.rightSide}>

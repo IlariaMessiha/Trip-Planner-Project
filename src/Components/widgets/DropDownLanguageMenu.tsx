@@ -9,8 +9,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaGlobe } from "react-icons/fa";
 import { Typography } from "../core/Typography";
-import { ClickAwayListener, Fade } from "@mui/material";
-import i18n from "../../i18n";
+import { Fade } from "@mui/material";
 
 export const DropDownLanguageMenu = () => {
   const { t, i18n } = useTranslation();

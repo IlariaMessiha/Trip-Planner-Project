@@ -18,7 +18,7 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({
       {/* <div className={styles.rightSide}></div> */}
 
       <a href={`/activity/${activity.id}`}>
-        <img src={activity.coverImage} alt="" />
+        <img src={activity.coverImage} />
       </a>
 
       <div className={styles.rightSide}>

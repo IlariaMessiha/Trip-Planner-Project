@@ -17,7 +17,6 @@ import { LocationSearchResult } from "../core/LocationSearchResult";
 import styles from "./SearchEngine.module.css";
 
 export const SearchEngine = () => {
-  const { t } = useTranslation();
   const [results, setResults] = useState<SearchResult[]>([]);
   const [query, setQuery] = useState<string | undefined>("");
   const [filter, setFilter] = useState<string | null>(null);
@@ -58,6 +57,7 @@ export const SearchEngine = () => {
                 item: item,
               });
             }
+            return filteredResults;
           });
           setResults(filteredResults);
         } else if (
@@ -72,6 +72,7 @@ export const SearchEngine = () => {
                 item: item,
               });
             }
+            return filteredResults;
           });
           setResults(filteredResults);
         } else {

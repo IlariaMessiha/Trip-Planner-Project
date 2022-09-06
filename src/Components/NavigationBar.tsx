@@ -8,16 +8,7 @@ import { useTranslation } from "react-i18next";
 import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
 
 export const NavigationBar = () => {
-  const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState<number>(0);
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("i18nextLng") !== null) {
-  //     if (localStorage.getItem("i18nextLng").length > 2) {
-  //       i18next.changeLanguage("en");
-  //     }
-  //   }
-  // }, []);
+  const { t } = useTranslation();
 
   return (
     <nav>

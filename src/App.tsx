@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { NavigationBar } from "./Components/NavigationBar";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Dashboard } from "./Pages/Dashboard";
 import { LocationPage } from "./Pages/LocationPage";
 import { SearchPage } from "./Pages/SearchPage";

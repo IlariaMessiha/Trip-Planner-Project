@@ -1,5 +1,5 @@
 import { Activity } from "../models/Activity";
-import { barcelonaLocation, egyptLocation, newYorkLocation, parisLocation, portoLocation } from "./locations";
+import { barcelonaLocation, egyptLocation, newYorkLocation, parisLocation } from "./locations";
 import sagradaFamiliaCover from '../assets/images/sagrada familia.jpg'
 import parkGuellCover from '../assets/images/park guell.jpg'
 import timeSquareCover from '../assets/images/time square.jpg'

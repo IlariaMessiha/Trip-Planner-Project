@@ -7,7 +7,7 @@ import { Typography } from "../Components/core/Typography";
 import { Activity } from "../models/Activity";
 import styles from "./ActivityPage.module.css";
 export const ActivityPage = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [activity, setActivity] = React.useState<Activity | undefined>(
     undefined
   );
