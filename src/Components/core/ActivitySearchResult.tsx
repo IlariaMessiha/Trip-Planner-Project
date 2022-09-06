@@ -5,6 +5,7 @@ import styles from "./ActivitySearchResult.module.css";
 import { Activity } from "../../models/Activity";
 import { useTranslation } from "react-i18next";
 import { FaRunning } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 interface ActivitySearchResultProps {
   activity: Activity;
@@ -17,14 +18,14 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({
     <div className={styles.searchResultElement}>
       {/* <div className={styles.rightSide}></div> */}
 
-      <a href={`/activity/${activity.id}`}>
+      <Link to={`/activity/${activity.id}`}>
         <img src={activity.coverImage} alt="Cover" />
-      </a>
+      </Link>
 
       <div className={styles.rightSide}>
-        <a href={`/activity/${activity.id}`}>
+        <Link to={`/activity/${activity.id}`}>
           <Typography text={activity.name} variant="h3" />
-        </a>
+        </Link>
 
         <div className={styles.resultType}>
           <FaRunning />

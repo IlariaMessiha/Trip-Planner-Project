@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { apiCalls } from "../../api/api";
 import { SearchResult } from "../../types/SearchResult";
 import { GrLocation } from "react-icons/gr";
@@ -42,12 +42,12 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
                 {type === "location" ? (
                   <div className={styles.searchResultElement}>
                     <GrLocation className={styles.itemIcon} />
-                    <a href={`/location/${item.id}`}>
+                    <Link to={`/location/${item.id}`}>
                       <Typography
                         text={item.name}
                         className={styles.itemName}
                       />
-                    </a>
+                    </Link>
                   </div>
                 ) : (
                   <div className={styles.searchResultElement}>
@@ -56,12 +56,12 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
                       className={styles.itemPhotos}
                       alt="Cover "
                     />
-                    <a href={`/activity/${item.id}`}>
+                    <Link to={`/activity/${item.id}`}>
                       <Typography
                         text={item.name}
                         className={styles.itemName}
                       />
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>

@@ -7,6 +7,7 @@ import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAuto
 import { Swiper } from "../Components/widgets/Swiper";
 import styles from "./Dashboard.module.css";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export const Dashboard = () => {
   const { t } = useTranslation();
@@ -19,9 +20,9 @@ export const Dashboard = () => {
         <Typography text={t("common.locations")} variant="h2" />
         <Swiper>
           {apiCalls.getLocations().map((location) => (
-            <a key={location.id} href={`/location/${location.id}`}>
+            <Link key={location.id} to={`/location/${location.id}`}>
               <CardLocation location={location} key={location.id} />
-            </a>
+            </Link>
           ))}
         </Swiper>
 
@@ -29,9 +30,9 @@ export const Dashboard = () => {
 
         <Swiper>
           {apiCalls.getActivities().map((activity) => (
-            <a key={activity.id} href={`/activity/${activity.id}`}>
+            <Link key={activity.id} to={`/activity/${activity.id}`}>
               <CardActivity activity={activity} />
-            </a>
+            </Link>
           ))}
         </Swiper>
       </div>

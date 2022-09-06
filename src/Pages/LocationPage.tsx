@@ -6,6 +6,7 @@ import { Swiper } from "../Components/widgets/Swiper";
 import { Location } from "../models/Location";
 import styles from "./LocationPage.module.css";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import React from "react";
 import { apiCalls } from "../api/api";
 import { useTranslation } from "react-i18next";
@@ -41,9 +42,9 @@ export const LocationPage = () => {
       <Typography text="Top attraction" variant="h2" />
       <Swiper>
         {result.map((activity) => (
-          <a key={activity.id} href={`/activity/${activity.id}`}>
+          <Link key={activity.id} to={`/activity/${activity.id}`}>
             <CardActivity activity={activity} />
-          </a>
+          </Link>
         ))}
       </Swiper>
     </Container>

@@ -4,6 +4,7 @@ import { Location } from "../../models/Location";
 import { GrLocation } from "react-icons/gr";
 import styles from "./LocationSearchResult.module.css";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 interface LocationSearchResultProps {
   location: Location;
@@ -16,14 +17,14 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({
     <div className={styles.searchResultElement}>
       {/* <div className={styles.rightSide}></div> */}
 
-      <a href={`/location/${location.id}`}>
+      <Link to={`/location/${location.id}`}>
         <img src={location.coverImage} alt="Cover" />
-      </a>
+      </Link>
 
       <div className={styles.rightSide}>
-        <a href={`/location/${location.id}`}>
+        <Link to={`/location/${location.id}`}>
           <Typography text={location.name} variant="h3" />
-        </a>
+        </Link>
 
         <div className={styles.resultType}>
           <GrLocation /> <Typography text="Location" variant="body1" />
