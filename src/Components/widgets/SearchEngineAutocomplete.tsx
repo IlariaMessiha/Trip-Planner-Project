@@ -51,7 +51,11 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
                   </div>
                 ) : (
                   <div className={styles.searchResultElement}>
-                    <img src={item.coverImage} className={styles.itemPhotos} />
+                    <img
+                      src={item.coverImage}
+                      className={styles.itemPhotos}
+                      alt="Cover Photo"
+                    />
                     <a href={`/activity/${item.id}`}>
                       <Typography
                         text={item.name}

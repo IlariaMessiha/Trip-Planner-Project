@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./NavigationBar.module.css";
 import { FaPen, FaUser } from "react-icons/fa";
 import { Typography } from "./core/Typography";

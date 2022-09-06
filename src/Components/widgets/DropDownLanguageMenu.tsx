@@ -63,25 +63,37 @@ export const DropDownLanguageMenu = () => {
         TransitionComponent={Fade}
       >
         <MenuItem onClick={showFrenchFlag} className={styles.menuItem}>
-          <img src={frenchFlag} className={styles.flag} />
+          <img src={frenchFlag} className={styles.flag} alt="French Flag" />
           <Typography variant="body2" text={t("navBar.french")} />
         </MenuItem>
         <MenuItem onClick={showSpanishFlag} className={styles.menuItem}>
-          <img src={spanishFlag} className={styles.flag} />
+          <img src={spanishFlag} className={styles.flag} alt="Spanish Flag" />
           <Typography variant="body2" text={t("navBar.spanish")} />
         </MenuItem>
         <MenuItem onClick={showAmericanFlag} className={styles.menuItem}>
-          <img src={americanFlag} className={styles.flag} />
+          <img src={americanFlag} className={styles.flag} alt="American Flag" />
           <Typography variant="body2" text={t("navBar.english")} />
         </MenuItem>
       </Menu>
 
       {language === 2 ? (
-        <img src={spanishFlag} className={styles.currentLanguage} />
+        <img
+          src={spanishFlag}
+          className={styles.currentLanguage}
+          alt="Spanish Flag"
+        />
       ) : language === 1 ? (
-        <img src={frenchFlag} className={styles.currentLanguage} />
+        <img
+          src={frenchFlag}
+          className={styles.currentLanguage}
+          alt="French Flag"
+        />
       ) : (
-        <img src={americanFlag} className={styles.currentLanguage} />
+        <img
+          src={americanFlag}
+          className={styles.currentLanguage}
+          alt="American Flag"
+        />
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, FC } from "react";
+import { ChangeEventHandler, FC } from "react";
 import { FaSearch } from "react-icons/fa";
 import styles from "./InputText.module.css";
 interface InputTextProps {
