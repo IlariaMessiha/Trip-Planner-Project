@@ -9,6 +9,7 @@ import { Location } from "../../models/Location";
 import { SearchResult } from "../../types/SearchResult";
 import { ActivitySearchResult } from "../core/ActivitySearchResult";
 import { Container } from "../core/Container";
+import { FilterAutocomplete } from "../core/FilterAutocomplete";
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
 import { LocationSearchResult } from "../core/LocationSearchResult";
 import { Typography } from "../core/Typography";
@@ -23,6 +24,7 @@ export const SearchEngine = () => {
   const searchWord = params.get("q");
   const navigate = useNavigate();
   const filteredResults: SearchResult[] = [];
+
   React.useEffect(() => {
     if (searchWord) {
       setQuery(searchWord);
@@ -72,7 +74,6 @@ export const SearchEngine = () => {
           });
           setResults(filteredResults);
         } else {
-          console.log("hi");
           setResults(_results);
         }
       }
@@ -91,24 +92,11 @@ export const SearchEngine = () => {
       <Container>
         <form className={styles.searchContainer} onSubmit={onSubmit}>
           <InputTextSearchPage onChange={handleSearch} inputValue={query} />
-          <label className={styles.filterForm}>
-            <Typography
-              text="Filter By:"
-              variant="h4"
-              className={styles.filterLabel}
-            />
-
-            <input
-              list="filters"
-              className={styles.filterInput}
-              onChange={handleFilter}
-            />
-            <datalist id="filters">
-              <option value={t(`common.locations`)}></option>
-              <option value={t("common.activities")}></option>
-            </datalist>
-          </label>
-
+          <FilterAutocomplete
+            onChange={handleFilter}
+            activity={t("common.activities")}
+            location={t("common.locations")}
+          />
           <input type="submit" className={styles.searchButton} value="Search" />
         </form>
       </Container>

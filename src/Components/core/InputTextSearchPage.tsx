@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FC } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
 import { Container } from "./Container";
 import styles from "./InputTextSearchPage.module.css";
 interface InputTextSearchPageProps {
@@ -13,7 +13,7 @@ export const InputTextSearchPage: FC<InputTextSearchPageProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.searchIcon}>
-        <FaSearch />
+        <FiSearch />
       </div>
       <input
         type="search"
