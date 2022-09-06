@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { NavigationBar } from "./Components/NavigationBar";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Dashboard } from "./Pages/Dashboard";
 import { LocationPage } from "./Pages/LocationPage";
 import { SearchPage } from "./Pages/SearchPage";
@@ -12,14 +12,14 @@ function App() {
     <Suspense fallback={null}>
       <div>
         <NavigationBar />
-        <HashRouter>
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/location/:id" element={<LocationPage />} />
             <Route path="/activity/:id" element={<ActivityPage />} />
             <Route path="/Search" element={<SearchPage />} />
           </Routes>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     </Suspense>
   );
