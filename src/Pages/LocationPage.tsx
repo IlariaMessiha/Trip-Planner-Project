@@ -33,11 +33,7 @@ export const LocationPage = () => {
     <Container className={styles.container}>
       <Typography text={location.name} variant="h1" />
 
-      <img
-        src={location.coverImage}
-        className={styles.image}
-        alt="Cover Photo"
-      />
+      <img src={location.coverImage} className={styles.image} alt="Cover " />
       <Typography
         text={t(`Locations.${location.name}.description`)}
         className={styles.locationDescription}

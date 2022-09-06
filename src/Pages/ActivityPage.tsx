@@ -26,11 +26,7 @@ export const ActivityPage = () => {
     <Container>
       <Typography text={activity.name} variant="h1" />
 
-      <img
-        src={activity.coverImage}
-        alt="Cover Photo"
-        className={styles.image}
-      />
+      <img src={activity.coverImage} alt="Cover " className={styles.image} />
       <Typography
         text={t(`Activities.${activity.name}.description`)}
         className={styles.activityDescription}

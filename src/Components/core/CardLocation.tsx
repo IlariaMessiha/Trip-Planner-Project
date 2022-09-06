@@ -13,11 +13,7 @@ export const CardLocation: FC<CardLocationProps> = ({ location }) => {
   const { t } = useTranslation();
   return (
     <div key={location.id} className={styles.item}>
-      <img
-        src={location.coverImage}
-        alt="Cover Photo"
-        className={styles.image}
-      />
+      <img src={location.coverImage} alt="Cover" className={styles.image} />
       <Typography text={location.name} variant="h4" />
       <Typography text={location.country} />
       <Typography text={location.activities} variant="body2" />
