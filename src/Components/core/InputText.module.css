@@ -1,29 +1,8 @@
 .container {
     display: flex;
-    font-size: x-large;
-    padding-top: 15%;
-    width: 60%;
+    padding-top: 14%;
     margin: auto;
     align-items: center;
-}
 
-.searchIcon {
-    position: absolute;
-    padding-left: 20px;
-}
-
-.searchBar {
-    width: 100%;
-    border-radius: 30px;
-    text-align: center;
-    font-size: x-large;
-    height: 50px;
-    margin: auto;
-    border: 0px;
-    box-shadow: 5px 5px 20px black;
-}
-
-.searchBar:focus {
-    outline: none;
 
 }
