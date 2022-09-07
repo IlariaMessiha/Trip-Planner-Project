@@ -5,8 +5,6 @@
     padding-bottom: 10px;
 
 
-
-
 }
 
 .searchButton {
@@ -30,7 +28,8 @@
 
 .searchResultContainer {
     background-color: #F0F0F0;
-    min-height: 1000px;
+    min-height: 900px;
+
 
 
 
