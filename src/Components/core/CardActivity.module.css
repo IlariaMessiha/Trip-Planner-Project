@@ -1,12 +1,23 @@
 .item {
     margin-right: 30px;
+
+
 }
+
+
 
 .ActivityContent {
     text-align: left;
     font-size: larger;
+
+
+
 }
 
 .item:hover {
     text-decoration: underline;
+}
+
+.container {
+    position: relative;
 }
