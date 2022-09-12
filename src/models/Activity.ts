@@ -1,4 +1,5 @@
 import { Location } from "./Location"
+import { Review } from "./Review";
 export interface Activity {
     id: string
     name: string,
@@ -7,4 +8,5 @@ export interface Activity {
     numberOfReviews: number,
     description: string,
     coverImage?: string;
+    review?: Review[]
 }
