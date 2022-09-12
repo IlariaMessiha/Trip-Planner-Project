@@ -1,4 +1,4 @@
-import { Box, Icon, InputBase, Paper, TextField } from "@mui/material";
+import { Icon, InputBase, Paper } from "@mui/material";
 import { ChangeEventHandler, FC } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -14,7 +14,13 @@ export const InputTextSearchPage: FC<InputTextSearchPageProps> = ({
   return (
     <Paper
       className={styles.container}
-      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 600 }}
+      sx={{
+        p: "2px 4px",
+        display: "flex",
+        alignItems: "center",
+        width: 600,
+        border: "0.2px solid grey",
+      }}
     >
       <InputBase
         className={styles.searchBar}
