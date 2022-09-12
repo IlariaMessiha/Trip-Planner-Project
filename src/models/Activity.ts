@@ -12,5 +12,6 @@ export interface Activity {
     description: string,
     coverImage?: string,
     review?: Review[];
+    ticketPrice: string;
 
 }

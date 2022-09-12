@@ -16,7 +16,8 @@ export const activity1: Activity = {
     description: 'The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica.',
     coverImage: sagradaFamiliaCover,
     review: [review1, review2],
-    suggestedDuration: "2-3 "
+    suggestedDuration: "2-3 ",
+    ticketPrice: "200$"
 
 }
 export const activity2: Activity = {
@@ -27,7 +28,8 @@ export const activity2: Activity = {
     openHours: "8:00 AM - 6:00 PM",
     description: 'Parc Güell is a privatized park system composed of gardens and architectural elements located on Carmel Hill, in Barcelona, Catalonia, Spain. Carmel Hill belongs to the mountain range of Collserola – the Parc del Carmel is located on the northern face. Park Güell is located in La Salut, a neighborhood in the Gràcia district of Barcelona. With urbanization in mind, Eusebi Güell assigned the design of the park to Antoni Gaudí, a renowned architect and the face of Catalan modernism.',
     coverImage: parkGuellCover,
-    suggestedDuration: "2-3 "
+    suggestedDuration: "2-3 ",
+    ticketPrice: "200$"
 
 
 }
@@ -39,12 +41,15 @@ export const activity3: Activity = {
     coverImage: timeSquareCover,
     openHours: "8:00 AM - 6:00 PM",
     suggestedDuration: "2-3 ",
+    ticketPrice: "200$",
     description: 'Times Square is a major commercial intersection, tourist destination, entertainment center, and neighborhood in Midtown Manhattan, New York. It is formed by the junction of Broadway, Seventh Avenue and 42nd Street. Together with adjacent Duffy Square, Times Square is a bowtie-shaped space five blocks long between 42nd and 47th Streets.'
 }
+
 export const activity4: Activity = {
     id: '4',
     name: 'The Pyramids',
     suggestedDuration: "2-3 ",
+    ticketPrice: "200$",
     address: 'Al Haram, Giza Governorate 3512201',
     location: egyptLocation,
     coverImage: thePyrmidsCover,
@@ -57,6 +62,7 @@ export const activity5: Activity = {
     name: 'Fishing trip, Ain Sokhna',
     address: 'km 46 Suez - Hurghada Road، Ain Soukhna، Suez Governorate 43111',
     location: egyptLocation,
+    ticketPrice: "200$",
     review: [review4],
     coverImage: fishingTripCover,
     suggestedDuration: "2-3 ",
@@ -69,6 +75,7 @@ export const activity7: Activity = {
     address: 'Champ de Mars, 5 Av. Anatole France, 75007 Paris',
     location: parisLocation,
     coverImage: eiffelTowerCover,
+    ticketPrice: "200$",
     review: [review5, review6],
     suggestedDuration: "2-3 ",
     openHours: "8:00 AM - 6:00 PM",

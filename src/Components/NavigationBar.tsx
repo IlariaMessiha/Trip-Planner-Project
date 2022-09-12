@@ -22,7 +22,7 @@ export const NavigationBar = () => {
           <div className={styles.review}>
             <FaPen />
 
-            <Typography text={t("navBar.review")} />
+            <Typography text={t("common.review")} />
           </div>
 
           <div className={styles.profilePage}>

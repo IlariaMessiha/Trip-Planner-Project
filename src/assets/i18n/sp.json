@@ -3,11 +3,12 @@
     "locations": "Ubicaciones",
     "activities": "Actividades",
     "reviews": "Reseñas",
-    "activity": "Actividad"
+    "activity": "Actividad",
+    "review": "Reseñar"
   },
   "navBar": {
     "logo": "Planificador De Viajes",
-    "review": "Reseñar",
+
     "french": "Francés",
     "spanish": "Español",
     "english": "Inglés"
@@ -43,6 +44,10 @@
     "about": "Sobre",
     "suggested duration": "Duración sugerida",
     "hours": "Horas",
+    "open hours": "Horarios de Apertura",
+    "visit website": "Visita la Página Web",
+    "call": "Llamar",
+    "ticket price": "Precio Del Boleto",
     "Sagrada Familia": {
       "description": "La Basílica i Temple Expiatori de la Sagrada Família, también conocida como Sagrada Família, es una gran basílica menor inacabada en el distrito del Eixample de Barcelona, ​​Cataluña, España, y actualmente es la iglesia católica romana inacabada más grande. Diseñado por el arquitecto catalán Antoni Gaudí (1852–1926), su trabajo en el edificio es parte del Patrimonio de la Humanidad de la UNESCO.[7] El 7 de noviembre de 2010, el Papa Benedicto XVI consagró la iglesia y la proclamó basílica menor."
     },

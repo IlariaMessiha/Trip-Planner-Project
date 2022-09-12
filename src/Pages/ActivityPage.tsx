@@ -9,7 +9,11 @@ import { Activity } from "../models/Activity";
 import styles from "./ActivityPage.module.css";
 import IconButton from "@mui/material/IconButton";
 import IosShareIcon from "@mui/icons-material/IosShare";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 const ShareButton = styled(IconButton)({
+  color: "black",
+});
+const FavoriteButton = styled(IconButton)({
   color: "black",
 });
 export const ActivityPage = () => {
@@ -34,17 +38,38 @@ export const ActivityPage = () => {
       <div className={styles.header}>
         <div className={styles.communicate}>
           <div className={styles.openHours}>
-            <Typography text="Open From:" variant="h4" />
+            <Typography text={t("Activities.open hours") + ":"} variant="h4" />
             <Typography text={activity.openHours} variant="h4" />
           </div>
-          <Typography text="Visit Website" variant="h4" />
-          <Typography text="Call" variant="h4" />
-          <Typography text="Email" variant="h4" />
-          <Typography text="Write a Review" variant="h4" />
+          <Typography
+            text={t("Activities.visit website")}
+            variant="h4"
+            className={styles.headerButtons}
+          />
+          <Typography
+            text={t("Activities.call")}
+            variant="h4"
+            className={styles.headerButtons}
+          />
+          <Typography
+            text="Email"
+            variant="h4"
+            className={styles.headerButtons}
+          />
+          <Typography
+            text={t("common.review")}
+            variant="h4"
+            className={styles.headerButtons}
+          />
         </div>
-        <ShareButton className={styles.shareButton}>
-          <IosShareIcon />
-        </ShareButton>
+        <div className={styles.icons}>
+          <ShareButton className={styles.shareButton}>
+            <IosShareIcon />
+          </ShareButton>
+          <FavoriteButton className={styles.shareButton}>
+            <FavoriteBorderIcon />
+          </FavoriteButton>
+        </div>
       </div>
 
       <img src={activity.coverImage} alt="Cover " className={styles.image} />
@@ -58,6 +83,10 @@ export const ActivityPage = () => {
         <div className={styles.suggestedDuration}>
           <Typography text={activity.suggestedDuration} />
           <Typography text={t("Activities.hours")} />
+        </div>
+        <div className={styles.tickets}>
+          <Typography text={t("Activities.ticket price")} variant="h4" />
+          <Typography text={activity.ticketPrice} />
         </div>
       </Paper>
     </Container>
