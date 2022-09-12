@@ -21,3 +21,8 @@
 .container {
     position: relative;
 }
+
+.availableReviews {
+    display: flex;
+    gap: 3px;
+}

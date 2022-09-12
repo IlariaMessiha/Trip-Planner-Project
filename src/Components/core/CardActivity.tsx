@@ -42,8 +42,15 @@ export const CardActivity: FC<CardActivityProps> = ({ activity }) => {
           <CardContent className={styles.ActivityContent}>
             <Typography text={activity.name} variant="h4" />
             <Typography text={activity.location.name} />
-            <Typography text={activity.numberOfReviews} variant="body2" />
-            <Typography text={t("common.reviews")} variant="body2" />
+            <div className={styles.availableReviews}>
+              {activity.review ? (
+                <Typography text={activity.review.length} variant="body2" />
+              ) : (
+                <Typography text="0" variant="body2" />
+              )}
+
+              <Typography text={t("common.reviews")} variant="body2" />
+            </div>
           </CardContent>
         </CardActionArea>
       </Card>

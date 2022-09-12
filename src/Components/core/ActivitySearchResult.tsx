@@ -33,7 +33,11 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({
         </div>
         <Typography text={activity.location.country} variant="body1" />
         <div className={styles.availableReviews}>
-          <Typography text={activity.numberOfReviews} variant="body2" />
+          {activity.review ? (
+            <Typography text={activity.review.length} variant="body2" />
+          ) : (
+            <Typography text="0" variant="body2" />
+          )}
           <Typography text={t("common.reviews")} variant="body2" />
         </div>
       </div>
