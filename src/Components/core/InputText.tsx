@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import TextField, { TextFieldProps } from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
 import { ChangeEventHandler, FC } from "react";
-import { FaSearch } from "react-icons/fa";
+
 import styles from "./InputText.module.css";
 import { styled } from "@mui/material/styles";
 interface InputTextProps {
