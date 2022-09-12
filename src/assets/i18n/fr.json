@@ -40,6 +40,9 @@
     }
   },
   "Activities": {
+    "about": "À propos de",
+    "suggested duration": "Durée suggérée",
+    "hours": "Heures",
     "Sagrada Familia": {
       "description": "La Basílica i Temple Expiatori de la Sagrada Família, également connue sous le nom de Sagrada Família, est une grande basilique mineure inachevée dans le quartier de l'Eixample à Barcelone, en Catalogne, en Espagne, et est actuellement la plus grande église catholique romaine inachevée. Conçu par l'architecte catalan Antoni Gaudí (1852–1926), son travail sur le bâtiment fait partie d'un site du patrimoine mondial de l'UNESCO.[7] Le 7 novembre 2010, le pape Benoît XVI a consacré l'église et l'a proclamée basilique mineure."
     },

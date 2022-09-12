@@ -11,7 +11,6 @@ interface InputTextProps {
 const SearchTextField = styled(TextField)({
   "& label.Mui-focused": {
     color: "black",
-
     fontSize: "Larger",
   },
 
@@ -26,6 +25,7 @@ const SearchTextField = styled(TextField)({
     "&.Mui-focused ": {
       border: "0px",
       backgroundColor: "white",
+      boxShadow: "  5px 5px 20px black",
     },
   },
 });

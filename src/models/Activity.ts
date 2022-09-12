@@ -7,9 +7,10 @@ export interface Activity {
     name: string,
     address: string,
     location: Location;
-
+    openHours: string,
+    suggestedDuration: string,
     description: string,
-    coverImage?: string;
+    coverImage?: string,
     review?: Review[];
 
 }
