@@ -19,6 +19,11 @@
     padding-top: 5px;
 }
 
+.availableActivities:hover {
+    text-decoration: underline;
+}
+
+
 .rightSide {
     flex-grow: 1;
     padding: 20px;
@@ -26,4 +31,9 @@
 
 .title {
     padding-bottom: 20px;
+}
+
+.title:hover {
+    text-decoration: underline;
+
 }

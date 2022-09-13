@@ -18,6 +18,7 @@
 .availableReviews {
     display: flex;
     gap: 3px;
+    padding-top: 5px;
 
 }
 

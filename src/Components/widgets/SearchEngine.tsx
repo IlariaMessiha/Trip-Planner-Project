@@ -9,13 +9,15 @@ import { Location } from "../../models/Location";
 import { SearchResult } from "../../types/SearchResult";
 import { ActivitySearchResult } from "../core/ActivitySearchResult";
 import { Container } from "../core/Container";
-
+import { useTranslation } from "react-i18next";
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
 import { LocationSearchResult } from "../core/LocationSearchResult";
 
 import styles from "./SearchEngine.module.css";
 
 export const SearchEngine = () => {
+  const { t } = useTranslation();
+  const options = [t("common.activities"), t("common.locations")];
   const [results, setResults] = useState<SearchResult[]>([]);
   const [query, setQuery] = useState<string | undefined>("");
   const [filter, setFilter] = useState<string | null>(null);
@@ -89,9 +91,9 @@ export const SearchEngine = () => {
           <Autocomplete
             value={filter}
             disablePortal
-            options={["Activities", "Locations"]}
+            options={options}
             renderInput={(params) => (
-              <TextField {...params} label="Filter By" />
+              <TextField {...params} label={t("common.filter by")} />
             )}
             onChange={(event: any, newFilter: string | null) => {
               setFilter(newFilter);
