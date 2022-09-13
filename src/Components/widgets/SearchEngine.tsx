@@ -8,12 +8,12 @@ import { Activity } from "../../models/Activity";
 import { Location } from "../../models/Location";
 import { SearchResult } from "../../types/SearchResult";
 import { ActivitySearchResult } from "../core/ActivitySearchResult";
-import { Container } from "../core/Container";
 import { useTranslation } from "react-i18next";
 import { InputTextSearchPage } from "../core/InputTextSearchPage";
 import { LocationSearchResult } from "../core/LocationSearchResult";
 
 import styles from "./SearchEngine.module.css";
+import { Container } from "../core/layout/Container";
 
 export const SearchEngine = () => {
   const { t } = useTranslation();

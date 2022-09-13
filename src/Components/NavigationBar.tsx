@@ -1,10 +1,10 @@
 import styles from "./NavigationBar.module.css";
 import { FaPen, FaUser } from "react-icons/fa";
 import { Typography } from "./core/Typography";
-import { Container } from "./core/Container";
 import { useTranslation } from "react-i18next";
 
 import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
+import { Container } from "./core/layout/Container";
 
 export const NavigationBar = () => {
   const { t } = useTranslation();

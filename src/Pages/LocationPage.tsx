@@ -1,5 +1,5 @@
 import { CardActivity } from "../Components/core/CardActivity";
-import { Container } from "../Components/core/Container";
+import { Container } from "../Components/core/layout/Container";
 import { Typography } from "../Components/core/Typography";
 import { Swiper } from "../Components/widgets/Swiper";
 
