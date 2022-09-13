@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { apiCalls } from "../../api/api";
 import { SearchResult } from "../../types/SearchResult";
 import { GrLocation } from "react-icons/gr";
-import { InputText } from "../core/InputText";
+import { InputTextSearch } from "../core/InputTextSearch";
 import { Typography } from "../core/Typography";
 import styles from "./SearchEngineAutocomplete.module.css";
 
@@ -34,7 +34,7 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
   return (
     <div className={styles.search}>
       <form onSubmit={onSubmit}>
-        <InputText onChange={handleFilter} inputValue={query} />
+        <InputTextSearch onChange={handleFilter} inputValue={query} />
       </form>
       <div className={styles.searchResult}>
         {firstResults.map(({ type, item }) => {

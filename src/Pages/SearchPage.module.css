@@ -1,0 +1,36 @@
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.searchButton {
+  width: 100px;
+  height: 50px;
+}
+
+.filterForm {
+  display: flex;
+  align-items: center;
+}
+
+.filterInput {
+  height: 50px;
+  margin-left: 10px;
+}
+
+.searchResultContainer {
+  background-color: #f0f0f0;
+  padding-top: 24px;
+}
+
+.searchResult {
+  background-color: white;
+  min-height: 1000px;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
