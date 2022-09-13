@@ -14,11 +14,30 @@
 
 }
 
+.h3 {
+    margin: 0;
+}
+
+.body3 {
+    margin: 0;
+    font-weight: lighter;
+    font-style: italic;
+    font-size: x-small;
+}
+
+
 .h2 {
     font-weight: bolder;
 }
 
+
 .h4 {
     margin: 0;
 
+}
+
+.likes {
+    margin: 0;
+    font-weight: bolder;
+    font-size: smaller;
 }

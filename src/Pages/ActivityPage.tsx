@@ -10,6 +10,8 @@ import styles from "./ActivityPage.module.css";
 import IconButton from "@mui/material/IconButton";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+import { ActivityReviewList } from "../Components/widgets/ActivityReviewList";
 const ShareButton = styled(IconButton)({
   color: "black",
 });
@@ -71,24 +73,33 @@ export const ActivityPage = () => {
           </FavoriteButton>
         </div>
       </div>
-
-      <img src={activity.coverImage} alt="Cover " className={styles.image} />
-      <Paper sx={{ padding: "20px", width: "30%", float: "left" }}>
-        <Typography text={t("Activities.about")} variant="h2" />
-        <Typography
-          text={t(`Activities.${activity.name}.description`)}
-          className={styles.activityDescription}
-        />
-        <Typography text={t("Activities.suggested duration")} variant="h4" />
-        <div className={styles.suggestedDuration}>
-          <Typography text={activity.suggestedDuration} />
-          <Typography text={t("Activities.hours")} />
-        </div>
-        <div className={styles.tickets}>
-          <Typography text={t("Activities.ticket price")} variant="h4" />
-          <Typography text={activity.ticketPrice} />
-        </div>
-      </Paper>
+      <div className={styles.imageAndDescription}>
+        <Paper
+          sx={{
+            padding: "20px",
+            width: "30%",
+          }}
+        >
+          <Typography text={t("Activities.about")} variant="h2" />
+          <Typography
+            text={t(`Activities.${activity.name}.description`)}
+            className={styles.activityDescription}
+          />
+          <Typography text={t("Activities.suggested duration")} variant="h4" />
+          <div className={styles.suggestedDuration}>
+            <Typography text={activity.suggestedDuration} />
+            <Typography text={t("Activities.hours")} />
+          </div>
+          <div className={styles.tickets}>
+            <Typography text={t("Activities.ticket price")} variant="h4" />
+            <Typography text={activity.ticketPrice} />
+          </div>
+        </Paper>
+        <img src={activity.coverImage} alt="Cover " className={styles.image} />
+      </div>
+      <div className={styles.reviewsContainer}>
+        <ActivityReviewList activity={activity} />
+      </div>
     </Container>
   );
 };

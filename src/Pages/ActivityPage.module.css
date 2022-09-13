@@ -3,7 +3,12 @@
     height: 600px;
     display: block;
 
-    float: right;
+
+}
+
+.imageAndDescription {
+    display: flex;
+    justify-content: space-between;
 }
 
 .activityDescription {

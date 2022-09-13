@@ -1,9 +1,13 @@
+import { User } from "./User";
 
 
 export interface Review {
     id: string;
+    header: string;
     body: string;
-    author: string;
+    author: User;
     writtenAt: string;
+    likes: number;
+
 
 }

@@ -1,6 +1,7 @@
 
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
+import { Activity } from "../models/Activity";
 
 import { Location } from "../models/Location"
 import { SearchResult } from "../types/SearchResult";
@@ -21,6 +22,7 @@ export class ApiCalls {
     public getActivitiesForLocation(location: Location) {
         return activities.filter((activity) => activity.location.name === location.name);
     }
+
     public getActivityById(id: string) {
         return activities.find((obj) => {
             return obj.id === id;

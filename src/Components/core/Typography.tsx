@@ -9,7 +9,9 @@ type TypographyVariant =
   | "h5"
   | "h6"
   | "body1"
-  | "body2";
+  | "body2"
+  | "body3"
+  | "likes";
 
 interface TypographyProps {
   text: string | number;
@@ -25,7 +27,9 @@ const elementNameByVariant = {
   h6: "h6",
   body1: "p",
   body2: "p",
+  body3: "p",
   searchResultElement: "p",
+  likes: "likes",
 };
 export const Typography: FC<TypographyProps> = ({
   text,
