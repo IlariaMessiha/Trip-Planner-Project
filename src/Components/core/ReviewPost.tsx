@@ -1,4 +1,4 @@
-import { Avatar, styled } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { FC } from "react";
 import { Review } from "../../models/Review";
 import { Typography } from "./Typography";

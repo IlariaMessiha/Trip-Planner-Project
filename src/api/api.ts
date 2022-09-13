@@ -1,7 +1,7 @@
 
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
-import { Activity } from "../models/Activity";
+
 
 import { Location } from "../models/Location"
 import { SearchResult } from "../types/SearchResult";

@@ -1,4 +1,4 @@
-import { Icon, InputBase, styled, TextField } from "@mui/material";
+import { Icon, styled, TextField } from "@mui/material";
 import { ChangeEventHandler, FC } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTranslation } from "react-i18next";
