@@ -40,13 +40,14 @@ export const LocationPage = () => {
         className={styles.locationDescription}
       />
       <Typography text="Top attraction" variant="h2" />
-      <Swiper>
-        {result.map((activity) => (
+      <Swiper
+        items={result}
+        renderItem={(activity) => (
           <Link key={activity.id} to={`/activity/${activity.id}`}>
             <CardActivity activity={activity} />
           </Link>
-        ))}
-      </Swiper>
+        )}
+      />
     </Container>
   );
 };

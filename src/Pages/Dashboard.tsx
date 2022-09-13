@@ -18,23 +18,24 @@ export const Dashboard = () => {
       <SearchEngineAutocomplete />
       <div className={styles.dashboardContainer}>
         <Typography text={t("common.locations")} variant="h2" />
-        <Swiper>
-          {apiCalls.getLocations().map((location) => (
+        <Swiper
+          items={apiCalls.getLocations()}
+          renderItem={(location) => (
             <Link key={location.id} to={`/location/${location.id}`}>
               <CardLocation location={location} key={location.id} />
             </Link>
-          ))}
-        </Swiper>
+          )}
+        ></Swiper>
 
         <Typography text={t("common.activities")} variant="h2" />
-
-        <Swiper>
-          {apiCalls.getActivities().map((activity) => (
+        <Swiper
+          items={apiCalls.getActivities()}
+          renderItem={(activity) => (
             <Link key={activity.id} to={`/activity/${activity.id}`}>
               <CardActivity activity={activity} />
             </Link>
-          ))}
-        </Swiper>
+          )}
+        ></Swiper>
       </div>
     </Container>
   );
