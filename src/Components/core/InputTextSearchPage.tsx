@@ -10,10 +10,6 @@ interface InputTextSearchPageProps {
   inputValue: string | undefined;
 }
 const SearchTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "black",
-  },
-
   "& .MuiOutlinedInput-root": {
     width: "600px",
   },
