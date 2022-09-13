@@ -11,7 +11,7 @@ import { LocationSearchResult } from "../Components/core/LocationSearchResult";
 import { SearchForm } from "../Components/widgets/search/SearchForm";
 import { Activity } from "../models/Activity";
 import { Location } from "../models/Location";
-import { SearchResult } from "../types/SearchResult";
+import { SearchResult } from "../types/Search";
 import styles from "./SearchPage.module.css";
 
 export const SearchPage = () => {

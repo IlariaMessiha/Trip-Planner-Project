@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { apiCalls } from "../../api/api";
-import { SearchResult } from "../../types/SearchResult";
+import { SearchResult } from "../../types/Search";
 import { GrLocation } from "react-icons/gr";
 import { InputTextSearch } from "../core/InputTextSearch";
 import { Typography } from "../core/Typography";
@@ -17,7 +17,7 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
     const _query: string = target.value.toLowerCase();
     setQuery(_query);
 
-    const _results = apiCalls.search(_query);
+    const _results = apiCalls.search({ label: _query });
     if (_query === "") {
       setResults([]);
     } else {

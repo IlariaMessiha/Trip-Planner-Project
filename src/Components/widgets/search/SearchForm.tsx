@@ -4,76 +4,43 @@ import React, { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { apiCalls } from "../../../api/api";
-import { SearchResult } from "../../../types/SearchResult";
+import { SearchResult, SearchResultType } from "../../../types/Search";
 import { InputText } from "../../core/InputText";
 import styles from "./SearchForm.module.css";
 
+type TypeOption = { id: SearchResultType; label: string };
+
 export const SearchForm = () => {
   const { t } = useTranslation();
-  const options = [t("common.activities"), t("common.locations")];
+
   const [results, setResults] = useState<SearchResult[]>([]);
-  const [query, setQuery] = useState<string | undefined>("");
-  const [filter, setFilter] = useState<string | null>(null);
+  const [label, setLabel] = useState<string>("");
+  const [typeOption, setTypeOption] = useState<TypeOption | null>();
+
+  const typeOptions: TypeOption[] = [
+    { id: "location", label: t("common.locations") },
+    { id: "activity", label: t("common.activities") },
+  ];
   const params = new URLSearchParams(window.location.search);
   const searchWord = params.get("q");
   const navigate = useNavigate();
-  const filteredResults: SearchResult[] = [];
 
   React.useEffect(() => {
     if (searchWord) {
-      setQuery(searchWord);
-      const _results = apiCalls.search(searchWord);
+      setLabel(searchWord);
+      const _results = apiCalls.search({
+        label: searchWord,
+      });
       setResults(_results);
     }
   }, [searchWord]);
 
-  const handleSearch = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-    const _query: string = target.value.toLowerCase();
-    setQuery(_query);
-  };
-
   const onSubmit = (e: any): void => {
     e.preventDefault();
 
-    if (query) {
-      navigate(`/Search?q=${query}`);
-      const _results = apiCalls.search(query);
-
-      if (query === "") {
-        setResults([]);
-      } else {
-        if (filter === "Locations" || filter === "Ubicaciones") {
-          console.log("hi");
-          _results.map(({ item, type }) => {
-            if (type === "location") {
-              filteredResults.push({
-                type: "location",
-                item: item,
-              });
-            }
-            return filteredResults;
-          });
-          setResults(filteredResults);
-        } else if (
-          filter === "Activities" ||
-          filter === "Actividades" ||
-          filter === "Activités"
-        ) {
-          _results.map(({ type, item }) => {
-            if (type === "activity") {
-              filteredResults.push({
-                type: "activity",
-                item: item,
-              });
-            }
-            return filteredResults;
-          });
-          setResults(filteredResults);
-        } else {
-          setResults(_results);
-        }
-      }
-    }
+    navigate(`/Search?q=${label}`);
+    const _results = apiCalls.search({ label, type: typeOption?.id });
+    setResults(_results);
   };
 
   return (
@@ -81,19 +48,21 @@ export const SearchForm = () => {
       <div className={styles.searchInputWrapper}>
         <InputText
           label={t("common.search")}
-          onChange={handleSearch}
-          value={query || ""}
+          onChange={({ target }) => {
+            setLabel(target.value.toLowerCase());
+          }}
+          value={label || ""}
         />
       </div>
       <Autocomplete
-        value={filter}
+        value={typeOption}
         disablePortal
-        options={options}
+        options={typeOptions}
         renderInput={(params) => (
           <TextField {...params} label={t("common.filterBy")} />
         )}
-        onChange={(event: any, newFilter: string | null) => {
-          setFilter(newFilter);
+        onChange={(event, newTypeOption) => {
+          setTypeOption(newTypeOption);
         }}
         sx={{ width: 300 }}
       />
