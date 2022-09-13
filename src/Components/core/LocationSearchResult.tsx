@@ -5,6 +5,7 @@ import { GrLocation } from "react-icons/gr";
 import styles from "./LocationSearchResult.module.css";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { apiCalls } from "../../api/api";
 
 interface LocationSearchResultProps {
   location: Location;
@@ -12,6 +13,7 @@ interface LocationSearchResultProps {
 export const LocationSearchResult: FC<LocationSearchResultProps> = ({
   location,
 }) => {
+  const locationActivities = apiCalls.getActivitiesForLocation(location).length;
   const { t } = useTranslation();
   return (
     <div className={styles.searchResultElement}>
@@ -23,7 +25,11 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({
 
       <div className={styles.rightSide}>
         <Link to={`/location/${location.id}`}>
-          <Typography text={location.name} variant="h3" />
+          <Typography
+            text={location.name}
+            variant="h3"
+            className={styles.title}
+          />
         </Link>
 
         <div className={styles.resultType}>
@@ -31,7 +37,7 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({
         </div>
         <Typography text={location.country} variant="body1" />
         <div className={styles.availableActivities}>
-          <Typography text={location.activities} variant="body2" />
+          <Typography text={locationActivities} variant="body2" />
           <Typography text={t("common.activities")} variant="body2" />
         </div>
       </div>

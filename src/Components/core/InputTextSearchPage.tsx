@@ -1,37 +1,41 @@
-import { Icon, InputBase, Paper } from "@mui/material";
+import { Icon, InputBase, styled, TextField } from "@mui/material";
 import { ChangeEventHandler, FC } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import { useTranslation } from "react-i18next";
 
 import styles from "./InputTextSearchPage.module.css";
+
 interface InputTextSearchPageProps {
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   inputValue: string | undefined;
 }
+const SearchTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "black",
+  },
+
+  "& .MuiOutlinedInput-root": {
+    width: "600px",
+  },
+});
 export const InputTextSearchPage: FC<InputTextSearchPageProps> = ({
   onChange,
   inputValue,
 }) => {
+  const { t } = useTranslation();
   return (
-    <Paper
-      className={styles.container}
-      sx={{
-        p: "2px 4px",
-        display: "flex",
-        alignItems: "center",
-        width: 600,
-        border: "0.2px solid grey",
-      }}
-    >
-      <InputBase
-        className={styles.searchBar}
+    <div className={styles.container}>
+      <SearchTextField
+        className={styles.container}
+        variant="outlined"
+        label={t("common.search for")}
         value={inputValue}
         onChange={onChange}
-        placeholder="Search For"
-        sx={{ ml: 1, flex: 1, width: 400 }}
       />
+
       <Icon sx={{ p: "10px" }} aria-label="search">
         <SearchIcon sx={{ fontSize: "larger" }} />
       </Icon>
-    </Paper>
+    </div>
   );
 };

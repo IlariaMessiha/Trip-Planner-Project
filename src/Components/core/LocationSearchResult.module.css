@@ -23,3 +23,7 @@
     flex-grow: 1;
     padding: 20px;
 }
+
+.title {
+    padding-bottom: 20px;
+}

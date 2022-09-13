@@ -24,14 +24,18 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({
 
       <div className={styles.rightSide}>
         <Link to={`/activity/${activity.id}`}>
-          <Typography text={activity.name} variant="h3" />
+          <Typography
+            text={activity.name}
+            variant="h3"
+            className={styles.title}
+          />
         </Link>
 
         <div className={styles.resultType}>
           <FaRunning />
           <Typography text={t("common.activity")} variant="body1" />
         </div>
-        <Typography text={activity.location.country} variant="body1" />
+        <Typography text={activity.location.name} variant="body1" />
         <div className={styles.availableReviews}>
           {activity.review ? (
             <Typography text={activity.review.length} variant="body2" />
