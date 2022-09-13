@@ -8,6 +8,7 @@ import { Location } from "../../models/Location";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Typography } from "../core/Typography";
 import styles from "./CardLocation.module.css";
+import { apiCalls } from "../../api/api";
 
 interface CardLocationProps {
   location: Location;
@@ -20,6 +21,7 @@ const FavoriteButton = styled(IconButton)({
 });
 
 export const CardLocation: FC<CardLocationProps> = ({ location }) => {
+  const locationActivities = apiCalls.getActivitiesForLocation(location).length;
   const { t } = useTranslation();
   return (
     <Card className={styles.item} sx={{ width: 320, height: 320 }}>
@@ -37,8 +39,10 @@ export const CardLocation: FC<CardLocationProps> = ({ location }) => {
         <CardContent className={styles.locationContent}>
           <Typography text={location.name} variant="h4" />
           <Typography text={location.country} />
-          <Typography text={location.activities} variant="body2" />
-          <Typography text={t("common.activities")} variant="body2" />
+          <div className={styles.locationActivities}>
+            <Typography text={locationActivities} variant="body2" />
+            <Typography text={t("common.activities")} variant="body2" />
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>

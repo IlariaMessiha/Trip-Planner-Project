@@ -10,3 +10,8 @@
 .item:hover {
     text-decoration: underline;
 }
+
+.locationActivities {
+    display: flex;
+    gap: 3px;
+}

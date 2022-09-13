@@ -22,7 +22,7 @@ const ByTicketButton = styled(Button)({
   borderRadius: "20px",
   backgroundColor: "black",
   width: "100%",
-  marginTop: "20px",
+  marginTop: "50px",
   "&:hover": {
     backgroundColor: "white",
     color: "black",
