@@ -36,9 +36,6 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
               "&:hover": {
                 color: "black",
               },
-              "&:focus": {
-                color: "black",
-              },
             }}
           >
             <ThumbUpIcon />

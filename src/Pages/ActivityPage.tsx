@@ -1,4 +1,4 @@
-import { Paper, styled } from "@mui/material";
+import { Button, Paper, styled } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
@@ -17,6 +17,16 @@ const ShareButton = styled(IconButton)({
 });
 const FavoriteButton = styled(IconButton)({
   color: "black",
+});
+const ByTicketButton = styled(Button)({
+  borderRadius: "20px",
+  backgroundColor: "black",
+  width: "100%",
+  marginTop: "20px",
+  "&:hover": {
+    backgroundColor: "white",
+    color: "black",
+  },
 });
 export const ActivityPage = () => {
   const { t } = useTranslation();
@@ -94,6 +104,9 @@ export const ActivityPage = () => {
             <Typography text={t("Activities.ticket price")} variant="h4" />
             <Typography text={activity.ticketPrice} />
           </div>
+          <ByTicketButton variant="contained" size="large">
+            <Typography text={t("Activities.buy ticket")} />
+          </ByTicketButton>
         </Paper>
         <img src={activity.coverImage} alt="Cover " className={styles.image} />
       </div>
