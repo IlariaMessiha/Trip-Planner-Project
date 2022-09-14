@@ -19,7 +19,7 @@ interface CardActivityProps {
 const FavoriteButton = styled(IconButton)({
   position: "absolute",
   backgroundColor: "white",
-  top: 4,
+  top: 6,
   right: 10,
 });
 export const CardActivity: FC<CardActivityProps> = ({ activity }) => {
@@ -27,7 +27,7 @@ export const CardActivity: FC<CardActivityProps> = ({ activity }) => {
   return (
     <div className={styles.container}>
       <Card className={styles.item} sx={{ width: 320, height: 320 }}>
-        <CardActionArea>
+        <CardActionArea sx={{ height: "100%" }}>
           <FavoriteButton>
             <FavoriteIcon />
           </FavoriteButton>
@@ -36,7 +36,7 @@ export const CardActivity: FC<CardActivityProps> = ({ activity }) => {
             image={activity.coverImage}
             alt="Activity Cover"
             className={styles.image}
-            sx={{ height: 220 }}
+            sx={{ height: 235 }}
           />
 
           <CardContent className={styles.ActivityContent}>

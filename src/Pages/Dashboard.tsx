@@ -1,9 +1,9 @@
-import { Container } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { apiCalls } from "../api/api";
 import { CardActivity } from "../Components/core/CardActivity";
 import { CardLocation } from "../Components/core/CardLocation";
+import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
 import { Typography } from "../Components/core/Typography";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";

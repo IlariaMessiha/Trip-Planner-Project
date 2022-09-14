@@ -16,7 +16,7 @@ interface CardLocationProps {
 const FavoriteButton = styled(IconButton)({
   position: "absolute",
   backgroundColor: "white",
-  top: 4,
+  top: 6,
   right: 10,
 });
 
@@ -25,17 +25,20 @@ export const CardLocation: FC<CardLocationProps> = ({ location }) => {
   const { t } = useTranslation();
   return (
     <Card className={styles.item} sx={{ width: 320, height: 320 }}>
-      <CardActionArea>
+      <CardActionArea sx={{ height: "100%" }}>
         <FavoriteButton>
           <FavoriteIcon />
         </FavoriteButton>
-        <CardMedia
-          component="img"
-          image={location.coverImage}
-          alt="Location Cover"
-          className={styles.image}
-          sx={{ height: 220 }}
-        />
+        <div>
+          <CardMedia
+            component="img"
+            image={location.coverImage}
+            alt="Location Cover"
+            className={styles.image}
+            sx={{ height: 235 }}
+          />
+        </div>
+
         <CardContent className={styles.locationContent}>
           <Typography text={location.name} variant="h4" />
           <Typography text={location.country} />
