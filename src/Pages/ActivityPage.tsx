@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import { apiCalls } from "../api/api";
-import { Container } from "../Components/core/Container";
+import { Container } from "../Components/core/layout/Container";
 import { Typography } from "../Components/core/Typography";
 import { Activity } from "../models/Activity";
 import styles from "./ActivityPage.module.css";

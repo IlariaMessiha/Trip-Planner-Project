@@ -1,13 +1,13 @@
+import { Container } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { apiCalls } from "../api/api";
 import { CardActivity } from "../Components/core/CardActivity";
 import { CardLocation } from "../Components/core/CardLocation";
-import { Container } from "../Components/core/Container";
+import { Section } from "../Components/core/layout/Section";
 import { Typography } from "../Components/core/Typography";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { Swiper } from "../Components/widgets/Swiper";
-import styles from "./Dashboard.module.css";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 
 export const Dashboard = () => {
   const { t } = useTranslation();
@@ -16,8 +16,7 @@ export const Dashboard = () => {
       <Typography text={t("dashboard.slogan")} variant="h1" />
 
       <SearchEngineAutocomplete />
-      <div className={styles.dashboardContainer}>
-        <Typography text={t("common.locations")} variant="h2" />
+      <Section title={t("common.locations")}>
         <Swiper
           items={apiCalls.getLocations()}
           renderItem={(location) => (
@@ -25,9 +24,10 @@ export const Dashboard = () => {
               <CardLocation location={location} key={location.id} />
             </Link>
           )}
-        ></Swiper>
+        />
+      </Section>
 
-        <Typography text={t("common.activities")} variant="h2" />
+      <Section title={t("common.activities")}>
         <Swiper
           items={apiCalls.getActivities()}
           renderItem={(activity) => (
@@ -35,8 +35,8 @@ export const Dashboard = () => {
               <CardActivity activity={activity} />
             </Link>
           )}
-        ></Swiper>
-      </div>
+        />
+      </Section>
     </Container>
   );
 };

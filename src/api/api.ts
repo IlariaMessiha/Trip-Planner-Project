@@ -1,79 +1,67 @@
-
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
 
-
-import { Location } from "../models/Location"
-import { SearchResult } from "../types/SearchResult";
+import { Location } from "../models/Location";
+import { SearchQuery, SearchResult } from "../types/Search";
 
 export class ApiCalls {
-    public getLocations() {
-        return locations
-    }
+  public getLocations() {
+    return locations;
+  }
 
-    public getLocationById(id: string) {
-        return locations.find((obj) => {
-            return obj.id === id;
-        });
-    }
-    public getActivities() {
-        return activities
-    }
-    public getActivitiesForLocation(location: Location) {
-        return activities.filter((activity) => activity.location.name === location.name);
-    }
+  public getLocationById(id: string) {
+    return locations.find((obj) => {
+      return obj.id === id;
+    });
+  }
+  public getActivities() {
+    return activities;
+  }
+  public getActivitiesForLocation(location: Location) {
+    return activities.filter(
+      (activity) => activity.location.name === location.name
+    );
+  }
 
-    public getActivityById(id: string) {
-        return activities.find((obj) => {
-            return obj.id === id;
-        })
-    }
+  public getActivityById(id: string) {
+    return activities.find((obj) => {
+      return obj.id === id;
+    });
+  }
 
-    public search(query: string): SearchResult[] {
-        const searchResults: SearchResult[] = []
-        const filteredLocations = locations.filter((value) => {
-            return (
-                value.name.toLowerCase().includes(query.toLowerCase()) ||
-                value.continent.toLowerCase().startsWith(query.toLowerCase()) ||
-                value.country.toLowerCase().startsWith(query.toLowerCase())
-            )
-        });
+  public search(query: SearchQuery): SearchResult[] {
+    console.log("search");
+    const filteredLocations = locations.filter((value) => {
+      return (
+        value.name.toLowerCase().includes(query.label.toLowerCase()) ||
+        value.continent.toLowerCase().startsWith(query.label.toLowerCase()) ||
+        value.country.toLowerCase().startsWith(query.label.toLowerCase())
+      );
+    });
+    const filteredActivities = activities.filter((value) => {
+      return (
+        value.name.toLowerCase().includes(query.label.toLowerCase()) ||
+        value.location.name
+          .toLowerCase()
+          .startsWith(query.label.toLowerCase()) ||
+        value.location.country
+          .toLowerCase()
+          .startsWith(query.label.toLowerCase())
+      );
+    });
 
-        filteredLocations.forEach((filteredLocation) => {
-            searchResults.push(
-                {
-                    type: "location",
-                    item: filteredLocation
-                }
-            )
+    const results = [
+      ...filteredLocations.map(
+        (item): SearchResult => ({ type: "location", item })
+      ),
+      ...filteredActivities.map(
+        (item): SearchResult => ({ type: "activity", item })
+      ),
+    ];
 
-
-        })
-
-        const filteredActivities = activities.filter((value) => {
-            return (
-                value.name.toLowerCase().includes(query.toLowerCase()) ||
-                value.location.name.toLowerCase().startsWith(query.toLowerCase()) ||
-                value.location.country.toLowerCase().startsWith(query.toLowerCase())
-
-            )
-        });
-        filteredActivities.forEach((filteredActivity) => {
-            searchResults.push(
-                {
-                    type: "activity",
-                    item: filteredActivity
-                }
-            )
-
-
-        })
-        return searchResults
-
-    }
+    return results.filter(
+      (result) => !query.type || result.type === query.type
+    );
+  }
 }
-export const apiCalls = new ApiCalls()
-
-
-
-
+export const apiCalls = new ApiCalls();

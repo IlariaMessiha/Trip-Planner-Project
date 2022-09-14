@@ -1,0 +1,15 @@
+.searchContainer {
+  display: flex;
+  gap: 16px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.searchButton {
+  width: 100px;
+  height: 50px;
+}
+
+.searchInputWrapper {
+  flex-grow: 1;
+}
