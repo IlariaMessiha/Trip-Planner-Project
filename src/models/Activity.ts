@@ -13,5 +13,6 @@ export interface Activity {
     coverImage?: string,
     review?: Review[];
     ticketPrice: string;
+    averageRating: number;
 
 }

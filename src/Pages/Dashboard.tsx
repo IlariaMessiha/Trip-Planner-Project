@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+
 import { apiCalls } from "../api/api";
 import { CardActivity } from "../Components/core/CardActivity";
 import { CardLocation } from "../Components/core/CardLocation";
@@ -20,9 +20,7 @@ export const Dashboard = () => {
         <Swiper
           items={apiCalls.getLocations()}
           renderItem={(location) => (
-            <Link key={location.id} to={`/location/${location.id}`}>
-              <CardLocation location={location} key={location.id} />
-            </Link>
+            <CardLocation location={location} key={location.id} />
           )}
         />
       </Section>
@@ -30,11 +28,7 @@ export const Dashboard = () => {
       <Section title={t("common.activities")}>
         <Swiper
           items={apiCalls.getActivities()}
-          renderItem={(activity) => (
-            <Link key={activity.id} to={`/activity/${activity.id}`}>
-              <CardActivity activity={activity} />
-            </Link>
-          )}
+          renderItem={(activity) => <CardActivity activity={activity} />}
         />
       </Section>
     </Container>

@@ -6,4 +6,5 @@ export interface Location {
     continent: string;
     description: string
     coverImage?: string;
+    averageRating: number
 }

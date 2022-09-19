@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea, IconButton, styled } from "@mui/material";
+import { CardActionArea, IconButton, Rating, styled } from "@mui/material";
 import { Location } from "../../models/Location";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Typography } from "../core/Typography";
@@ -20,12 +20,17 @@ const FavoriteButton = styled(IconButton)({
   right: 10,
   zIndex: 10,
 });
+const StarsRating = styled(Rating)({
+  "&.MuiRating-root": {
+    color: "blue",
+  },
+});
 
 export const CardLocation: FC<CardLocationProps> = ({ location }) => {
   const locationActivities = apiCalls.getActivitiesForLocation(location).length;
   const { t } = useTranslation();
   return (
-    <Card className={styles.item} sx={{ width: 320, height: 320 }}>
+    <Card className={styles.item} sx={{ width: 320, height: 350 }}>
       <FavoriteButton>
         <FavoriteIcon />
       </FavoriteButton>
@@ -47,6 +52,13 @@ export const CardLocation: FC<CardLocationProps> = ({ location }) => {
             <Typography text={locationActivities} variant="body2" />
             <Typography text={t("common.activities")} variant="body2" />
           </div>
+          <StarsRating
+            name="half-rating"
+            defaultValue={location.averageRating}
+            precision={0.5}
+            readOnly
+            sx={{}}
+          />
         </CardContent>
       </CardActionArea>
     </Card>

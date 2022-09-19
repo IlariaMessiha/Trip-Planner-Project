@@ -14,6 +14,7 @@ export const barcelonaLocation: Location = {
     country: 'Spain',
     continent: 'Europe',
     coverImage: BarcelonaCover,
+    averageRating: 5,
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const portoLocation: Location = {
@@ -23,6 +24,7 @@ export const portoLocation: Location = {
     country: 'Portugal',
     continent: 'Europe',
     coverImage: portoCover,
+    averageRating: 4,
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 
 }
@@ -33,6 +35,7 @@ export const niceLocation: Location = {
     country: 'France',
     continent: 'Europe',
     coverImage: niceCover,
+    averageRating: 4,
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 
 }
@@ -43,6 +46,7 @@ export const rioDeJaneroLocation: Location = {
     country: 'Brasil',
     continent: 'Latin America',
     coverImage: rioDeJaneroCover,
+    averageRating: 4,
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 
 }
@@ -53,6 +57,7 @@ export const parisLocation: Location = {
     country: 'France',
     continent: 'Europe',
     coverImage: parisCover,
+    averageRating: 2,
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const newYorkLocation: Location = {
@@ -62,6 +67,7 @@ export const newYorkLocation: Location = {
     country: 'United States',
     continent: 'America',
     coverImage: newYorkCover,
+    averageRating: 2,
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const egyptLocation: Location = {
@@ -71,6 +77,7 @@ export const egyptLocation: Location = {
     country: 'Egypt',
     continent: 'Africa',
     coverImage: egyptCover,
+    averageRating: 3,
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const locations: Location[] = [
