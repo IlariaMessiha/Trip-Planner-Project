@@ -18,6 +18,7 @@ const FavoriteButton = styled(IconButton)({
   backgroundColor: "white",
   top: 6,
   right: 10,
+  zIndex: 10,
 });
 
 export const CardLocation: FC<CardLocationProps> = ({ location }) => {
@@ -25,10 +26,10 @@ export const CardLocation: FC<CardLocationProps> = ({ location }) => {
   const { t } = useTranslation();
   return (
     <Card className={styles.item} sx={{ width: 320, height: 320 }}>
+      <FavoriteButton>
+        <FavoriteIcon />
+      </FavoriteButton>
       <CardActionArea sx={{ height: "100%" }}>
-        <FavoriteButton>
-          <FavoriteIcon />
-        </FavoriteButton>
         <div>
           <CardMedia
             component="img"

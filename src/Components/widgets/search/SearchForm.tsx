@@ -21,7 +21,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
   const { t } = useTranslation();
 
   const [label, setLabel] = useState<string>(initialLabel);
-  const [typeOption, setTypeOption] = useState<TypeOption | null>();
+  const [typeOption, setTypeOption] = useState<TypeOption | null>(null);
 
   const typeOptions: TypeOption[] = [
     { id: "location", label: t("common.locations") },
@@ -54,6 +54,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
         value={typeOption}
         disablePortal
         options={typeOptions}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
         renderInput={(params) => (
           <TextField {...params} label={t("common.filterBy")} />
         )}

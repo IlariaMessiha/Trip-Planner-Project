@@ -10,7 +10,7 @@ import styles from "./Swiper.module.css";
 import "swiper/css";
 import { Swiper as ReactSwiper, SwiperSlide } from "swiper/react";
 import { IconButton } from "@mui/material";
-import { color, styled } from "@mui/system";
+import { styled } from "@mui/system";
 
 interface SwiperProps<T = any> {
   items: T[];
@@ -70,8 +70,8 @@ export const Swiper = <T extends any>({
       }}
       pagination={{ clickable: true }}
     >
-      {items.map((item) => {
-        return <SwiperSlide>{renderItem(item)}</SwiperSlide>;
+      {items.map((item, i) => {
+        return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
       })}
       <div className={styles.prevButton} ref={prevButton}>
         <SwiperArrowsButton>

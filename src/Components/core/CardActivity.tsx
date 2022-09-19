@@ -21,16 +21,17 @@ const FavoriteButton = styled(IconButton)({
   backgroundColor: "white",
   top: 6,
   right: 10,
+  zIndex: 10,
 });
 export const CardActivity: FC<CardActivityProps> = ({ activity }) => {
   const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <Card className={styles.item} sx={{ width: 320, height: 320 }}>
+        <FavoriteButton>
+          <FavoriteIcon />
+        </FavoriteButton>
         <CardActionArea sx={{ height: "100%" }}>
-          <FavoriteButton>
-            <FavoriteIcon />
-          </FavoriteButton>
           <CardMedia
             component="img"
             image={activity.coverImage}
