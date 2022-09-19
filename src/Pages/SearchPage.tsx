@@ -19,7 +19,11 @@ export const SearchPage = () => {
     const _results = apiCalls.search({
       label: initialSearchLabel,
     });
-    setResults(_results);
+    if (initialSearchLabel === "") {
+      setResults([]);
+    } else {
+      setResults(_results);
+    }
   }, [initialSearchLabel]);
   return (
     <>

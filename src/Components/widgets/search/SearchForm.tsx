@@ -1,6 +1,5 @@
 import { Autocomplete, Button, TextField } from "@mui/material";
-import { FC, useState } from "react";
-
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { apiCalls } from "../../../api/api";
 import {
@@ -28,11 +27,15 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
     { id: "location", label: t("common.locations") },
     { id: "activity", label: t("common.activities") },
   ];
+  useEffect(() => {
+    setLabel(initialLabel);
+  }, [initialLabel]);
 
   const handleSubmit = (e: any): void => {
     e.preventDefault();
 
     const results = apiCalls.search({ label, type: typeOption?.id });
+
     onSubmit(results, { label, type: typeOption?.id });
   };
 
