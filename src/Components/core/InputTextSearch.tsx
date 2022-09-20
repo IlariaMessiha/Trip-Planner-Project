@@ -17,7 +17,6 @@ const SearchTextField = styled(TextField)({
   "& .MuiFilledInput-root": {
     border: "0px",
     backgroundColor: "white",
-    // boxShadow: "  5px 5px 20px black",
 
     "&:hover ": {
       backgroundColor: "white",

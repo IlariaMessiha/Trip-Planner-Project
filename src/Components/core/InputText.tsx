@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { styled, TextField } from "@mui/material";
 import { ChangeEventHandler, FC } from "react";
 
 interface InputTextSearchPageProps {
@@ -6,12 +6,18 @@ interface InputTextSearchPageProps {
   value: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
+const LabelTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "black",
+    fontSize: "Larger",
+  },
+});
 export const InputText: FC<InputTextSearchPageProps> = ({
   onChange,
   value,
   label,
 }) => (
-  <TextField
+  <LabelTextField
     fullWidth
     variant="outlined"
     label={label}

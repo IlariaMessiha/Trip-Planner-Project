@@ -1,4 +1,4 @@
-import { Autocomplete, Button, TextField } from "@mui/material";
+import { Autocomplete, Button, styled, TextField } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { apiCalls } from "../../../api/api";
@@ -16,6 +16,23 @@ interface SearchFormProps {
   initialLabel: string;
   onSubmit: (results: SearchResult[], query: SearchQuery) => void;
 }
+const SearchButton = styled(Button)({
+  backgroundColor: "black",
+  color: "white",
+  borderColor: "black",
+  "&:hover": {
+    backgroundColor: "white",
+    color: "black",
+    borderColor: "black",
+  },
+});
+const TypeTextField = styled(TextField)({
+  "& .MuiOutlinedInput-root": {},
+  "& label.Mui-focused": {
+    color: "black",
+    fontSize: "Larger",
+  },
+});
 
 export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
   const { t } = useTranslation();
@@ -56,16 +73,16 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
         options={typeOptions}
         isOptionEqualToValue={(option, value) => option.id === value.id}
         renderInput={(params) => (
-          <TextField {...params} label={t("common.filterBy")} />
+          <TypeTextField {...params} label={t("common.filterBy")} />
         )}
         onChange={(event, newTypeOption) => {
           setTypeOption(newTypeOption);
         }}
-        sx={{ width: 300 }}
+        sx={{ width: 200 }}
       />
-      <Button variant="outlined" type="submit">
+      <SearchButton variant="outlined" type="submit">
         {t("common.search")}
-      </Button>
+      </SearchButton>
     </form>
   );
 };
