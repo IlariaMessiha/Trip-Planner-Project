@@ -6,6 +6,10 @@ import timeSquareCover from '../assets/images/time square.jpg'
 import thePyrmidsCover from '../assets/images/the pyramids.jpg'
 import fishingTripCover from '../assets/images/fsishing trip .jpg'
 import eiffelTowerCover from '../assets/images/paris.jpg'
+import SF1 from '../assets/images/SF1.jpg'
+import SF2 from '../assets/images/SF2.jpg'
+import SF3 from '../assets/images/SF3.jpg'
+import SF4 from '../assets/images/SF4.jpg'
 import { review1, review2, review3, review4, review5, review6 } from "./reviews";
 export const activity1: Activity = {
     id: '1',
@@ -18,7 +22,8 @@ export const activity1: Activity = {
     review: [review1, review2],
     suggestedDuration: "2-3 ",
     ticketPrice: "200$",
-    averageRating: 3
+    averageRating: 3,
+    gallery: [SF1, SF2, SF3, SF4]
 
 }
 export const activity2: Activity = {
@@ -31,7 +36,8 @@ export const activity2: Activity = {
     coverImage: parkGuellCover,
     suggestedDuration: "2-3 ",
     ticketPrice: "200$",
-    averageRating: 4.5
+    averageRating: 4.5,
+    gallery: [SF1, SF2, SF3, SF4]
 
 
 }
@@ -45,6 +51,7 @@ export const activity3: Activity = {
     suggestedDuration: "2-3 ",
     ticketPrice: "200$",
     averageRating: 1,
+    gallery: [SF1, SF2, SF3, SF4],
     description: 'Times Square is a major commercial intersection, tourist destination, entertainment center, and neighborhood in Midtown Manhattan, New York. It is formed by the junction of Broadway, Seventh Avenue and 42nd Street. Together with adjacent Duffy Square, Times Square is a bowtie-shaped space five blocks long between 42nd and 47th Streets.'
 }
 
@@ -59,6 +66,7 @@ export const activity4: Activity = {
     openHours: "8:00 AM - 6:00 PM",
     review: [review3],
     averageRating: 3,
+    gallery: [SF1, SF2, SF3, SF4],
     description: 'The Egyptian pyramids are ancient masonry structures located in Egypt. Sources cite at least 118 identified "Egyptian" pyramids. Approximately 80 pyramids were built within the Kingdom of Kush, now located in the modern country of Sudan. Of those located in modern Egypt, most were built as tombs for the country s pharaohs and their consorts during the Old and Middle Kingdom periods'
 }
 export const activity5: Activity = {
@@ -72,6 +80,7 @@ export const activity5: Activity = {
     suggestedDuration: "2-3 ",
     openHours: "8:00 AM - 6:00 PM",
     averageRating: 5,
+    gallery: [SF1, SF2, SF3, SF4],
     description: 'Spend the whole day on private Yacht fishing, swimming, or just relaxing off the Shore of Ain Sokhna coastal city.A trip is best if you are on a short stay in Cairo and wish to spend some time in the Red Sea.'
 }
 export const activity7: Activity = {
@@ -85,6 +94,7 @@ export const activity7: Activity = {
     suggestedDuration: "2-3 ",
     openHours: "8:00 AM - 6:00 PM",
     averageRating: 2,
+    gallery: [SF1, SF2, SF3, SF4],
     description: 'The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.'
 }
 export const activities: Activity[] = [

@@ -1,7 +1,7 @@
 .image {
-    width: 65%;
-    height: 600px;
+    width: 60%;
     display: block;
+    height: 500px;
 
 
 }
@@ -9,6 +9,7 @@
 .imageAndDescription {
     display: flex;
     justify-content: space-between;
+
 }
 
 .activityDescription {

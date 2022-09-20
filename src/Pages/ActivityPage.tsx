@@ -12,6 +12,9 @@ import IosShareIcon from "@mui/icons-material/IosShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import { ActivityReviewList } from "../Components/widgets/ActivityReviewList";
+import { ActivityGallery } from "../Components/widgets/ActivityGallery";
+import { Swiper } from "../Components/widgets/Swiper";
+
 const ShareButton = styled(IconButton)({
   color: "black",
 });
@@ -108,7 +111,9 @@ export const ActivityPage = () => {
             <Typography text={t("Activities.buy ticket")} />
           </ByTicketButton>
         </Paper>
-        <img src={activity.coverImage} alt="Cover " className={styles.image} />
+        {/* <img src={activity.coverImage} alt="Cover " className={styles.image} /> */}
+
+        <ActivityGallery activity={activity} className={styles.image} />
       </div>
       <div className={styles.reviewsContainer}>
         <ActivityReviewList activity={activity} />

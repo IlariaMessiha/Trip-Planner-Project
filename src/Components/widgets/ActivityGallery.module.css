@@ -1,0 +1,23 @@
+.slideImage {
+    height: 100%;
+    width: 100%;
+}
+
+.prevButton,
+.nextButton {
+    position: absolute;
+    top: 250px;
+    z-index: 1;
+
+}
+
+.nextButton {
+    right: 0;
+
+
+}
+
+.prevButton {
+    left: 0;
+
+}

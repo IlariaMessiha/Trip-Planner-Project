@@ -1,19 +1,19 @@
-import { ReactNode, useRef } from "react";
+import { FC, useRef } from "react";
 import { Navigation, Pagination } from "swiper";
-import "./Swiper.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import styles from "./Swiper.module.css";
+import styles from "./ActivityGallery.module.css";
 import "swiper/css";
+
 import { Swiper as ReactSwiper, SwiperSlide } from "swiper/react";
 import { IconButton } from "@mui/material";
 import { styled } from "@mui/system";
-
-interface SwiperProps<T = any> {
-  items: T[];
-  renderItem: (item: T) => ReactNode;
+import { Activity } from "../../models/Activity";
+interface ActivityGalleryProps {
+  activity: Activity;
+  className?: string;
 }
 const SwiperArrowsButton = styled(IconButton)({
   backgroundColor: "black",
@@ -24,53 +24,34 @@ const SwiperArrowsButton = styled(IconButton)({
     color: "black",
   },
 });
-
-export const Swiper = <T extends any>({
-  renderItem,
-  items,
-}: SwiperProps<T>) => {
+export const ActivityGallery: FC<ActivityGalleryProps> = ({
+  activity,
+  className,
+}) => {
   const nextButton = useRef(null);
   const prevButton = useRef(null);
+  const slides = activity.gallery;
+
   return (
     <ReactSwiper
-      breakpoints={{
-        0: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        480: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-
-        750: {
-          slidesPerView: 2,
-          spaceBetween: 10,
-        },
-        1090: {
-          slidesPerView: 3,
-          spaceBetween: 5,
-        },
-        1280: {
-          slidesPerView: 3.5,
-          spaceBetween: 20,
-        },
-      }}
+      className={className}
       modules={[Navigation, Pagination]}
       navigation={{
         prevEl: prevButton.current,
         nextEl: nextButton.current,
       }}
       onInit={(swiper) => {
-        // swiper.params.navigation.prevEl = prevButton.current;
-        // swiper.params.navigation.nextEl = prevButton.current;
         swiper.navigation.init();
         swiper.navigation.update();
       }}
       pagination={{ clickable: true }}
     >
-      {items.map((item, i) => {
-        return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
+      {slides?.map((slide, i) => {
+        return (
+          <SwiperSlide key={i}>
+            <img src={slide} className={styles.slideImage} alt="activity" />
+          </SwiperSlide>
+        );
       })}
       <div className={styles.prevButton} ref={prevButton}>
         <SwiperArrowsButton>

@@ -29,7 +29,7 @@ const elementNameByVariant = {
   body2: "p",
   body3: "p",
   searchResultElement: "p",
-  likes: "likes",
+  likes: "p",
 };
 export const Typography: FC<TypographyProps> = ({
   text,

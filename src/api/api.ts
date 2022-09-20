@@ -1,5 +1,6 @@
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
+import { Activity } from "../models/Activity";
 
 import { Location } from "../models/Location";
 import { SearchQuery, SearchResult } from "../types/Search";
@@ -16,6 +17,9 @@ export class ApiCalls {
   }
   public getActivities() {
     return activities;
+  }
+  public getActivityGallery(activity: Activity) {
+    return activity.gallery;
   }
   public getActivitiesForLocation(location: Location) {
     return activities.filter(
