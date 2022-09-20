@@ -32,36 +32,48 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
   };
 
   return (
-    <div className={styles.search}>
-      <form onSubmit={onSubmit}>
-        <InputTextSearch onChange={handleFilter} inputValue={query} />
-      </form>
-      <div className={styles.searchResult}>
-        {firstResults.map(({ type, item }) => {
-          return (
-            <div key={`${type}-${item.id}`}>
-              {type === "location" ? (
-                <div className={styles.searchResultElement}>
-                  <GrLocation className={styles.itemIcon} />
-                  <Link to={`/location/${item.id}`}>
-                    <Typography text={item.name} className={styles.itemName} />
-                  </Link>
-                </div>
-              ) : (
-                <div className={styles.searchResultElement}>
-                  <img
-                    src={item.coverImage}
-                    className={styles.itemPhotos}
-                    alt="Cover "
-                  />
-                  <Link to={`/activity/${item.id}`}>
-                    <Typography text={item.name} className={styles.itemName} />
-                  </Link>
-                </div>
-              )}
-            </div>
-          );
-        })}
+    <div className={styles.searchWrapper}>
+      <div className={styles.inputAndResult}>
+        <form onSubmit={onSubmit} className={styles.searchForm}>
+          <InputTextSearch
+            onChange={handleFilter}
+            inputValue={query}
+            className={styles.autoCompleteInput}
+          />
+        </form>
+        <div className={styles.searchResult}>
+          {firstResults.map(({ type, item }) => {
+            return (
+              <div key={`${type}-${item.id}`}>
+                {type === "location" ? (
+                  <div className={styles.searchResultElement}>
+                    <GrLocation className={styles.itemIcon} />
+                    <Link to={`/location/${item.id}`}>
+                      <Typography
+                        text={item.name}
+                        className={styles.itemName}
+                      />
+                    </Link>
+                  </div>
+                ) : (
+                  <div className={styles.searchResultElement}>
+                    <img
+                      src={item.coverImage}
+                      className={styles.itemPhotos}
+                      alt="Cover "
+                    />
+                    <Link to={`/activity/${item.id}`}>
+                      <Typography
+                        text={item.name}
+                        className={styles.itemName}
+                      />
+                    </Link>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

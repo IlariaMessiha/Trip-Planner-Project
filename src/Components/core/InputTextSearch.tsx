@@ -2,11 +2,11 @@ import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { ChangeEventHandler, FC } from "react";
 
-import styles from "./InputTextSearch.module.css";
 import { styled } from "@mui/material/styles";
 interface InputTextSearchProps {
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   inputValue: string;
+  className?: string;
 }
 const SearchTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -17,6 +17,7 @@ const SearchTextField = styled(TextField)({
   "& .MuiFilledInput-root": {
     border: "0px",
     backgroundColor: "white",
+    // boxShadow: "  5px 5px 20px black",
 
     "&:hover ": {
       backgroundColor: "white",
@@ -25,19 +26,18 @@ const SearchTextField = styled(TextField)({
     "&.Mui-focused ": {
       border: "0px",
       backgroundColor: "white",
-      boxShadow: "  5px 5px 20px black",
     },
   },
 });
 export const InputTextSearch: FC<InputTextSearchProps> = ({
   onChange,
   inputValue,
+  className = "",
 }) => {
   return (
-    <Box className={styles.container} sx={{ width: 600 }}>
+    <Box className={className}>
       <SearchTextField
         label="Search For"
-        className={styles.searchBar}
         fullWidth
         value={inputValue}
         onChange={onChange}
