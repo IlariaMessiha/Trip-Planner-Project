@@ -12,9 +12,6 @@
 
 }
 
-.activityDescription {
-    padding-bottom: 10px;
-}
 
 .openHours {
     display: flex;
@@ -48,18 +45,4 @@
     align-items: center;
     padding-bottom: 20px;
 
-}
-
-
-
-.suggestedDuration {
-    display: flex;
-    gap: 3px;
-    padding-top: 5px;
-    padding-bottom: 10px;
-}
-
-.tickets {
-    display: flex;
-    gap: 5px;
 }

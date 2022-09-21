@@ -18,9 +18,7 @@ export class ApiCalls {
   public getActivities() {
     return activities;
   }
-  public getActivityGallery(activity: Activity) {
-    return activity.gallery;
-  }
+
   public getActivitiesForLocation(location: Location) {
     return activities.filter(
       (activity) => activity.location.name === location.name

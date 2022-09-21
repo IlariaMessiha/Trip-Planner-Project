@@ -14,6 +14,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ActivityReviewList } from "../Components/widgets/ActivityReviewList";
 import { ActivityGallery } from "../Components/widgets/ActivityGallery";
 import { Swiper } from "../Components/widgets/Swiper";
+import { ActivityInfo } from "../Components/core/ActivityInfo";
 
 const ShareButton = styled(IconButton)({
   color: "black",
@@ -87,31 +88,7 @@ export const ActivityPage = () => {
         </div>
       </div>
       <div className={styles.imageAndDescription}>
-        <Paper
-          sx={{
-            padding: "20px",
-            width: "30%",
-          }}
-        >
-          <Typography text={t("Activities.about")} variant="h2" />
-          <Typography
-            text={t(`Activities.${activity.name}.description`)}
-            className={styles.activityDescription}
-          />
-          <Typography text={t("Activities.suggested duration")} variant="h4" />
-          <div className={styles.suggestedDuration}>
-            <Typography text={activity.suggestedDuration} />
-            <Typography text={t("Activities.hours")} />
-          </div>
-          <div className={styles.tickets}>
-            <Typography text={t("Activities.ticket price")} variant="h4" />
-            <Typography text={activity.ticketPrice} />
-          </div>
-          <ByTicketButton variant="contained" size="large">
-            <Typography text={t("Activities.buy ticket")} />
-          </ByTicketButton>
-        </Paper>
-        {/* <img src={activity.coverImage} alt="Cover " className={styles.image} /> */}
+        <ActivityInfo activity={activity} />
 
         <ActivityGallery activity={activity} className={styles.image} />
       </div>
