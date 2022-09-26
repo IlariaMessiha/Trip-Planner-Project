@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { apiCalls } from "../api/api";
 import { useTranslation } from "react-i18next";
+import { LocationGallery } from "../Components/widgets/LocationGallery";
 
 export const LocationPage = () => {
   const { t } = useTranslation();
@@ -34,7 +35,7 @@ export const LocationPage = () => {
     <Container className={styles.container}>
       <Typography text={location.name} variant="h1" />
 
-      <img src={location.coverImage} className={styles.image} alt="Cover " />
+      <LocationGallery location={location} />
       <Typography
         text={t(`Locations.${location.name}.description`)}
         className={styles.locationDescription}
