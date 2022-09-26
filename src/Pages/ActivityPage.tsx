@@ -62,16 +62,21 @@ export const ActivityPage = () => {
             variant="h4"
             className={styles.headerButtons}
           />
-          <Typography
-            text={t("Activities.call")}
-            variant="h4"
-            className={styles.headerButtons}
-          />
-          <Typography
-            text="Email"
-            variant="h4"
-            className={styles.headerButtons}
-          />
+          <a href={activity.phoneNumber}>
+            <Typography
+              text={t("Activities.call")}
+              variant="h4"
+              className={styles.headerButtons}
+            />
+          </a>
+          <a href={activity.email}>
+            <Typography
+              text="Email"
+              variant="h4"
+              className={styles.headerButtons}
+            />
+          </a>
+
           <Typography
             text={t("common.review")}
             variant="h4"

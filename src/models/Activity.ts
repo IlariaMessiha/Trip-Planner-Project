@@ -14,6 +14,8 @@ export interface Activity {
     review?: Review[];
     ticketPrice: string;
     averageRating: number;
-    gallery: string[]
+    gallery: string[];
+    phoneNumber: string;
+    email: string;
 
 }
