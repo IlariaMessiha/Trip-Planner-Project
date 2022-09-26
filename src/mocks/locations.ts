@@ -6,6 +6,10 @@ import rioDeJaneroCover from "../assets/images/rio de janeiro.jpg"
 import parisCover from "../assets/images/paris.jpg"
 import newYorkCover from "../assets/images/new york.jpg"
 import egyptCover from "../assets/images/egypt.jpg"
+import Barcelona1 from "../assets/images/Barcelona1.jpg"
+import Barcelona2 from "../assets/images/Barcelona2.jpg"
+import Barcelona3 from "../assets/images/Barcelona3.jpg"
+import Barcelona4 from "../assets/images/Barcelona4.jpg"
 
 export const barcelonaLocation: Location = {
     id: '1',
@@ -15,6 +19,7 @@ export const barcelonaLocation: Location = {
     continent: 'Europe',
     coverImage: BarcelonaCover,
     averageRating: 5,
+    photos: [Barcelona1, Barcelona2, Barcelona3, Barcelona4],
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const portoLocation: Location = {
@@ -25,6 +30,7 @@ export const portoLocation: Location = {
     continent: 'Europe',
     coverImage: portoCover,
     averageRating: 4,
+    photos: [Barcelona1, Barcelona2, Barcelona3, Barcelona4],
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 
 }
@@ -36,6 +42,7 @@ export const niceLocation: Location = {
     continent: 'Europe',
     coverImage: niceCover,
     averageRating: 4,
+    photos: [Barcelona1, Barcelona2, Barcelona3, Barcelona4],
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 
 }
@@ -47,6 +54,7 @@ export const rioDeJaneroLocation: Location = {
     continent: 'Latin America',
     coverImage: rioDeJaneroCover,
     averageRating: 4,
+    photos: [Barcelona1, Barcelona2, Barcelona3, Barcelona4],
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 
 }
@@ -58,6 +66,7 @@ export const parisLocation: Location = {
     continent: 'Europe',
     coverImage: parisCover,
     averageRating: 2,
+    photos: [Barcelona1, Barcelona2, Barcelona3, Barcelona4],
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const newYorkLocation: Location = {
@@ -68,6 +77,7 @@ export const newYorkLocation: Location = {
     continent: 'America',
     coverImage: newYorkCover,
     averageRating: 2,
+    photos: [Barcelona1, Barcelona2, Barcelona3, Barcelona4],
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const egyptLocation: Location = {
@@ -78,6 +88,7 @@ export const egyptLocation: Location = {
     continent: 'Africa',
     coverImage: egyptCover,
     averageRating: 3,
+    photos: [Barcelona1, Barcelona2, Barcelona3, Barcelona4],
     description: "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes. "
 }
 export const locations: Location[] = [
