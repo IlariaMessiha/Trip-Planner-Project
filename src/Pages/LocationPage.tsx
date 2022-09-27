@@ -43,11 +43,7 @@ export const LocationPage = () => {
       <Typography text="Top attraction" variant="h2" />
       <Swiper
         items={result}
-        renderItem={(activity) => (
-          <Link key={activity.id} to={`/activity/${activity.id}`}>
-            <CardActivity activity={activity} />
-          </Link>
-        )}
+        renderItem={(activity) => <CardActivity activity={activity} />}
       />
     </Container>
   );
