@@ -11,6 +11,7 @@ import { apiCalls } from "../api/api";
 import { useTranslation } from "react-i18next";
 import { LocationGallery } from "../Components/widgets/LocationGallery";
 import { LocationTopAttraction } from "../Components/widgets/LocationTopAtrraction";
+import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
 
 export const LocationPage = () => {
   const { t } = useTranslation();
@@ -39,6 +40,7 @@ export const LocationPage = () => {
         className={styles.locationDescription}
       />
       <LocationTopAttraction location={location} />
+      <LocationTravelAdvice />
     </Container>
   );
 };
