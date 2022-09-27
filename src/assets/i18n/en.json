@@ -6,7 +6,8 @@
     "activity": "Activity",
     "review": "Review",
     "search": "Search",
-    "filterBy": "Filter By"
+    "filterBy": "Filter By",
+    "close": "Close"
   },
   "navBar": {
     "logo": "Trip Planner",
@@ -40,6 +41,17 @@
     },
     "Egypt": {
       "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+    },
+    "locationPage": {
+      "seeAllPhotos": "See All Photos",
+      "photosOf": "Photos Of",
+      "topAttraction": "Top Attraction",
+      "topAttractionSlogan": "Places to see, ways to wander, and signature experiences that define Berlin.",
+      "travelAdvice": "Travel Advice",
+      "advice1": "Best Time To visit",
+      "advice2": "Getting Around",
+      "advice3": "Local Customs",
+      "advice4": "Tips From The Pros"
     }
   },
   "Activities": {

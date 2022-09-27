@@ -14,6 +14,8 @@ import PhotoSizeSelectActualIcon from "@mui/icons-material/PhotoSizeSelectActual
 import { Typography } from "../core/Typography";
 import styles from "./LocationGallery.module.css";
 
+import { useTranslation } from "react-i18next";
+
 interface LocationGalleryProps {
   location: Location;
 }
@@ -44,6 +46,7 @@ const StyledImageListItem = styled(ImageListItem)({
 });
 
 export const LocationGallery: FC<LocationGalleryProps> = ({ location }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -95,7 +98,10 @@ export const LocationGallery: FC<LocationGalleryProps> = ({ location }) => {
         startIcon={<PhotoSizeSelectActualIcon />}
         onClick={handleClickOpen}
       >
-        <Typography text="See all photos" variant="body2" />
+        <Typography
+          text={t("Locations.locationPage.seeAllPhotos")}
+          variant="body2"
+        />
       </StyledButton>
       <Dialog
         open={open}
@@ -105,7 +111,7 @@ export const LocationGallery: FC<LocationGalleryProps> = ({ location }) => {
         maxWidth="xl"
       >
         <DialogTitle id="alert-dialog-title">
-          {location.name} Photos
+          {t("Locations.locationPage.photosOf")} {location.name}
         </DialogTitle>
         <DialogContent>
           <ImageList sx={{ width: "100%" }} rowHeight={400} cols={3}>
@@ -122,7 +128,7 @@ export const LocationGallery: FC<LocationGalleryProps> = ({ location }) => {
           </ImageList>
         </DialogContent>
         <DialogActions>
-          <StyledButton onClick={handleClose}>Close</StyledButton>
+          <StyledButton onClick={handleClose}>{t("common.close")}</StyledButton>
         </DialogActions>
       </Dialog>
     </div>

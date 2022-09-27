@@ -6,7 +6,8 @@
     "activity": "Actividad",
     "review": "Reseñar",
     "search": "Buscar",
-    "filterBy": "Filtrado por"
+    "filterBy": "Filtrado por",
+    "close": "Cerca"
   },
   "navBar": {
     "logo": "Planificador De Viajes",
@@ -40,6 +41,17 @@
     },
     "Egypt": {
       "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
+    },
+    "locationPage": {
+      "seeAllPhotos": "Ver todas las fotos",
+      "photosOf": "Fotos de",
+      "topAttraction": "Atracción principal",
+      "topAttractionSlogan": "Lugares para ver, formas de caminar y experiencias icónicas que definen a Berlín",
+      "travelAdvice": "Consejos de viaje",
+      "advice1": "Mejor época para visitar",
+      "advice2": "Desplazarse",
+      "advice3": "Costumbres locales",
+      "advice4": "Consejos de los profesionales"
     }
   },
   "Activities": {

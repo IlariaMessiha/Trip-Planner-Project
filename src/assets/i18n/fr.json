@@ -6,7 +6,8 @@
     "activity": "Activité",
     "review": "Commenter",
     "search": "Rechercher",
-    "filterBy": "Flitrer Par"
+    "filterBy": "Flitrer Par",
+    "close": "Fermer"
   },
 
   "navBar": {
@@ -40,6 +41,17 @@
     },
     "Egypt": {
       "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
+    },
+    "locationPage": {
+      "seeAllPhotos": "Voir toutes les photos",
+      "photosOf": "Photos De",
+      "topAttraction": "Attraction Principale",
+      "topAttractionSlogan": "Des lieux à voir, des façons de se promener et des expériences emblématiques qui définissent Berlin.",
+      "travelAdvice": "Conseils de Voyage",
+      "advice1": "Meilleur moment pour visiter",
+      "advice2": "Se déplacer",
+      "advice3": "Coutumes locales",
+      "advice4": "Conseils de pros"
     }
   },
   "Activities": {

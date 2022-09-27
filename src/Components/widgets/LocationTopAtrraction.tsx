@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { FC } from "react";
 import { apiCalls } from "../../api/api";
 import { Location } from "../../models/Location";
@@ -13,13 +14,16 @@ export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({
   location,
 }) => {
   const result = apiCalls.getActivitiesForLocation(location);
-
+  const { t } = useTranslation();
   return (
     <div className={styles.topAttraction}>
       <div className={styles.topAttractionHeader}>
-        <Typography text="Top attraction" variant="h2" />
         <Typography
-          text="Places to see, ways to wander, and signature experiences that define Berlin."
+          text={t("Locations.locationPage.topAttraction")}
+          variant="h2"
+        />
+        <Typography
+          text={t("Locations.locationPage.topAttractionSlogan")}
           variant="body1"
         />
       </div>
