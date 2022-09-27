@@ -25,7 +25,8 @@ export const activity1: Activity = {
     averageRating: 3,
     gallery: [SF1, SF2, SF3, SF4],
     phoneNumber: "tel:01228224461",
-    email: "mailto:ilariarefaat20@gmail.com"
+    email: "mailto:ilariarefaat20@gmail.com",
+    website: 'https://www.youtube.com/'
 
 }
 export const activity2: Activity = {
@@ -41,7 +42,8 @@ export const activity2: Activity = {
     averageRating: 4.5,
     gallery: [SF1, SF2, SF3, SF4],
     phoneNumber: "tel:01228224461",
-    email: "mailto:ilariarefaat20@gmail.com"
+    email: "mailto:ilariarefaat20@gmail.com",
+    website: 'https://www.youtube.com/'
 
 
 }
@@ -58,6 +60,7 @@ export const activity3: Activity = {
     gallery: [SF1, SF2, SF3, SF4],
     phoneNumber: "tel:01228224461",
     email: "mailto:ilariarefaat20@gmail.com",
+    website: 'https://www.youtube.com/',
     description: 'Times Square is a major commercial intersection, tourist destination, entertainment center, and neighborhood in Midtown Manhattan, New York. It is formed by the junction of Broadway, Seventh Avenue and 42nd Street. Together with adjacent Duffy Square, Times Square is a bowtie-shaped space five blocks long between 42nd and 47th Streets.'
 }
 
@@ -75,6 +78,7 @@ export const activity4: Activity = {
     gallery: [SF1, SF2, SF3, SF4],
     phoneNumber: "tel:01228224461",
     email: "mailto:ilariarefaat20@gmail.com",
+    website: 'https://www.youtube.com/',
     description: 'The Egyptian pyramids are ancient masonry structures located in Egypt. Sources cite at least 118 identified "Egyptian" pyramids. Approximately 80 pyramids were built within the Kingdom of Kush, now located in the modern country of Sudan. Of those located in modern Egypt, most were built as tombs for the country s pharaohs and their consorts during the Old and Middle Kingdom periods'
 }
 export const activity5: Activity = {
@@ -91,6 +95,7 @@ export const activity5: Activity = {
     gallery: [SF1, SF2, SF3, SF4],
     phoneNumber: "tel:01228224461",
     email: "mailto:ilariarefaat20@gmail.com",
+    website: 'https://www.youtube.com/',
     description: 'Spend the whole day on private Yacht fishing, swimming, or just relaxing off the Shore of Ain Sokhna coastal city.A trip is best if you are on a short stay in Cairo and wish to spend some time in the Red Sea.'
 }
 export const activity7: Activity = {
@@ -107,6 +112,7 @@ export const activity7: Activity = {
     gallery: [SF1, SF2, SF3, SF4],
     phoneNumber: "tel:01228224461",
     email: "mailto:ilariarefaat20@gmail.com",
+    website: 'https://www.youtube.com/',
     description: 'The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.'
 }
 export const activities: Activity[] = [

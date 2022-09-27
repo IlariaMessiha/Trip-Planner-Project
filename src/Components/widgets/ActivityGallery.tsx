@@ -28,8 +28,8 @@ export const ActivityGallery: FC<ActivityGalleryProps> = ({
   activity,
   className,
 }) => {
-  const nextButton = useRef(null);
-  const prevButton = useRef(null);
+  const nextRef = useRef(null);
+  const prevRef = useRef(null);
   const slides = activity.gallery;
 
   return (
@@ -37,14 +37,11 @@ export const ActivityGallery: FC<ActivityGalleryProps> = ({
       className={className}
       modules={[Navigation, Pagination]}
       navigation={{
-        prevEl: prevButton.current,
-        nextEl: nextButton.current,
-      }}
-      onInit={(swiper) => {
-        swiper.navigation.init();
-        swiper.navigation.update();
+        prevEl: prevRef.current,
+        nextEl: nextRef.current,
       }}
       pagination={{ clickable: true }}
+      loop={true}
     >
       {slides?.map((slide, i) => {
         return (
@@ -53,12 +50,12 @@ export const ActivityGallery: FC<ActivityGalleryProps> = ({
           </SwiperSlide>
         );
       })}
-      <div className={styles.prevButton} ref={prevButton}>
+      <div className={styles.prevButton} ref={prevRef}>
         <SwiperArrowsButton>
           <ArrowBackIcon />
         </SwiperArrowsButton>
       </div>
-      <div className={styles.nextButton} ref={nextButton}>
+      <div className={styles.nextButton} ref={nextRef}>
         <SwiperArrowsButton>
           <ArrowForwardIcon />
         </SwiperArrowsButton>

@@ -17,5 +17,6 @@ export interface Activity {
     gallery: string[];
     phoneNumber: string;
     email: string;
+    website: string;
 
 }

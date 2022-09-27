@@ -15,6 +15,7 @@ import { ActivityReviewList } from "../Components/widgets/ActivityReviewList";
 import { ActivityGallery } from "../Components/widgets/ActivityGallery";
 import { Swiper } from "../Components/widgets/Swiper";
 import { ActivityInfo } from "../Components/core/ActivityInfo";
+import { Link } from "react-router-dom";
 
 const ShareButton = styled(IconButton)({
   color: "black",
@@ -57,11 +58,14 @@ export const ActivityPage = () => {
             <Typography text={t("Activities.open hours") + ":"} variant="h4" />
             <Typography text={activity.openHours} variant="h4" />
           </div>
-          <Typography
-            text={t("Activities.visit website")}
-            variant="h4"
-            className={styles.headerButtons}
-          />
+          <a href={activity.website}>
+            <Typography
+              text={t("Activities.visit website")}
+              variant="h4"
+              className={styles.headerButtons}
+            />
+          </a>
+
           <a href={activity.phoneNumber}>
             <Typography
               text={t("Activities.call")}

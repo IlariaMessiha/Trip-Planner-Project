@@ -31,6 +31,7 @@ export const Swiper = <T extends any>({
 }: SwiperProps<T>) => {
   const nextButton = useRef(null);
   const prevButton = useRef(null);
+
   return (
     <ReactSwiper
       breakpoints={{
@@ -61,17 +62,13 @@ export const Swiper = <T extends any>({
         prevEl: prevButton.current,
         nextEl: nextButton.current,
       }}
-      onInit={(swiper) => {
-        // swiper.params.navigation.prevEl = prevButton.current;
-        // swiper.params.navigation.nextEl = prevButton.current;
-        swiper.navigation.init();
-        swiper.navigation.update();
-      }}
       pagination={{ clickable: true }}
+      centerInsufficientSlides={true}
     >
       {items.map((item, i) => {
         return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
       })}
+
       <div className={styles.prevButton} ref={prevButton}>
         <SwiperArrowsButton>
           <ArrowBackIcon />
