@@ -1,73 +1,37 @@
-import { Card, CardContent, CardMedia } from "@mui/material";
 import styles from "./LocationTravelAdvice.module.css";
 import { Typography } from "./Typography";
-import bestTimeToVisit from "../../assets/images/best time to visit.jpg";
 import DirectionsRunRoundedIcon from "@mui/icons-material/DirectionsRunRounded";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import WineBarRoundedIcon from "@mui/icons-material/WineBarRounded";
 import TipsAndUpdatesRoundedIcon from "@mui/icons-material/TipsAndUpdatesRounded";
 import { green, pink, purple, yellow } from "@mui/material/colors";
+import { LocationTravelAdviceCard } from "./LocationTravelAdviceCard";
 export const LocationTravelAdvice = () => {
   return (
     <>
       <Typography text="Travel Advice " variant="h2" />
       <div className={styles.travelAdvice}>
-        <Card
-          sx={{
-            display: "flex",
-            width: "250px",
-            alignItems: "center",
-            padding: "10px",
-          }}
-        >
-          <WbSunnyRoundedIcon sx={{ color: pink[300] }} fontSize="large" />
-          <CardContent>
-            <Typography text="Best time to Visit" variant="h4" />
-          </CardContent>
-        </Card>
-        <Card
-          sx={{
-            display: "flex",
-            width: "250px",
-            alignItems: "center",
-          }}
-        >
+        <LocationTravelAdviceCard text="Best Time To Visit">
+          <WbSunnyRoundedIcon
+            sx={{ color: pink[300], paddingLeft: 2 }}
+            fontSize="large"
+          />
+        </LocationTravelAdviceCard>
+        <LocationTravelAdviceCard text="Best Time To Visit">
           <DirectionsRunRoundedIcon
             sx={{ color: yellow[700] }}
             fontSize="large"
           />
-
-          <CardContent>
-            <Typography text="Best time to Visit" variant="h4" />
-          </CardContent>
-        </Card>
-        <Card
-          sx={{
-            display: "flex",
-            width: "250px",
-            alignItems: "center",
-          }}
-        >
+        </LocationTravelAdviceCard>
+        <LocationTravelAdviceCard text="Best Time To Visit">
           <TipsAndUpdatesRoundedIcon
             sx={{ color: purple[300] }}
             fontSize="large"
           />
-          <CardContent>
-            <Typography text="Best time to Visit" variant="h4" />
-          </CardContent>
-        </Card>
-        <Card
-          sx={{
-            display: "flex",
-            width: "250px",
-            alignItems: "center",
-          }}
-        >
+        </LocationTravelAdviceCard>
+        <LocationTravelAdviceCard text="Best Time To Visit">
           <WineBarRoundedIcon sx={{ color: green[500] }} fontSize="large" />
-          <CardContent>
-            <Typography text="Best time to Visit" variant="h4" />
-          </CardContent>
-        </Card>
+        </LocationTravelAdviceCard>
       </div>
     </>
   );
