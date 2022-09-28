@@ -4,11 +4,11 @@ import { FC, ReactNode } from "react";
 
 import { Typography } from "./Typography";
 
-interface LocationTravelAdviceCard {
+interface LocationTravelAdviceCardProps {
   text: string;
   children: ReactNode;
 }
-export const LocationTravelAdviceCard: FC<LocationTravelAdviceCard> = ({
+export const LocationTravelAdviceCard: FC<LocationTravelAdviceCardProps> = ({
   children,
   text,
 }) => {
