@@ -1,10 +1,13 @@
 import styles from "./NavigationBar.module.css";
-import { FaPen, FaUser } from "react-icons/fa";
+
+import EditIcon from "@mui/icons-material/Edit";
+import PersonIcon from "@mui/icons-material/Person";
 import { Typography } from "./core/Typography";
 import { useTranslation } from "react-i18next";
 
 import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
 import { Container } from "./core/layout/Container";
+import { IconButton } from "@mui/material";
 
 export const NavigationBar = () => {
   const { t } = useTranslation();
@@ -20,15 +23,16 @@ export const NavigationBar = () => {
         <div className={styles.rightSide}>
           {/*  TODO ADD ICON */}
           <div className={styles.review}>
-            <FaPen />
+            <IconButton>
+              <EditIcon className={styles.icon} />
+            </IconButton>
 
             <Typography text={t("common.review")} />
           </div>
 
-          <div className={styles.profilePage}>
-            <FaUser />
-          </div>
-
+          <IconButton className={styles.profilePage}>
+            <PersonIcon className={styles.icon} />
+          </IconButton>
           <DropDownLanguageMenu />
         </div>
       </Container>

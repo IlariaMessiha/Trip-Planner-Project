@@ -7,9 +7,9 @@ import americanFlag from "../../assets/images/American flag.jpg";
 import spanishFlag from "../../assets/images/Spanish flag.jpg";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaGlobe } from "react-icons/fa";
+import LanguageIcon from "@mui/icons-material/Language";
 import { Typography } from "../core/Typography";
-import { Fade } from "@mui/material";
+import { Fade, IconButton } from "@mui/material";
 
 export const DropDownLanguageMenu = () => {
   const { t, i18n } = useTranslation();
@@ -39,15 +39,9 @@ export const DropDownLanguageMenu = () => {
   };
   return (
     <div className={styles.container}>
-      <Button
-        aria-controls={open ? "fade-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        className={styles.menuButton}
-      >
-        <FaGlobe className={styles.icon} />
-      </Button>
+      <IconButton onClick={handleClick} className={styles.menuButton}>
+        <LanguageIcon className={styles.globeIcon} />
+      </IconButton>
 
       <Menu
         sx={{ width: 200 }}

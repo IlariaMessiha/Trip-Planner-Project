@@ -36,4 +36,9 @@ a {
 .review {
     display: flex;
     gap: 3px;
+    align-items: center;
+}
+
+.icon {
+    color: black;
 }
