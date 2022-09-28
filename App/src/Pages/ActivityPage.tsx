@@ -1,4 +1,4 @@
-import { Button, Paper, styled } from "@mui/material";
+import { styled } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
@@ -13,9 +13,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import { ActivityReviewList } from "../Components/widgets/ActivityReviewList";
 import { ActivityGallery } from "../Components/widgets/ActivityGallery";
-import { Swiper } from "../Components/widgets/Swiper";
+
 import { ActivityInfo } from "../Components/core/ActivityInfo";
-import { Link } from "react-router-dom";
 
 const ShareButton = styled(IconButton)({
   color: "black",
@@ -23,16 +22,7 @@ const ShareButton = styled(IconButton)({
 const FavoriteButton = styled(IconButton)({
   color: "black",
 });
-const ByTicketButton = styled(Button)({
-  borderRadius: "20px",
-  backgroundColor: "black",
-  width: "100%",
-  marginTop: "50px",
-  "&:hover": {
-    backgroundColor: "white",
-    color: "black",
-  },
-});
+
 export const ActivityPage = () => {
   const { t } = useTranslation();
   const [activity, setActivity] = React.useState<Activity | undefined>(
