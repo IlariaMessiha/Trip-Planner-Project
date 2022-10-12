@@ -15,7 +15,6 @@ export class TestController {
     @Get('locations')
     getLocations() {
         return locations
-
     }
     @Get('reviews')
     getReviews() {

@@ -6,7 +6,7 @@ import { Location } from "../models/Location";
 import styles from "./LocationPage.module.css";
 import { useParams } from "react-router";
 
-import React from "react";
+import React, { useState } from "react";
 import { apiCalls } from "../api/api";
 import { useTranslation } from "react-i18next";
 import { LocationGallery } from "../Components/widgets/LocationGallery";
@@ -15,9 +15,7 @@ import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
 
 export const LocationPage = () => {
   const { t } = useTranslation();
-  const [location, setLocation] = React.useState<Location | undefined>(
-    undefined
-  );
+  const [location, setLocation] = useState<Location | undefined>(undefined);
   const { id } = useParams();
   React.useEffect(() => {
     if (id) {
