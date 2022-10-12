@@ -1,27 +1,27 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { activities } from 'src/mocks/activities';
-import { locations } from 'src/mocks/locations';
-import { reviews } from 'src/mocks/reviews';
-import { users } from 'src/mocks/users';
-import { TestService } from '../services/test.service';
+import { Controller, Get, Post } from "@nestjs/common";
+import { activities } from "src/mocks/activities";
+import { locations } from "src/mocks/locations";
+import { reviews } from "src/mocks/reviews";
+import { users } from "src/mocks/users";
+import { TestService } from "../services/test.service";
 
-@Controller('')
+@Controller("")
 export class TestController {
-    constructor(private testService: TestService) { }
-    @Get('activities')
+    constructor(private testService: TestService) {}
+    @Get("activities")
     getActivities() {
-        return activities
+        return activities;
     }
-    @Get('locations')
+    @Get("locations")
     getLocations() {
-        return locations
+        return locations;
     }
-    @Get('reviews')
+    @Get("reviews")
     getReviews() {
-        return reviews
+        return reviews;
     }
-    @Get('users')
+    @Get("users")
     getUsers() {
-        return users
+        return users;
     }
 }

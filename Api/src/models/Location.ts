@@ -4,7 +4,7 @@ export interface Location {
     activities: number;
     country: string;
     continent: string;
-    description: string
+    description: string;
     coverImage?: string;
     averageRating: number;
     photos: string[];

@@ -1,6 +1,5 @@
 import { User } from "./User";
 
-
 export interface Review {
     id: string;
     header: string;
@@ -8,6 +7,4 @@ export interface Review {
     author: User;
     writtenAt: string;
     likes: number;
-
-
 }
