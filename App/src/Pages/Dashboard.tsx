@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import { apiCalls } from "../api/api";
 import { fetchData } from "../api/FetchData";
 import { CardActivity } from "../Components/core/CardActivity";
 import { CardLocation } from "../Components/core/CardLocation";
@@ -11,16 +9,19 @@ import { Typography } from "../Components/core/Typography";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { Swiper } from "../Components/widgets/Swiper";
 import { Activity } from "../models/Activity";
+import { Location } from "../models/Location";
 
 export const Dashboard = () => {
     const { t } = useTranslation();
     const [activities, setActivities] = useState<Activity[]>([]);
+    const [locations, setLocations] = useState<Location[]>([]);
 
     useEffect(() => {
         const onMount = async () => {
             const _activities = await fetchData.getActivities();
-
+            const _locations = await fetchData.getLocation();
             setActivities(_activities);
+            setLocations(_locations);
         };
 
         onMount();
@@ -32,10 +33,15 @@ export const Dashboard = () => {
 
             <SearchEngineAutocomplete />
             <Section title={t("common.locations")}>
-                <Swiper
-                    items={apiCalls.getLocations()}
-                    renderItem={location => <CardLocation location={location} key={location.id} />}
-                />
+                {locations.length === 0 && <div> Loading... </div>}
+                {locations.length > 0 && (
+                    <Swiper
+                        items={locations}
+                        renderItem={location => (
+                            <CardLocation location={location} key={location.id} />
+                        )}
+                    />
+                )}
             </Section>
 
             <Section title={t("common.activities")}>
