@@ -5,7 +5,6 @@ import { GrLocation } from "react-icons/gr";
 import styles from "./LocationSearchResult.module.css";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { apiCalls } from "../../api/api";
 import { fetchData } from "../../api/FetchData";
 import React from "react";
 import { Activity } from "../../models/Activity";
@@ -15,7 +14,7 @@ interface LocationSearchResultProps {
 }
 export const LocationSearchResult: FC<LocationSearchResultProps> = ({ id }) => {
     const [location, setLocation] = useState<Location | undefined>(undefined);
-    const [loctionActivities, setLocationActivities] = useState<Activity[] | []>([]);
+    const [locationActivities, setLocationActivities] = useState<Activity[] | []>([]);
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
@@ -50,7 +49,7 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({ id }) => {
                 </div>
                 <Typography text={location.country} variant="body1" />
                 <div className={styles.availableActivities}>
-                    <Typography text={loctionActivities.length} variant="body2" />
+                    <Typography text={locationActivities.length} variant="body2" />
                     <Typography text={t("common.activities")} variant="body2" />
                 </div>
             </div>

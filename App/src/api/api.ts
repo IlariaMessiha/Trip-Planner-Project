@@ -1,11 +1,9 @@
 import { activities } from "../mocks/activities";
 import { locations } from "../mocks/locations";
 
-import { Location } from "../models/Location";
 import { SearchQuery, SearchResult } from "../types/Search";
 
 export class ApiCalls {
-
     public search(query: SearchQuery): SearchResult[] {
         console.log("search");
         const filteredLocations = locations.filter(value => {

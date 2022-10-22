@@ -8,7 +8,6 @@ import { Location } from "../../models/Location";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Typography } from "../core/Typography";
 import styles from "./CardLocation.module.css";
-import { apiCalls } from "../../api/api";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../api/FetchData";
 import { Activity } from "../../models/Activity";
@@ -40,7 +39,7 @@ export const CardLocation: FC<CardLocationProps> = ({ location }) => {
             }
         };
         onMount();
-    }, []);
+    }, [location.id]);
 
     const { t } = useTranslation();
     return (
