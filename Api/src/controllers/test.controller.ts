@@ -1,17 +1,19 @@
-import { Controller, Get, Param, Post } from "@nestjs/common";
-import { activities } from "src/mocks/activities";
+import { Controller, Get, Param } from "@nestjs/common";
+import { mockGetActivities } from "src/mocks/activities";
 import { locations } from "src/mocks/locations";
 import { reviews } from "src/mocks/reviews";
 import { users } from "src/mocks/users";
-import { TestService } from "../services/test.service";
-import { Location } from 'src/models/Location'
+import { ConfigService } from "@nestjs/config";
 
 @Controller("")
 export class TestController {
-    constructor(private testService: TestService) { }
+    constructor(private configService: ConfigService) {
+        console.log(configService.get("IMAGES_PATH"));
+    }
+
     @Get("activities")
     getActivities() {
-        return activities;
+        return mockGetActivities(this.configService.get("IMAGES_PATH"));
     }
     @Get("locations")
     getLocations() {
@@ -19,23 +21,25 @@ export class TestController {
     }
 
     @Get("locations/:id")
-    getLocationById(@Param('id') id: string) {
+    getLocationById(@Param("id") id: string) {
         return locations.find(obj => {
-            return obj.id === id
+            return obj.id === id;
         });
     }
     @Get("activities/:id")
-    getActivityById(@Param('id') id: string) {
-        return activities.find(obj => {
+    getActivityById(@Param("id") id: string) {
+        return mockGetActivities(this.configService.get("IMAGES_PATH")).find(obj => {
             return obj.id === id;
         });
     }
-    @Get('locations/:id/activities')
-    public getActivitiesForLocation(@Param('id') id: string) {
+    @Get("locations/:id/activities")
+    public getActivitiesForLocation(@Param("id") id: string) {
         const location = locations.find(obj => {
             return obj.id === id;
-        })
-        return activities.filter(activity => activity.location.name === location.name);
+        });
+        return mockGetActivities(this.configService.get("IMAGES_PATH")).filter(
+            activity => activity.location.name === location.name
+        );
     }
 
     @Get("reviews")
