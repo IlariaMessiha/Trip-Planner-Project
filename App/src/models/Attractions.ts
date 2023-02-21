@@ -1,7 +1,9 @@
+import { City } from "./City";
+
 export interface Attraction {
     id: number;
     label: string;
-    cityId: string;
+    city: City;
     address: string;
     phone: string;
     suggestedDuration: string;
@@ -10,5 +12,14 @@ export interface Attraction {
     about: string;
     website: string;
     type: string;
+    details: string;
+    rating: string;
+    reservationLink: string;
+    minAge: string;
+    attractionCode: string;
+    email: string;
+    long: number;
+    lat: number;
+    entryFee: number;
 
 }
