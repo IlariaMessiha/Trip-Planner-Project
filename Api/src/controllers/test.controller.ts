@@ -5,12 +5,13 @@ import { reviews } from "src/mocks/reviews";
 import { users } from "src/mocks/users";
 import { TestService } from "../services/test.service";
 
+
 @Controller("")
 export class TestController {
-    constructor(private testService: TestService) {}
+    constructor(private testService: TestService) { }
     @Get("activities")
     getActivities() {
-        return activities;
+        return this.testService.findAttractions();
     }
     @Get("locations")
     getLocations() {
