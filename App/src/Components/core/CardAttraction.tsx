@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { Attraction } from "../../models/Attraction";
 import { City } from "../../models/City";
 import { fetchData } from "../../api/FetchData";
+import { AttractionReview } from "../../models/AttractionReview";
 
 interface CardAttractionProps {
     attraction: Attraction;
@@ -29,11 +30,16 @@ const StarsRating = styled(Rating)({
 });
 export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
     const [attractionCity, setAttractionCity] = useState<City | null>(null);
+    const [attractionReviews, setAttractionReviews] = useState<AttractionReview[]>([]);
     useEffect(() => {
         const onMount = async () => {
             const _attractionCity = await fetchData.getCityForAttraction(attraction.id.toString());
+            const _attractionReviews = await fetchData.getReviewsForAttraction(
+                attraction.id.toString()
+            );
 
             setAttractionCity(_attractionCity);
+            setAttractionReviews(_attractionReviews);
         };
 
         onMount();
@@ -46,7 +52,7 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                 <FavoriteButton>
                     <FavoriteIcon />
                 </FavoriteButton>
-                <Link key={attraction.id} to={`/activity/${attraction.id}`}>
+                <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
                     <CardActionArea sx={{ height: "100%" }}>
                         <CardContent className={styles.AttractionContent}>
                             <Typography text={attraction.label} variant="h4" />
@@ -55,6 +61,15 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                             ) : (
                                 <div></div>
                             )}
+                            <div className={styles.availableReviews}>
+                                {attractionReviews ? (
+                                    <Typography text={attractionReviews.length} variant="body2" />
+                                ) : (
+                                    <Typography text="0" variant="body2" />
+                                )}
+
+                                <Typography text={t("common.reviews")} variant="body2" />
+                            </div>
 
                             <StarsRating
                                 name="half-rating"

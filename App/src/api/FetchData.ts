@@ -59,5 +59,10 @@ export class FetchData {
         return response.data
 
     }
+    public async getReviewsForAttraction(id: string) {
+        const response = await Axios.get(`${API_BASE_URL}/attractions/${id}/reviews`)
+        return response.data
+
+    }
 }
 export const fetchData = new FetchData();

@@ -50,6 +50,15 @@ export class TestService {
 
 
     }
+    async findReviewsForAttraction(id): Promise<attraction_review[]> {
+        const idNumber = Number(id);
+        const attractionReviews = await this.prisma.attraction_review.findMany({
+            where: {
+                attraction_id: idNumber,
+            }
+        })
+        return attractionReviews;
+    }
     async findCities(): Promise<city[]> {
         const cities = await this.prisma.city.findMany();
         return cities;

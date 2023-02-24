@@ -36,6 +36,11 @@ export class TestController {
         return this.testService.findCountryForCity(id);
 
     }
+    @Get('attractions/:id/reviews')
+    getReviewsForAttraction(@Param("id") id: string) {
+        return this.testService.findReviewsForAttraction(id);
+
+    }
 
     @Get('countries')
     getCountries() {
