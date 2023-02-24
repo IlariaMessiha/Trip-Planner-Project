@@ -61,7 +61,7 @@ export const Dashboard = () => {
                     />
                 )}
             </Section>
-            <Section title={t("common.activities")}>
+            <Section title={t("common.attractions")}>
                 {attractions.length === 0 && <div> Loading... </div>}
 
                 {attractions.length > 0 && (

@@ -1,87 +1,88 @@
 {
-  "common": {
-    "locations": "Locations",
-    "activities": "Activities",
-    "reviews": "Reviews",
-    "activity": "Activity",
-    "review": "Review",
-    "search": "Search",
-    "filterBy": "Filter By",
-    "close": "Close"
-  },
-  "navBar": {
-    "logo": "Trip Planner",
+    "common": {
+        "locations": "Locations",
+        "activities": "Activities",
+        "attractions": "Attractions",
+        "reviews": "Reviews",
+        "activity": "Activity",
+        "review": "Review",
+        "search": "Search",
+        "filterBy": "Filter By",
+        "close": "Close"
+    },
+    "navBar": {
+        "logo": "Trip Planner",
 
-    "french": "French",
-    "spanish": "Spanish",
-    "english": "English"
-  },
+        "french": "French",
+        "spanish": "Spanish",
+        "english": "English"
+    },
 
-  "dashboard": {
-    "slogan": "Dream Your Next Trip"
-  },
-  "Locations": {
-    "Barcelona": {
-      "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+    "dashboard": {
+        "slogan": "Dream Your Next Trip"
     },
-    "Porto": {
-      "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+    "Locations": {
+        "Barcelona": {
+            "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+        },
+        "Porto": {
+            "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+        },
+        "Nice": {
+            "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+        },
+        "Rio de Janero": {
+            "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+        },
+        "Paris": {
+            "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+        },
+        "New York": {
+            "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+        },
+        "Egypt": {
+            "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
+        },
+        "locationPage": {
+            "seeAllPhotos": "See All Photos",
+            "photosOf": "Photos Of",
+            "topAttraction": "Top Attraction",
+            "topAttractionSlogan": "Places to see, ways to wander, and signature experiences that define Berlin.",
+            "travelAdvice": "Travel Advice",
+            "advice1": "Best Time To visit",
+            "advice2": "Getting Around",
+            "advice3": "Local Customs",
+            "advice4": "Tips From The Pros"
+        }
     },
-    "Nice": {
-      "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
-    },
-    "Rio de Janero": {
-      "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
-    },
-    "Paris": {
-      "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
-    },
-    "New York": {
-      "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
-    },
-    "Egypt": {
-      "description": "Porto is a coastal city in northwest Portugal known for its stately bridges and port wine production. In the medieval Ribeira (riverside) district, narrow cobbled streets wind past merchants’ houses and cafes."
-    },
-    "locationPage": {
-      "seeAllPhotos": "See All Photos",
-      "photosOf": "Photos Of",
-      "topAttraction": "Top Attraction",
-      "topAttractionSlogan": "Places to see, ways to wander, and signature experiences that define Berlin.",
-      "travelAdvice": "Travel Advice",
-      "advice1": "Best Time To visit",
-      "advice2": "Getting Around",
-      "advice3": "Local Customs",
-      "advice4": "Tips From The Pros"
+    "Activities": {
+        "about": "About",
+        "suggested duration": "Suggested Duration",
+        "hours": "Hours",
+        "open hours": "Open Hours",
+        "visit website": "Visit Website",
+        "call": "Call",
+        "ticket price": "Ticket Price",
+        "written": "Written",
+        "buy ticket": "Buy Ticket",
+
+        "Sagrada Familia": {
+            "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
+        },
+        "Park Guell": {
+            "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
+        },
+        "Time Square": {
+            "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
+        },
+        "The Pyramids": {
+            "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
+        },
+        "Fishing trip, Ain Sokhna": {
+            "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
+        },
+        "Eiffel Tower": {
+            "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
+        }
     }
-  },
-  "Activities": {
-    "about": "About",
-    "suggested duration": "Suggested Duration",
-    "hours": "Hours",
-    "open hours": "Open Hours",
-    "visit website": "Visit Website",
-    "call": "Call",
-    "ticket price": "Ticket Price",
-    "written": "Written",
-    "buy ticket": "Buy Ticket",
-
-    "Sagrada Familia": {
-      "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
-    },
-    "Park Guell": {
-      "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
-    },
-    "Time Square": {
-      "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
-    },
-    "The Pyramids": {
-      "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
-    },
-    "Fishing trip, Ain Sokhna": {
-      "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
-    },
-    "Eiffel Tower": {
-      "description": "The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica."
-    }
-  }
 }
