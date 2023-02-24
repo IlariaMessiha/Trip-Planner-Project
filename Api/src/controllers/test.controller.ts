@@ -12,6 +12,10 @@ export class TestController {
     constructor(private configService: ConfigService, private testService: TestService) {
         console.log(configService.get("IMAGES_PATH"));
     }
+    @Get("/attractions/:id/city")
+    getCitybyId(@Param("id") id: string) {
+        return this.testService.findAttractionCity(id);
+    }
 
     @Get('attractions')
     getAttractions() {
@@ -26,6 +30,10 @@ export class TestController {
     @Get('countries')
     getCountries() {
         return this.testService.findCountries();
+    }
+    @Get('users')
+    getUsers() {
+        return this.testService.findUsers();
     }
 
 
@@ -65,8 +73,5 @@ export class TestController {
     getReviews() {
         return reviews;
     }
-    @Get("users")
-    getUsers() {
-        return users;
-    }
+
 }

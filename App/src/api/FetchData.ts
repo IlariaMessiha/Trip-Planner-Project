@@ -1,14 +1,20 @@
 import Axios from "axios";
 import { Activity } from "../models/Activity";
+import { Attraction } from "../models/Attractions";
+import { City } from "../models/City";
 import { Location } from "../models/Location";
 
 const API_BASE_URL = "http://localhost:3333";
 
 export class FetchData {
     public async getAttraction() {
-        const response = await Axios.get<Location[]>(`${API_BASE_URL}/locations`);
+        const response = await Axios.get<Attraction[]>(`${API_BASE_URL}/attractions`);
         return response.data
 
+    }
+    public async getCityForAttraction(id: string) {
+        const response = await Axios.get<City>(`${API_BASE_URL}/attractions/${id}/city`);
+        return response.data;
     }
 
     public async getLocation() {

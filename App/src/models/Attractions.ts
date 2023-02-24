@@ -13,7 +13,7 @@ export interface Attraction {
     website: string;
     type: string;
     details: string;
-    rating: string;
+    rating: number;
     reservationLink: string;
     minAge: string;
     attractionCode: string;

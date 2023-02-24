@@ -22,7 +22,7 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
                     <Avatar />
                     <div className={styles.nameAndEmail}>
                         <Typography
-                            text={review.author.firstName}
+                            text={review.author.name}
                             variant="h3"
                             className={styles.authorName}
                         />
