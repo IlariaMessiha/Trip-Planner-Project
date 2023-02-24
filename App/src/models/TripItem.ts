@@ -1,4 +1,4 @@
-import { Attraction } from "./Attractions";
+import { Attraction } from "./Attraction";
 import { Restaurant } from "./Restaurant";
 import { Trip } from "./Trip";
 

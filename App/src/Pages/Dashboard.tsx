@@ -10,7 +10,7 @@ import { Typography } from "../Components/core/Typography";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { Swiper } from "../Components/widgets/Swiper";
 import { Activity } from "../models/Activity";
-import { Attraction } from "../models/Attractions";
+import { Attraction } from "../models/Attraction";
 import { City } from "../models/City";
 import { Location } from "../models/Location";
 

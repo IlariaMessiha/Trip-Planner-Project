@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Activity } from "src/models/Activity";
 import { PrismaService } from "src/prisma.service";
-import { Attraction, city, country, user } from '@prisma/client'
+import { Attraction, attraction_review, city, country, user } from '@prisma/client'
 
 @Injectable()
 export class TestService {
@@ -53,6 +53,7 @@ export class TestService {
         const users = await this.prisma.user.findMany();
         return users;
     }
+
 
 
 

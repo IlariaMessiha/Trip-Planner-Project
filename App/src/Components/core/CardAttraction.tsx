@@ -8,7 +8,7 @@ import { Activity } from "../../models/Activity";
 import { Typography } from "../core/Typography";
 
 import { Link } from "react-router-dom";
-import { Attraction } from "../../models/Attractions";
+import { Attraction } from "../../models/Attraction";
 import { City } from "../../models/City";
 import { fetchData } from "../../api/FetchData";
 

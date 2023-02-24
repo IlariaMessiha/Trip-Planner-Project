@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { Activity } from "../models/Activity";
-import { Attraction } from "../models/Attractions";
+import { Attraction } from "../models/Attraction";
 import { City } from "../models/City";
 import { Location } from "../models/Location";
 
