@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { fetchData } from "../api/FetchData";
 import { CardActivity } from "../Components/core/CardActivity";
 import { CardAttraction } from "../Components/core/CardAttraction";
+import { CardCity } from "../Components/core/CardCity";
 import { CardLocation } from "../Components/core/CardLocation";
 import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
@@ -19,16 +20,19 @@ export const Dashboard = () => {
     const [activities, setActivities] = useState<Activity[]>([]);
     const [locations, setLocations] = useState<Location[]>([]);
     const [attractions, setAttractions] = useState<Attraction[]>([]);
+    const [cities, setCities] = useState<City[]>([]);
 
     useEffect(() => {
         const onMount = async () => {
             const _attractions = await fetchData.getAttraction();
             const _activities = await fetchData.getActivities();
             const _locations = await fetchData.getLocation();
+            const _cities = await fetchData.getCities();
 
             setActivities(_activities);
             setLocations(_locations);
             setAttractions(_attractions);
+            setCities(_cities);
         };
 
         onMount();
@@ -69,6 +73,13 @@ export const Dashboard = () => {
                         items={attractions}
                         renderItem={attraction => <CardAttraction attraction={attraction} />}
                     />
+                )}
+            </Section>
+            <Section title={t("common.cities")}>
+                {cities.length === 0 && <div> Loading... </div>}
+
+                {cities.length > 0 && (
+                    <Swiper items={cities} renderItem={city => <CardCity city={city} />} />
                 )}
             </Section>
         </Container>

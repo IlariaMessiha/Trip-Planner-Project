@@ -22,6 +22,16 @@ export class TestService {
         return city;
 
     }
+    async findCountryById(id: string): Promise<country> {
+        const idNumber = Number(id);
+        const country = await this.prisma.country.findUnique({
+            where: {
+                id: idNumber,
+            },
+        });
+        return country;
+
+    }
     async findAttractionById(id: string): Promise<Attraction> {
         const idNumber = Number(id);
         const attraction = await this.prisma.attraction.findUnique({
@@ -32,7 +42,7 @@ export class TestService {
         return attraction;
 
     }
-    async findAttractionCity(id: string): Promise<city> {
+    async findAttractionForCity(id: string): Promise<city> {
         const attraction = this.findAttractionById(id);
         const cityIdNumber = (await attraction).city_id.toString();
         const attractionCity = this.findCityById(cityIdNumber);
@@ -52,6 +62,22 @@ export class TestService {
     async findUsers(): Promise<user[]> {
         const users = await this.prisma.user.findMany();
         return users;
+    }
+    async findCityAttractions(id: string): Promise<Attraction[]> {
+        const idNumber = Number(id);
+
+        const attractions = await this.prisma.attraction.findMany({
+            where: {
+                city_id: idNumber,
+            }
+        })
+        return attractions;
+
+    }
+    async findCountryForCity(id: string): Promise<country> {
+        const city = this.findCityById(id);
+        const cityCountry = this.findCountryById((await city).country_id.toString());
+        return cityCountry;
     }
 
 

@@ -13,8 +13,12 @@ export class TestController {
         console.log(configService.get("IMAGES_PATH"));
     }
     @Get("/attractions/:id/city")
-    getCitybyId(@Param("id") id: string) {
-        return this.testService.findAttractionCity(id);
+    getAttractionsForCity(@Param("id") id: string) {
+        return this.testService.findAttractionForCity(id);
+    }
+    @Get("/cities/:id/attractions")
+    getCityAttractions(@Param("id") id: string) {
+        return this.testService.findCityAttractions(id);
     }
 
     @Get('attractions')
@@ -27,6 +31,12 @@ export class TestController {
         return this.testService.findCities();
 
     }
+    @Get('cities/:id/country')
+    getCountryForCity(@Param("id") id: string) {
+        return this.testService.findCountryForCity(id);
+
+    }
+
     @Get('countries')
     getCountries() {
         return this.testService.findCountries();

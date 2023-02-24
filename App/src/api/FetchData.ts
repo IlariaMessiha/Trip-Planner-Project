@@ -16,6 +16,10 @@ export class FetchData {
         const response = await Axios.get<City>(`${API_BASE_URL}/attractions/${id}/city`);
         return response.data;
     }
+    public async getCityAttractions(id: string) {
+        const response = await Axios.get<City[]>(`${API_BASE_URL}/cities/${id}/attractions`);
+        return response.data;
+    }
 
     public async getLocation() {
         const response = await Axios.get<Location[]>(`${API_BASE_URL}/locations`);
@@ -45,6 +49,15 @@ export class FetchData {
     public async getUsers() {
         const response = await Axios.get(`${API_BASE_URL}/users`)
         return response.data
+    }
+    public async getCities() {
+        const response = await Axios.get(`${API_BASE_URL}/cities`)
+        return response.data
+    }
+    public async getCountryForCity(id: string) {
+        const response = await Axios.get(`${API_BASE_URL}/cities/${id}/country`)
+        return response.data
+
     }
 }
 export const fetchData = new FetchData();
