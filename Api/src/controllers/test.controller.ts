@@ -20,6 +20,10 @@ export class TestController {
     getCityAttractions(@Param("id") id: string) {
         return this.testService.findCityAttractions(id);
     }
+    @Get("attractions/:id")
+    getAttractionById(@Param("id") id: string) {
+        return this.testService.findAttractionById(id);
+    }
 
     @Get('attractions')
     getAttractions() {

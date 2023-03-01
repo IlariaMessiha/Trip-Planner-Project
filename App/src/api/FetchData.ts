@@ -12,6 +12,10 @@ export class FetchData {
         return response.data
 
     }
+    public async getAttractionById(id: string) {
+        const response = await Axios.get<Attraction>(`${API_BASE_URL}/attractions/${id}`);
+        return response.data;
+    }
     public async getCityForAttraction(id: string) {
         const response = await Axios.get<City>(`${API_BASE_URL}/attractions/${id}/city`);
         return response.data;

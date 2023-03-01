@@ -7,8 +7,8 @@ export interface Attraction {
     address: string;
     phone: string;
     suggestedDuration: string;
-    openingHoursTo: string;
-    openingHoursFrom: string;
+    openning_hours_to: string;
+    openning_hours_from: string;
     about: string;
     website: string;
     type: string;
