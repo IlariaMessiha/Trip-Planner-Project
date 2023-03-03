@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { fetchData } from "../api/FetchData";
-import { CardActivity } from "../Components/core/CardActivity";
 import { CardAttraction } from "../Components/core/CardAttraction";
 import { CardCity } from "../Components/core/CardCity";
-import { CardLocation } from "../Components/core/CardLocation";
 import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
 import { Typography } from "../Components/core/Typography";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { Swiper } from "../Components/widgets/Swiper";
-import { Activity } from "../models/Activity";
+
 import { Attraction } from "../models/Attraction";
 import { City } from "../models/City";
-import { Location } from "../models/Location";
 
 export const Dashboard = () => {
     const { t } = useTranslation();

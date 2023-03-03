@@ -4,7 +4,6 @@ import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Activity } from "../../models/Activity";
 import { Typography } from "../core/Typography";
 
 import { Link } from "react-router-dom";

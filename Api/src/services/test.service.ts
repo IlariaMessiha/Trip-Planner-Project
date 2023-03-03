@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { Activity } from "src/models/Activity";
 import { PrismaService } from "src/prisma.service";
 import { Attraction, attraction_review, city, country, user } from '@prisma/client'
 

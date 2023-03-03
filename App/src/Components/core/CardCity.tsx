@@ -4,15 +4,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea, IconButton, Rating, styled } from "@mui/material";
-import { Location } from "../../models/Location";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Typography } from "../core/Typography";
 import styles from "./CardCity.module.css";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../api/FetchData";
-import { Activity } from "../../models/Activity";
+
 import { City } from "../../models/City";
 import { Country } from "../../models/Country";
+import { Attraction } from "../../models/Attraction";
 
 interface CardCityProps {
     city: City;
@@ -31,7 +31,7 @@ const StarsRating = styled(Rating)({
 });
 
 export const CardCity: FC<CardCityProps> = ({ city }) => {
-    const [cityAttractions, setCityAttractions] = useState<City[] | []>([]);
+    const [cityAttractions, setCityAttractions] = useState<Attraction[] | []>([]);
     const [cityCountry, setCityCountry] = useState<Country>();
     useEffect(() => {
         const onMount = async () => {

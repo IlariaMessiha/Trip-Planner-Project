@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import { ReviewPost } from "../core/ReviewPost";
 import { Typography } from "../core/Typography";
-import styles from "./ActivityReviewList.module.css";
+import styles from "./AttractionReviewList.module.css";
 import { useTranslation } from "react-i18next";
 import { Attraction } from "../../models/Attraction";
 import React from "react";
