@@ -45,14 +45,14 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({ id }) => {
                     <Typography text={t("common.activity")} variant="body1" />
                 </div>
                 <Typography text={activity.location.name} variant="body1" />
-                <div className={styles.availableReviews}>
+                {/* <div className={styles.availableReviews}>
                     {activity.review ? (
                         <Typography text={activity.review.length} variant="body2" />
                     ) : (
                         <Typography text="0" variant="body2" />
                     )}
                     <Typography text={t("common.reviews")} variant="body2" />
-                </div>
+                </div> */}
             </div>
         </div>
     );

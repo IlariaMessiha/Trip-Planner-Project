@@ -6,7 +6,7 @@ export interface Attraction {
     city: City;
     address: string;
     phone: string;
-    suggestedDuration: string;
+    suggested_duration: string;
     openning_hours_to: string;
     openning_hours_from: string;
     about: string;
@@ -20,6 +20,6 @@ export interface Attraction {
     email: string;
     long: number;
     lat: number;
-    entryFee: number;
+    entry_fee: number;
 
 }

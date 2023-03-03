@@ -17,20 +17,13 @@ import { Location } from "../models/Location";
 
 export const Dashboard = () => {
     const { t } = useTranslation();
-    const [activities, setActivities] = useState<Activity[]>([]);
-    const [locations, setLocations] = useState<Location[]>([]);
     const [attractions, setAttractions] = useState<Attraction[]>([]);
     const [cities, setCities] = useState<City[]>([]);
 
     useEffect(() => {
         const onMount = async () => {
             const _attractions = await fetchData.getAttraction();
-            const _activities = await fetchData.getActivities();
-            const _locations = await fetchData.getLocation();
             const _cities = await fetchData.getCities();
-
-            setActivities(_activities);
-            setLocations(_locations);
             setAttractions(_attractions);
             setCities(_cities);
         };
@@ -43,31 +36,8 @@ export const Dashboard = () => {
             <Typography text={t("dashboard.slogan")} variant="h1" />
 
             <SearchEngineAutocomplete />
-            <Section title={t("common.locations")}>
-                {locations.length === 0 && <div> Loading... </div>}
-                {locations.length > 0 && (
-                    <Swiper
-                        items={locations}
-                        renderItem={location => (
-                            <CardLocation location={location} key={location.id} />
-                        )}
-                    />
-                )}
-            </Section>
-
-            <Section title={t("common.activities")}>
-                {activities.length === 0 && <div> Loading... </div>}
-
-                {activities.length > 0 && (
-                    <Swiper
-                        items={activities}
-                        renderItem={activity => <CardActivity activity={activity} />}
-                    />
-                )}
-            </Section>
             <Section title={t("common.attractions")}>
                 {attractions.length === 0 && <div> Loading... </div>}
-
                 {attractions.length > 0 && (
                     <Swiper
                         items={attractions}

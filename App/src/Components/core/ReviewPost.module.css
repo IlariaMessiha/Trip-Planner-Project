@@ -5,6 +5,11 @@
     padding: 10px;
 }
 
+.fullName {
+    display: flex;
+    gap: 5px
+}
+
 .authorName {
     margin: 0;
 }

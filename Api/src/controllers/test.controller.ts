@@ -45,6 +45,14 @@ export class TestController {
         return this.testService.findReviewsForAttraction(id);
 
     }
+    @Get('reviews/:id')
+    getReviewById(@Param('id') id: string) {
+        return this.testService.findReviewById(id);
+    }
+    @Get('reviews/:id/user')
+    getUserForReview(@Param('id') id: string) {
+        return this.testService.findUserForReview(id);
+    }
 
     @Get('countries')
     getCountries() {
@@ -53,6 +61,10 @@ export class TestController {
     @Get('users')
     getUsers() {
         return this.testService.findUsers();
+    }
+    @Get('users/:id')
+    getUserById(@Param("id") id: string) {
+        return this.testService.findUserById(id);
     }
 
 
@@ -92,5 +104,6 @@ export class TestController {
     getReviews() {
         return reviews;
     }
+
 
 }

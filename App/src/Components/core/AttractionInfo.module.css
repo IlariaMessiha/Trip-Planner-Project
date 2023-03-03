@@ -1,0 +1,15 @@
+.activityDescription {
+    padding-bottom: 10px;
+}
+
+.suggestedDuration {
+    display: flex;
+    gap: 3px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.tickets {
+    display: flex;
+    gap: 5px;
+}

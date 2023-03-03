@@ -4,13 +4,14 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
-import { ActivityInfo } from "../Components/core/ActivityInfo";
 import { Attraction } from "../models/Attraction";
 import styles from "./AttractionPage.module.css";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Typography } from "../Components/core/Typography";
 import dayjs from "dayjs";
+import { AttractionInfo } from "../Components/core/AttractionInfo";
+import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -45,7 +46,7 @@ export const AttractionPage = () => {
             <div className={styles.header}>
                 <div className={styles.communicate}>
                     <div className={styles.openHours}>
-                        {/* <Typography text="Opening hours:" variant="h4" /> */}
+                        <Typography text="Opening hours" variant="h4" />
                         <Typography text="From:" variant="h4" />
                         <Typography
                             text={dayjs(attraction.openning_hours_from).format("HH:mm")}
@@ -83,6 +84,12 @@ export const AttractionPage = () => {
                         <FavoriteBorderIcon />
                     </FavoriteButton>
                 </div>
+            </div>
+            <div className={styles.imageAndDescription}>
+                <AttractionInfo attraction={attraction} />
+            </div>
+            <div className={styles.reviewsContainer}>
+                <AttractionReviewList attraction={attraction} />
             </div>
         </Container>
     );

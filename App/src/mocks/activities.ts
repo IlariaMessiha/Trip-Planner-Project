@@ -10,7 +10,6 @@ import SF1 from '../assets/images/SF1.jpg'
 import SF2 from '../assets/images/SF2.jpg'
 import SF3 from '../assets/images/SF3.jpg'
 import SF4 from '../assets/images/SF4.jpg'
-import { review1, review2, review3, review4, review5, review6 } from "./reviews";
 export const activity1: Activity = {
     id: '1',
     name: 'Sagrada Familia',
@@ -19,7 +18,7 @@ export const activity1: Activity = {
     openHours: "8:00 AM - 6:00 PM",
     description: 'The Basílica i Temple Expiatori de la Sagrada Família also known as the Sagrada Família, is a large unfinished minor basilica in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Roman Catholic church. Designed by the Catalan architect Antoni Gaudí (1852–1926), his work on the building is part of a UNESCO World Heritage Site.[7] On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a minor basilica.',
     coverImage: sagradaFamiliaCover,
-    review: [review1, review2],
+
     suggestedDuration: "2-3 ",
     ticketPrice: "200$",
     averageRating: 3,
@@ -73,7 +72,7 @@ export const activity4: Activity = {
     location: egyptLocation,
     coverImage: thePyrmidsCover,
     openHours: "8:00 AM - 6:00 PM",
-    review: [review3],
+
     averageRating: 3,
     gallery: [SF1, SF2, SF3, SF4],
     phoneNumber: "tel:01228224461",
@@ -87,7 +86,7 @@ export const activity5: Activity = {
     address: 'km 46 Suez - Hurghada Road، Ain Soukhna، Suez Governorate 43111',
     location: egyptLocation,
     ticketPrice: "200$",
-    review: [review4],
+
     coverImage: fishingTripCover,
     suggestedDuration: "2-3 ",
     openHours: "8:00 AM - 6:00 PM",
@@ -105,7 +104,7 @@ export const activity7: Activity = {
     location: parisLocation,
     coverImage: eiffelTowerCover,
     ticketPrice: "200$",
-    review: [review5, review6],
+
     suggestedDuration: "2-3 ",
     openHours: "8:00 AM - 6:00 PM",
     averageRating: 2,

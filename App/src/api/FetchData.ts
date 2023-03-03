@@ -68,5 +68,9 @@ export class FetchData {
         return response.data
 
     }
+    public async getUserForReview(id: string) {
+        const response = await Axios.get(`${API_BASE_URL}/reviews/${id}/user`)
+        return response.data;
+    }
 }
 export const fetchData = new FetchData();

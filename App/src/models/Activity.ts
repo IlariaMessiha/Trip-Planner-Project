@@ -1,6 +1,6 @@
 
 import { Location } from "./Location"
-import { Review } from "./Review";
+
 
 export interface Activity {
     id: string
@@ -11,7 +11,6 @@ export interface Activity {
     suggestedDuration: string,
     description: string,
     coverImage?: string,
-    review?: Review[];
     ticketPrice: string;
     averageRating: number;
     gallery: string[];

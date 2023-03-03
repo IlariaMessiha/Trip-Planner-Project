@@ -7,7 +7,7 @@ export interface AttractionReview {
     body: string;
     attraction: Attraction[];
     rating: number;
-    user: User;
+    userId: string;
 
 
 }
