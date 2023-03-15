@@ -9,15 +9,21 @@ import styles from "./AttractionPage.module.css";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Typography } from "../Components/core/Typography";
+
+import EditIcon from "@mui/icons-material/Edit";
 import dayjs from "dayjs";
 import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
+import Tooltip from "@mui/material/Tooltip";
 
 const ShareButton = styled(IconButton)({
     color: "black",
 });
 const FavoriteButton = styled(IconButton)({
+    color: "black",
+});
+const ReviewButton = styled(IconButton)({
     color: "black",
 });
 
@@ -90,6 +96,11 @@ export const AttractionPage = () => {
                     <FavoriteButton className={styles.shareButton}>
                         <FavoriteBorderIcon />
                     </FavoriteButton>
+                    <Tooltip title={t("common.review")}>
+                        <ReviewButton>
+                            <EditIcon className={styles.icon} />
+                        </ReviewButton>
+                    </Tooltip>
                 </div>
             </div>
             <div className={styles.imageAndDescription}>
