@@ -12,6 +12,7 @@ import { Typography } from "../Components/core/Typography";
 import dayjs from "dayjs";
 import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
+import { SharePopup } from "../Components/widgets/SharePopup";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -21,9 +22,7 @@ const FavoriteButton = styled(IconButton)({
 });
 
 export const AttractionPage = () => {
-    var utc = require("dayjs/plugin/utc");
-    var timezone = require("dayjs/plugin/timezone");
-    dayjs.extend(timezone);
+    const [open, setOpen] = React.useState(false);
     const { t } = useTranslation();
     const [attraction, setAttraction] = React.useState<Attraction | undefined>(undefined);
     const { id } = useParams();
@@ -36,6 +35,12 @@ export const AttractionPage = () => {
         };
         onMount();
     }, [id]);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     if (!attraction) {
         return null;
@@ -46,13 +51,14 @@ export const AttractionPage = () => {
             <div className={styles.header}>
                 <div className={styles.communicate}>
                     <div className={styles.openHours}>
-                        <Typography text="Opening hours" variant="h4" />
-                        <Typography text="From:" variant="h4" />
+                        <Typography text={t("attractions.open-hours")} variant="h4" />
+                        <Typography text={t("attractions.from")} variant="h4" />
                         <Typography
                             text={dayjs(attraction.openning_hours_from).format("HH:mm")}
                             variant="h4"
                         />
-                        <Typography text="To:" variant="h4" />
+                        <Typography text={t("attractions.to")} variant="h4" />
+
                         <Typography
                             text={dayjs(attraction.openning_hours_to).format("HH:mm")}
                             variant="h4"
@@ -60,14 +66,14 @@ export const AttractionPage = () => {
                     </div>
                     <a href={attraction.website}>
                         <Typography
-                            text={t("Activities.visit website")}
+                            text={t("attractions.visit website")}
                             variant="h4"
                             className={styles.headerButtons}
                         />
                     </a>
                     <a href={attraction.phone}>
                         <Typography
-                            text={t("Activities.call")}
+                            text={t("attractions.call")}
                             variant="h4"
                             className={styles.headerButtons}
                         />
@@ -77,9 +83,10 @@ export const AttractionPage = () => {
                     </a>
                 </div>
                 <div className={styles.icons}>
-                    <ShareButton className={styles.shareButton}>
+                    <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
+                    <SharePopup url={window.location.href} open={open} onClose={handleClose} />
                     <FavoriteButton className={styles.shareButton}>
                         <FavoriteBorderIcon />
                     </FavoriteButton>
@@ -89,7 +96,7 @@ export const AttractionPage = () => {
                 <AttractionInfo attraction={attraction} />
             </div>
             <div className={styles.reviewsContainer}>
-                <AttractionReviewList attraction={attraction} />
+                <AttractionReviewList reviews={attraction.attraction_review} />
             </div>
         </Container>
     );
