@@ -1,38 +1,26 @@
-import { useTranslation } from "react-i18next";
-import { FC, useState } from "react";
+import { FC } from "react";
 
-import { Typography } from "../core/Typography";
 import styles from "./LocationTopAttraction.module.css";
 import { Swiper } from "./Swiper";
 
-import React from "react";
-import { fetchData } from "../../api/FetchData";
 import { Attraction } from "../../models/Attraction";
 import { CardAttraction } from "../core/CardAttraction";
+import { Typography } from "../core/Typography";
+import { useTranslation } from "react-i18next";
 
 interface LocationTopAttractionProps {
-    id?: string;
+    attractions: Attraction[];
 }
-export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ id }) => {
-    const [cityAttractions, setCityAttractions] = useState<Attraction[] | []>([]);
-    React.useEffect(() => {
-        const onMount = async () => {
-            if (id) {
-                const _cityAttractions = await fetchData.getCityAttractions(id);
-
-                setCityAttractions(_cityAttractions);
-            }
-        };
-        onMount();
-    }, [id]);
+export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ attractions }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.topAttraction}>
+            <Typography text={t("cities.cityPage.topAttraction")} variant="h2" />
             <div className={styles.topAttractionSwiper}>
-                {cityAttractions.length === 0 && <div> Loading... </div>}
-                {cityAttractions.length > 0 && (
+                {attractions.length === 0 && <div> Loading... </div>}
+                {attractions.length > 0 && (
                     <Swiper
-                        items={cityAttractions}
+                        items={attractions}
                         renderItem={cityAttraction => (
                             <CardAttraction attraction={cityAttraction} />
                         )}

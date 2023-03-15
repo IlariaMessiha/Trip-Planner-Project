@@ -1,3 +1,4 @@
+import { AttractionReview } from "./AttractionReview";
 import { City } from "./City";
 
 export interface Attraction {
@@ -16,10 +17,12 @@ export interface Attraction {
     rating: number;
     reservationLink: string;
     minAge: string;
-    attractionCode: string;
+    attraction_code: string;
     email: string;
     long: number;
     lat: number;
     entry_fee: number;
+    attraction_image: string;
+    attraction_review: AttractionReview[];
 
 }

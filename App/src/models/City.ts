@@ -1,3 +1,4 @@
+import { Attraction } from "./Attraction";
 import { Country } from "./Country";
 
 export interface City {
@@ -7,5 +8,6 @@ export interface City {
     cityCode: string;
     long: number;
     lat: number;
+    Attraction: Attraction[],
 
 }

@@ -1,7 +1,6 @@
 import { Container } from "@mui/material";
 import React from "react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
@@ -11,7 +10,6 @@ import { City } from "../models/City";
 import styles from "./CityPage.module.css";
 
 export const CityPage = () => {
-    const { t } = useTranslation();
     const [city, setCity] = useState<City | undefined>(undefined);
     const { id } = useParams();
     React.useEffect(() => {
@@ -31,7 +29,7 @@ export const CityPage = () => {
     return (
         <Container className={styles.container}>
             <Typography text={city.label} variant="h1" />
-            <LocationTopAttraction id={id} />
+            <LocationTopAttraction attractions={city.Attraction} />
             <LocationTravelAdvice />
         </Container>
     );

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea, IconButton, Rating, styled } from "@mui/material";
+import { CardActionArea, IconButton, styled } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Typography } from "../core/Typography";
 import styles from "./CardCity.module.css";
@@ -23,11 +23,6 @@ const FavoriteButton = styled(IconButton)({
     top: 6,
     right: 10,
     zIndex: 10,
-});
-const StarsRating = styled(Rating)({
-    "&.MuiRating-root": {
-        color: "blue",
-    },
 });
 
 export const CardCity: FC<CardCityProps> = ({ city }) => {
@@ -69,7 +64,7 @@ export const CardCity: FC<CardCityProps> = ({ city }) => {
 
                         <div className={styles.cityAttractions}>
                             <Typography text={cityAttractions.length} variant="body2" />
-                            <Typography text={t("common.activities")} variant="body2" />
+                            <Typography text={t("common.attractions")} variant="body2" />
                         </div>
                     </CardContent>
                 </CardActionArea>

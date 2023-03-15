@@ -48,6 +48,12 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 320, height: 350 }}>
+                <CardMedia
+                    component="img"
+                    height="100"
+                    image={attraction.attraction_image}
+                    alt={attraction.attraction_code}
+                />
                 <FavoriteButton>
                     <FavoriteIcon />
                 </FavoriteButton>

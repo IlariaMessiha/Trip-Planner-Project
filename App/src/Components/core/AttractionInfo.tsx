@@ -28,19 +28,19 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                 width: "30%",
             }}
         >
-            <Typography text={t("Activities.about")} variant="h2" />
+            <Typography text={t("attractions.about")} variant="h2" />
             <Typography text={attraction.about} className={styles.activityDescription} />
-            <Typography text={t("Activities.suggested duration")} variant="h4" />
+            <Typography text={t("attractions.suggested duration")} variant="h4" />
             <div className={styles.suggestedDuration}>
                 <Typography text={attraction.suggested_duration} />
-                <Typography text={t("Activities.hours")} />
+                <Typography text={t("attractions.hours")} />
             </div>
             <div className={styles.tickets}>
-                <Typography text={t("Activities.ticket price")} variant="h4" />
+                <Typography text={t("attractions.ticket price")} variant="h4" />
                 <Typography text={attraction.entry_fee} />
             </div>
             <ByTicketButton variant="contained" size="large">
-                <Typography text={t("Activities.buy ticket")} />
+                <Typography text={t("attractions.buy ticket")} />
             </ByTicketButton>
         </Paper>
     );

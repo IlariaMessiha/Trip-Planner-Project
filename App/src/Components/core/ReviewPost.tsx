@@ -1,10 +1,8 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Rating, styled } from "@mui/material";
 import { FC } from "react";
 import { Typography } from "./Typography";
 import styles from "./ReviewPost.module.css";
 import { useTranslation } from "react-i18next";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { IconButton } from "@mui/material";
 import { AttractionReview } from "../../models/AttractionReview";
 import React from "react";
 import { fetchData } from "../../api/FetchData";
@@ -13,6 +11,11 @@ import { User } from "../../models/User";
 interface ReviewPostProps {
     review: AttractionReview;
 }
+const StarsRating = styled(Rating)({
+    "&.MuiRating-root": {
+        color: "blue",
+    },
+});
 
 export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
     const { t } = useTranslation();
@@ -55,9 +58,15 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
 
             <Typography text={review.title} variant="h4" className={styles.header} />
             <Typography text={review.body} variant="body1" />
-            <div className={styles.date}>
-                <Typography text={t("Activities.written")} variant="body3" />
-                <Typography text={review.rating} variant="body3" />
+            <div className={styles.rating}>
+                <Typography text={t("reviews.rating")} variant="body3" />
+                <StarsRating
+                    name="half-rating"
+                    defaultValue={review.rating}
+                    precision={0.5}
+                    readOnly
+                    size="small"
+                />
             </div>
         </div>
     );

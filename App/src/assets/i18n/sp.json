@@ -1,11 +1,8 @@
 {
     "common": {
-        "locations": "Ubicaciones",
-        "activities": "Actividades",
         "attractions": "Atracciones",
         "cities": "Ciudades",
         "reviews": "Reseñas",
-        "activity": "Actividad",
         "review": "Reseñar",
         "search": "Buscar",
         "filterBy": "Filtrado por",
@@ -22,29 +19,8 @@
     "dashboard": {
         "slogan": "Sueña Tu Próximo Viaje"
     },
-    "Locations": {
-        "Barcelona": {
-            "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
-        },
-        "Porto": {
-            "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
-        },
-        "Nice": {
-            "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
-        },
-        "Rio de Janero": {
-            "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
-        },
-        "Paris": {
-            "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
-        },
-        "New York": {
-            "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
-        },
-        "Egypt": {
-            "description": "Oporto es una ciudad costera en el noroeste de Portugal conocida por sus majestuosos puentes y la producción de vino de Oporto. En el distrito medieval de Ribeira (junto al río), las calles estrechas y empedradas serpentean entre las casas de los comerciantes y los cafés."
-        },
-        "locationPage": {
+    "cities": {
+        "cityPage": {
             "seeAllPhotos": "Ver todas las fotos",
             "photosOf": "Fotos de",
             "topAttraction": "Atracción principal",
@@ -56,33 +32,20 @@
             "advice4": "Consejos de los profesionales"
         }
     },
-    "Activities": {
+    "attractions": {
         "about": "Sobre",
         "suggested duration": "Duración sugerida",
         "hours": "Horas",
-        "open hours": "Horarios de Apertura",
+        "open-hours": "Horarios de Apertura",
+        "from": "de",
+        "to": "a",
         "visit website": "Visita la Página Web",
         "call": "Llamar",
         "ticket price": "Precio Del Boleto",
         "written": "Escrito",
-        "buy ticket": "Comprar Boleto",
-        "Sagrada Familia": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, también conocida como Sagrada Família, es una gran basílica menor inacabada en el distrito del Eixample de Barcelona, ​​Cataluña, España, y actualmente es la iglesia católica romana inacabada más grande. Diseñado por el arquitecto catalán Antoni Gaudí (1852–1926), su trabajo en el edificio es parte del Patrimonio de la Humanidad de la UNESCO.[7] El 7 de noviembre de 2010, el Papa Benedicto XVI consagró la iglesia y la proclamó basílica menor."
-        },
-        "Park Guell": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, también conocida como Sagrada Família, es una gran basílica menor inacabada en el distrito del Eixample de Barcelona, ​​Cataluña, España, y actualmente es la iglesia católica romana inacabada más grande. Diseñado por el arquitecto catalán Antoni Gaudí (1852–1926), su trabajo en el edificio es parte del Patrimonio de la Humanidad de la UNESCO.[7] El 7 de noviembre de 2010, el Papa Benedicto XVI consagró la iglesia y la proclamó basílica menor."
-        },
-        "Time Square": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, también conocida como Sagrada Família, es una gran basílica menor inacabada en el distrito del Eixample de Barcelona, ​​Cataluña, España, y actualmente es la iglesia católica romana inacabada más grande. Diseñado por el arquitecto catalán Antoni Gaudí (1852–1926), su trabajo en el edificio es parte del Patrimonio de la Humanidad de la UNESCO.[7] El 7 de noviembre de 2010, el Papa Benedicto XVI consagró la iglesia y la proclamó basílica menor."
-        },
-        "The Pyramids": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, también conocida como Sagrada Família, es una gran basílica menor inacabada en el distrito del Eixample de Barcelona, ​​Cataluña, España, y actualmente es la iglesia católica romana inacabada más grande. Diseñado por el arquitecto catalán Antoni Gaudí (1852–1926), su trabajo en el edificio es parte del Patrimonio de la Humanidad de la UNESCO.[7] El 7 de noviembre de 2010, el Papa Benedicto XVI consagró la iglesia y la proclamó basílica menor."
-        },
-        "Fishing trip, Ain Sokhna": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, también conocida como Sagrada Família, es una gran basílica menor inacabada en el distrito del Eixample de Barcelona, ​​Cataluña, España, y actualmente es la iglesia católica romana inacabada más grande. Diseñado por el arquitecto catalán Antoni Gaudí (1852–1926), su trabajo en el edificio es parte del Patrimonio de la Humanidad de la UNESCO.[7] El 7 de noviembre de 2010, el Papa Benedicto XVI consagró la iglesia y la proclamó basílica menor."
-        },
-        "Eiffel Tower": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, también conocida como Sagrada Família, es una gran basílica menor inacabada en el distrito del Eixample de Barcelona, ​​Cataluña, España, y actualmente es la iglesia católica romana inacabada más grande. Diseñado por el arquitecto catalán Antoni Gaudí (1852–1926), su trabajo en el edificio es parte del Patrimonio de la Humanidad de la UNESCO.[7] El 7 de noviembre de 2010, el Papa Benedicto XVI consagró la iglesia y la proclamó basílica menor."
-        }
+        "buy ticket": "Comprar Boleto"
+    },
+    "reviews": {
+        "rating": "Clasificación"
     }
 }
