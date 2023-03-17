@@ -20,11 +20,10 @@ export class TestService {
             };
         });
     }
-    async findCityById(id: string): Promise<city> {
-        const idNumber = Number(id);
+    async findCityById(id: number): Promise<city> {
         const city = await this.prisma.city.findUnique({
             where: {
-                id: idNumber,
+                id: id,
             },
         });
         return city;
@@ -73,8 +72,8 @@ export class TestService {
     }
 
     async findAttractionForCity(id: string): Promise<city> {
-        const attraction = this.findAttractionById(id);
-        const cityIdNumber = (await attraction).city_id.toString();
+        const attraction = await this.findAttractionById(id);
+        const cityIdNumber = attraction.city_id;
         const attractionCity = this.findCityById(cityIdNumber);
         return attractionCity;
     }
@@ -119,9 +118,9 @@ export class TestService {
         });
         return attractions;
     }
-    async findCountryForCity(id: string): Promise<country> {
-        const city = this.findCityById(id);
-        const cityCountry = this.findCountryById((await city).country_id.toString());
+    async findCountryForCity(id: number): Promise<country> {
+        const city = await this.findCityById(id);
+        const cityCountry = this.findCountryById(city.country_id.toString());
         return cityCountry;
     }
     async findReviewById(id: string): Promise<attraction_review> {

@@ -1,30 +1,22 @@
 import { Controller, Get, Param } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { TestService } from "src/services/test.service";
+import { AttractionsService } from "src/services/attractions.service";
 
 @Controller("/attractions")
 export class AttractionsController {
-    constructor(private configService: ConfigService, private testService: TestService) {
-        console.log(configService.get("IMAGES_PATH"));
-    }
-
-    @Get("/:id/city")
-    getAttractionsForCity(@Param("id") id: string) {
-        return this.testService.findAttractionForCity(id);
-    }
+    constructor(private attractionsService: AttractionsService) {}
 
     @Get("/:id")
     getAttractionById(@Param("id") id: string) {
-        return this.testService.findAttractionPage(id);
+        return this.attractionsService.findAttractionPage(id);
     }
 
     @Get("")
     getAttractions() {
-        return this.testService.findAttractions();
+        return this.attractionsService.findAttractions();
     }
 
     @Get("/:id/reviews")
     getReviewsForAttraction(@Param("id") id: string) {
-        return this.testService.findReviewsForAttraction(id);
+        return this.attractionsService.findReviewsForAttraction(id);
     }
 }

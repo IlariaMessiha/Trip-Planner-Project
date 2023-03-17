@@ -23,7 +23,13 @@ export class CitiesController {
     }
 
     @Get("/:id/country")
-    getCountryForCity(@Param("id") id: string) {
+    getCountryForCity(@Param("id") idParam: string) {
+        const id = parseInt(idParam, 10);
+        if (Number.isNaN(id)) {
+            // TODO handle error;
+            return;
+        }
+
         return this.testService.findCountryForCity(id);
     }
 }
