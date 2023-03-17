@@ -34,16 +34,18 @@
     },
     "attractions": {
         "about": "About",
-        "suggested duration": "Suggested Duration",
+        "suggestedDuration": "Suggested Duration",
+        "suggestedDurationFormat": "This my take {{duration}} hours",
         "hours": "Hours",
-        "open-hours": "Open Hours",
+        "openHours": "Open Hours",
         "from": "from",
         "to": "to",
-        "visit website": "Visit Website",
+        "visitWebsite": "Visit Website",
         "call": "Call",
-        "ticket price": "Ticket Price",
+        "ticketPrice": "Ticket Price",
+        "ticketPriceFormat": "${{amount}}",
         "written": "Written",
-        "buy ticket": "Buy Ticket"
+        "buyTicket": "Buy Ticket"
     },
     "reviews": {
         "rating": "Rating"

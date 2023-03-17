@@ -3,11 +3,12 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Attraction } from "../../models/Attraction";
+import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import styles from "./AttractionInfo.module.css";
 import { Typography } from "./Typography";
 
 interface AttractionInfoProps {
-    attraction: Attraction;
+    attraction: AttractionDto;
 }
 const ByTicketButton = styled(Button)({
     borderRadius: "20px",
@@ -30,17 +31,22 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
         >
             <Typography text={t("attractions.about")} variant="h2" />
             <Typography text={attraction.about} className={styles.activityDescription} />
-            <Typography text={t("attractions.suggested duration")} variant="h4" />
+            <Typography text={t("attractions.suggestedDuration")} variant="h4" />
             <div className={styles.suggestedDuration}>
-                <Typography text={attraction.suggested_duration} />
-                <Typography text={t("attractions.hours")} />
+                <Typography
+                    text={t("attractions.suggestedDurationFormat", {
+                        duration: attraction.suggestedDuration,
+                    })}
+                />
             </div>
             <div className={styles.tickets}>
-                <Typography text={t("attractions.ticket price")} variant="h4" />
-                <Typography text={attraction.entry_fee} />
+                <Typography text={t("attractions.ticketPrice")} variant="h4" />
+                <Typography
+                    text={t("attractions.ticketPriceFormat", { amount: attraction.entryFee })}
+                />
             </div>
             <ByTicketButton variant="contained" size="large">
-                <Typography text={t("attractions.buy ticket")} />
+                <Typography text={t("attractions.buyTicket")} />
             </ByTicketButton>
         </Paper>
     );

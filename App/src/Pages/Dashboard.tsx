@@ -19,7 +19,7 @@ export const Dashboard = () => {
 
     useEffect(() => {
         const onMount = async () => {
-            const _attractions = await fetchData.getAttraction();
+            const _attractions = await fetchData.getAttractions();
             const _cities = await fetchData.getCities();
             setAttractions(_attractions);
             setCities(_cities);

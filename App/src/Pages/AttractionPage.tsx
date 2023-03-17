@@ -16,6 +16,7 @@ import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import Tooltip from "@mui/material/Tooltip";
+import { AttractionDto } from "../types/dto/common/AttractionDto";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -30,13 +31,13 @@ const ReviewButton = styled(IconButton)({
 export const AttractionPage = () => {
     const [open, setOpen] = React.useState(false);
     const { t } = useTranslation();
-    const [attraction, setAttraction] = React.useState<Attraction | undefined>(undefined);
+    const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
     const { id } = useParams();
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
-                const _attraction = await fetchData.getAttractionById(id);
-                setAttraction(_attraction);
+                const _attraction = await fetchData.getAttraction(id);
+                setAttraction(_attraction.attraction);
             }
         };
         onMount();
@@ -60,33 +61,43 @@ export const AttractionPage = () => {
                         <Typography text={t("attractions.open-hours")} variant="h4" />
                         <Typography text={t("attractions.from")} variant="h4" />
                         <Typography
-                            text={dayjs(attraction.openning_hours_from).format("HH:mm")}
+                            text={dayjs(attraction.openingHours?.from).format("HH:mm")}
                             variant="h4"
                         />
                         <Typography text={t("attractions.to")} variant="h4" />
 
                         <Typography
-                            text={dayjs(attraction.openning_hours_to).format("HH:mm")}
+                            text={dayjs(attraction.openingHours?.to).format("HH:mm")}
                             variant="h4"
                         />
                     </div>
-                    <a href={attraction.website}>
-                        <Typography
-                            text={t("attractions.visit website")}
-                            variant="h4"
-                            className={styles.headerButtons}
-                        />
-                    </a>
-                    <a href={attraction.phone}>
-                        <Typography
-                            text={t("attractions.call")}
-                            variant="h4"
-                            className={styles.headerButtons}
-                        />
-                    </a>
-                    <a href={attraction.email}>
-                        <Typography text="Email" variant="h4" className={styles.headerButtons} />
-                    </a>
+                    {attraction.website && (
+                        <a href={attraction.website}>
+                            <Typography
+                                text={t("attractions.visit website")}
+                                variant="h4"
+                                className={styles.headerButtons}
+                            />
+                        </a>
+                    )}
+                    {attraction.phone && (
+                        <a href={`tel:${attraction.phone}`}>
+                            <Typography
+                                text={t("attractions.call")}
+                                variant="h4"
+                                className={styles.headerButtons}
+                            />
+                        </a>
+                    )}
+                    {attraction.email && (
+                        <a href={`mailto:${attraction.email}`}>
+                            <Typography
+                                text="Email"
+                                variant="h4"
+                                className={styles.headerButtons}
+                            />
+                        </a>
+                    )}
                 </div>
                 <div className={styles.icons}>
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
@@ -107,7 +118,7 @@ export const AttractionPage = () => {
                 <AttractionInfo attraction={attraction} />
             </div>
             <div className={styles.reviewsContainer}>
-                <AttractionReviewList reviews={attraction.attraction_review} />
+                {/* <AttractionReviewList reviews={attraction} /> */}
             </div>
         </Container>
     );
