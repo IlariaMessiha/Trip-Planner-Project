@@ -5,10 +5,11 @@ import { ReviewPost } from "../core/ReviewPost";
 import { Typography } from "../core/Typography";
 import styles from "./AttractionReviewList.module.css";
 import { useTranslation } from "react-i18next";
-import { AttractionReview } from "../../models/AttractionReview";
+
+import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
 
 interface AttractionReviewListProps {
-    reviews: AttractionReview[];
+    reviews: AttractionReviewDto[];
 }
 export const AttractionReviewList: FC<AttractionReviewListProps> = ({ reviews }) => {
     const { t } = useTranslation();

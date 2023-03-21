@@ -1,10 +1,10 @@
 import { Container, IconButton, styled } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
-import { Attraction } from "../models/Attraction";
+
 import styles from "./AttractionPage.module.css";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -13,10 +13,12 @@ import { Typography } from "../Components/core/Typography";
 import EditIcon from "@mui/icons-material/Edit";
 import dayjs from "dayjs";
 import { AttractionInfo } from "../Components/core/AttractionInfo";
-import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import Tooltip from "@mui/material/Tooltip";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
+
+import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
+import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -32,12 +34,14 @@ export const AttractionPage = () => {
     const [open, setOpen] = React.useState(false);
     const { t } = useTranslation();
     const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
+    const [reviews, setReviews] = useState<AttractionReviewDto[] | undefined>(undefined);
     const { id } = useParams();
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
-                const _attraction = await fetchData.getAttraction(id);
-                setAttraction(_attraction.attraction);
+                const response = await fetchData.getAttraction(id);
+                setAttraction(response.attraction);
+                setReviews(response.reviews);
             }
         };
         onMount();
@@ -58,7 +62,7 @@ export const AttractionPage = () => {
             <div className={styles.header}>
                 <div className={styles.communicate}>
                     <div className={styles.openHours}>
-                        <Typography text={t("attractions.open-hours")} variant="h4" />
+                        <Typography text={t("attractions.openHours")} variant="h4" />
                         <Typography text={t("attractions.from")} variant="h4" />
                         <Typography
                             text={dayjs(attraction.openingHours?.from).format("HH:mm")}
@@ -74,7 +78,7 @@ export const AttractionPage = () => {
                     {attraction.website && (
                         <a href={attraction.website}>
                             <Typography
-                                text={t("attractions.visit website")}
+                                text={t("attractions.visitWebsite")}
                                 variant="h4"
                                 className={styles.headerButtons}
                             />
@@ -118,7 +122,7 @@ export const AttractionPage = () => {
                 <AttractionInfo attraction={attraction} />
             </div>
             <div className={styles.reviewsContainer}>
-                {/* <AttractionReviewList reviews={attraction} /> */}
+                {reviews && <AttractionReviewList reviews={reviews} />}
             </div>
         </Container>
     );

@@ -3,13 +3,13 @@ import { FC } from "react";
 import styles from "./LocationTopAttraction.module.css";
 import { Swiper } from "./Swiper";
 
-import { Attraction } from "../../models/Attraction";
 import { CardAttraction } from "../core/CardAttraction";
 import { Typography } from "../core/Typography";
 import { useTranslation } from "react-i18next";
+import { AttractionDto } from "../../types/dto/common/AttractionDto";
 
 interface LocationTopAttractionProps {
-    attractions: Attraction[];
+    attractions: AttractionDto[];
 }
 export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ attractions }) => {
     const { t } = useTranslation();

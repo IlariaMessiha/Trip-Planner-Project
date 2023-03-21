@@ -1,10 +1,10 @@
-import { City } from "./City";
+import { CityDto } from "./CityDto";
 
-export interface Restaurant {
+export interface RestaurantDto {
     id: number;
     restaurantCode: string;
     label: string;
-    city: City;
+    city: CityDto;
     address: string;
     phone: string;
     website: string;

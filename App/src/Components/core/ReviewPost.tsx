@@ -3,13 +3,14 @@ import { FC } from "react";
 import { Typography } from "./Typography";
 import styles from "./ReviewPost.module.css";
 import { useTranslation } from "react-i18next";
-import { AttractionReview } from "../../models/AttractionReview";
+
 import React from "react";
 import { fetchData } from "../../api/FetchData";
 import { User } from "../../models/User";
+import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
 
 interface ReviewPostProps {
-    review: AttractionReview;
+    review: AttractionReviewDto;
 }
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {

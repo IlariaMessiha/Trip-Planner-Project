@@ -7,13 +7,11 @@ import { useTranslation } from "react-i18next";
 import { Typography } from "../core/Typography";
 
 import { Link } from "react-router-dom";
-import { Attraction } from "../../models/Attraction";
-import { City } from "../../models/City";
-import { fetchData } from "../../api/FetchData";
-import { AttractionReview } from "../../models/AttractionReview";
+
+import { AttractionDto } from "../../types/dto/common/AttractionDto";
 
 interface CardAttractionProps {
-    attraction: Attraction;
+    attraction: AttractionDto;
 }
 const FavoriteButton = styled(IconButton)({
     position: "absolute",
@@ -28,39 +26,25 @@ const StarsRating = styled(Rating)({
     },
 });
 export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
-    const [attractionCity, setAttractionCity] = useState<City | null>(null);
-    const [attractionReviews, setAttractionReviews] = useState<AttractionReview[]>([]);
-    useEffect(() => {
-        const onMount = async () => {
-            const _attractionCity = await fetchData.getCityForAttraction(attraction.id.toString());
-            const _attractionReviews = await fetchData.getReviewsForAttraction(
-                attraction.id.toString()
-            );
-
-            setAttractionCity(_attractionCity);
-            setAttractionReviews(_attractionReviews);
-        };
-
-        onMount();
-    }, []);
     const { t } = useTranslation();
-
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 320, height: 350 }}>
-                <CardMedia
-                    component="img"
-                    height="100"
-                    image={attraction.attraction_image}
-                    alt={attraction.attraction_code}
-                />
+                {attraction.imageUrl && (
+                    <CardMedia
+                        component="img"
+                        height="100"
+                        image={attraction.imageUrl}
+                        alt={attraction.label}
+                    />
+                )}
                 <FavoriteButton>
                     <FavoriteIcon />
                 </FavoriteButton>
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
                     <CardActionArea sx={{ height: "100%" }}>
                         <CardContent className={styles.AttractionContent}>
-                            <Typography text={attraction.label} variant="h4" />
+                            {/* <Typography text={attraction.label} variant="h4" />
                             {attractionCity ? (
                                 <Typography text={attractionCity?.label} />
                             ) : (
@@ -74,15 +58,17 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                                 )}
 
                                 <Typography text={t("common.reviews")} variant="body2" />
-                            </div>
+                            </div> */}
 
-                            <StarsRating
-                                name="half-rating"
-                                defaultValue={attraction.rating}
-                                precision={0.5}
-                                readOnly
-                                sx={{}}
-                            />
+                            {attraction.rating && (
+                                <StarsRating
+                                    name="half-rating"
+                                    defaultValue={attraction.rating}
+                                    precision={0.5}
+                                    readOnly
+                                    sx={{}}
+                                />
+                            )}
                         </CardContent>
                     </CardActionArea>
                 </Link>

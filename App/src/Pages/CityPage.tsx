@@ -6,17 +6,21 @@ import { fetchData } from "../api/FetchData";
 import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
 import { Typography } from "../Components/core/Typography";
 import { LocationTopAttraction } from "../Components/widgets/LocationTopAtrraction";
-import { City } from "../models/City";
+
+import { AttractionDto } from "../types/dto/common/AttractionDto";
+import { CityDto } from "../types/dto/common/CityDto";
 import styles from "./CityPage.module.css";
 
 export const CityPage = () => {
-    const [city, setCity] = useState<City | undefined>(undefined);
+    const [city, setCity] = useState<CityDto | undefined>(undefined);
+    const [attractions, setAttractions] = useState<AttractionDto[] | undefined>(undefined);
     const { id } = useParams();
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
-                const _city = await fetchData.getCityById(id);
-                setCity(_city);
+                const _city = await fetchData.getCity(id);
+                setCity(_city.city);
+                setAttractions(_city.attractions);
             }
         };
         onMount();
@@ -29,7 +33,7 @@ export const CityPage = () => {
     return (
         <Container className={styles.container}>
             <Typography text={city.label} variant="h1" />
-            <LocationTopAttraction attractions={city.Attraction} />
+            {attractions && <LocationTopAttraction attractions={attractions} />}
             <LocationTravelAdvice />
         </Container>
     );

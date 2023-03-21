@@ -1,11 +1,11 @@
-import { City } from "./City";
+import { CityDto } from "./CityDto";
 
-export interface Hotel {
+export interface HotelDto {
     id: number;
     hotelCode: string;
     label: string;
     address: string;
-    city: City;
+    city: CityDto;
     phone: string;
     email: string;
     website: string;
@@ -14,5 +14,4 @@ export interface Hotel {
     startingFromPrice: number;
     long: number;
     lat: number;
-
 }

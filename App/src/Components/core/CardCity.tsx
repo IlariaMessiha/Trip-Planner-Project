@@ -8,14 +8,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Typography } from "../core/Typography";
 import styles from "./CardCity.module.css";
 import { Link } from "react-router-dom";
-import { fetchData } from "../../api/FetchData";
 
-import { City } from "../../models/City";
-import { Country } from "../../models/Country";
-import { Attraction } from "../../models/Attraction";
+import { CityDto } from "../../types/dto/common/CityDto";
 
 interface CardCityProps {
-    city: City;
+    city: CityDto;
 }
 const FavoriteButton = styled(IconButton)({
     position: "absolute",
@@ -26,20 +23,6 @@ const FavoriteButton = styled(IconButton)({
 });
 
 export const CardCity: FC<CardCityProps> = ({ city }) => {
-    const [cityAttractions, setCityAttractions] = useState<Attraction[] | []>([]);
-    const [cityCountry, setCityCountry] = useState<Country>();
-    useEffect(() => {
-        const onMount = async () => {
-            if (city.id) {
-                const _cityAttractions = await fetchData.getCityAttractions(city.id.toString());
-                const _cityCountry = await fetchData.getCountryForCity(city.id.toString());
-                setCityAttractions(_cityAttractions);
-                setCityCountry(_cityCountry);
-            }
-        };
-        onMount();
-    }, [city.id]);
-
     const { t } = useTranslation();
     return (
         <Card className={styles.item} sx={{ width: 320, height: 350 }}>
@@ -60,12 +43,12 @@ export const CardCity: FC<CardCityProps> = ({ city }) => {
 
                     <CardContent className={styles.cityContent}>
                         <Typography text={city.label} variant="h4" />
-                        {cityCountry ? <Typography text={cityCountry?.label} /> : <div></div>}
+                        {/* {cityCountry ? <Typography text={cityCountry?.label} /> : <div></div>}
 
                         <div className={styles.cityAttractions}>
                             <Typography text={cityAttractions.length} variant="body2" />
                             <Typography text={t("common.attractions")} variant="body2" />
-                        </div>
+                        </div> */}
                     </CardContent>
                 </CardActionArea>
             </Link>

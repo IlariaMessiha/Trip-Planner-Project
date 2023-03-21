@@ -9,13 +9,13 @@ import { Typography } from "../Components/core/Typography";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { Swiper } from "../Components/widgets/Swiper";
 
-import { Attraction } from "../models/Attraction";
-import { City } from "../models/City";
+import { AttractionDto } from "../types/dto/common/AttractionDto";
+import { CityDto } from "../types/dto/common/CityDto";
 
 export const Dashboard = () => {
     const { t } = useTranslation();
-    const [attractions, setAttractions] = useState<Attraction[]>([]);
-    const [cities, setCities] = useState<City[]>([]);
+    const [attractions, setAttractions] = useState<AttractionDto[]>([]);
+    const [cities, setCities] = useState<CityDto[]>([]);
 
     useEffect(() => {
         const onMount = async () => {

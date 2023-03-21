@@ -1,35 +1,19 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { CityService } from "src/services/cities.service";
 import { TestService } from "src/services/test.service";
 
 @Controller("/cities")
 export class CitiesController {
-    constructor(private configService: ConfigService, private testService: TestService) {
+    constructor(private configService: ConfigService, private cityService: CityService) {
         console.log(configService.get("IMAGES_PATH"));
     }
-
-    @Get("/:id/attractions")
-    getCityAttractions(@Param("id") id: string) {
-        return this.testService.findCityAttractions(id);
-    }
-
     @Get("")
     getCities() {
-        return this.testService.findCities();
+        return this.cityService.findCities();
     }
     @Get("/:id")
-    getCityById(@Param("id") id: string) {
-        return this.testService.findCityPage(id);
-    }
-
-    @Get("/:id/country")
-    getCountryForCity(@Param("id") idParam: string) {
-        const id = parseInt(idParam, 10);
-        if (Number.isNaN(id)) {
-            // TODO handle error;
-            return;
-        }
-
-        return this.testService.findCountryForCity(id);
+    getCityById(@Param("id", ParseIntPipe) id: number) {
+        return this.cityService.findCity(id);
     }
 }

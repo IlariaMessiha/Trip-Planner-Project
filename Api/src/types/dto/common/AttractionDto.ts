@@ -1,9 +1,11 @@
+import { CityDto } from "./CityDto";
+
 export interface AttractionDto {
     id: number;
     label: string;
     about: string;
 
-    // TODO city: CityDto
+    // city: CityDto;
     address: string | null;
     phone: string | null;
 

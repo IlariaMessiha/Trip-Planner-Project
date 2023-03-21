@@ -2,7 +2,6 @@ import { Button, Paper, styled } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Attraction } from "../../models/Attraction";
 import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import styles from "./AttractionInfo.module.css";
 import { Typography } from "./Typography";
@@ -10,7 +9,7 @@ import { Typography } from "./Typography";
 interface AttractionInfoProps {
     attraction: AttractionDto;
 }
-const ByTicketButton = styled(Button)({
+const BuyTicketButton = styled(Button)({
     borderRadius: "20px",
     backgroundColor: "black",
     width: "100%",
@@ -45,9 +44,11 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                     text={t("attractions.ticketPriceFormat", { amount: attraction.entryFee })}
                 />
             </div>
-            <ByTicketButton variant="contained" size="large">
-                <Typography text={t("attractions.buyTicket")} />
-            </ByTicketButton>
+            {attraction.reservationLink && (
+                <BuyTicketButton variant="contained" size="large" href={attraction.reservationLink}>
+                    <Typography text={t("attractions.buyTicket")} />
+                </BuyTicketButton>
+            )}
         </Paper>
     );
 };
