@@ -15,9 +15,4 @@ export class AttractionsController {
     getAttractions() {
         return this.attractionsService.findAttractions();
     }
-
-    @Get("/:id/reviews")
-    getReviewsForAttraction(@Param("id") id: string) {
-        return this.attractionsService.findReviewsForAttraction(id);
-    }
 }

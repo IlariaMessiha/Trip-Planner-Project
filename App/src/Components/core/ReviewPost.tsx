@@ -6,8 +6,9 @@ import { useTranslation } from "react-i18next";
 
 import React from "react";
 import { fetchData } from "../../api/FetchData";
-import { User } from "../../models/User";
+
 import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
+import { UserDto } from "../../types/dto/common/UserDto";
 
 interface ReviewPostProps {
     review: AttractionReviewDto;
@@ -20,18 +21,6 @@ const StarsRating = styled(Rating)({
 
 export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
     const { t } = useTranslation();
-    const [user, setUser] = React.useState<User | undefined>(undefined);
-
-    React.useEffect(() => {
-        const onMount = async () => {
-            const _user = await fetchData.getUserForReview(review.id.toString());
-            setUser(_user);
-        };
-        onMount();
-    }, [review.id]);
-    if (!user) {
-        return null;
-    }
 
     return (
         <div className={styles.reviewContainer}>
@@ -41,18 +30,18 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
                     <div className={styles.nameAndEmail}>
                         <div className={styles.fullName}>
                             <Typography
-                                text={user.firstname}
+                                text={review.user.firstname}
                                 variant="h3"
                                 className={styles.authorName}
                             />
                             <Typography
-                                text={user.lastname}
+                                text={review.user.lastname}
                                 variant="h3"
                                 className={styles.authorName}
                             />
                         </div>
 
-                        <Typography text={user.email} variant="body2" />
+                        <Typography text={review.user.email} variant="body2" />
                     </div>
                 </div>
             </div>

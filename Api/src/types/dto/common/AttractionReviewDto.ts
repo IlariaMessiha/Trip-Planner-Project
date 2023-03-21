@@ -7,5 +7,5 @@ export interface AttractionReviewDto {
     body: string;
     // attraction: AttractionDto;
     rating: number;
-    // user: UserDto;
+    user: UserDto;
 }

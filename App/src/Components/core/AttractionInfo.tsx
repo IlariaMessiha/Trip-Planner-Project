@@ -45,7 +45,12 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                 />
             </div>
             {attraction.reservationLink && (
-                <BuyTicketButton variant="contained" size="large" href={attraction.reservationLink}>
+                <BuyTicketButton
+                    className={styles.buyTicketButton}
+                    variant="contained"
+                    size="large"
+                    href={attraction.reservationLink}
+                >
                     <Typography text={t("attractions.buyTicket")} />
                 </BuyTicketButton>
             )}

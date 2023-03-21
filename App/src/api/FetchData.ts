@@ -36,13 +36,5 @@ export class FetchData {
         const response = await Axios.get(`${API_BASE_URL}/cities/${id}/country`);
         return response.data;
     }
-    public async getReviewsForAttraction(id: string) {
-        const response = await Axios.get(`${API_BASE_URL}/attractions/${id}/reviews`);
-        return response.data;
-    }
-    public async getUserForReview(id: string) {
-        const response = await Axios.get(`${API_BASE_URL}/reviews/${id}/user`);
-        return response.data;
-    }
 }
 export const fetchData = new FetchData();

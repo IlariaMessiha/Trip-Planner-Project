@@ -44,8 +44,8 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
                     <CardActionArea sx={{ height: "100%" }}>
                         <CardContent className={styles.AttractionContent}>
-                            {/* <Typography text={attraction.label} variant="h4" />
-                            {attractionCity ? (
+                            <Typography text={attraction.label} variant="h4" />
+                            {/* {attractionCity ? (
                                 <Typography text={attractionCity?.label} />
                             ) : (
                                 <div></div>

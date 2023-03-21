@@ -30,7 +30,6 @@ export class AttractionsService {
                 id: id,
             },
             include: {
-                attraction_review: true,
                 directus_files: true,
                 city: true,
             },
@@ -43,34 +42,24 @@ export class AttractionsService {
                 directus_files: true,
             },
         });
+        const reviews = await this.prisma.attraction_review.findMany({
+            where: {
+                attraction_id: id,
+            },
+            include: {
+                user: true,
+            },
+        });
         return {
             attraction: this.mappingDto.mapAttractionToDto(attraction, attraction.directus_files),
-            reviews: attraction.attraction_review.map(review => {
-                return this.mappingDto.mapReviewToDto(review);
+            reviews: reviews.map(review => {
+                return this.mappingDto.mapReviewToDto(
+                    review,
+                    this.mappingDto.mapUserToDto(review.user)
+                );
             }),
             city: this.mappingDto.mapCityToDto(city, city.directus_files),
         };
-    }
-
-    async findReviewsForAttraction(id): Promise<attraction_review[]> {
-        const idNumber = Number(id);
-        const attractionReviews = await this.prisma.attraction_review.findMany({
-            where: {
-                attraction_id: idNumber,
-            },
-        });
-        return attractionReviews;
-    }
-
-    async findCityAttractions(id: string): Promise<Attraction[]> {
-        const idNumber = Number(id);
-
-        const attractions = await this.prisma.attraction.findMany({
-            where: {
-                city_id: idNumber,
-            },
-        });
-        return attractions;
     }
 
     /** Private */

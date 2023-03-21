@@ -10,11 +10,22 @@ import { MappingDtos } from "./helpers/mappingDtos";
 import { PrismaService } from "./prisma.service";
 import { AttractionsService } from "./services/attractions.service";
 import { CityService } from "./services/cities.service";
-import { TestService } from "./services/test.service";
+import { CountriesService } from "./services/countries.service";
+import { ReviewsService } from "./services/reviews.service";
+
+import { UserService } from "./services/users.service";
 
 @Module({
     controllers: [AttractionsController, CitiesController, ReviewsController, UsersController],
-    providers: [AttractionsService, MappingDtos, CityService, TestService, PrismaService],
+    providers: [
+        AttractionsService,
+        UserService,
+        MappingDtos,
+        CityService,
+        ReviewsService,
+        CountriesService,
+        PrismaService,
+    ],
     imports: [
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, "..", "public"),

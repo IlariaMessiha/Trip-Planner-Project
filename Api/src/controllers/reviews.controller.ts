@@ -1,18 +1,14 @@
 import { Controller, Get, Param } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { TestService } from "src/services/test.service";
+import { ReviewsService } from "src/services/reviews.service";
 
 @Controller("/reviews")
 export class ReviewsController {
-    constructor(private testService: TestService) {}
+    constructor(private reviewService: ReviewsService) {}
 
     @Get("/:id")
     getReviewById(@Param("id") id: string) {
-        return this.testService.findReviewById(id);
+        return this.reviewService.findReviewById(id);
     }
     // TODO remove this endpoint, use getReviewById instead
-    @Get("/:id/user")
-    getUserForReview(@Param("id") id: string) {
-        return this.testService.findUserForReview(id);
-    }
 }

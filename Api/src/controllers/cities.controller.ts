@@ -1,7 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { CityService } from "src/services/cities.service";
-import { TestService } from "src/services/test.service";
 
 @Controller("/cities")
 export class CitiesController {

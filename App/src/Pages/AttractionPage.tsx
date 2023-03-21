@@ -120,6 +120,13 @@ export const AttractionPage = () => {
             </div>
             <div className={styles.imageAndDescription}>
                 <AttractionInfo attraction={attraction} />
+                {attraction.imageUrl && (
+                    <img
+                        src={attraction.imageUrl}
+                        className={styles.image}
+                        alt={attraction.label}
+                    />
+                )}
             </div>
             <div className={styles.reviewsContainer}>
                 {reviews && <AttractionReviewList reviews={reviews} />}

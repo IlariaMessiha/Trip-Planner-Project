@@ -1,17 +1,17 @@
 import { Controller, Get, Param } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { TestService } from "src/services/test.service";
+import { UserService } from "src/services/users.service";
 
 @Controller("/users")
 export class UsersController {
-    constructor(private testService: TestService) {}
+    constructor(private userService: UserService) {}
 
     @Get("")
     getUsers() {
-        return this.testService.findUsers();
+        return this.userService.findUsers();
     }
     @Get("/:id")
     getUserById(@Param("id") id: string) {
-        return this.testService.findUserById(id);
+        return this.userService.findUserById(id);
     }
 }
