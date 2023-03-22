@@ -69,6 +69,19 @@ export class CityService {
                         };
                     }),
                 },
+                {
+                    title: "Eat",
+                    subtitle: `Quintessential Barcelona restaurants, bars, and beyond.`,
+                    items: restaurants.map(restaurant => {
+                        return {
+                            type: "restaurant",
+                            value: this.mappingDtos.mapRestaurantToDto(
+                                restaurant,
+                                restaurant.directus_files
+                            ),
+                        };
+                    }),
+                },
             ],
         };
     }

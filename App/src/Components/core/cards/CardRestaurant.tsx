@@ -1,18 +1,22 @@
-import styles from "./CardAttraction.module.css";
-import { Card, CardActionArea, CardContent, CardMedia, IconButton, Rating } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { FC, useEffect, useState } from "react";
+import {
+    Card,
+    CardActionArea,
+    CardContent,
+    CardMedia,
+    IconButton,
+    Rating,
+    styled,
+} from "@mui/material";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Typography } from "../core/Typography";
-
 import { Link } from "react-router-dom";
+import { RestaurantDto } from "../../../types/dto/common/RestaurantDto";
+import { Typography } from "../Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import styles from "./CardRestaurant.module.css";
 
-import { AttractionDto } from "../../types/dto/common/AttractionDto";
-import { SectionItemDto } from "../../types/dto/common/SectionItemDto";
-
-interface CardAttractionProps {
-    attraction: SectionItemDto;
+interface CardRestaurantProps {
+    restaurant: RestaurantDto;
 }
 const FavoriteButton = styled(IconButton)({
     position: "absolute",
@@ -26,34 +30,34 @@ const StarsRating = styled(Rating)({
         color: "blue",
     },
 });
-export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
+export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ maxWidth: 345 }}>
-                {attraction.value.imageUrl && (
+                {restaurant.imageUrl && (
                     <CardMedia
                         component="img"
                         height="194"
-                        image={attraction.value.imageUrl}
-                        alt={attraction.value.label}
+                        image={restaurant.imageUrl}
+                        alt={restaurant.label}
                     />
                 )}
                 <FavoriteButton>
                     <FavoriteIcon />
                 </FavoriteButton>
-                <Link key={attraction.value.id} to={`/attraction/${attraction.value.id}`}>
+                <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
                     <CardActionArea sx={{ height: "100%" }}>
-                        <CardContent className={styles.AttractionContent}>
-                            <Typography text={attraction.value.label} variant="h4" />
-                            {/* {attractionCity ? (
-                                <Typography text={attractionCity?.label} />
+                        <CardContent className={styles.restaurantContent}>
+                            <Typography text={restaurant.label} variant="h4" />
+                            {/* {restaurantCity ? (
+                                <Typography text={restaurantCity?.label} />
                             ) : (
                                 <div></div>
                             )}
                             <div className={styles.availableReviews}>
-                                {attractionReviews ? (
-                                    <Typography text={attractionReviews.length} variant="body2" />
+                                {restaurantReviews ? (
+                                    <Typography text={restaurantReviews.length} variant="body2" />
                                 ) : (
                                     <Typography text="0" variant="body2" />
                                 )}
@@ -61,10 +65,10 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                                 <Typography text={t("common.reviews")} variant="body2" />
                             </div> */}
 
-                            {attraction.value.rating && (
+                            {restaurant.rating && (
                                 <StarsRating
                                     name="half-rating"
-                                    defaultValue={attraction.value.rating}
+                                    defaultValue={restaurant.rating}
                                     precision={0.5}
                                     readOnly
                                     sx={{}}

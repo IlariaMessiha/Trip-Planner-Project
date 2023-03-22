@@ -3,11 +3,12 @@ import { FC } from "react";
 import styles from "./LocationTopAttraction.module.css";
 import { Swiper } from "./Swiper";
 
-import { CardAttraction } from "../core/CardAttraction";
+import { CardAttraction } from "../core/cards/CardAttraction";
 import { Typography } from "../core/Typography";
 import { useTranslation } from "react-i18next";
 import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import { SectionDto } from "../../types/dto/common/SectionDto";
+import { SectionItemType } from "./SectionItemType";
 
 interface LocationTopAttractionProps {
     sections: SectionDto[];
@@ -27,7 +28,9 @@ export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ sections
                                 {section.items.length > 0 && (
                                     <Swiper
                                         items={section.items}
-                                        renderItem={item => <CardAttraction attraction={item} />}
+                                        renderItem={item => (
+                                            <SectionItemType item={item} key={item.value.id} />
+                                        )}
                                     />
                                 )}
                             </div>

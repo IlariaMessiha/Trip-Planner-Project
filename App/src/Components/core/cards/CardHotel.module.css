@@ -1,0 +1,23 @@
+.hotelContent {
+    text-align: left;
+    font-size: larger;
+}
+
+.item:hover {
+    text-decoration: underline;
+}
+
+.container {
+    position: relative;
+}
+
+.availableReviews {
+    display: flex;
+    gap: 3px;
+}
+
+.item {
+    position: relative;
+
+
+}

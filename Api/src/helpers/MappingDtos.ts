@@ -5,12 +5,14 @@ import {
     country,
     directus_files,
     hotel,
+    restaurant,
     user,
 } from "@prisma/client";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { AttractionReviewDto } from "src/types/dto/common/AttractionReviewDto";
 import { CityDto } from "src/types/dto/common/CityDto";
 import { HotelDto } from "src/types/dto/common/HotelDto";
+import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { UserDto } from "src/types/dto/common/UserDto";
 export class MappingDtos {
     constructor() {}
@@ -94,6 +96,27 @@ export class MappingDtos {
             mapLocation: mapLocation,
             hotelCode: hotel.hotel_code,
             startingFromPrice: hotel.starting_from_price.toNumber(),
+        };
+    }
+    mapRestaurantToDto(restaurant: restaurant, image: directus_files): RestaurantDto {
+        const long = restaurant.long.toNumber();
+        const lat = restaurant.lat.toNumber();
+
+        const mapLocation = lat && long ? { lat, long } : null;
+
+        return {
+            id: restaurant.id,
+            label: restaurant.label,
+            address: restaurant.address,
+            phone: restaurant.phone,
+            imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+            website: restaurant.website,
+            rating: restaurant.rating,
+            email: restaurant.email,
+            mapLocation: mapLocation,
+            code: restaurant.code,
+            avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
+            food: restaurant.food,
         };
     }
 }

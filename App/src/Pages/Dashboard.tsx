@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { fetchData } from "../api/FetchData";
-import { CardAttraction } from "../Components/core/CardAttraction";
-import { CardCity } from "../Components/core/CardCity";
+import { CardAttraction } from "../Components/core/cards/CardAttraction";
+import { CardCity } from "../Components/core/cards/CardCity";
 import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
 import { Typography } from "../Components/core/Typography";

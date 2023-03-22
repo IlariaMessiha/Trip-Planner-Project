@@ -5,11 +5,11 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea, IconButton, styled } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Typography } from "../core/Typography";
+import { Typography } from "../Typography";
 import styles from "./CardCity.module.css";
 import { Link } from "react-router-dom";
 
-import { CityDto } from "../../types/dto/common/CityDto";
+import { CityDto } from "../../../types/dto/common/CityDto";
 
 interface CardCityProps {
     city: CityDto;
