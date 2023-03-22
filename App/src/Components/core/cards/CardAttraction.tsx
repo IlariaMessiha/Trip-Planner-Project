@@ -9,7 +9,7 @@ import {
     Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -24,6 +24,7 @@ interface CardAttractionProps {
 const FavoriteButton = styled(IconButton)({
     position: "absolute",
     backgroundColor: "white",
+    color: "black",
     top: 6,
     right: 10,
     zIndex: 10,
@@ -39,7 +40,7 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
         <div className={styles.container}>
             <Card className={styles.item} sx={{ maxWidth: 345 }}>
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
-                    <CardActionArea>
+                    <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                         {attraction.imageUrl && (
                             <CardMedia
                                 component="img"
@@ -49,7 +50,7 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                             />
                         )}
                         <FavoriteButton>
-                            <FavoriteIcon />
+                            <FavoriteBorderOutlinedIcon />
                         </FavoriteButton>
 
                         <CardContent className={styles.AttractionContent}>

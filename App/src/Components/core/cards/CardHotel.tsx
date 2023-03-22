@@ -12,8 +12,7 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { HotelDto } from "../../../types/dto/common/HotelDto";
-
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styles from "./CardHotel.module.css";
 
 interface CardHotelProps {
@@ -22,6 +21,7 @@ interface CardHotelProps {
 const FavoriteButton = styled(IconButton)({
     position: "absolute",
     backgroundColor: "white",
+    color: "black",
     top: 6,
     right: 10,
     zIndex: 10,
@@ -36,19 +36,20 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ maxWidth: 345 }}>
-                {hotel.imageUrl && (
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        image={hotel.imageUrl}
-                        alt={hotel.label}
-                    />
-                )}
-                <FavoriteButton>
-                    <FavoriteIcon />
-                </FavoriteButton>
                 <Link key={hotel.id} to={`/hotel/${hotel.id}`}>
-                    <CardActionArea sx={{ height: "100%" }}>
+                    <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
+                        {hotel.imageUrl && (
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                image={hotel.imageUrl}
+                                alt={hotel.label}
+                            />
+                        )}
+                        <FavoriteButton>
+                            <FavoriteBorderOutlinedIcon />
+                        </FavoriteButton>
+
                         <CardContent className={styles.hotelContent}>
                             <Typography variant="body1" className={styles.label}>
                                 {hotel.label}

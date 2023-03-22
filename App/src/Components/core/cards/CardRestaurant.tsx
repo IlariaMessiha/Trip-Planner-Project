@@ -12,7 +12,7 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { RestaurantDto } from "../../../types/dto/common/RestaurantDto";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styles from "./CardRestaurant.module.css";
 
 interface CardRestaurantProps {
@@ -21,6 +21,7 @@ interface CardRestaurantProps {
 const FavoriteButton = styled(IconButton)({
     position: "absolute",
     backgroundColor: "white",
+    color: "black",
     top: 6,
     right: 10,
     zIndex: 10,
@@ -35,19 +36,20 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ maxWidth: 345 }}>
-                {restaurant.imageUrl && (
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        image={restaurant.imageUrl}
-                        alt={restaurant.label}
-                    />
-                )}
-                <FavoriteButton>
-                    <FavoriteIcon />
-                </FavoriteButton>
                 <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
-                    <CardActionArea sx={{ height: "100%" }}>
+                    <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
+                        {restaurant.imageUrl && (
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                image={restaurant.imageUrl}
+                                alt={restaurant.label}
+                            />
+                        )}
+                        <FavoriteButton>
+                            <FavoriteBorderOutlinedIcon />
+                        </FavoriteButton>
+
                         <CardContent className={styles.restaurantContent}>
                             <Typography variant="body1" className={styles.label}>
                                 {restaurant.label}
