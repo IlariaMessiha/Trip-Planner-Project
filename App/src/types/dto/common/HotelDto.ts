@@ -14,4 +14,5 @@ export interface HotelDto {
     startingFromPrice: number;
     long: number;
     lat: number;
+    imageUrl: string;
 }

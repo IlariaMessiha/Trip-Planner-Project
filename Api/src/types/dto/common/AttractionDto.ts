@@ -1,3 +1,4 @@
+import { AttractionReviewDto } from "./AttractionReviewDto";
 import { CityDto } from "./CityDto";
 
 export interface AttractionDto {
@@ -5,7 +6,6 @@ export interface AttractionDto {
     label: string;
     about: string;
 
-    // city: CityDto;
     address: string | null;
     phone: string | null;
 

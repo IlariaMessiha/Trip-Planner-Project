@@ -1,7 +1,16 @@
-import { Attraction, attraction_review, city, country, directus_files, user } from "@prisma/client";
+import {
+    Attraction,
+    attraction_review,
+    city,
+    country,
+    directus_files,
+    hotel,
+    user,
+} from "@prisma/client";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { AttractionReviewDto } from "src/types/dto/common/AttractionReviewDto";
 import { CityDto } from "src/types/dto/common/CityDto";
+import { HotelDto } from "src/types/dto/common/HotelDto";
 import { UserDto } from "src/types/dto/common/UserDto";
 export class MappingDtos {
     constructor() {}
@@ -64,6 +73,27 @@ export class MappingDtos {
                 from: attraction.openning_hours_from.toISOString(),
                 to: attraction.openning_hours_to.toISOString(),
             },
+        };
+    }
+    mapHotelToDto(hotel: hotel, image: directus_files): HotelDto {
+        const long = hotel.long.toNumber();
+        const lat = hotel.lat.toNumber();
+
+        const mapLocation = lat && long ? { lat, long } : null;
+
+        return {
+            id: hotel.id,
+            label: hotel.label,
+            address: hotel.address,
+            phone: hotel.phone,
+            imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+            website: hotel.website,
+            rating: hotel.rating,
+            reservationLink: hotel.reservation_link,
+            email: hotel.email,
+            mapLocation: mapLocation,
+            hotelCode: hotel.hotel_code,
+            startingFromPrice: hotel.starting_from_price.toNumber(),
         };
     }
 }

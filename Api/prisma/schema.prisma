@@ -180,6 +180,8 @@ model directus_files {
   directus_settings_directus_settings_project_logoTodirectus_files      directus_settings[] @relation("directus_settings_project_logoTodirectus_files")
   directus_settings_directus_settings_public_backgroundTodirectus_files directus_settings[] @relation("directus_settings_public_backgroundTodirectus_files")
   directus_settings_directus_settings_public_foregroundTodirectus_files directus_settings[] @relation("directus_settings_public_foregroundTodirectus_files")
+  hotel                                                                 hotel[]
+  restaurant                                                            restaurant[]
 }
 
 model directus_flows {
@@ -450,20 +452,22 @@ model directus_webhooks {
 }
 
 model hotel {
-  id                  Int            @id @default(autoincrement())
-  hotel_code          String?        @db.VarChar(255)
-  label               String?        @db.VarChar(255)
-  address             String?        @db.VarChar(255)
+  id                  Int             @id @default(autoincrement())
+  hotel_code          String?         @db.VarChar(255)
+  label               String?         @db.VarChar(255)
+  address             String?         @db.VarChar(255)
   city_id             Int?
-  phone               String?        @db.VarChar(255)
-  email               String?        @db.VarChar(255)
-  website             String?        @db.VarChar(255)
+  phone               String?         @db.VarChar(255)
+  email               String?         @db.VarChar(255)
+  website             String?         @db.VarChar(255)
   rating              Int?
-  reservation_link    String?        @db.VarChar(255)
-  starting_from_price Decimal?       @db.Decimal(10, 5)
-  long                Decimal?       @db.Decimal(10, 5)
-  lat                 Decimal?       @db.Decimal(10, 5)
-  city                city?          @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "hotel_city_id_foreign")
+  reservation_link    String?         @db.VarChar(255)
+  starting_from_price Decimal?        @db.Decimal(10, 5)
+  long                Decimal?        @db.Decimal(10, 5)
+  lat                 Decimal?        @db.Decimal(10, 5)
+  hotel_image         String?         @db.Uuid
+  city                city?           @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "hotel_city_id_foreign")
+  directus_files      directus_files? @relation(fields: [hotel_image], references: [id], onUpdate: NoAction, map: "hotel_hotel_image_foreign")
   hotel_review        hotel_review[]
   hotel_tag           hotel_tag[]
 }
@@ -501,7 +505,9 @@ model restaurant {
   long                      Decimal?                    @db.Decimal(10, 5)
   lat                       Decimal?                    @db.Decimal(10, 5)
   avg_meal_per_person       Decimal?                    @db.Decimal(10, 5)
+  retaurant_image           String?                     @db.Uuid
   city                      city?                       @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "restaurant_city_id_foreign")
+  directus_files            directus_files?             @relation(fields: [retaurant_image], references: [id], onUpdate: NoAction, map: "restaurant_retaurant_image_foreign")
   restaurant_review         restaurant_review[]
   retaurant_tag             retaurant_tag[]
   trip_item                 trip_item[]

@@ -9,18 +9,19 @@ import { LocationTopAttraction } from "../Components/widgets/LocationTopAtrracti
 
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 import { CityDto } from "../types/dto/common/CityDto";
+import { SectionDto } from "../types/dto/common/SectionDto";
 import styles from "./CityPage.module.css";
 
 export const CityPage = () => {
     const [city, setCity] = useState<CityDto | undefined>(undefined);
-    const [attractions, setAttractions] = useState<AttractionDto[] | undefined>(undefined);
+    const [sections, setSections] = useState<SectionDto[] | undefined>(undefined);
     const { id } = useParams();
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
                 const _city = await fetchData.getCity(id);
                 setCity(_city.city);
-                setAttractions(_city.attractions);
+                setSections(_city.sections);
             }
         };
         onMount();
@@ -33,8 +34,8 @@ export const CityPage = () => {
     return (
         <Container className={styles.container}>
             <Typography text={city.label} variant="h1" />
-            {attractions && <LocationTopAttraction attractions={attractions} />}
             <LocationTravelAdvice />
+            {sections && <LocationTopAttraction sections={sections} />}
         </Container>
     );
 };

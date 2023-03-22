@@ -9,9 +9,10 @@ import { Typography } from "../core/Typography";
 import { Link } from "react-router-dom";
 
 import { AttractionDto } from "../../types/dto/common/AttractionDto";
+import { SectionItemDto } from "../../types/dto/common/SectionItemDto";
 
 interface CardAttractionProps {
-    attraction: AttractionDto;
+    attraction: SectionItemDto;
 }
 const FavoriteButton = styled(IconButton)({
     position: "absolute",
@@ -29,22 +30,22 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ width: 320, height: 350 }}>
-                {attraction.imageUrl && (
+            <Card className={styles.item} sx={{ maxWidth: 345 }}>
+                {attraction.value.imageUrl && (
                     <CardMedia
                         component="img"
-                        height="100"
-                        image={attraction.imageUrl}
-                        alt={attraction.label}
+                        height="194"
+                        image={attraction.value.imageUrl}
+                        alt={attraction.value.label}
                     />
                 )}
                 <FavoriteButton>
                     <FavoriteIcon />
                 </FavoriteButton>
-                <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
+                <Link key={attraction.value.id} to={`/attraction/${attraction.value.id}`}>
                     <CardActionArea sx={{ height: "100%" }}>
                         <CardContent className={styles.AttractionContent}>
-                            <Typography text={attraction.label} variant="h4" />
+                            <Typography text={attraction.value.label} variant="h4" />
                             {/* {attractionCity ? (
                                 <Typography text={attractionCity?.label} />
                             ) : (
@@ -60,10 +61,10 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                                 <Typography text={t("common.reviews")} variant="body2" />
                             </div> */}
 
-                            {attraction.rating && (
+                            {attraction.value.rating && (
                                 <StarsRating
                                     name="half-rating"
-                                    defaultValue={attraction.rating}
+                                    defaultValue={attraction.value.rating}
                                     precision={0.5}
                                     readOnly
                                     sx={{}}

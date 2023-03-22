@@ -26,11 +26,50 @@ export class CityService {
                 directus_files: true,
             },
         });
+        const hotels = await this.prisma.hotel.findMany({
+            where: {
+                city_id: id,
+            },
+            include: {
+                directus_files: true,
+            },
+        });
+        const restaurants = await this.prisma.restaurant.findMany({
+            where: {
+                city_id: id,
+            },
+            include: {
+                directus_files: true,
+            },
+        });
+
         return {
             city: this.mappingDtos.mapCityToDto(city, city.directus_files),
-            attractions: attractions.map(attraction => {
-                return this.mappingDtos.mapAttractionToDto(attraction, attraction.directus_files);
-            }),
+            sections: [
+                {
+                    title: "Do",
+                    subtitle: `Places to see, ways to wander, and signature experiences that define ${city.label}`,
+                    items: attractions.map(attraction => {
+                        return {
+                            type: "attraction",
+                            value: this.mappingDtos.mapAttractionToDto(
+                                attraction,
+                                attraction.directus_files
+                            ),
+                        };
+                    }),
+                },
+                {
+                    title: "Stay",
+                    subtitle: `A mix of the charming, iconic, and modern in ${city.label}`,
+                    items: hotels.map(hotel => {
+                        return {
+                            type: "hotel",
+                            value: this.mappingDtos.mapHotelToDto(hotel, hotel.directus_files),
+                        };
+                    }),
+                },
+            ],
         };
     }
 

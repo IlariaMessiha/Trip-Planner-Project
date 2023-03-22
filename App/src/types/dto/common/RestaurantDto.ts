@@ -14,4 +14,5 @@ export interface RestaurantDto {
     long: number;
     lat: number;
     avgMealPerPerson: number;
+    imageUrl: string;
 }

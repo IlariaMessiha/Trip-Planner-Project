@@ -33,7 +33,7 @@ export const Dashboard = () => {
             <Typography text={t("dashboard.slogan")} variant="h1" />
 
             <SearchEngineAutocomplete />
-            <Section title={t("common.attractions")}>
+            {/* <Section title={t("common.attractions")}>
                 {attractions.length === 0 && <div> Loading... </div>}
                 {attractions.length > 0 && (
                     <Swiper
@@ -41,7 +41,7 @@ export const Dashboard = () => {
                         renderItem={attraction => <CardAttraction attraction={attraction} />}
                     />
                 )}
-            </Section>
+            </Section> */}
             <Section title={t("common.cities")}>
                 {cities.length === 0 && <div> Loading... </div>}
 
