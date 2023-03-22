@@ -43,7 +43,15 @@
         "call": "Llamar",
         "ticket price": "Precio Del Boleto",
         "written": "Escrito",
-        "buy ticket": "Comprar Boleto"
+        "buy ticket": "Comprar Boleto",
+        "type": "{{type}} Atraccion"
+    },
+    "hotels": {
+        "startingFromPrice": "de ${{amount}}/noche"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "${{amount}}/person",
+        "food": "{{type}} food"
     },
     "reviews": {
         "rating": "Clasificación"

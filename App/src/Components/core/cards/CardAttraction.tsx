@@ -1,10 +1,17 @@
 import styles from "./CardAttraction.module.css";
-import { Card, CardActionArea, CardContent, CardMedia, IconButton, Rating } from "@mui/material";
+import {
+    Card,
+    CardActionArea,
+    CardContent,
+    CardMedia,
+    IconButton,
+    Rating,
+    Typography,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Typography } from "../Typography";
 
 import { Link } from "react-router-dom";
 
@@ -31,21 +38,24 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ maxWidth: 345 }}>
-                {attraction.imageUrl && (
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        image={attraction.imageUrl}
-                        alt={attraction.label}
-                    />
-                )}
-                <FavoriteButton>
-                    <FavoriteIcon />
-                </FavoriteButton>
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
-                    <CardActionArea sx={{ height: "100%" }}>
+                    <CardActionArea>
+                        {attraction.imageUrl && (
+                            <CardMedia
+                                component="img"
+                                height="200"
+                                image={attraction.imageUrl}
+                                alt={attraction.label}
+                            />
+                        )}
+                        <FavoriteButton>
+                            <FavoriteIcon />
+                        </FavoriteButton>
+
                         <CardContent className={styles.AttractionContent}>
-                            <Typography text={attraction.label} variant="h4" />
+                            <Typography variant="body1" className={styles.label}>
+                                {attraction.label}
+                            </Typography>
                             {/* {attractionCity ? (
                                 <Typography text={attractionCity?.label} />
                             ) : (
@@ -60,7 +70,6 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
 
                                 <Typography text={t("common.reviews")} variant="body2" />
                             </div> */}
-
                             {attraction.rating && (
                                 <StarsRating
                                     name="half-rating"
@@ -69,6 +78,11 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                                     readOnly
                                     sx={{}}
                                 />
+                            )}
+                            {attraction.type && (
+                                <Typography variant="body2">
+                                    {attraction.type} attraction
+                                </Typography>
                             )}
                         </CardContent>
                     </CardActionArea>

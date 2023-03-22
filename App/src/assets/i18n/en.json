@@ -37,15 +37,21 @@
         "suggestedDuration": "Suggested Duration",
         "suggestedDurationFormat": "This my take {{duration}} hours",
         "hours": "Hours",
-        "openHours": "Open Hours",
-        "from": "from",
-        "to": "to",
+        "openHours": "Open hours from:{{from}} to:{{to}}",
         "visitWebsite": "Visit Website",
         "call": "Call",
         "ticketPrice": "Ticket Price",
         "ticketPriceFormat": "${{amount}}",
         "written": "Written",
-        "buyTicket": "Buy Ticket"
+        "buyTicket": "Buy Ticket",
+        "type": "{{type}} attraction"
+    },
+    "hotels": {
+        "startingFromPrice": "from ${{amount}}/night"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "${{amount}}/person",
+        "food": "{{type}} food"
     },
     "reviews": {
         "rating": "Rating"

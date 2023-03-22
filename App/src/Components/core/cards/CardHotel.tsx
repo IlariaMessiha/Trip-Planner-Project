@@ -6,12 +6,13 @@ import {
     IconButton,
     Rating,
     styled,
+    Typography,
 } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { HotelDto } from "../../../types/dto/common/HotelDto";
-import { Typography } from "../Typography";
+
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import styles from "./CardHotel.module.css";
 
@@ -49,22 +50,9 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
                 <Link key={hotel.id} to={`/hotel/${hotel.id}`}>
                     <CardActionArea sx={{ height: "100%" }}>
                         <CardContent className={styles.hotelContent}>
-                            <Typography text={hotel.label} variant="h4" />
-                            {/* {hotelCity ? (
-                                <Typography text={hotelCity?.label} />
-                            ) : (
-                                <div></div>
-                            )}
-                            <div className={styles.availableReviews}>
-                                {hotelReviews ? (
-                                    <Typography text={hotelReviews.length} variant="body2" />
-                                ) : (
-                                    <Typography text="0" variant="body2" />
-                                )}
-
-                                <Typography text={t("common.reviews")} variant="body2" />
-                            </div> */}
-
+                            <Typography variant="body1" className={styles.label}>
+                                {hotel.label}
+                            </Typography>
                             {hotel.rating && (
                                 <StarsRating
                                     name="half-rating"
@@ -73,6 +61,13 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
                                     readOnly
                                     sx={{}}
                                 />
+                            )}
+                            {hotel.startingFromPrice && (
+                                <Typography variant="body2">
+                                    {t("hotels.startingFromPrice", {
+                                        amount: hotel.startingFromPrice,
+                                    })}
+                                </Typography>
                             )}
                         </CardContent>
                     </CardActionArea>

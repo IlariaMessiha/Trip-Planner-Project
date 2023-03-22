@@ -43,7 +43,15 @@
         "call": "Appel",
         "ticket price": "Prix Du Billet",
         "written": "Écrit",
-        "buy ticket": "Acheter un billet"
+        "buy ticket": "Acheter un billet",
+        "type": "{{type}} attraction"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "${{amount}}/person",
+        "food": "{{type}} food"
+    },
+    "hotels": {
+        "startingFromPrice": "De ${{amount}}/nuit"
     },
     "reviews": {
         "rating": "Notation"

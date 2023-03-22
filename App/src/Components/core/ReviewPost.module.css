@@ -14,14 +14,20 @@
     margin: 0;
 }
 
-.header {
+.title {
     padding-bottom: 10px;
+    font-weight: bold;
 }
 
 
 .reviewContainer {
     padding: 30px;
 
+}
+
+.rating {
+    display: flex;
+    gap: 5px;
 }
 
 .postHeader {

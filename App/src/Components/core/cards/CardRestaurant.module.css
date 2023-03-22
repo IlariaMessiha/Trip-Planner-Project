@@ -1,0 +1,27 @@
+.restaurantContent {
+    text-align: left;
+    font-size: larger;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.item:hover {
+    text-decoration: underline;
+}
+
+.container {
+    position: relative;
+}
+
+.availableReviews {
+    display: flex;
+    gap: 3px;
+}
+
+.item {
+    position: relative;
+
+
+}

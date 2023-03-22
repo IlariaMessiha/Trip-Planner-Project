@@ -4,11 +4,12 @@ import styles from "./LocationTopAttraction.module.css";
 import { Swiper } from "./Swiper";
 
 import { CardAttraction } from "../core/cards/CardAttraction";
-import { Typography } from "../core/Typography";
+
 import { useTranslation } from "react-i18next";
 import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import { SectionDto } from "../../types/dto/common/SectionDto";
 import { SectionItemType } from "./SectionItemType";
+import { Typography } from "@mui/material";
 
 interface LocationTopAttractionProps {
     sections: SectionDto[];
@@ -21,8 +22,8 @@ export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ sections
                 {
                     return (
                         <div className={styles.topAttractionSwiper}>
-                            <Typography text={section.title} variant="h2" />
-                            <Typography text={section.subtitle} variant="h3" />
+                            <Typography variant="h4">{section.title}</Typography>
+                            <Typography variant="h6">{section.subtitle}</Typography>
                             <div className={styles.section}>
                                 {section.items.length === 0 && <div> Loading... </div>}
                                 {section.items.length > 0 && (

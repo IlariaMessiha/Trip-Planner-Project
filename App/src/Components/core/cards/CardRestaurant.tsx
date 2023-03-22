@@ -6,12 +6,12 @@ import {
     IconButton,
     Rating,
     styled,
+    Typography,
 } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { RestaurantDto } from "../../../types/dto/common/RestaurantDto";
-import { Typography } from "../Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import styles from "./CardRestaurant.module.css";
 
@@ -49,22 +49,9 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
                 <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
                     <CardActionArea sx={{ height: "100%" }}>
                         <CardContent className={styles.restaurantContent}>
-                            <Typography text={restaurant.label} variant="h4" />
-                            {/* {restaurantCity ? (
-                                <Typography text={restaurantCity?.label} />
-                            ) : (
-                                <div></div>
-                            )}
-                            <div className={styles.availableReviews}>
-                                {restaurantReviews ? (
-                                    <Typography text={restaurantReviews.length} variant="body2" />
-                                ) : (
-                                    <Typography text="0" variant="body2" />
-                                )}
-
-                                <Typography text={t("common.reviews")} variant="body2" />
-                            </div> */}
-
+                            <Typography variant="body1" className={styles.label}>
+                                {restaurant.label}
+                            </Typography>
                             {restaurant.rating && (
                                 <StarsRating
                                     name="half-rating"
@@ -73,6 +60,16 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
                                     readOnly
                                     sx={{}}
                                 />
+                            )}
+                            {restaurant.avgMealPerPerson && (
+                                <Typography variant="body2">
+                                    {t("restaurant.averageMealPerPerson", {
+                                        amount: restaurant.avgMealPerPerson,
+                                    })}
+                                </Typography>
+                            )}
+                            {restaurant.food && (
+                                <Typography variant="body2">{restaurant.food} food</Typography>
                             )}
                         </CardContent>
                     </CardActionArea>

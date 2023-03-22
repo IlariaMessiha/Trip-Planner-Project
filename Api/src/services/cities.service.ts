@@ -71,7 +71,7 @@ export class CityService {
                 },
                 {
                     title: "Eat",
-                    subtitle: `Quintessential Barcelona restaurants, bars, and beyond.`,
+                    subtitle: `Quintessential ${city.label} restaurants, bars, and beyond.`,
                     items: restaurants.map(restaurant => {
                         return {
                             type: "restaurant",

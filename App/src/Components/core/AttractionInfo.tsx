@@ -1,10 +1,9 @@
-import { Button, Paper, styled } from "@mui/material";
+import { Button, Paper, styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import styles from "./AttractionInfo.module.css";
-import { Typography } from "./Typography";
 
 interface AttractionInfoProps {
     attraction: AttractionDto;
@@ -28,21 +27,21 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                 width: "30%",
             }}
         >
-            <Typography text={t("attractions.about")} variant="h2" />
-            <Typography text={attraction.about} className={styles.activityDescription} />
-            <Typography text={t("attractions.suggestedDuration")} variant="h4" />
+            <Typography variant="h5">{t("attractions.about")}</Typography>
+            <Typography className={styles.activityDescription}>{attraction.about}</Typography>
+            <Typography variant="h5">{t("attractions.suggestedDuration")}</Typography>
             <div className={styles.suggestedDuration}>
-                <Typography
-                    text={t("attractions.suggestedDurationFormat", {
+                <Typography>
+                    {t("attractions.suggestedDurationFormat", {
                         duration: attraction.suggestedDuration,
                     })}
-                />
+                </Typography>
             </div>
             <div className={styles.tickets}>
-                <Typography text={t("attractions.ticketPrice")} variant="h4" />
-                <Typography
-                    text={t("attractions.ticketPriceFormat", { amount: attraction.entryFee })}
-                />
+                <Typography variant="body2">
+                    {t("attractions.ticketPrice")}{" "}
+                    {t("attractions.ticketPriceFormat", { amount: attraction.entryFee })}
+                </Typography>
             </div>
             {attraction.reservationLink && (
                 <BuyTicketButton
@@ -51,7 +50,7 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                     size="large"
                     href={attraction.reservationLink}
                 >
-                    <Typography text={t("attractions.buyTicket")} />
+                    <Typography variant="button">{t("attractions.buyTicket")}</Typography>
                 </BuyTicketButton>
             )}
         </Paper>

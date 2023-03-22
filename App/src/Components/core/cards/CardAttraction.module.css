@@ -1,10 +1,16 @@
 .AttractionContent {
     text-align: left;
     font-size: larger;
+    display: flex;
+    flex-direction: column;
 }
 
 .item:hover {
     text-decoration: underline;
+}
+
+.label {
+    font-weight: bold;
 }
 
 .container {

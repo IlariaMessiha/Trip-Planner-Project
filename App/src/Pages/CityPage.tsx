@@ -1,10 +1,9 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
-import { Typography } from "../Components/core/Typography";
 import { LocationTopAttraction } from "../Components/widgets/LocationTopAtrraction";
 
 import { AttractionDto } from "../types/dto/common/AttractionDto";
@@ -33,7 +32,7 @@ export const CityPage = () => {
 
     return (
         <Container className={styles.container}>
-            <Typography text={city.label} variant="h1" />
+            <Typography variant="h3"> {city.label}</Typography>
             <LocationTravelAdvice />
             {sections && <LocationTopAttraction sections={sections} />}
         </Container>

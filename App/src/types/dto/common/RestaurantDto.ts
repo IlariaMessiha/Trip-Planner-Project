@@ -8,7 +8,7 @@ export interface RestaurantDto {
     address: string;
     phone: string;
     website: string;
-    foos: string;
+    food: string;
     rating: number;
     email: string;
     long: number;

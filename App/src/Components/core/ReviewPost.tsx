@@ -1,6 +1,6 @@
-import { Avatar, Rating, styled } from "@mui/material";
+import { Avatar, Rating, styled, Typography } from "@mui/material";
 import { FC } from "react";
-import { Typography } from "./Typography";
+
 import styles from "./ReviewPost.module.css";
 import { useTranslation } from "react-i18next";
 
@@ -29,27 +29,21 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
                     <Avatar />
                     <div className={styles.nameAndEmail}>
                         <div className={styles.fullName}>
-                            <Typography
-                                text={review.user.firstname}
-                                variant="h3"
-                                className={styles.authorName}
-                            />
-                            <Typography
-                                text={review.user.lastname}
-                                variant="h3"
-                                className={styles.authorName}
-                            />
+                            <Typography variant="body1" className={styles.authorName}>
+                                {review.user.firstname} {review.user.lastname}
+                            </Typography>
                         </div>
-
-                        <Typography text={review.user.email} variant="body2" />
+                        <Typography variant="body2"> {review.user.email}</Typography>
                     </div>
                 </div>
             </div>
 
-            <Typography text={review.title} variant="h4" className={styles.header} />
-            <Typography text={review.body} variant="body1" />
+            <Typography variant="body1" className={styles.title}>
+                {review.title}
+            </Typography>
+            <Typography variant="body1">{review.body}</Typography>
             <div className={styles.rating}>
-                <Typography text={t("reviews.rating")} variant="body3" />
+                <Typography variant="caption">{t("reviews.rating")}:</Typography>
                 <StarsRating
                     name="half-rating"
                     defaultValue={review.rating}
