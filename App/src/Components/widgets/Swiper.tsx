@@ -47,11 +47,11 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
                 },
                 1090: {
                     slidesPerView: 4,
-                    spaceBetween: 6,
+                    spaceBetween: 10,
                 },
                 1280: {
                     slidesPerView: 4,
-                    spaceBetween: 6,
+                    spaceBetween: 10,
                 },
             }}
             modules={[Navigation]}
