@@ -1,15 +1,17 @@
-import { Avatar, Rating, styled } from "@mui/material";
+import { Avatar, Rating, styled, Typography } from "@mui/material";
 import { FC } from "react";
-import { Typography } from "./Typography";
+
 import styles from "./ReviewPost.module.css";
 import { useTranslation } from "react-i18next";
-import { AttractionReview } from "../../models/AttractionReview";
+
 import React from "react";
 import { fetchData } from "../../api/FetchData";
-import { User } from "../../models/User";
+
+import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
+import { UserDto } from "../../types/dto/common/UserDto";
 
 interface ReviewPostProps {
-    review: AttractionReview;
+    review: AttractionReviewDto;
 }
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {
@@ -19,18 +21,6 @@ const StarsRating = styled(Rating)({
 
 export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
     const { t } = useTranslation();
-    const [user, setUser] = React.useState<User | undefined>(undefined);
-
-    React.useEffect(() => {
-        const onMount = async () => {
-            const _user = await fetchData.getUserForReview(review.id.toString());
-            setUser(_user);
-        };
-        onMount();
-    }, [review.id]);
-    if (!user) {
-        return null;
-    }
 
     return (
         <div className={styles.reviewContainer}>
@@ -39,27 +29,21 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
                     <Avatar />
                     <div className={styles.nameAndEmail}>
                         <div className={styles.fullName}>
-                            <Typography
-                                text={user.firstname}
-                                variant="h3"
-                                className={styles.authorName}
-                            />
-                            <Typography
-                                text={user.lastname}
-                                variant="h3"
-                                className={styles.authorName}
-                            />
+                            <Typography variant="body1" className={styles.authorName}>
+                                {review.user.firstname} {review.user.lastname}
+                            </Typography>
                         </div>
-
-                        <Typography text={user.email} variant="body2" />
+                        <Typography variant="body2"> {review.user.email}</Typography>
                     </div>
                 </div>
             </div>
 
-            <Typography text={review.title} variant="h4" className={styles.header} />
-            <Typography text={review.body} variant="body1" />
+            <Typography variant="body1" className={styles.title}>
+                {review.title}
+            </Typography>
+            <Typography variant="body1">{review.body}</Typography>
             <div className={styles.rating}>
-                <Typography text={t("reviews.rating")} variant="body3" />
+                <Typography variant="caption">{t("reviews.rating")}:</Typography>
                 <StarsRating
                     name="half-rating"
                     defaultValue={review.rating}

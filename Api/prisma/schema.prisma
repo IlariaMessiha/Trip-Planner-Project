@@ -28,6 +28,8 @@ model Attraction {
   long                      Decimal?                    @db.Decimal(10, 5)
   lat                       Decimal?                    @db.Decimal(10, 5)
   entry_fee                 Decimal?                    @db.Decimal(10, 5)
+  attraction_image          String?                     @db.Uuid
+  directus_files            directus_files?             @relation(fields: [attraction_image], references: [id], onUpdate: NoAction, map: "attraction_attraction_image_foreign")
   city                      city?                       @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "attraction_city_id_foreign")
   attraction_review         attraction_review[]
   attraction_tag            attraction_tag[]
@@ -55,16 +57,18 @@ model attraction_tag {
 }
 
 model city {
-  id         Int          @id @default(autoincrement())
-  label      String?      @db.VarChar(255)
-  country_id Int?
-  city_code  String?      @db.VarChar(255)
-  long       Decimal?     @db.Decimal(10, 5)
-  lat        Decimal?     @db.Decimal(10, 5)
-  Attraction Attraction[]
-  country    country?     @relation(fields: [country_id], references: [id], onUpdate: NoAction, map: "city_country_id_foreign")
-  hotel      hotel[]
-  restaurant restaurant[]
+  id             Int             @id @default(autoincrement())
+  label          String?         @db.VarChar(255)
+  country_id     Int?
+  city_code      String?         @db.VarChar(255)
+  long           Decimal?        @db.Decimal(10, 5)
+  lat            Decimal?        @db.Decimal(10, 5)
+  city_image     String?         @db.Uuid
+  Attraction     Attraction[]
+  directus_files directus_files? @relation(fields: [city_image], references: [id], onUpdate: NoAction, map: "city_city_image_foreign")
+  country        country?        @relation(fields: [country_id], references: [id], onUpdate: NoAction, map: "city_country_id_foreign")
+  hotel          hotel[]
+  restaurant     restaurant[]
 }
 
 model country {
@@ -168,12 +172,16 @@ model directus_files {
   location                                                              String?
   tags                                                                  String?
   metadata                                                              Json?               @db.Json
+  Attraction                                                            Attraction[]
+  city                                                                  city[]
   directus_folders                                                      directus_folders?   @relation(fields: [folder], references: [id], onUpdate: NoAction, map: "directus_files_folder_foreign")
   directus_users_directus_files_modified_byTodirectus_users             directus_users?     @relation("directus_files_modified_byTodirectus_users", fields: [modified_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_modified_by_foreign")
   directus_users_directus_files_uploaded_byTodirectus_users             directus_users?     @relation("directus_files_uploaded_byTodirectus_users", fields: [uploaded_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_uploaded_by_foreign")
   directus_settings_directus_settings_project_logoTodirectus_files      directus_settings[] @relation("directus_settings_project_logoTodirectus_files")
   directus_settings_directus_settings_public_backgroundTodirectus_files directus_settings[] @relation("directus_settings_public_backgroundTodirectus_files")
   directus_settings_directus_settings_public_foregroundTodirectus_files directus_settings[] @relation("directus_settings_public_foregroundTodirectus_files")
+  hotel                                                                 hotel[]
+  restaurant                                                            restaurant[]
 }
 
 model directus_flows {
@@ -444,20 +452,22 @@ model directus_webhooks {
 }
 
 model hotel {
-  id                  Int            @id @default(autoincrement())
-  hotel_code          String?        @db.VarChar(255)
-  label               String?        @db.VarChar(255)
-  address             String?        @db.VarChar(255)
+  id                  Int             @id @default(autoincrement())
+  hotel_code          String?         @db.VarChar(255)
+  label               String?         @db.VarChar(255)
+  address             String?         @db.VarChar(255)
   city_id             Int?
-  phone               String?        @db.VarChar(255)
-  email               String?        @db.VarChar(255)
-  website             String?        @db.VarChar(255)
+  phone               String?         @db.VarChar(255)
+  email               String?         @db.VarChar(255)
+  website             String?         @db.VarChar(255)
   rating              Int?
-  reservation_link    String?        @db.VarChar(255)
-  starting_from_price Decimal?       @db.Decimal(10, 5)
-  long                Decimal?       @db.Decimal(10, 5)
-  lat                 Decimal?       @db.Decimal(10, 5)
-  city                city?          @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "hotel_city_id_foreign")
+  reservation_link    String?         @db.VarChar(255)
+  starting_from_price Decimal?        @db.Decimal(10, 5)
+  long                Decimal?        @db.Decimal(10, 5)
+  lat                 Decimal?        @db.Decimal(10, 5)
+  hotel_image         String?         @db.Uuid
+  city                city?           @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "hotel_city_id_foreign")
+  directus_files      directus_files? @relation(fields: [hotel_image], references: [id], onUpdate: NoAction, map: "hotel_hotel_image_foreign")
   hotel_review        hotel_review[]
   hotel_tag           hotel_tag[]
 }
@@ -495,7 +505,9 @@ model restaurant {
   long                      Decimal?                    @db.Decimal(10, 5)
   lat                       Decimal?                    @db.Decimal(10, 5)
   avg_meal_per_person       Decimal?                    @db.Decimal(10, 5)
+  retaurant_image           String?                     @db.Uuid
   city                      city?                       @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "restaurant_city_id_foreign")
+  directus_files            directus_files?             @relation(fields: [retaurant_image], references: [id], onUpdate: NoAction, map: "restaurant_retaurant_image_foreign")
   restaurant_review         restaurant_review[]
   retaurant_tag             retaurant_tag[]
   trip_item                 trip_item[]
@@ -536,6 +548,7 @@ model trip {
   user_id        Int?
   arrival_date   DateTime?   @db.Timestamp(6)
   departure_date DateTime?   @db.Date
+  trip_code      String?     @db.VarChar(255)
   user           user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "trip_user_id_foreign")
   trip_item      trip_item[]
 }
