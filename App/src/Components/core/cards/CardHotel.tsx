@@ -35,7 +35,10 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ maxWidth: 345 }}>
+            <Card className={styles.item} sx={{ maxWidth: 280 }}>
+                <FavoriteButton>
+                    <FavoriteBorderOutlinedIcon />
+                </FavoriteButton>
                 <Link key={hotel.id} to={`/hotel/${hotel.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                         {hotel.imageUrl && (
@@ -46,9 +49,6 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
                                 alt={hotel.label}
                             />
                         )}
-                        <FavoriteButton>
-                            <FavoriteBorderOutlinedIcon />
-                        </FavoriteButton>
 
                         <CardContent className={styles.hotelContent}>
                             <Typography variant="body1" className={styles.label}>

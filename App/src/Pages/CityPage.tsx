@@ -32,7 +32,7 @@ export const CityPage = () => {
 
     return (
         <Container className={styles.container}>
-            <Typography variant="h3"> {city.label}</Typography>
+            <Typography variant="h4"> {city.label}</Typography>
             <LocationTravelAdvice />
             {sections && <LocationTopAttraction sections={sections} />}
         </Container>

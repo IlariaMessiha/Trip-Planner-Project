@@ -19,10 +19,10 @@ export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ sections
     const { t } = useTranslation();
     return (
         <div className={styles.topAttraction}>
-            {sections.map(section => {
+            {sections.map((section, i) => {
                 {
                     return (
-                        <Section title={section.title} subtitle={section.subtitle}>
+                        <Section title={section.title} subtitle={section.subtitle} key={i}>
                             <div className={styles.section}>
                                 {section.items.length === 0 && <div> Loading... </div>}
                                 {section.items.length > 0 && (

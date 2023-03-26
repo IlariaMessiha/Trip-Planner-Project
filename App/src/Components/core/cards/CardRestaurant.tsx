@@ -36,6 +36,9 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ maxWidth: 345 }}>
+                <FavoriteButton>
+                    <FavoriteBorderOutlinedIcon />
+                </FavoriteButton>
                 <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                         {restaurant.imageUrl && (
@@ -46,9 +49,6 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
                                 alt={restaurant.label}
                             />
                         )}
-                        <FavoriteButton>
-                            <FavoriteBorderOutlinedIcon />
-                        </FavoriteButton>
 
                         <CardContent className={styles.restaurantContent}>
                             <Typography variant="body1" className={styles.label}>

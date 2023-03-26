@@ -38,7 +38,10 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ maxWidth: 345 }}>
+            <Card className={styles.item} sx={{ maxWidth: 280 }}>
+                <FavoriteButton>
+                    <FavoriteBorderOutlinedIcon />
+                </FavoriteButton>
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                         {attraction.imageUrl && (
@@ -49,9 +52,6 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                                 alt={attraction.label}
                             />
                         )}
-                        <FavoriteButton>
-                            <FavoriteBorderOutlinedIcon />
-                        </FavoriteButton>
 
                         <CardContent className={styles.AttractionContent}>
                             <Typography variant="body1" className={styles.label}>

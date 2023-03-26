@@ -26,6 +26,9 @@ export const CardCity: FC<CardCityProps> = ({ city }) => {
     const { t } = useTranslation();
     return (
         <Card className={styles.item} sx={{ maxWidth: 280 }}>
+            <FavoriteButton>
+                <FavoriteBorderOutlinedIcon />
+            </FavoriteButton>
             <Link key={city.id} to={`/city/${city.id}`}>
                 <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                     {city.imageUrl && (
@@ -37,9 +40,6 @@ export const CardCity: FC<CardCityProps> = ({ city }) => {
                             className={styles.image}
                         />
                     )}
-                    <FavoriteButton>
-                        <FavoriteBorderOutlinedIcon />
-                    </FavoriteButton>
 
                     <CardContent className={styles.cityContent}>
                         <Typography variant="body1" className={styles.label}>

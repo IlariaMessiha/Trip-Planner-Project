@@ -34,9 +34,9 @@ export const Dashboard = () => {
             <Typography variant="h4">{t("dashboard.slogan")}</Typography>
 
             <SearchEngineAutocomplete />
-            {sections.map(section => {
+            {sections.map((section, i) => {
                 return (
-                    <Section title={section.title} subtitle={section.subtitle}>
+                    <Section title={section.title} subtitle={section.subtitle} key={i}>
                         {section.items.length === 0 && <div> Loading... </div>}
                         {section.items.length > 0 && (
                             <Swiper
