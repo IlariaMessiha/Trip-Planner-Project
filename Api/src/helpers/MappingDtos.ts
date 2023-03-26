@@ -11,12 +11,13 @@ import {
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { AttractionReviewDto } from "src/types/dto/common/AttractionReviewDto";
 import { CityDto } from "src/types/dto/common/CityDto";
+import { CountryDto } from "src/types/dto/common/CountryDto";
 import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { UserDto } from "src/types/dto/common/UserDto";
 export class MappingDtos {
     constructor() {}
-    mapCityToDto(city: city, image: directus_files): CityDto {
+    mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
         const long = city.long.toNumber();
         const lat = city.lat.toNumber();
 
@@ -28,6 +29,14 @@ export class MappingDtos {
             cityCode: city.city_code,
             mapLocation: mapLocation,
             imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+            country: country,
+        };
+    }
+    mapCountryToDto(country: country): CountryDto {
+        return {
+            id: country.id,
+            code: country.country_code,
+            label: country.label,
         };
     }
     mapReviewToDto(review: attraction_review, user: UserDto): AttractionReviewDto {
@@ -49,10 +58,10 @@ export class MappingDtos {
         };
     }
     mapAttractionToDto(attraction: Attraction, image: directus_files): AttractionDto {
-        const long = attraction.long.toNumber();
-        const lat = attraction.lat.toNumber();
+        const long = attraction.long ? attraction.long.toNumber() : null;
+        const lat = attraction.lat ? attraction.lat.toNumber() : null;
 
-        const mapLocation = lat && long ? { lat, long } : null;
+        const mapLocation = lat && long ? { long, lat } : null;
 
         return {
             id: attraction.id,
@@ -61,7 +70,7 @@ export class MappingDtos {
             address: attraction.address,
             phone: attraction.phone,
             suggestedDuration: attraction.suggested_duration,
-            entryFee: attraction.entry_fee.toNumber(),
+            entryFee: attraction.entry_fee ? attraction.entry_fee.toNumber() : null,
             imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
             website: attraction.website,
             type: attraction.type,
@@ -72,8 +81,12 @@ export class MappingDtos {
             mapLocation: mapLocation,
 
             openingHours: {
-                from: attraction.openning_hours_from.toISOString(),
-                to: attraction.openning_hours_to.toISOString(),
+                from: attraction.openning_hours_from
+                    ? attraction.openning_hours_from.toISOString()
+                    : null,
+                to: attraction.openning_hours_to
+                    ? attraction.openning_hours_to.toISOString()
+                    : null,
             },
         };
     }

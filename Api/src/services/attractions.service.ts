@@ -40,6 +40,7 @@ export class AttractionsService {
             },
             include: {
                 directus_files: true,
+                country: true,
             },
         });
         const reviews = await this.prisma.attraction_review.findMany({
@@ -58,7 +59,11 @@ export class AttractionsService {
                     this.mappingDto.mapUserToDto(review.user)
                 );
             }),
-            city: this.mappingDto.mapCityToDto(city, city.directus_files),
+            city: this.mappingDto.mapCityToDto(
+                city,
+                city.directus_files,
+                this.mappingDto.mapCountryToDto(city.country)
+            ),
         };
     }
 

@@ -4,9 +4,7 @@ import { CityService } from "src/services/cities.service";
 
 @Controller("/cities")
 export class CitiesController {
-    constructor(private configService: ConfigService, private cityService: CityService) {
-        console.log(configService.get("IMAGES_PATH"));
-    }
+    constructor(private configService: ConfigService, private cityService: CityService) {}
     @Get("")
     getCities() {
         return this.cityService.findCities();

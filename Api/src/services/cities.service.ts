@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
-import { Attraction, attraction_review, city, country, directus_files, user } from "@prisma/client";
-import { CityDto } from "src/types/dto/common/CityDto";
+import { city } from "@prisma/client";
 import { GetCityResponseDto } from "src/types/dto/cities/GetCityResponseDto";
 import { MappingDtos } from "src/helpers/mappingDtos";
 
@@ -16,6 +15,7 @@ export class CityService {
             },
             include: {
                 directus_files: true,
+                country: true,
             },
         });
         const attractions = await this.prisma.attraction.findMany({
@@ -44,7 +44,11 @@ export class CityService {
         });
 
         return {
-            city: this.mappingDtos.mapCityToDto(city, city.directus_files),
+            city: this.mappingDtos.mapCityToDto(
+                city,
+                city.directus_files,
+                this.mappingDtos.mapCountryToDto(city.country)
+            ),
             sections: [
                 {
                     title: "Do",

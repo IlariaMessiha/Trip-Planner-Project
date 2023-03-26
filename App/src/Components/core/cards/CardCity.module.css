@@ -16,3 +16,7 @@
     position: relative;
 
 }
+
+.label {
+    font-weight: bold;
+}

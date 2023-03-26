@@ -1,6 +1,5 @@
 import { ReactNode, useRef } from "react";
 import { Navigation, Pagination } from "swiper";
-import "./Swiper.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -31,27 +30,28 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
 
     return (
         <ReactSwiper
+            className={styles.swiper}
             breakpoints={{
                 0: {
                     slidesPerView: 1,
                     spaceBetween: 10,
                 },
                 480: {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
+                    slidesPerView: 2,
+                    spaceBetween: 5,
                 },
 
                 750: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                1090: {
                     slidesPerView: 3,
                     spaceBetween: 5,
                 },
+                1090: {
+                    slidesPerView: 4,
+                    spaceBetween: 6,
+                },
                 1280: {
-                    slidesPerView: 3.5,
-                    spaceBetween: 20,
+                    slidesPerView: 4,
+                    spaceBetween: 6,
                 },
             }}
             modules={[Navigation]}
@@ -62,15 +62,16 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
             pagination={{ clickable: true }}
             centerInsufficientSlides={true}
         >
-            {items.map((item, i) => {
-                return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
-            })}
-
             <div className={styles.prevButton} ref={prevButton}>
                 <SwiperArrowsButton>
                     <ArrowBackIcon />
                 </SwiperArrowsButton>
             </div>
+
+            {items.map((item, i) => {
+                return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
+            })}
+
             <div className={styles.nextButton} ref={nextButton}>
                 <SwiperArrowsButton>
                     <ArrowForwardIcon />

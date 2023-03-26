@@ -10,6 +10,7 @@ import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import { SectionDto } from "../../types/dto/common/SectionDto";
 import { SectionItemType } from "./SectionItemType";
 import { Typography } from "@mui/material";
+import { Section } from "../core/layout/Section";
 
 interface LocationTopAttractionProps {
     sections: SectionDto[];
@@ -21,9 +22,7 @@ export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ sections
             {sections.map(section => {
                 {
                     return (
-                        <div className={styles.topAttractionSwiper}>
-                            <Typography variant="h4">{section.title}</Typography>
-                            <Typography variant="h6">{section.subtitle}</Typography>
+                        <Section title={section.title} subtitle={section.subtitle}>
                             <div className={styles.section}>
                                 {section.items.length === 0 && <div> Loading... </div>}
                                 {section.items.length > 0 && (
@@ -35,7 +34,7 @@ export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ sections
                                     />
                                 )}
                             </div>
-                        </div>
+                        </Section>
                     );
                 }
             })}
