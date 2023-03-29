@@ -9,7 +9,12 @@
         "review": "Reseñar",
         "search": "Buscar",
         "filterBy": "Filtrado por",
-        "close": "Cerca"
+        "close": "Cerca",
+        "city": "ciudad",
+        "country": "país",
+        "hotel": "hotel",
+        "attraction": "atracción",
+        "restaurant": "restaurante"
     },
     "navBar": {
         "logo": "Planificador De Viajes",

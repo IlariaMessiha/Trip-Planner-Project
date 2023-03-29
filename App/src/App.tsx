@@ -15,11 +15,10 @@ function App() {
                 <NavigationBar />
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<Dashboard />} />
-
                         <Route path="/Search" element={<SearchPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
+                        <Route path="/" element={<Dashboard />} />
                     </Routes>
                 </BrowserRouter>
             </div>

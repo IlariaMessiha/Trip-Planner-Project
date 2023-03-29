@@ -8,50 +8,57 @@ import { fetchData } from "../../api/FetchData";
 import React from "react";
 
 interface LocationSearchResultProps {
-    id: string;
+    item: any;
+    type: string;
 }
-export const LocationSearchResult: FC<LocationSearchResultProps> = ({ id }) => {
-    return <div></div>;
-    // const [location, setLocation] = useState<Location | undefined>(undefined);
-    // const [locationActivities, setLocationActivities] = useState<Activity[] | []>([]);
-    // React.useEffect(() => {
-    //     const onMount = async () => {
-    //         if (id) {
-    //             const _location = await fetchData.getLocationById(id);
-    //             setLocation(_location);
-    //             const _locationActivities = await fetchData.getActivitiesForLocation(id);
-    //             setLocationActivities(_locationActivities);
-    //         }
-    //     };
-    //     onMount();
-    // }, [id]);
+export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item, type }) => {
+    
+    const [locationInfo, setLocationInfo] = useState<string>("");
+    //const [locationActivities, setLocationActivities] = useState<Activity[] | []>([]);
+    React.useEffect(() => {
+        const onMount = async () => {
+            if (type === "city") {
+                const info = await fetchData.getCountryForCity(item.id);
+                 setLocationInfo(info.label);
+                console.log(locationInfo);
+            } else {
+                setLocationInfo("");
+            }
+        };
+        onMount();
+    }, []);
 
-    // const { t } = useTranslation();
-    // if (!location) {
-    //     return null;
-    // }
-    // return (
-    //     <div className={styles.searchResultElement}>
-    //         {/* <div className={styles.rightSide}></div> */}
+    const { t } = useTranslation();
+    if (!item) {
+        return null;
+    }
+    return (
+        <div className={styles.searchResultElement}>
+            {/* <div className={styles.rightSide}></div> */}
 
-    //         <Link to={`/location/${location.id}`}>
-    //             <img src={location.coverImage} alt="Cover" />
-    //         </Link>
+            <Link to={`/location/${item.id}`}>
+                <img
+                    src={
+                        "https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTk1NzY0MDg3NTEzMTYzNDEy/gettyimages-142198198.jpg"
+                    }
+                    alt="Cover"
+                />
+            </Link>
 
-    //         <div className={styles.rightSide}>
-    //             <Link to={`/location/${location.id}`}>
-    //                 <Typography text={location.name} variant="h3" className={styles.title} />
-    //             </Link>
+            <div className={styles.rightSide}>
+                <Link to={`/location/${item.id}`}>
+                    <Typography text={item.label} variant="h3" className={styles.title} />
+                </Link>
 
-    //             <div className={styles.resultType}>
-    //                 <GrLocation /> <Typography text="Location" variant="body1" />
-    //             </div>
-    //             <Typography text={location.country} variant="body1" />
-    //             <div className={styles.availableActivities}>
-    //                 <Typography text={locationActivities.length} variant="body2" />
-    //                 <Typography text={t("common.activities")} variant="body2" />
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
+                <div className={styles.resultType}>
+                    <GrLocation /> <Typography text="Location" variant="body1" />
+                </div>
+                <Typography text={locationInfo} variant="body1" />
+                <div className={styles.availableActivities}>
+                    {/* {<Typography text={locationActivities.length} variant="body2" />} */}
+                    <Typography text={t("common.activities")} variant="body2" />
+                </div>
+            </div>
+        </div>
+    );
 };

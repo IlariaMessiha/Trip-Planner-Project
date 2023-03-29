@@ -2,6 +2,11 @@
     "common": {
         "locations": "Locations",
         "activities": "Activities",
+        "country": "Country",
+        "city":"City",
+        "attraction":"Attraction",
+        "hotel":"Hotel",
+        "restaurant":"Restaurant",
         "attractions": "Attractions",
         "reviews": "Reviews",
         "cities": "Cities",
