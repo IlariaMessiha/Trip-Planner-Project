@@ -8,7 +8,7 @@ const ChatbotButtonElement = styled(IconButton)({
     color: "white",
     bottom: 0,
     margin: "10px",
-    position: "sticky",
+    position: "fixed",
     right: 0,
     "&:hover": {
         backgroundColor: "white",

@@ -7,24 +7,23 @@ import { SearchPage } from "./Pages/SearchPage";
 
 import { AttractionPage } from "./Pages/AttractionPage";
 import { CityPage } from "./Pages/CityPage";
-import { ChatbotButton } from "./Components/widgets/ChatbotButton";
 import { ChatbotPage } from "./Pages/ChatbotPage";
 
 function App() {
     return (
         <Suspense fallback={null}>
-            <div>
+            <>
                 <NavigationBar />
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/Search" element={<SearchPage />} />
+                        <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
-                        <Route path="/chatbot" element={<ChatbotPage />} />
                     </Routes>
                 </BrowserRouter>
-            </div>
+            </>
         </Suspense>
     );
 }

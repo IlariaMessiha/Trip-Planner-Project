@@ -31,12 +31,10 @@ export const Dashboard = () => {
     }, []);
 
     return (
-        <>
-            {" "}
+        <div>
+            <Typography variant="h4">{t("dashboard.slogan")}</Typography>
+            <SearchEngineAutocomplete />
             <Container>
-                <Typography variant="h4">{t("dashboard.slogan")}</Typography>
-
-                <SearchEngineAutocomplete />
                 {sections.map((section, i) => {
                     return (
                         <Section title={section.title} subtitle={section.subtitle} key={i}>
@@ -54,6 +52,6 @@ export const Dashboard = () => {
                 })}
             </Container>
             <ChatbotButton />
-        </>
+        </div>
     );
 };
