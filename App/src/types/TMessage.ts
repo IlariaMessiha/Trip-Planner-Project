@@ -15,5 +15,5 @@ export type TMessageBotQuestionData = {
     code: string;
     type: TChatbotQuestionType;
     text: string;
-    answers: { code: string; text: string }[];
+    answers?: { code: string; text: string }[];
 };
