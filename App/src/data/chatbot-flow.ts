@@ -1,6 +1,6 @@
-import { ChatbotFlow } from "../types/Chatbot";
+import { TChatbotFlow } from "../types/TChatbot";
 
-export const flow: ChatbotFlow = {
+export const flow: TChatbotFlow = {
     questions: [
         {
             code: "travelingWith",
