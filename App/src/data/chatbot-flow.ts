@@ -1,3 +1,5 @@
+import { ChatbotFlow } from "../types/Chatbot";
+
 export const flow: ChatbotFlow = {
     questions: [
         {
@@ -256,44 +258,6 @@ export const flow: ChatbotFlow = {
             ],
         },
     ],
-};
-
-type ChatbotFlow = {
-    questions: ChatbotFlowQuestion[];
-};
-type ChatbotFlowQuestion = {
-    code: string;
-    sort: number;
-    text: string;
-    type: "text" | "multiple-choices" | "single-choice";
-    answers?: ChatbotFlowAnswer[];
-    filter?: ChatbotFlowFilter;
-    filterAggregation?: "and" | "or";
-    shouldAskIf?: ChatbotFlowFilter;
-    validation?: ChatbotFlowValidation;
-};
-
-type ChatbotFlowAnswer = {
-    code: string;
-    text: string;
-    filter: ChatbotFlowFilter;
-};
-
-type ChatbotFlowFilter = {
-    [key: string]: {
-        $eq?: string;
-        $in?: string[];
-        $gte?: string;
-        $lte?: string;
-    };
-};
-
-type ChatbotFlowValidation = {
-    type: string;
-    onError: {
-        text: string;
-        action: "retry" | "skip";
-    };
 };
 
 // Example of filter built from the flow above
