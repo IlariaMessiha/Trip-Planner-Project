@@ -4,79 +4,43 @@ import SendIcon from "@mui/icons-material/Send";
 import styles from "./ChatbotPage.module.css";
 import { Container } from "../Components/core/layout/Container";
 import { useEffect, useState } from "react";
+import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
+import { TMessageUser } from "../types/TMessage";
+import { ChatMessages } from "../Components/widgets/chat/ChatMessages";
+import { ChatInput } from "../Components/widgets/chat/ChatInput";
 
 export const ChatbotPage = () => {
-    const [userInput, setUserInput] = useState<string>("");
-    const [answers, setAnswers] = useState<string[]>([]);
-    const question1 = "Are you traveling with";
-    const choices1 = ["family", "friends", "work", "alone"];
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        if (userInput) setAnswers(answers => [...answers, userInput]);
-        setUserInput("");
+    const messageUser: TMessageUser = {
+        avatar: "hello",
+        displayName: "ilaria refaat",
+        id: "1",
     };
-    const handleInputChange = (e: any) => {
-        setUserInput(e.target.value);
+    const chatbotQuestion: TMessageBotQuestionData = {
+        code: "traveling-with",
+        text: "Who are you traveling with",
+        answers: [
+            { code: "family", text: "Family" },
+            { code: "work", text: "Work" },
+        ],
+        type: "single-choice",
     };
+    const messages: TMessage[] = [
+        {
+            data: chatbotQuestion,
+            dataType: "bot-question",
+            sender: messageUser,
+            sentAt: "4/21/2023",
+        },
+    ];
 
     return (
         <Container className={styles.container}>
             <div className={styles.chat}>
-                <div className={styles.conversation}>
-                    <div className={styles.chatbotMessage}>
-                        <Card elevation={0} className={styles.chatbotQuestion}>
-                            <Typography>{question1}</Typography>
-                        </Card>
-                        <div className={styles.choices}>
-                            {choices1.map((choice, i) => {
-                                return (
-                                    <Button
-                                        variant="contained"
-                                        key={i}
-                                        onClick={() => {
-                                            setAnswers(answers => [...answers, choice]);
-                                        }}
-                                    >
-                                        <Typography>{choice}</Typography>
-                                    </Button>
-                                );
-                            })}
-                        </div>
-                    </div>
-                    <div className={styles.userMessage}>
-                        {answers &&
-                            answers.map((answer, i) => (
-                                <Card
-                                    key={i}
-                                    elevation={0}
-                                    sx={{ backgroundColor: "#1976d2" }}
-                                    className={styles.answer}
-                                >
-                                    <Typography sx={{ color: "white" }}>{answer}</Typography>
-                                </Card>
-                            ))}
-                    </div>
-                </div>
+                <ChatMessages messages={messages} />
             </div>
-            <form className={styles.input} onSubmit={handleSubmit}>
-                <TextField
-                    label="Response"
-                    variant="outlined"
-                    onChange={handleInputChange}
-                    value={userInput}
-                    fullWidth
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton edge="end" type="submit" onClick={handleSubmit}>
-                                    <SendIcon />
-                                </IconButton>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-            </form>
+            <div className={styles.input}>
+                <ChatInput />
+            </div>
         </Container>
     );
 };

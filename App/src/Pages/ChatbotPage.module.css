@@ -7,12 +7,6 @@
 
 }
 
-.chatbotQuestion {
-    width: fit-content;
-    padding: 8px 16px;
-    margin-bottom: 10px;
-
-}
 
 .input {
     margin-bottom: 20px;
@@ -20,37 +14,6 @@
 }
 
 
-
-.chatbotQuestion {
-    border: 1px solid #333;
-}
-
-.choices {
-    display: flex;
-    gap: 10px;
-}
-
-.conversation {
-
-    margin-bottom: 100px;
-    height: inherit;
-
-
-}
-
-.answer {
-    float: right;
-    background-color: #1976d2;
-    padding: 8px 16px;
-
-}
-
-.userMessage {
-    float: right;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 
 .container {
     display: flex;

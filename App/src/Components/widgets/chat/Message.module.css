@@ -1,0 +1,19 @@
+.chatbotQuestion {
+    width: fit-content;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.chatbotQuestion {
+    border: 1px solid #333;
+}
+
+.choices {
+    display: flex;
+    gap: 10px;
+}

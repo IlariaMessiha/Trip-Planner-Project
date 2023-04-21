@@ -1,9 +1,9 @@
 import { TChatbotQuestionType } from "./TChatbot";
 
-export type TMessage = {
+export type TMessage<V = any> = {
     sender: TMessageUser;
     dataType: "text" | "bot-question";
-    data: string | TMessageBotQuestionData;
+    data: V;
     sentAt: string;
 };
 export type TMessageUser = {
