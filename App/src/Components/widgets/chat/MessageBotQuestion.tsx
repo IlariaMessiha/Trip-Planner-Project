@@ -1,23 +1,28 @@
-import { Button, Card, Typography } from "@mui/material";
+import { Avatar, Button, Card, Typography } from "@mui/material";
 import styles from "./MessageBotQuestion.module.css";
 import { TMessage } from "../../../types/TMessage";
 import { FC } from "react";
 import { TChatbotAnswer } from "../../../types/TChatbot";
+import { blue } from "@mui/material/colors";
 interface MessageBotQuestionProps {
     message: TMessage;
     onAnswerSelect: (answerCode: string, answerText: string) => void;
 }
 export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message, onAnswerSelect }) => {
     return (
-        <div className={styles.chatbotMessage}>
-            <Card elevation={0} className={styles.chatbotQuestion}>
-                <Typography>{message.data.text}</Typography>
-            </Card>
+        <div className={styles.container}>
+            <div className={styles.chatbotMessage}>
+                <Avatar sx={{ bgcolor: blue }}>{message.sender.displayName[0]}</Avatar>
+                <Card elevation={0} className={styles.chatbotQuestion}>
+                    <Typography>{message.data.text}</Typography>
+                </Card>
+            </div>
+
             {message.data.answers && (
                 <div className={styles.choices}>
                     {message.data.answers.map((choice: TChatbotAnswer, i: any) => {
                         return (
-                            <div>
+                            <div className={styles.choice}>
                                 {choice.code === "submit" ? (
                                     <Button
                                         variant="outlined"

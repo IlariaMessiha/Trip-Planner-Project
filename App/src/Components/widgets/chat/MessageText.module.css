@@ -1,8 +1,14 @@
 .userText {
-    float: right;
+
     background-color: #1976d2;
     padding: 8px 16px;
 
+}
+
+.userMessage {
+    float: right;
+    display: flex;
+    gap: 10px
 }
 
 .botText {
@@ -11,4 +17,9 @@
     padding: 8px 16px;
     color: black;
     border: 1px solid #333;
+}
+
+.chatbotMessage {
+    display: flex;
+    gap: 10px;
 }

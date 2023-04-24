@@ -12,7 +12,6 @@ export const useChatbotController = () => {
     const [messages, setMessages] = useState<TMessage[]>([]);
     const [questions, setQuestions] = useState<TChatbotQuestion[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [destinations, setDestinations] = useState<GetDestinationNameDto>();
 
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
 
@@ -44,8 +43,8 @@ export const useChatbotController = () => {
             dataType: "bot-question",
             sender: {
                 avatar: "",
-                displayName: "ilaria",
-                id: "1",
+                displayName: "bot",
+                id: "0",
             },
             sentAt: dayjs().toISOString(),
         };
@@ -111,12 +110,38 @@ export const useChatbotController = () => {
             if (answerCode || answerLabel) {
                 addResponseToSubmission(currentQuestion, answerValue);
                 displayQuestion(questions, currentQuestionIndex + 1);
+            } else {
+                const newMessage: TMessage = {
+                    data: "choose from the provided options",
+                    dataType: "text",
+                    sender: {
+                        avatar: "",
+                        displayName: "bot",
+                        id: "0",
+                    },
+                    sentAt: dayjs().toISOString(),
+                };
+                setMessages(prev => [...prev, newMessage]);
+                displayQuestion(questions, currentQuestionIndex);
             }
         } else if (currentQuestion.type === "multiple-choices") {
             if (answerValue === "submit") {
                 displayQuestion(questions, currentQuestionIndex + 1);
             } else if (answerCode || answerLabel) {
                 addResponseToSubmission(currentQuestion, answerValue);
+            } else {
+                const newMessage: TMessage = {
+                    data: "choose from the provided options",
+                    dataType: "text",
+                    sender: {
+                        avatar: "",
+                        displayName: "bot",
+                        id: "0",
+                    },
+                    sentAt: dayjs().toISOString(),
+                };
+                setMessages(prev => [...prev, newMessage]);
+                displayQuestion(questions, currentQuestionIndex);
             }
         } else if (currentQuestion.type == "text") {
             if (currentQuestion.validation) {

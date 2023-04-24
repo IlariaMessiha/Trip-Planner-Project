@@ -1,17 +1,24 @@
 .chatbotQuestion {
     width: fit-content;
     padding: 8px 16px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
 
 }
 
+.chatbotMessage {
+    display: flex;
+    gap: 10px;
+}
 
-
-.chatbotQuestion {
-    border: 1px solid #333;
+.container {
+    width: 50%;
 }
 
 .choices {
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 10px;
+
+
 }
