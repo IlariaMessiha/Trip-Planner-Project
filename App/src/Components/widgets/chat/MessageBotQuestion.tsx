@@ -1,9 +1,9 @@
-import { Avatar, Button, Card, Typography } from "@mui/material";
+import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 import styles from "./MessageBotQuestion.module.css";
 import { TMessage } from "../../../types/TMessage";
 import { FC } from "react";
 import { TChatbotAnswer } from "../../../types/TChatbot";
-import { blue } from "@mui/material/colors";
+import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
 import dayjs from "dayjs";
 interface MessageBotQuestionProps {
     message: TMessage;
@@ -13,7 +13,9 @@ export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message, onAns
     return (
         <div className={styles.container}>
             <div className={styles.chatbotMessage}>
-                <Avatar>{message.sender.displayName[0]}</Avatar>
+                <Avatar>
+                    <SmartToyOutlinedIcon />
+                </Avatar>
                 <Card elevation={0} className={styles.chatbotQuestion}>
                     <Typography>{message.data.text}</Typography>
                 </Card>
@@ -23,7 +25,7 @@ export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message, onAns
                 <div className={styles.choices}>
                     {message.data.answers.map((choice: TChatbotAnswer, i: any) => {
                         return (
-                            <div className={styles.choice}>
+                            <div className={styles.choice} key={i}>
                                 {choice.code === "submit" ? (
                                     <Button
                                         variant="outlined"
@@ -46,7 +48,9 @@ export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message, onAns
                     })}
                 </div>
             )}
-            <Typography variant="subtitle2">{dayjs(message.sentAt).format("hh:mm a")}</Typography>
+            <Typography variant="caption" className={styles.date}>
+                {dayjs(message.sentAt).format("hh:mm a")}
+            </Typography>
         </div>
     );
 };

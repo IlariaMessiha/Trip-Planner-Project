@@ -283,6 +283,18 @@ export const flow: TChatbotFlow = {
                 },
             ],
         },
+        {
+            code: "submitQuestion",
+            sort: 9,
+            text: "Submit answers to plan your trip",
+            type: "single-choice",
+            answers: [
+                {
+                    code: "submit",
+                    text: "Submit",
+                },
+            ],
+        },
     ],
 };
 

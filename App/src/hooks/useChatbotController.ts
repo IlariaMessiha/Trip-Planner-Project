@@ -7,8 +7,10 @@ import { TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
 import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsDto";
 import { fetchData } from "../api/FetchData";
 import { validateMap } from "../helpers/ValidateChatbotAnswers";
+import { useNavigate } from "react-router-dom";
 
 export const useChatbotController = () => {
+    const navigate = useNavigate();
     const [messages, setMessages] = useState<TMessage[]>([]);
     const [questions, setQuestions] = useState<TChatbotQuestion[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -109,7 +111,11 @@ export const useChatbotController = () => {
         if (currentQuestion.type === "single-choice") {
             if (answerCode || answerLabel) {
                 addResponseToSubmission(currentQuestion, answerValue);
-                displayQuestion(questions, currentQuestionIndex + 1);
+                if (checkIfLastQuestion()) {
+                    navigate("/");
+                } else {
+                    displayQuestion(questions, currentQuestionIndex + 1);
+                }
             } else {
                 const newMessage: TMessage = {
                     data: "choose from the provided options",
@@ -126,7 +132,11 @@ export const useChatbotController = () => {
             }
         } else if (currentQuestion.type === "multiple-choices") {
             if (answerValue === "submit") {
-                displayQuestion(questions, currentQuestionIndex + 1);
+                if (checkIfLastQuestion()) {
+                    navigate("/");
+                } else {
+                    displayQuestion(questions, currentQuestionIndex + 1);
+                }
             } else if (answerCode || answerLabel) {
                 addResponseToSubmission(currentQuestion, answerValue);
             } else {
@@ -148,7 +158,11 @@ export const useChatbotController = () => {
                 textQuestionValidation(answerValue, currentQuestion);
             } else {
                 addResponseToSubmission(currentQuestion, answerValue);
-                displayQuestion(questions, currentQuestionIndex + 1);
+                if (checkIfLastQuestion()) {
+                    navigate("/");
+                } else {
+                    displayQuestion(questions, currentQuestionIndex + 1);
+                }
             }
         }
     };
@@ -173,6 +187,12 @@ export const useChatbotController = () => {
             };
             setMessages(prev => [...prev, newMessage]);
             displayQuestion(questions, currentQuestionIndex);
+        }
+    };
+    const checkIfLastQuestion = () => {
+        if (currentQuestionIndex === questions.length - 1) {
+            console.log(submissions);
+            return true;
         }
     };
 
