@@ -50,6 +50,13 @@ export const flow: TChatbotFlow = {
             sort: 2,
             text: "What is the minimum age of your group ?",
             type: "text",
+            validation: {
+                type: "valid-age",
+                onError: {
+                    text: "Age is not valid",
+                    action: "retry",
+                },
+            },
             shouldAskIf: {
                 travelingWith: { $in: ["family", "friends"] },
             },
@@ -103,10 +110,17 @@ export const flow: TChatbotFlow = {
         {
             code: "tripDuration",
             sort: 4,
-            text: "How long are you planning to stay ?",
+            text: "How long are you planning to stay ?(in weeks)",
             type: "text",
             filter: {
                 tripDuration: { $lte: "$value" },
+            },
+            validation: {
+                type: "valid-duration",
+                onError: {
+                    text: "Duration is not valid",
+                    action: "retry",
+                },
             },
         },
         {
@@ -175,6 +189,10 @@ export const flow: TChatbotFlow = {
                         tags: { $in: ["shopping", "boutiques"] },
                     },
                 },
+                {
+                    code: "submit",
+                    text: "Submit",
+                },
             ],
         },
         {
@@ -220,6 +238,10 @@ export const flow: TChatbotFlow = {
                     text: "Nothing specific",
                     filter: {},
                 },
+                {
+                    code: "submit",
+                    text: "Submit",
+                },
             ],
         },
         {
@@ -254,6 +276,10 @@ export const flow: TChatbotFlow = {
                     code: "nothingSpecific",
                     text: "Nothing specific",
                     filter: {},
+                },
+                {
+                    code: "submit",
+                    text: "Submit",
                 },
             ],
         },

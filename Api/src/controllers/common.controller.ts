@@ -2,11 +2,15 @@ import { Controller, Get } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { CommonService } from "src/services/common.service";
 
-@Controller("/dashboard")
+@Controller("")
 export class CommonController {
     constructor(private configService: ConfigService, private commonService: CommonService) {}
-    @Get("")
+    @Get("/dashboard")
     getDashboard() {
         return this.commonService.findDashboardContent();
+    }
+    @Get("/destinations")
+    getDestinations() {
+        return this.commonService.findDestinations();
     }
 }

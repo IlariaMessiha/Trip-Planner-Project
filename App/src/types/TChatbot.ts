@@ -18,7 +18,7 @@ export type TChatbotQuestionType = "text" | "multiple-choices" | "single-choice"
 export type TChatbotAnswer = {
     code: string;
     text: string;
-    filter: TChatbotFilter;
+    filter?: TChatbotFilter;
 };
 
 export type TChatbotFilter = {
@@ -36,4 +36,10 @@ export type TChatbotValidation = {
         text: string;
         action: "retry" | "skip";
     };
+};
+
+export type TChatbotSubmission = {
+    questionCode: string;
+    questionType: TChatbotQuestionType;
+    value: string;
 };

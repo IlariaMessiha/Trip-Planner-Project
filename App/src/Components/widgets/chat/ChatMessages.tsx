@@ -6,7 +6,7 @@ import styles from "./ChatMessages.module.css";
 
 interface ChatMessagesProps {
     messages: TMessage[];
-    onAnswerSelect: (answerCode: string) => void;
+    onAnswerSelect: (answerCode: string, answerText: string) => void;
 }
 const isTMessageBotQuestionData = (
     message: TMessage
@@ -18,7 +18,7 @@ export const ChatMessages: FC<ChatMessagesProps> = ({ messages, onAnswerSelect }
         <div className={styles.container}>
             {messages.map((message, i) => {
                 return (
-                    <div>
+                    <div key={i} className={styles.message}>
                         {isTMessageBotQuestionData(message) ? (
                             <div className={styles.botMessage}>
                                 <MessageBotQuestion
@@ -27,7 +27,7 @@ export const ChatMessages: FC<ChatMessagesProps> = ({ messages, onAnswerSelect }
                                 />
                             </div>
                         ) : (
-                            <div className={styles.userMessage}>
+                            <div className={styles.text}>
                                 <MessageText message={message} />
                             </div>
                         )}

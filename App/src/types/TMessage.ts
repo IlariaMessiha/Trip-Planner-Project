@@ -1,4 +1,5 @@
 import { TChatbotQuestionType } from "./TChatbot";
+import { UserDto } from "./dto/common/UserDto";
 
 export type TMessage<V = any> = {
     sender: TMessageUser;

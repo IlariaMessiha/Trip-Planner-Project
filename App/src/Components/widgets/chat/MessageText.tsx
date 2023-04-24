@@ -7,8 +7,16 @@ interface MessageTextProps {
 }
 export const MessageText: FC<MessageTextProps> = ({ message }) => {
     return (
-        <Card elevation={0} sx={{ backgroundColor: "#1976d2" }} className={styles.answer}>
-            <Typography sx={{ color: "white" }}>{message.data}</Typography>
-        </Card>
+        <div>
+            {message.sender.id === "0" ? (
+                <Card elevation={0} className={styles.botText}>
+                    <Typography>{message.data}</Typography>
+                </Card>
+            ) : (
+                <Card elevation={0} className={styles.userText}>
+                    <Typography sx={{ color: "white" }}>{message.data}</Typography>
+                </Card>
+            )}
+        </div>
     );
 };

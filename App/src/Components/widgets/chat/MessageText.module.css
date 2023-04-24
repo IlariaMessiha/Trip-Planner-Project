@@ -1,4 +1,14 @@
-.answer {
+.userText {
+    float: right;
     background-color: #1976d2;
     padding: 8px 16px;
+
+}
+
+.botText {
+    max-width: fit-content;
+    background-color: white;
+    padding: 8px 16px;
+    color: black;
+    border: 1px solid #333;
 }

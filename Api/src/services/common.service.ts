@@ -1,12 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { MappingDtos } from "src/helpers/mappingDtos";
 import { PrismaService } from "src/prisma.service";
-import { getDashboardResponseDto } from "src/types/dto/dashboard/getDashboardResponseDto";
+import { GetDashboardResponseDto } from "src/types/dto/dashboard/GetDashboardResponseDto";
+import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
 
 @Injectable()
 export class CommonService {
     constructor(private prisma: PrismaService, private mappingDtos: MappingDtos) {}
-    async findDashboardContent(): Promise<getDashboardResponseDto> {
+    async findDashboardContent(): Promise<GetDashboardResponseDto> {
         const cities = await this.prisma.city.findMany({
             include: {
                 country: true,
@@ -53,6 +54,18 @@ export class CommonService {
                     }),
                 },
             ],
+        };
+    }
+    async findDestinations(): Promise<GetDestinationNameDto> {
+        const cities = await this.prisma.city.findMany();
+        const countries = await this.prisma.country.findMany();
+        return {
+            citiesName: cities.map(city => {
+                return city.label;
+            }),
+            countriesName: countries.map(country => {
+                return country.label;
+            }),
         };
     }
 }
