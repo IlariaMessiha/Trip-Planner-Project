@@ -4,6 +4,7 @@ import { TMessage } from "../../../types/TMessage";
 import { FC } from "react";
 import { TChatbotAnswer } from "../../../types/TChatbot";
 import { blue } from "@mui/material/colors";
+import dayjs from "dayjs";
 interface MessageBotQuestionProps {
     message: TMessage;
     onAnswerSelect: (answerCode: string, answerText: string) => void;
@@ -12,7 +13,7 @@ export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message, onAns
     return (
         <div className={styles.container}>
             <div className={styles.chatbotMessage}>
-                <Avatar sx={{ bgcolor: blue }}>{message.sender.displayName[0]}</Avatar>
+                <Avatar>{message.sender.displayName[0]}</Avatar>
                 <Card elevation={0} className={styles.chatbotQuestion}>
                     <Typography>{message.data.text}</Typography>
                 </Card>
@@ -45,6 +46,7 @@ export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message, onAns
                     })}
                 </div>
             )}
+            <Typography variant="subtitle2">{dayjs(message.sentAt).format("hh:mm a")}</Typography>
         </div>
     );
 };
