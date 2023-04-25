@@ -13,4 +13,8 @@ export class CommonController {
     getDestinations() {
         return this.commonService.findDestinations();
     }
+    @Get("/chatbotFlow")
+    getChatbotFlow() {
+        return this.commonService.findChatbotFlow();
+    }
 }

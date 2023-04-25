@@ -11,7 +11,8 @@ export const validateMap = {
             ) ||
             destinations?.countriesName.find(
                 countryName => countryName.toLowerCase() === answerValue.toLowerCase()
-            )
+            ) ||
+            "any"
         ) {
             return true;
         }

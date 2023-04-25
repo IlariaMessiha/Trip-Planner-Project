@@ -1,6 +1,8 @@
 import { Injectable } from "@nestjs/common";
+import { flow } from "src/data/ChatbotFlow";
 import { MappingDtos } from "src/helpers/mappingDtos";
 import { PrismaService } from "src/prisma.service";
+import { TChatbotFlow, TChatbotQuestion } from "src/types/TChatbotFlow";
 import { GetDashboardResponseDto } from "src/types/dto/dashboard/GetDashboardResponseDto";
 import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
 
@@ -67,5 +69,8 @@ export class CommonService {
                 return country.label;
             }),
         };
+    }
+    findChatbotFlow(): TChatbotFlow {
+        return flow;
     }
 }

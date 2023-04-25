@@ -1,4 +1,4 @@
-import { TChatbotFlow } from "../types/TChatbot";
+import { TChatbotFlow } from "src/types/TChatbotFlow";
 
 export const flow: TChatbotFlow = {
     questions: [
@@ -297,15 +297,3 @@ export const flow: TChatbotFlow = {
         },
     ],
 };
-
-// Example of filter built from the flow above
-// const filter = {
-//     tags: {
-//         $and: [{ $in: ["family", "kids", "baby"] }, { $in: ["budget", "cheap", "low-cost"] }],
-//     },
-//     minAge: {
-//         $lte: "10",
-//     },
-//     budget: { $lte: "1000" },
-//     tripDuration: { $lte: "$value" },
-// };

@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
-import { flow } from "../data/chatbot-flow";
 import dayjs from "dayjs";
 import { orderBy } from "lodash";
 import { TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
-import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsDto";
 import { fetchData } from "../api/FetchData";
 import { validateMap } from "../helpers/ValidateChatbotAnswers";
 import { useNavigate } from "react-router-dom";
@@ -18,9 +16,15 @@ export const useChatbotController = () => {
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
 
     useEffect(() => {
-        const sortedQuestions = orderBy(flow.questions, "sort");
-        setQuestions(sortedQuestions);
-        displayQuestion(sortedQuestions, currentQuestionIndex);
+        const onMount = async () => {
+            const response = await fetchData.getChatbotFlow();
+            console.log(response.questions);
+            const sortedQuestions = orderBy(response.questions, "sort");
+            setQuestions(sortedQuestions);
+            displayQuestion(sortedQuestions, currentQuestionIndex);
+        };
+
+        onMount();
     }, []);
 
     const displayQuestion = (questions: TChatbotQuestion[], index: number) => {
