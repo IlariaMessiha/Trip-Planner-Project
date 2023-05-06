@@ -1,4 +1,4 @@
-import { TChatbotFlow } from "src/types/TChatbotFlow";
+import { TChatbotFlow } from "src/types/TChatbot";
 
 export const flow: TChatbotFlow = {
     questions: [
@@ -12,35 +12,35 @@ export const flow: TChatbotFlow = {
                     code: "myself",
                     text: "Myself",
                     filter: {
-                        tags: { $in: ["solo", "myself"] },
+                        tags: { in: ["solo", "myself"] },
                     },
                 },
                 {
                     code: "family",
                     text: "My family",
                     filter: {
-                        tags: { $in: ["family", "kids", "baby"] },
+                        tags: { in: ["family", "kids", "baby"] },
                     },
                 },
                 {
                     code: "friends",
                     text: "My friends",
                     filter: {
-                        tags: { $in: ["friends"] },
+                        tags: { in: ["friends"] },
                     },
                 },
                 {
                     code: "colleagues",
                     text: "My colleagues",
                     filter: {
-                        tags: { $in: ["colleagues", "business", "work", "formal"] },
+                        tags: { in: ["colleagues", "business", "work", "formal"] },
                     },
                 },
                 {
                     code: "couple",
                     text: "As a couple",
                     filter: {
-                        tags: { $in: ["couple", "romantic"] },
+                        tags: { in: ["couple", "romantic"] },
                     },
                 },
             ],
@@ -58,10 +58,10 @@ export const flow: TChatbotFlow = {
                 },
             },
             shouldAskIf: {
-                travelingWith: { $in: ["family", "friends"] },
+                travelingWith: { in: ["family", "friends"] },
             },
             filter: {
-                minAge: { $lte: "$value" },
+                minAge: { lte: "$value" },
             },
         },
         {
@@ -74,30 +74,30 @@ export const flow: TChatbotFlow = {
                     code: "lessThan1000",
                     text: "Less than $1000",
                     filter: {
-                        tags: { $in: ["budget", "cheap", "low-cost"] },
-                        budget: { $lte: "1000" },
+                        tags: { in: ["budget", "cheap", "low-cost"] },
+                        globalBudget: { lte: "1000" },
                     },
                 },
                 {
                     code: "1000-2000",
                     text: "$1000 - $2000",
                     filter: {
-                        budget: { $gte: "1000", $lte: "2000" },
+                        globalBudget: { gte: "1000", lte: "2000" },
                     },
                 },
                 {
                     code: "2000-3000",
                     text: "$2000 - $3000",
                     filter: {
-                        budget: { $gte: "2000", $lte: "3000" },
+                        globalBudget: { gte: "2000", lte: "3000" },
                     },
                 },
                 {
                     code: "moreThan3000",
                     text: "more than $3000",
                     filter: {
-                        tags: { $in: ["luxury", "expensive", "high-end", "premium"] },
-                        budget: { $gte: "3000" },
+                        tags: { in: ["luxury", "expensive", "high-end", "premium"] },
+                        globalBudget: { gte: "3000" },
                     },
                 },
                 {
@@ -113,7 +113,7 @@ export const flow: TChatbotFlow = {
             text: "How long are you planning to stay ?(in weeks)",
             type: "text",
             filter: {
-                tripDuration: { $lte: "$value" },
+                globalTripDuration: { lte: "$value" },
             },
             validation: {
                 type: "valid-duration",
@@ -136,7 +136,7 @@ export const flow: TChatbotFlow = {
                 },
             },
             filter: {
-                preferredDestination: { $eq: "$value" },
+                globalPreferredDestination: { equals: "$value" },
             },
         },
         {
@@ -151,7 +151,7 @@ export const flow: TChatbotFlow = {
                     text: "Physical activity",
                     filter: {
                         tags: {
-                            $in: [
+                            in: [
                                 "adventure",
                                 "adrenaline",
                                 "extreme",
@@ -165,28 +165,30 @@ export const flow: TChatbotFlow = {
                     code: "culture",
                     text: "Culture",
                     filter: {
-                        tags: { $in: ["culture", "history", "heritage"] },
+                        tags: { in: ["culture", "history", "heritage", "architecture"] },
                     },
                 },
                 {
                     code: "nature",
                     text: "Nature",
                     filter: {
-                        tags: { $in: ["nature", "wildlife", "animals", "beach", "camping"] },
+                        tags: {
+                            in: ["nature", "wildlife", "animals", "beach", "camping", "landscape"],
+                        },
                     },
                 },
                 {
                     code: "relaxation",
                     text: "Relaxation and wellness",
                     filter: {
-                        tags: { $in: ["relaxation", "spa", "massage"] },
+                        tags: { in: ["relaxation", "spa", "massage"] },
                     },
                 },
                 {
                     code: "shopping",
                     text: "Shopping",
                     filter: {
-                        tags: { $in: ["shopping", "boutiques"] },
+                        tags: { in: ["shopping", "boutiques"] },
                     },
                 },
                 {
@@ -202,35 +204,35 @@ export const flow: TChatbotFlow = {
             type: "multiple-choices",
             filterAggregation: "or",
             shouldAskIf: {
-                preferredThemes: { $in: ["physicalActivity"] },
+                preferredThemes: { in: ["physicalActivity"] },
             },
             answers: [
                 {
                     code: "hiking",
                     text: "Hiking",
                     filter: {
-                        tags: { $in: ["hiking", "trekking"] },
+                        tags: { in: ["hiking", "trekking"] },
                     },
                 },
                 {
                     code: "cycling",
                     text: "Cycling",
                     filter: {
-                        tags: { $in: ["cycling", "biking"] },
+                        tags: { in: ["cycling", "biking"] },
                     },
                 },
                 {
                     code: "waterSports",
                     text: "Water sports",
                     filter: {
-                        tags: { $in: ["water-sports", "surfing", "kayaking", "snorkeling"] },
+                        tags: { in: ["water-sports", "surfing", "kayaking", "snorkeling"] },
                     },
                 },
                 {
                     code: "skiing",
                     text: "Skiing",
                     filter: {
-                        tags: { $in: ["skiing", "snowboarding"] },
+                        tags: { in: ["skiing", "snowboarding"] },
                     },
                 },
                 {
@@ -255,21 +257,28 @@ export const flow: TChatbotFlow = {
                     code: "vegan",
                     text: "Vegan",
                     filter: {
-                        tags: { $in: ["vegan"] },
+                        tags: { in: ["vegan"] },
+                    },
+                },
+                {
+                    code: "vegetarian",
+                    text: "Vegatarian",
+                    filter: {
+                        tags: { in: ["vegetarian"] },
                     },
                 },
                 {
                     code: "halal",
                     text: "Halal",
                     filter: {
-                        tags: { $in: ["halal"] },
+                        tags: { in: ["halal"] },
                     },
                 },
                 {
                     code: "healthy",
                     text: "Healthy",
                     filter: {
-                        tags: { $in: ["healthy"] },
+                        tags: { in: ["healthy"] },
                     },
                 },
                 {

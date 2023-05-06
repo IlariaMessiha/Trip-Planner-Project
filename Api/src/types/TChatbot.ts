@@ -20,13 +20,25 @@ export type TChatbotAnswer = {
     text: string;
     filter?: TChatbotFilter;
 };
+export type TChatbotFilterKey =
+    | "globalBudget"
+    | "globalPreferredDestination"
+    | "globalTripDuration"
+    | string;
 
 export type TChatbotFilter = {
-    [key: string]: {
-        $eq?: string;
-        $in?: string[];
-        $gte?: string;
-        $lte?: string;
+    [key: TChatbotFilterKey]: {
+        equals?: string;
+        not?: string;
+        in?: string[];
+        notIn?: string[];
+        gte?: string;
+        gt?: string;
+        lte?: string;
+        lt?: string;
+        contains?: string;
+        startsWith?: string;
+        endsWith?: string;
     };
 };
 

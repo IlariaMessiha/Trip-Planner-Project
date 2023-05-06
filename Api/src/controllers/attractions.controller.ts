@@ -10,9 +10,4 @@ export class AttractionsController {
     getAttraction(@Param("id", ParseIntPipe) id: number): Promise<GetAttractionResponseDto> {
         return this.attractionsService.findAttraction(id);
     }
-
-    @Get("")
-    getAttractions() {
-        return this.attractionsService.findAttractions();
-    }
 }

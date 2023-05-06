@@ -1,6 +1,7 @@
 import {
     Attraction,
     attraction_review,
+    attraction_tag,
     city,
     country,
     directus_files,
@@ -14,7 +15,10 @@ import { CityDto } from "src/types/dto/common/CityDto";
 import { CountryDto } from "src/types/dto/common/CountryDto";
 import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
+import { AttractionTagsDto } from "src/types/dto/tags/AttractionTagsDto";
 import { UserDto } from "src/types/dto/common/UserDto";
+import { AttractionTagDto } from "src/types/dto/common/AttractionTagDto";
+import { TagDto } from "src/types/dto/common/TagDto";
 export class MappingDtos {
     constructor() {}
     mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
@@ -130,6 +134,17 @@ export class MappingDtos {
             code: restaurant.code,
             avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
             food: restaurant.food,
+        };
+    }
+    mapAttractionTagToDto(
+        attractionTag: attraction_tag,
+        attraction: Attraction,
+        tag: TagDto
+    ): AttractionTagDto {
+        return {
+            attractionId: attraction.id,
+            id: attractionTag.id,
+            tag: tag,
         };
     }
 }

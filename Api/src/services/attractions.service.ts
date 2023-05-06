@@ -8,21 +8,6 @@ import { MappingDtos } from "src/helpers/mappingDtos";
 @Injectable()
 export class AttractionsService {
     constructor(private prisma: PrismaService, private mappingDto: MappingDtos) {}
-    async findAttractions(): Promise<Attraction[]> {
-        const attractions = await this.prisma.attraction.findMany({
-            include: {
-                directus_files: true,
-            },
-        });
-
-        return attractions.map(({ directus_files, ...attraction }) => {
-            if (!directus_files) return attraction;
-            return {
-                ...attraction,
-                attraction_image: `http://localhost:8055/assets/${directus_files.filename_disk}`,
-            };
-        });
-    }
 
     async findAttraction(id: number): Promise<GetAttractionResponseDto> {
         const attraction = await this.prisma.attraction.findUnique({

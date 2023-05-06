@@ -6,6 +6,7 @@ import { TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
 import { fetchData } from "../api/FetchData";
 import { validateMap } from "../helpers/ValidateChatbotAnswers";
 import { useNavigate } from "react-router-dom";
+import { PostData, postData } from "../api/PostData";
 
 export const useChatbotController = () => {
     const navigate = useNavigate();
@@ -18,7 +19,6 @@ export const useChatbotController = () => {
     useEffect(() => {
         const onMount = async () => {
             const response = await fetchData.getChatbotFlow();
-            console.log(response.questions);
             const sortedQuestions = orderBy(response.questions, "sort");
             setQuestions(sortedQuestions);
             displayQuestion(sortedQuestions, currentQuestionIndex);
@@ -114,12 +114,7 @@ export const useChatbotController = () => {
         }
         if (currentQuestion.type === "single-choice") {
             if (answerCode || answerLabel) {
-                addResponseToSubmission(currentQuestion, answerValue);
-                if (checkIfLastQuestion()) {
-                    navigate("/");
-                } else {
-                    displayQuestion(questions, currentQuestionIndex + 1);
-                }
+                checkIfLastQuestion(currentQuestion, answerValue);
             } else {
                 const newMessage: TMessage = {
                     data: "choose from the provided options",
@@ -136,11 +131,7 @@ export const useChatbotController = () => {
             }
         } else if (currentQuestion.type === "multiple-choices") {
             if (answerValue === "submit") {
-                if (checkIfLastQuestion()) {
-                    navigate("/");
-                } else {
-                    displayQuestion(questions, currentQuestionIndex + 1);
-                }
+                displayQuestion(questions, currentQuestionIndex + 1);
             } else if (answerCode || answerLabel) {
                 addResponseToSubmission(currentQuestion, answerValue);
             } else {
@@ -160,13 +151,6 @@ export const useChatbotController = () => {
         } else if (currentQuestion.type == "text") {
             if (currentQuestion.validation) {
                 textQuestionValidation(answerValue, currentQuestion);
-            } else {
-                addResponseToSubmission(currentQuestion, answerValue);
-                if (checkIfLastQuestion()) {
-                    navigate("/");
-                } else {
-                    displayQuestion(questions, currentQuestionIndex + 1);
-                }
             }
         }
     };
@@ -193,11 +177,16 @@ export const useChatbotController = () => {
             displayQuestion(questions, currentQuestionIndex);
         }
     };
-    const checkIfLastQuestion = () => {
+    const checkIfLastQuestion = (currentQuestion: TChatbotQuestion, answerValue: string) => {
         if (currentQuestionIndex === questions.length - 1) {
-            console.log(submissions);
-            return true;
+            submitAnswers();
+        } else {
+            addResponseToSubmission(currentQuestion, answerValue);
+            displayQuestion(questions, currentQuestionIndex + 1);
         }
+    };
+    const submitAnswers = async () => {
+        await postData.postSubmission(submissions);
     };
 
     return {
