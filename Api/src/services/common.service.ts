@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { flow } from "src/data/ChatbotFlow";
 import {
-    TextValueFilter,
     getFieldFilters,
     replaceDynamicValueInFilter,
     toAttractionsFilter,

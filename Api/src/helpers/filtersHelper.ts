@@ -1,18 +1,6 @@
 import { TChatbotFilter, TChatbotQuestion, TChatbotSubmission } from "src/types/TChatbot";
 import { mapValues, partition, pickBy } from "lodash";
-import { Attraction, Prisma } from "@prisma/client";
-
-export const TextValueFilter = (question: TChatbotQuestion, submission: TChatbotSubmission) => {
-    // if (question.filter[question.code].equals) {
-    //     question.filter[question.code].equals = `${submission.value}`;
-    // }
-    // if (question.filter[question.code].lte) {
-    //     question.filter[question.code].lte.replace("$value", `${submission.value}`);
-    // }
-    // if (question.filter[question.code].gte) {
-    //     question.filter[question.code].gte = `${submission.value}`;
-    // }
-};
+import { Prisma } from "@prisma/client";
 
 export const replaceDynamicValueInFilter = (
     filter: TChatbotFilter,
@@ -29,7 +17,7 @@ export const replaceDynamicValueInFilter = (
     ) as TChatbotFilter;
 };
 
-export const toAttractionsFilter = (filters: TChatbotFilter[]): Prisma.AttractionWhereInput[] => {
+export const toAttractionsFilter = (filters: TChatbotFilter[]): Prisma.attractionWhereInput[] => {
     return filters.map(filter => ({
         min_age: mapPrismaNumberFilter(filter.minAge),
         attraction_tag: mapPrismaTagsFilter(filter.tags),

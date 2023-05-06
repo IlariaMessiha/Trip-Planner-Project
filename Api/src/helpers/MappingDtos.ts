@@ -1,5 +1,5 @@
 import {
-    Attraction,
+    attraction,
     attraction_review,
     attraction_tag,
     city,
@@ -61,7 +61,7 @@ export class MappingDtos {
             password: user.password,
         };
     }
-    mapAttractionToDto(attraction: Attraction, image: directus_files): AttractionDto {
+    mapAttractionToDto(attraction: attraction, image: directus_files): AttractionDto {
         const long = attraction.long ? attraction.long.toNumber() : null;
         const lat = attraction.lat ? attraction.lat.toNumber() : null;
 
@@ -138,7 +138,7 @@ export class MappingDtos {
     }
     mapAttractionTagToDto(
         attractionTag: attraction_tag,
-        attraction: Attraction,
+        attraction: attraction,
         tag: TagDto
     ): AttractionTagDto {
         return {

@@ -1,8 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
-import { Attraction, attraction_review, city, country, directus_files, user } from "@prisma/client";
 import { GetAttractionResponseDto } from "src/types/dto/attractions/GetAttractionResponseDto";
-import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { MappingDtos } from "src/helpers/mappingDtos";
 
 @Injectable()
