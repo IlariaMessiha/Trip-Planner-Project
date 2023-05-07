@@ -4,6 +4,7 @@ import {
     getFieldFilters,
     replaceDynamicValueInFilter,
     toAttractionsFilter,
+    toRestaurantsFilter,
 } from "src/helpers/filtersHelper";
 import { MappingDtos } from "src/helpers/mappingDtos";
 import { PrismaService } from "src/prisma.service";
@@ -20,6 +21,9 @@ import { GetDashboardResponseDto } from "src/types/dto/dashboard/GetDashboardRes
 import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
 import { GetFilteredAttractionAndRestaurantsDto as GetFilteredAttractionAndRestaurantsDto } from "src/types/dto/trips/GetFilteredAttractionAndRestaurantsDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
+import { TripDto } from "src/types/dto/common/TripDto";
+import { TripItemDto } from "src/types/dto/common/TripItemDto";
+import { pickBy } from "lodash";
 
 @Injectable()
 export class CommonService {
@@ -122,148 +126,30 @@ export class CommonService {
                 directus_files: true,
             },
         });
-        // const restaurants = await this.prisma.restaurant.findMany({
-        //     where: {
-        //         AND: fieldFilters,
-        //     },
-        //     include: {
-        //         directus_files: true,
-        //     },
-        // });
+        const restaurants = await this.prisma.restaurant.findMany({
+            where: {
+                AND: toRestaurantsFilter(fieldFilters),
+            },
+            include: {
+                directus_files: true,
+            },
+        });
         console.log(fieldFilters);
         return {
             attractions: attractions.map(attraction => {
                 return this.mappingDtos.mapAttractionToDto(attraction, attraction.directus_files);
             }),
-            // restaurants: restaurants.map(restaurant => {
-            //     return this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files);
-            // }),
-            restaurants: [],
+            restaurants: restaurants.map(restaurant => {
+                return this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files);
+            }),
         };
     }
-    //     async findFilteredAttractionAndRestaurants(
-    //         filters: TChatbotFilter[]
-    //     ): Promise<GetFilteredAttractionAndRestaurantsDto> {
-    //         let destination: string;
-    //         let minAge: number;
-    //         const tags = [];
-    //         const restaurantTags = [];
-    //         let filteredAttractions = [];
-    //         let filteredRestaurants: RestaurantDto[] = [];
-    //         //TODO split filters
-
-    //         // filters.map(filter => {
-    //         //     if (filter.preferredDestination) {
-    //         //         destination = filter.preferredDestination.eq;
-    //         //     }
-    //         //     if (filter.tags) {
-    //         //         tags.push(filter.tags.in);
-    //         //     }
-    //         //     if (filter.minAge) {
-    //         //         minAge = Number(filter.minAge.$lte);
-    //         //     }
-    //         // });
-    //         // restaurantFilters.map(filter => {
-    //         //     if (filter.tags) {
-    //         //         restaurantTags.push(...filter.tags.$in);
-    //         //     }
-    //         // });
-    //         console.log(filters);
-
-    //         console.log(tags, "............", restaurantTags);
-    //         await Promise.all(
-    //             tags.map(async tag => {
-    //                 const attractions = await this.prisma.attraction.findMany({
-    //                     where: {
-    //                         attraction_tag: {
-    //                             some: {
-    //                                 tag: {
-    //                                     code: {
-    //                                         in: tag,
-    //                                         mode: "insensitive",
-    //                                     },
-    //                                 },
-    //                             },
-    //                         },
-
-    //                         city: {
-    //                             OR: [
-    //                                 {
-    //                                     label: {
-    //                                         equals: destination,
-    //                                         mode: "insensitive",
-    //                                     },
-    //                                 },
-    //                                 {
-    //                                     country: {
-    //                                         label: {
-    //                                             equals: destination,
-    //                                             mode: "insensitive",
-    //                                         },
-    //                                     },
-    //                                 },
-    //                             ],
-    //                         },
-    //                         min_age: {
-    //                             lte: minAge,
-    //                         },
-    //                     },
-    //                     include: {
-    //                         directus_files: true,
-    //                     },
-    //                 });
-
-    //                 console.log(attractions, "------------", tag);
-    //             })
-    //         );
-
-    //         const restaurants = await this.prisma.restaurant.findMany({
-    //             where: {
-    //                 retaurant_tag: {
-    //                     some: {
-    //                         tag: {
-    //                             code: {
-    //                                 in: restaurantTags,
-    //                                 mode: "insensitive",
-    //                             },
-    //                         },
-    //                     },
-    //                 },
-
-    //                 city: {
-    //                     OR: [
-    //                         {
-    //                             label: {
-    //                                 equals: destination,
-    //                                 mode: "insensitive",
-    //                             },
-    //                         },
-    //                         {
-    //                             country: {
-    //                                 label: {
-    //                                     equals: destination,
-    //                                     mode: "insensitive",
-    //                                 },
-    //                             },
-    //                         },
-    //                     ],
-    //                 },
-    //             },
-    //             include: {
-    //                 directus_files: true,
-    //             },
-    //         });
-    //         filteredRestaurants.push(
-    //             ...restaurants.map(restaurant => {
-    //                 return this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files);
-    //             })
-    //         );
-
-    //         return {
-    //             attractions: filteredAttractions,
-    //             restaurants: restaurants.map(restaurant => {
-    //                 return this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files);
-    //             }),
-    //         };
-    //     }
+    // async createTrip(
+    //     attractionAndRestaurant: GetFilteredAttractionAndRestaurantsDto,
+    //     globalFilters: TChatbotFilter[]
+    // ): Promise<TripDto> {
+    //     const attractions: AttractionDto[] = attractionAndRestaurant.attractions;
+    //     const restaurants: RestaurantDto[] = attractionAndRestaurant.restaurants;
+    //     restaurants.map(restaurant => {});
+    // }
 }

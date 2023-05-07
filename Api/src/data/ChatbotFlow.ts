@@ -136,7 +136,7 @@ export const flow: TChatbotFlow = {
                 },
             },
             filter: {
-                globalPreferredDestination: { equals: "$value" },
+                preferredDestination: { equals: "$value" },
             },
         },
         {

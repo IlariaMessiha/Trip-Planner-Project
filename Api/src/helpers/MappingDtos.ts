@@ -136,6 +136,17 @@ export class MappingDtos {
             food: restaurant.food,
         };
     }
+    // mapDtoToRestaurant(restaurant: RestaurantDto): restaurant {
+    //     return {
+    //         id: restaurant.id,
+    //         label: restaurant.label,
+    //         code: restaurant.code,
+    //         address: restaurant.address,
+    //         email: restaurant.email,
+    //         food: restaurant.food,
+    //         avg_meal_per_person: restaurant.avgMealPerPerson,
+    //     };
+    // }
     mapAttractionTagToDto(
         attractionTag: attraction_tag,
         attraction: attraction,
