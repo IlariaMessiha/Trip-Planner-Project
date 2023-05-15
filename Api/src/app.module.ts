@@ -5,6 +5,8 @@ import { join } from "path";
 import { TestController } from "./controllers/test.controller";
 import { PrismaService } from "./prisma.service";
 import { TestService } from "./services/test.service";
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
     controllers: [TestController],
@@ -14,6 +16,8 @@ import { TestService } from "./services/test.service";
             rootPath: join(__dirname, "..", "public"),
         }),
         ConfigModule.forRoot(),
+        AuthModule,
+        UsersModule,
     ],
 })
 export class AppModule { }
