@@ -56,18 +56,20 @@ export const AttractionPage = () => {
         return null;
     }
     return (
-        <Container>
+        <Container className={styles.container}>
             <Typography variant="h3">{attraction.label}</Typography>
             <div className={styles.header}>
                 <div className={styles.communicate}>
-                    <div className={styles.openHours}>
-                        <Typography variant="h6">
-                            {t("attractions.openHours", {
-                                from: dayjs(attraction.openingHours?.from).format("HH:mm"),
-                                to: dayjs(attraction.openingHours?.to).format("HH:mm"),
-                            })}
-                        </Typography>
-                    </div>
+                    {attraction.openingHours && dayjs(attraction.openingHours?.from).isValid() && (
+                        <div className={styles.openHours}>
+                            <Typography variant="h6">
+                                {t("attractions.openHours", {
+                                    from: dayjs(attraction.openingHours?.from).format("HH:mm"),
+                                    to: dayjs(attraction.openingHours?.to).format("HH:mm"),
+                                })}
+                            </Typography>
+                        </div>
+                    )}
                     {attraction.website && (
                         <a href={attraction.website}>
                             <Typography variant="h6" className={styles.headerButtons}>

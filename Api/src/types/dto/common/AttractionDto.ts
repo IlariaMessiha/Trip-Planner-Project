@@ -1,5 +1,6 @@
 import { AttractionReviewDto } from "./AttractionReviewDto";
 import { CityDto } from "./CityDto";
+import { AttractionTagsDto } from "../tags/AttractionTagsDto";
 
 export interface AttractionDto {
     id: number;
@@ -32,4 +33,5 @@ export interface AttractionDto {
 
     entryFee: number | null;
     imageUrl: string | null;
+    tags?: AttractionTagsDto[];
 }

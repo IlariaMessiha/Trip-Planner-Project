@@ -1,6 +1,7 @@
 import {
-    Attraction,
+    attraction,
     attraction_review,
+    attraction_tag,
     city,
     country,
     directus_files,
@@ -14,7 +15,10 @@ import { CityDto } from "src/types/dto/common/CityDto";
 import { CountryDto } from "src/types/dto/common/CountryDto";
 import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
+import { AttractionTagsDto } from "src/types/dto/tags/AttractionTagsDto";
 import { UserDto } from "src/types/dto/common/UserDto";
+import { AttractionTagDto } from "src/types/dto/common/AttractionTagDto";
+import { TagDto } from "src/types/dto/common/TagDto";
 export class MappingDtos {
     constructor() {}
     mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
@@ -57,7 +61,7 @@ export class MappingDtos {
             password: user.password,
         };
     }
-    mapAttractionToDto(attraction: Attraction, image: directus_files): AttractionDto {
+    mapAttractionToDto(attraction: attraction, image: directus_files): AttractionDto {
         const long = attraction.long ? attraction.long.toNumber() : null;
         const lat = attraction.lat ? attraction.lat.toNumber() : null;
 
@@ -130,6 +134,28 @@ export class MappingDtos {
             code: restaurant.code,
             avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
             food: restaurant.food,
+        };
+    }
+    // mapDtoToRestaurant(restaurant: RestaurantDto): restaurant {
+    //     return {
+    //         id: restaurant.id,
+    //         label: restaurant.label,
+    //         code: restaurant.code,
+    //         address: restaurant.address,
+    //         email: restaurant.email,
+    //         food: restaurant.food,
+    //         avg_meal_per_person: restaurant.avgMealPerPerson,
+    //     };
+    // }
+    mapAttractionTagToDto(
+        attractionTag: attraction_tag,
+        attraction: attraction,
+        tag: TagDto
+    ): AttractionTagDto {
+        return {
+            attractionId: attraction.id,
+            id: attractionTag.id,
+            tag: tag,
         };
     }
 }

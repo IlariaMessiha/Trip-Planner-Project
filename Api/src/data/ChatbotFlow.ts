@@ -1,4 +1,6 @@
-export const flow: ChatbotFlow = {
+import { TChatbotFlow } from "src/types/TChatbot";
+
+export const flow: TChatbotFlow = {
     questions: [
         {
             code: "travelingWith",
@@ -10,35 +12,35 @@ export const flow: ChatbotFlow = {
                     code: "myself",
                     text: "Myself",
                     filter: {
-                        tags: { $in: ["solo", "myself"] },
+                        tags: { in: ["solo", "myself"] },
                     },
                 },
                 {
                     code: "family",
                     text: "My family",
                     filter: {
-                        tags: { $in: ["family", "kids", "baby"] },
+                        tags: { in: ["family", "kids", "baby"] },
                     },
                 },
                 {
                     code: "friends",
                     text: "My friends",
                     filter: {
-                        tags: { $in: ["friends"] },
+                        tags: { in: ["friends"] },
                     },
                 },
                 {
                     code: "colleagues",
                     text: "My colleagues",
                     filter: {
-                        tags: { $in: ["colleagues", "business", "work", "formal"] },
+                        tags: { in: ["colleagues", "business", "work", "formal"] },
                     },
                 },
                 {
                     code: "couple",
                     text: "As a couple",
                     filter: {
-                        tags: { $in: ["couple", "romantic"] },
+                        tags: { in: ["couple", "romantic"] },
                     },
                 },
             ],
@@ -48,11 +50,18 @@ export const flow: ChatbotFlow = {
             sort: 2,
             text: "What is the minimum age of your group ?",
             type: "text",
+            validation: {
+                type: "valid-age",
+                onError: {
+                    text: "Age is not valid",
+                    action: "retry",
+                },
+            },
             shouldAskIf: {
-                travelingWith: { $in: ["family", "friends"] },
+                travelingWith: { in: ["family", "friends"] },
             },
             filter: {
-                minAge: { $lte: "$value" },
+                minAge: { lte: "$value" },
             },
         },
         {
@@ -65,30 +74,30 @@ export const flow: ChatbotFlow = {
                     code: "lessThan1000",
                     text: "Less than $1000",
                     filter: {
-                        tags: { $in: ["budget", "cheap", "low-cost"] },
-                        budget: { $lte: "1000" },
+                        tags: { in: ["budget", "cheap", "low-cost"] },
+                        globalBudget: { lte: "1000" },
                     },
                 },
                 {
                     code: "1000-2000",
                     text: "$1000 - $2000",
                     filter: {
-                        budget: { $gte: "1000", $lte: "2000" },
+                        globalBudget: { gte: "1000", lte: "2000" },
                     },
                 },
                 {
                     code: "2000-3000",
                     text: "$2000 - $3000",
                     filter: {
-                        budget: { $gte: "2000", $lte: "3000" },
+                        globalBudget: { gte: "2000", lte: "3000" },
                     },
                 },
                 {
                     code: "moreThan3000",
                     text: "more than $3000",
                     filter: {
-                        tags: { $in: ["luxury", "expensive", "high-end", "premium"] },
-                        budget: { $gte: "3000" },
+                        tags: { in: ["luxury", "expensive", "high-end", "premium"] },
+                        globalBudget: { gte: "3000" },
                     },
                 },
                 {
@@ -101,10 +110,17 @@ export const flow: ChatbotFlow = {
         {
             code: "tripDuration",
             sort: 4,
-            text: "How long are you planning to stay ?",
+            text: "How long are you planning to stay ?(in weeks)",
             type: "text",
             filter: {
-                tripDuration: { $lte: "$value" },
+                globalTripDuration: { equals: "$value" },
+            },
+            validation: {
+                type: "valid-duration",
+                onError: {
+                    text: "Duration is not valid",
+                    action: "retry",
+                },
             },
         },
         {
@@ -120,7 +136,7 @@ export const flow: ChatbotFlow = {
                 },
             },
             filter: {
-                preferredDestination: { $eq: "$value" },
+                preferredDestination: { equals: "$value" },
             },
         },
         {
@@ -135,7 +151,7 @@ export const flow: ChatbotFlow = {
                     text: "Physical activity",
                     filter: {
                         tags: {
-                            $in: [
+                            in: [
                                 "adventure",
                                 "adrenaline",
                                 "extreme",
@@ -149,29 +165,35 @@ export const flow: ChatbotFlow = {
                     code: "culture",
                     text: "Culture",
                     filter: {
-                        tags: { $in: ["culture", "history", "heritage"] },
+                        tags: { in: ["culture", "history", "heritage", "architecture"] },
                     },
                 },
                 {
                     code: "nature",
                     text: "Nature",
                     filter: {
-                        tags: { $in: ["nature", "wildlife", "animals", "beach", "camping"] },
+                        tags: {
+                            in: ["nature", "wildlife", "animals", "beach", "camping", "landscape"],
+                        },
                     },
                 },
                 {
                     code: "relaxation",
                     text: "Relaxation and wellness",
                     filter: {
-                        tags: { $in: ["relaxation", "spa", "massage"] },
+                        tags: { in: ["relaxation", "spa", "massage"] },
                     },
                 },
                 {
                     code: "shopping",
                     text: "Shopping",
                     filter: {
-                        tags: { $in: ["shopping", "boutiques"] },
+                        tags: { in: ["shopping", "boutiques"] },
                     },
+                },
+                {
+                    code: "submit",
+                    text: "Submit",
                 },
             ],
         },
@@ -182,41 +204,45 @@ export const flow: ChatbotFlow = {
             type: "multiple-choices",
             filterAggregation: "or",
             shouldAskIf: {
-                preferredThemes: { $in: ["physicalActivity"] },
+                preferredThemes: { in: ["physicalActivity"] },
             },
             answers: [
                 {
                     code: "hiking",
                     text: "Hiking",
                     filter: {
-                        tags: { $in: ["hiking", "trekking"] },
+                        tags: { in: ["hiking", "trekking"] },
                     },
                 },
                 {
                     code: "cycling",
                     text: "Cycling",
                     filter: {
-                        tags: { $in: ["cycling", "biking"] },
+                        tags: { in: ["cycling", "biking"] },
                     },
                 },
                 {
                     code: "waterSports",
                     text: "Water sports",
                     filter: {
-                        tags: { $in: ["water-sports", "surfing", "kayaking", "snorkeling"] },
+                        tags: { in: ["water-sports", "surfing", "kayaking", "snorkeling"] },
                     },
                 },
                 {
                     code: "skiing",
                     text: "Skiing",
                     filter: {
-                        tags: { $in: ["skiing", "snowboarding"] },
+                        tags: { in: ["skiing", "snowboarding"] },
                     },
                 },
                 {
                     code: "nothingSpecific",
                     text: "Nothing specific",
                     filter: {},
+                },
+                {
+                    code: "submit",
+                    text: "Submit",
                 },
             ],
         },
@@ -231,21 +257,28 @@ export const flow: ChatbotFlow = {
                     code: "vegan",
                     text: "Vegan",
                     filter: {
-                        tags: { $in: ["vegan"] },
+                        tags: { in: ["vegan"] },
+                    },
+                },
+                {
+                    code: "vegetarian",
+                    text: "Vegatarian",
+                    filter: {
+                        tags: { in: ["vegetarian"] },
                     },
                 },
                 {
                     code: "halal",
                     text: "Halal",
                     filter: {
-                        tags: { $in: ["halal"] },
+                        tags: { in: ["halal"] },
                     },
                 },
                 {
                     code: "healthy",
                     text: "Healthy",
                     filter: {
-                        tags: { $in: ["healthy"] },
+                        tags: { in: ["healthy"] },
                     },
                 },
                 {
@@ -253,57 +286,23 @@ export const flow: ChatbotFlow = {
                     text: "Nothing specific",
                     filter: {},
                 },
+                {
+                    code: "submit",
+                    text: "Submit",
+                },
+            ],
+        },
+        {
+            code: "submitQuestion",
+            sort: 9,
+            text: "Submit answers to plan your trip",
+            type: "single-choice",
+            answers: [
+                {
+                    code: "submit",
+                    text: "Submit",
+                },
             ],
         },
     ],
 };
-
-type ChatbotFlow = {
-    questions: ChatbotFlowQuestion[];
-};
-type ChatbotFlowQuestion = {
-    code: string;
-    sort: number;
-    text: string;
-    type: "text" | "multiple-choices" | "single-choice";
-    answers?: ChatbotFlowAnswer[];
-    filter?: ChatbotFlowFilter;
-    filterAggregation?: "and" | "or";
-    shouldAskIf?: ChatbotFlowFilter;
-    validation?: ChatbotFlowValidation;
-};
-
-type ChatbotFlowAnswer = {
-    code: string;
-    text: string;
-    filter: ChatbotFlowFilter;
-};
-
-type ChatbotFlowFilter = {
-    [key: string]: {
-        $eq?: string;
-        $in?: string[];
-        $gte?: string;
-        $lte?: string;
-    };
-};
-
-type ChatbotFlowValidation = {
-    type: string;
-    onError: {
-        text: string;
-        action: "retry" | "skip";
-    };
-};
-
-// Example of filter built from the flow above
-// const filter = {
-//     tags: {
-//         $and: [{ $in: ["family", "kids", "baby"] }, { $in: ["budget", "cheap", "low-cost"] }],
-//     },
-//     minAge: {
-//         $lte: "10",
-//     },
-//     budget: { $lte: "1000" },
-//     tripDuration: { $lte: "$value" },
-// };

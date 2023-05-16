@@ -4,6 +4,10 @@
     height: 600px;
 }
 
+.container {
+    margin-top: 100px;
+}
+
 .imageAndDescription {
     display: flex;
     justify-content: space-between;

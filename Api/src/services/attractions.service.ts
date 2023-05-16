@@ -1,28 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
-import { Attraction, attraction_review, city, country, directus_files, user } from "@prisma/client";
 import { GetAttractionResponseDto } from "src/types/dto/attractions/GetAttractionResponseDto";
-import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { MappingDtos } from "src/helpers/mappingDtos";
 
 @Injectable()
 export class AttractionsService {
     constructor(private prisma: PrismaService, private mappingDto: MappingDtos) {}
-    async findAttractions(): Promise<Attraction[]> {
-        const attractions = await this.prisma.attraction.findMany({
-            include: {
-                directus_files: true,
-            },
-        });
-
-        return attractions.map(({ directus_files, ...attraction }) => {
-            if (!directus_files) return attraction;
-            return {
-                ...attraction,
-                attraction_image: `http://localhost:8055/assets/${directus_files.filename_disk}`,
-            };
-        });
-    }
 
     async findAttraction(id: number): Promise<GetAttractionResponseDto> {
         const attraction = await this.prisma.attraction.findUnique({

@@ -1,5 +1,5 @@
 import { SectionDto } from "../common/SectionDto";
 
-export interface getDashboardResponseDto {
+export interface GetDashboardResponseDto {
     sections: SectionDto[];
 }

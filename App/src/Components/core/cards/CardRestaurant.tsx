@@ -35,7 +35,7 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ maxWidth: 345 }}>
+            <Card className={styles.item} sx={{ width: 280 }}>
                 <FavoriteButton>
                     <FavoriteBorderOutlinedIcon />
                 </FavoriteButton>
@@ -44,7 +44,7 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
                         {restaurant.imageUrl && (
                             <CardMedia
                                 component="img"
-                                height="194"
+                                height="200"
                                 image={restaurant.imageUrl}
                                 alt={restaurant.label}
                             />
