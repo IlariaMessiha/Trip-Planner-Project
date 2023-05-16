@@ -113,7 +113,7 @@ export const flow: TChatbotFlow = {
             text: "How long are you planning to stay ?(in weeks)",
             type: "text",
             filter: {
-                globalTripDuration: { lte: "$value" },
+                globalTripDuration: { equals: "$value" },
             },
             validation: {
                 type: "valid-duration",

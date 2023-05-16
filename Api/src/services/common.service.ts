@@ -23,10 +23,11 @@ import { GetFilteredAttractionAndRestaurantsDto as GetFilteredAttractionAndResta
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { TripDto } from "src/types/dto/common/TripDto";
 import { TripItemDto } from "src/types/dto/common/TripItemDto";
-import { pickBy } from "lodash";
+import { find, has, hasIn, pickBy, slice } from "lodash";
 
 @Injectable()
 export class CommonService {
+    dayjs = require("dayjs");
     constructor(private prisma: PrismaService, private mappingDtos: MappingDtos) {}
     async findDashboardContent(): Promise<GetDashboardResponseDto> {
         const cities = await this.prisma.city.findMany({
@@ -37,7 +38,10 @@ export class CommonService {
         });
         const attractions = await this.prisma.attraction.findMany({
             where: {
-                type: "beach",
+                type: {
+                    equals: "beach",
+                    mode: "insensitive",
+                },
             },
             include: {
                 city: true,
@@ -144,12 +148,111 @@ export class CommonService {
             }),
         };
     }
-    // async createTrip(
-    //     attractionAndRestaurant: GetFilteredAttractionAndRestaurantsDto,
-    //     globalFilters: TChatbotFilter[]
-    // ): Promise<TripDto> {
-    //     const attractions: AttractionDto[] = attractionAndRestaurant.attractions;
-    //     const restaurants: RestaurantDto[] = attractionAndRestaurant.restaurants;
-    //     restaurants.map(restaurant => {});
-    // }
+    async createTrip(
+        attractionAndRestaurant: Promise<GetFilteredAttractionAndRestaurantsDto>,
+        globalFilters: TChatbotFilter[]
+    ): Promise<TripDto> {
+        const attractions: AttractionDto[] = (await attractionAndRestaurant).attractions;
+        const restaurants: RestaurantDto[] = (await attractionAndRestaurant).restaurants;
+        const budget = this.calculateBudget(globalFilters);
+        let trip: TripDto = null;
+
+        const swap = (i: number) => {
+            let sum: number = 0;
+            const tripRestaurants: RestaurantDto[] = slice(restaurants, i, i + 3);
+            const tripAttractions: AttractionDto[] = slice(attractions, i, i + 4);
+            tripRestaurants.map(r => {
+                sum += r.avgMealPerPerson;
+            });
+            tripAttractions.map(a => {
+                sum += a.entryFee;
+            });
+
+            if (sum > budget + 10) {
+                console.log("true");
+                swap(i + 1);
+            } else {
+                trip = this.orderOneDayActivities(tripRestaurants, tripAttractions);
+            }
+        };
+        swap(0);
+        return trip;
+    }
+    //ex: camp nou datetime=18:00 and his opening hours to is 17
+    //if after breakfast attractions' time surpasses lunch time
+    // if i don't have enough restaurants (less than 3) tripItem is created with undefined restaurants
+    // we don't know arrival and departure date of the trip
+    // based on departure an arrival time we put the datetime of the tripItem
+    orderOneDayActivities(restaurants: RestaurantDto[], attractions: AttractionDto[]): TripDto {
+        const tripItems: TripItemDto[] = [];
+        tripItems.push({
+            dateTime: "7:00",
+            item: {
+                type: "restaurant",
+                value: restaurants[0],
+            },
+        });
+        attractions.slice(0, 2).map((attraction, i) => {
+            tripItems.push({
+                dateTime: attractions[i - 1]
+                    ? `${9 + attractions[i - 1].suggestedDuration}:00`
+                    : "9:00",
+                item: {
+                    type: "attraction",
+                    value: attraction,
+                },
+            });
+        });
+        tripItems.push({
+            dateTime: "14:00",
+            item: {
+                type: "restaurant",
+                value: restaurants[1],
+            },
+        });
+        attractions.slice(2, 4).map((attraction, i) => {
+            tripItems.push({
+                dateTime: attractions[i - 1]
+                    ? `${16 + attractions[i - 1].suggestedDuration}:00`
+                    : "16:00",
+                item: {
+                    type: "attraction",
+                    value: attraction,
+                },
+            });
+        });
+        tripItems.push({
+            dateTime: "21:00",
+            item: {
+                type: "restaurant",
+                value: restaurants[2],
+            },
+        });
+
+        return {
+            arrivalDate: "",
+            departureDate: "",
+            label: "",
+            tripItems: tripItems,
+        };
+    }
+
+    calculateBudget(globalFilters: TChatbotFilter[]) {
+        let budget: number = 0;
+        let avg: number = 0;
+        globalFilters.map(filter => {});
+        const globalBudget = find(globalFilters, "globalBudget");
+        if (globalBudget) {
+            if (hasIn(globalBudget, "gte")) {
+                avg = parseInt(globalBudget.globalBudget.gte);
+            } else {
+                avg = parseInt(globalBudget.globalBudget.lte);
+            }
+        }
+        const globalTripDuration = find(globalFilters, "globalTripDuration");
+        if (globalTripDuration) {
+            budget = avg / (parseInt(globalTripDuration.globalTripDuration.equals) * 7);
+        }
+        return budget;
+    }
 }

@@ -1,9 +1,8 @@
 import { AttractionDto } from "./AttractionDto";
 import { RestaurantDto } from "./RestaurantDto";
+import { SectionItemDto } from "./SectionItemDto";
 
 export interface TripItemDto {
-    id: number;
     dateTime: string;
-    attraction?: AttractionDto;
-    restaurant?: RestaurantDto;
+    item: SectionItemDto;
 }

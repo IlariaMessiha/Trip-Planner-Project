@@ -25,7 +25,7 @@ const FavoriteButton = styled(IconButton)({
 export const CardCity: FC<CardCityProps> = ({ city }) => {
     const { t } = useTranslation();
     return (
-        <Card className={styles.item} sx={{ maxWidth: 280 }}>
+        <Card className={styles.item} sx={{ width: 280 }}>
             <FavoriteButton>
                 <FavoriteBorderOutlinedIcon />
             </FavoriteButton>

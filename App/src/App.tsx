@@ -8,6 +8,7 @@ import { SearchPage } from "./Pages/SearchPage";
 import { AttractionPage } from "./Pages/AttractionPage";
 import { CityPage } from "./Pages/CityPage";
 import { ChatbotPage } from "./Pages/ChatbotPage";
+import { TripPage } from "./Pages/TripPage";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
+                        <Route path="/trip" element={<TripPage />} />
                     </Routes>
                 </BrowserRouter>
             </>

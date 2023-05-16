@@ -1,6 +1,8 @@
 .restaurantContent {
     text-align: left;
     font-size: larger;
+    display: flex;
+    flex-direction: column;
 }
 
 .label {

@@ -5,15 +5,17 @@ import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsD
 export const validateMap = {
     "existing-destination": async (answerValue: string) => {
         const destinations = await fetchData.getDestinations();
-        if (
-            destinations?.citiesName.find(
-                cityName => cityName.toLowerCase() === answerValue.toLowerCase()
-            ) ||
-            destinations?.countriesName.find(
-                countryName => countryName.toLowerCase() === answerValue.toLowerCase()
-            ) ||
-            "any"
-        ) {
+
+        const city = destinations?.citiesName.find(
+            cityName => cityName.toLowerCase() === answerValue.toLowerCase()
+        );
+        console.log(city);
+        const country = destinations?.countriesName.find(
+            countryName => countryName.toLowerCase() === answerValue.toLowerCase()
+        );
+        console.log(country);
+
+        if (city || country || answerValue === "any") {
             return true;
         }
     },
@@ -30,5 +32,3 @@ export const validateMap = {
         }
     },
 };
-
-// validateMap["existing-destination"]();

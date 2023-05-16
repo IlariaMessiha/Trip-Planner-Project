@@ -22,7 +22,9 @@ export class CommonController {
     @Post("/submissions")
     postSubmissions(@Body() submissions: TChatbotSubmission[]) {
         const filters = this.commonService.deduceFiltersFromSubmissions(submissions);
+        const attractionsAndRestaurants =
+            this.commonService.findFilteredAttractionAndRestaurants(filters);
 
-        return this.commonService.findFilteredAttractionAndRestaurants(filters);
+        return this.commonService.createTrip(attractionsAndRestaurants, filters);
     }
 }

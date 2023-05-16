@@ -60,7 +60,7 @@ export const AttractionPage = () => {
             <Typography variant="h3">{attraction.label}</Typography>
             <div className={styles.header}>
                 <div className={styles.communicate}>
-                    {attraction.openingHours && (
+                    {attraction.openingHours && dayjs(attraction.openingHours?.from).isValid() && (
                         <div className={styles.openHours}>
                             <Typography variant="h6">
                                 {t("attractions.openHours", {

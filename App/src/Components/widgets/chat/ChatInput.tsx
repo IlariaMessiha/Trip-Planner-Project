@@ -2,6 +2,7 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import styles from "./ChatInput.module.css";
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 interface chatInputProps {
     onSubmit: (value: string) => void;
 }

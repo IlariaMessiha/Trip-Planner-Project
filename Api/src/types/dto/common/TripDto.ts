@@ -1,10 +1,10 @@
 import { TripItemDto } from "./TripItemDto";
 
 export interface TripDto {
-    id: number;
+    // id: number;
     label: string;
     arrivalDate: string;
     departureDate: string;
-    tripCode: string;
+    // tripCode: string;
     tripItems: TripItemDto[];
 }

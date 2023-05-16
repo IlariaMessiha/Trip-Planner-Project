@@ -38,7 +38,7 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ maxWidth: 280 }}>
+            <Card className={styles.item} sx={{ width: 280 }}>
                 <FavoriteButton>
                     <FavoriteBorderOutlinedIcon />
                 </FavoriteButton>

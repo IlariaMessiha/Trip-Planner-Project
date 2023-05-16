@@ -7,14 +7,16 @@ import { fetchData } from "../api/FetchData";
 import { validateMap } from "../helpers/ValidateChatbotAnswers";
 import { useNavigate } from "react-router-dom";
 import { PostData, postData } from "../api/PostData";
+import { TripDto } from "../types/dto/common/TripDto";
 
 export const useChatbotController = () => {
-    const navigate = useNavigate();
     const [messages, setMessages] = useState<TMessage[]>([]);
     const [questions, setQuestions] = useState<TChatbotQuestion[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [trip, setTrip] = useState<TripDto | null>(null);
 
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const onMount = async () => {
@@ -148,7 +150,7 @@ export const useChatbotController = () => {
                 setMessages(prev => [...prev, newMessage]);
                 displayQuestion(questions, currentQuestionIndex);
             }
-        } else if (currentQuestion.type == "text") {
+        } else if (currentQuestion.type === "text") {
             if (currentQuestion.validation) {
                 textQuestionValidation(answerValue, currentQuestion);
             }
@@ -186,7 +188,18 @@ export const useChatbotController = () => {
         }
     };
     const submitAnswers = async () => {
-        await postData.postSubmission(submissions);
+        const _trip = await postData.postSubmission(submissions);
+        setTrip(_trip);
+        setValue("trip", _trip);
+        navigate("/trip");
+        // console.log(localStorage.getItem("trip"));
+    };
+    const setValue = (key: string, value: TripDto) => {
+        try {
+            window.localStorage.setItem(key, JSON.stringify(value));
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return {
