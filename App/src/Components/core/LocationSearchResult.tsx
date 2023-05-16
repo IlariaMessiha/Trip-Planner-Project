@@ -12,14 +12,13 @@ interface LocationSearchResultProps {
     type: string;
 }
 export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item, type }) => {
-    
     const [locationInfo, setLocationInfo] = useState<string>("");
     //const [locationActivities, setLocationActivities] = useState<Activity[] | []>([]);
     React.useEffect(() => {
         const onMount = async () => {
             if (type === "city") {
                 const info = await fetchData.getCountryForCity(item.id);
-                 setLocationInfo(info.label);
+                setLocationInfo(info.label);
                 console.log(locationInfo);
             } else {
                 setLocationInfo("");
@@ -37,12 +36,7 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item, type
             {/* <div className={styles.rightSide}></div> */}
 
             <Link to={`/location/${item.id}`}>
-                <img
-                    src={
-                        "https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTk1NzY0MDg3NTEzMTYzNDEy/gettyimages-142198198.jpg"
-                    }
-                    alt="Cover"
-                />
+                <img src={require("../../assets/images/nice.jpg")} alt="Cover" />
             </Link>
 
             <div className={styles.rightSide}>

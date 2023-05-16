@@ -7,19 +7,57 @@ import { SearchForm } from "../Components/widgets/search/SearchForm";
 import { SearchResult } from "../types/Search";
 import styles from "./SearchPage.module.css";
 import { useTranslation } from "react-i18next";
-
+import { ListGroup } from "../Components/widgets/ListGroup";
+import { Pagination } from "../Components/widgets/pagination";
+import { paginate } from "../utils/paginate";
+import { styled } from "@mui/material";
 export const SearchPage = () => {
     type ResultsType = {
         [key: string]: any[];
     };
     const { initialSearchLabel } = useInitialSearchFromUrl();
     const [results, setResults] = useState<ResultsType>({});
+    const [unPagedResults, setUnPagedResults] = useState<ResultsType[]>([]);
+    const [pagedResults, setPagedResults] = useState<ResultsType[]>([]);
+    const [totalItemsCount, setTotalItemCount] = useState<number>(0);
     const [queryInfo, setQueryInfo] = useState<{}>();
     const { t } = useTranslation();
+    const [pageError, setPageError] = useState<string>("");
+    const pageSize = 3;
+    const [currentPage, setCurrentPage] = useState<number>(1);
 
     useEffect(() => {
-        console.log(results);
+        getUpdatedResults();
+        setCurrentPage(1);
     }, [results]);
+
+    useEffect(() => {
+        setPagedResults(paginate(unPagedResults, currentPage, pageSize));
+    }, [currentPage, unPagedResults, pageError]);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const getUpdatedResults = () => {
+        const arr = [];
+        console.log("ressults", results);
+        if (!results.error) {
+            for (let key in results) {
+                for (let i = 0; i < results[key].length; i++) {
+                    const obj = { ...results[key][i], type: key };
+                    arr.push(obj);
+                }
+            }
+            setTotalItemCount(arr.length);
+            setUnPagedResults(arr);
+            setPageError("");
+        } else {
+            setPageError(String(results.error));
+        }
+    };
+
+    const getPagedData = () => {};
 
     return (
         <>
@@ -34,40 +72,50 @@ export const SearchPage = () => {
                     }}
                 />
             </Container>
-            <div className={styles.searchResultContainer}>
-                <Container className={styles.searchResult}>
-                    {Object.entries(results).map(([type, items]) => {
-                        console.log(typeof type, " type objjjjj");
-                        return (
-                            <div key={type}>
-                                {type === "error" ? (
-                                    <h1>{results.error}</h1>
-                                ) : (
-                                    <>
-                                        <h2>{t(String(`common.${type}`))}</h2>
-                                        {items.map(item => {
-                                            return (
-                                                <div key={item.id}>
-                                                    {type === "country" || type === "city" ? (
-                                                        <LocationSearchResult
-                                                            item={item}
-                                                            type={type}
-                                                        />
-                                                    ) : (
-                                                        <ActivitySearchResult
-                                                            item={item}
-                                                            type={type}
-                                                        />
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
-                                    </>
-                                )}
-                            </div>
-                        );
-                    })}
-                </Container>
+            <div
+                style={{
+                    marginBottom: "10px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                }}
+            >
+                <div className={styles.searchResultContainer}>
+                    <Container className={styles.searchResult}>
+                        <div>
+                            {pageError ? (
+                                <h1>{results.error}</h1>
+                            ) : (
+                                <>
+                                    {pagedResults.map(item => {
+                                        return (
+                                            <div>
+                                                {String(item.type) === "country" ||
+                                                String(item.type) === "city" ? (
+                                                    <LocationSearchResult
+                                                        item={item}
+                                                        type={String(item.type)}
+                                                    />
+                                                ) : (
+                                                    <ActivitySearchResult
+                                                        item={item}
+                                                        type={String(item.type)}
+                                                    />
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </>
+                            )}
+                        </div>
+                    </Container>
+                </div>
+                <Pagination
+                    itemsCount={totalItemsCount}
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                />
             </div>
         </>
     );

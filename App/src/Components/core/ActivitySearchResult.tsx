@@ -44,18 +44,13 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({ item, type
     }
     return (
         <>
-            {console.log(activityCityInfo)}
-            {console.log(activityCountryInfo)}
+            {/* {console.log(activityCityInfo)}
+            {console.log(activityCountryInfo)} */}
             <div className={styles.searchResultElement}>
                 {/* <div className={styles.rightSide}></div>  */}
 
                 <Link to={`/activity/${item.id}`}>
-                    <img
-                        src={
-                            "https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTk1NzY0MDg3NTEzMTYzNDEy/gettyimages-142198198.jpg"
-                        }
-                        alt="Cover"
-                    />
+                    <img src={require("../../assets/images/nice.jpg")} alt="Cover" />
                 </Link>
 
                 <div className={styles.rightSide}>
