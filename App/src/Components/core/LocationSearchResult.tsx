@@ -1,11 +1,12 @@
 import { FC, useState } from "react";
-import { Typography } from "./Typography";
+
 import { GrLocation } from "react-icons/gr";
 import styles from "./LocationSearchResult.module.css";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../api/FetchData";
 import React from "react";
+import { Typography } from "@mui/material";
 
 interface LocationSearchResultProps {
     item: any;
@@ -17,9 +18,10 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item, type
     React.useEffect(() => {
         const onMount = async () => {
             if (type === "city") {
-                const info = await fetchData.getCountryForCity(item.id);
-                setLocationInfo(info.label);
-                console.log(locationInfo);
+                const info = null;
+                // await fetchData.getCountryForCity(item.id);
+                // setLocationInfo(info.label);
+                // console.log(locationInfo);
             } else {
                 setLocationInfo("");
             }
@@ -41,16 +43,18 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item, type
 
             <div className={styles.rightSide}>
                 <Link to={`/location/${item.id}`}>
-                    <Typography text={item.label} variant="h3" className={styles.title} />
+                    <Typography variant="h3" className={styles.title}>
+                        {item.label}
+                    </Typography>
                 </Link>
 
                 <div className={styles.resultType}>
-                    <GrLocation /> <Typography text="Location" variant="body1" />
+                    <GrLocation /> <Typography variant="body1">Location</Typography>
                 </div>
-                <Typography text={locationInfo} variant="body1" />
+                <Typography variant="body1">{locationInfo}</Typography>
                 <div className={styles.availableActivities}>
                     {/* {<Typography text={locationActivities.length} variant="body2" />} */}
-                    <Typography text={t("common.activities")} variant="body2" />
+                    <Typography variant="body2">{t("common.activities")} </Typography>
                 </div>
             </div>
         </div>

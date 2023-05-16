@@ -4,8 +4,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
-import { SearchQuery, SearchResult, SearchResultType } from "../../../types/Search";
+
+import { SearchQuery, SearchResultType } from "../../../types/Search";
 import { InputText } from "../../core/InputText";
 import styles from "./SearchForm.module.css";
 import { fetchData } from "../../../api/FetchData";
@@ -77,9 +77,6 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
         const searchFilter = searchParams.get("filter");
         console.log(searchFilter);
 
-        console.log("search form useEffect");
-        // console.log(location.search);
-
         if (searchQuery) {
             const fetchDataAndUpdateState = async (label: string) => {
                 try {
@@ -87,18 +84,16 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                         searchQuery,
                         searchFilter || ""
                     );
-
                     onSubmit(results, {
                         label: searchQuery,
                         type: searchFilter as SearchResultType,
                     });
                     setLabel(searchQuery);
-                    //setTypeOption(typeOptions.find((type) => type.id === searchType));
+                    setTypeOption(typeOptions.find(type => type.id === searchType));
                 } catch (error) {
                     console.error(error);
                 }
             };
-
             fetchDataAndUpdateState(searchQuery);
         }
     }, [location.search]);
@@ -115,7 +110,6 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                 />
             </div>
             <Autocomplete
-                //value={typeOption}
                 multiple
                 disablePortal
                 options={typeOptions}
@@ -126,20 +120,6 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
 
                     setTypeArray(values);
                 }}
-                // onChange={(event, newTypeOption) => {
-                //     setTypeOption(newTypeOption);
-                //     console.log(typeOption);
-                // }}
-                // renderOption={(props, option, { selected }) => (
-                //     <li>
-                //       <FormControlLabel
-                //         control={<Checkbox {...props} checked={selected} />}
-                //         label={option.name}
-                //       />
-                //     </li>
-                //   )}
-                //   multiple
-                //   limitTags={2}
                 sx={{ width: 200 }}
             />
             <SearchButton variant="outlined" type="submit">

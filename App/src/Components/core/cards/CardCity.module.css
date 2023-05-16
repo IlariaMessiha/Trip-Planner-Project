@@ -1,0 +1,22 @@
+.cityContent {
+    text-align: left;
+    font-size: larger;
+}
+
+.item:hover {
+    text-decoration: underline;
+}
+
+.cityAttractions {
+    display: flex;
+    gap: 3px;
+}
+
+.item {
+    position: relative;
+
+}
+
+.label {
+    font-weight: bold;
+}

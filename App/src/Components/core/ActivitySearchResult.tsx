@@ -1,6 +1,5 @@
 import { FC, useState, useEffect } from "react";
 
-import { Typography } from "./Typography";
 import styles from "./ActivitySearchResult.module.css";
 
 import { useTranslation } from "react-i18next";
@@ -8,6 +7,7 @@ import { FaRunning, FaUtensils, FaBed } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../api/FetchData";
 import React from "react";
+import { Typography } from "@mui/material";
 
 interface ActivitySearchResultProps {
     item: any;
@@ -22,8 +22,10 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({ item, type
     const { t } = useTranslation();
     useEffect(() => {
         const onMount = async () => {
-            const cityInfo = await fetchData.getCityById(item.city_id);
-            const countryName = await fetchData.getCountryForCity(item.city_id);
+            const cityInfo = null;
+            //  await fetchData.getCityById(item.city_id);
+            const countryName = null;
+            // await fetchData.getCountryForCity(item.city_id);
 
             setAtivityCityInfo(cityInfo);
             setAtivityCountryInfo(countryName);
@@ -44,18 +46,16 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({ item, type
     }
     return (
         <>
-            {/* {console.log(activityCityInfo)}
-            {console.log(activityCountryInfo)} */}
             <div className={styles.searchResultElement}>
-                {/* <div className={styles.rightSide}></div>  */}
-
                 <Link to={`/activity/${item.id}`}>
                     <img src={require("../../assets/images/nice.jpg")} alt="Cover" />
                 </Link>
 
                 <div className={styles.rightSide}>
                     <Link to={`/activity/${item.id}`}>
-                        <Typography text={item.label} variant="h3" className={styles.title} />
+                        <Typography variant="h3" className={styles.title}>
+                            {item.label}
+                        </Typography>
                     </Link>
 
                     <div className={styles.resultType}>
@@ -66,17 +66,9 @@ export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({ item, type
                         ) : (
                             <FaRunning />
                         )}
-                        <Typography text={t(String(`common.${type}`))} variant="body1" />
+                        <Typography variant="body1">{t(String(`common.${type}`))}</Typography>
                     </div>
-                    <Typography text={activityStr || ""} variant="body1" />
-                    {/* <div className={styles.availableReviews}>
-                    {activity.review ? (
-                        <Typography text={activity.review.length} variant="body2" />
-                    ) : (
-                        <Typography text="0" variant="body2" />
-                    )}
-                    <Typography text={t("common.reviews")} variant="body2" />
-                </div> */}
+                    <Typography variant="body1">{activityStr || ""} </Typography>
                 </div>
             </div>
         </>

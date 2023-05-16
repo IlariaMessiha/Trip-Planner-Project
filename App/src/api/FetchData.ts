@@ -1,33 +1,27 @@
 import Axios from "axios";
-import { Attraction } from "../models/Attraction";
-import { City } from "../models/City";
-import { SearchResult } from "../types/Search";
+import { GetDashboardResponseDto } from "../types/dto/dashboard/GetDashboardResponse";
+import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsDto";
+import { AttractionDto } from "../types/dto/common/AttractionDto";
+import { CityDto } from "../types/dto/common/CityDto";
+import { GetAttractionResponseDto } from "../types/dto/attractions/GetAttractionResponseDto";
+import { GetCityResponseDto } from "../types/dto/cities/GetCityResponseDto";
+import { TChatbotFlow } from "../types/TChatbot";
 
 const API_BASE_URL = "http://localhost:3333";
 
 export class FetchData {
-    public async getAttraction() {
-        const response = await Axios.get<Attraction[]>(`${API_BASE_URL}/attractions`);
+    public async getAttraction(id: string) {
+        const response = await Axios.get<GetAttractionResponseDto>(
+            `${API_BASE_URL}/attractions/${id}`
+        );
         return response.data;
     }
-
-    public async getSearchResults(query: string, filter: string) {
-        const response = await Axios.get<{}>(`${API_BASE_URL}/search`, {
-            params: { q: query, filter },
-        });
+    public async getDashboard() {
+        const response = await Axios.get<GetDashboardResponseDto>(`${API_BASE_URL}/dashboard`);
         return response.data;
     }
-
-    public async getAttractionById(id: string) {
-        const response = await Axios.get<Attraction>(`${API_BASE_URL}/attractions/${id}`);
-        return response.data;
-    }
-    public async getCityForAttraction(id: string) {
-        const response = await Axios.get<City>(`${API_BASE_URL}/attractions/${id}/city`);
-        return response.data;
-    }
-    public async getCityAttractions(id: string) {
-        const response = await Axios.get<Attraction[]>(`${API_BASE_URL}/cities/${id}/attractions`);
+    public async getDestinations() {
+        const response = await Axios.get<GetDestinationNameDto>(`${API_BASE_URL}/destinations`);
         return response.data;
     }
 
@@ -35,30 +29,13 @@ export class FetchData {
         const response = await Axios.get(`${API_BASE_URL}/users`);
         return response.data;
     }
-    public async getCities() {
-        const response = await Axios.get(`${API_BASE_URL}/cities`);
-        return response.data;
-    }
-    public async getCityById(id: string) {
-        const response = await Axios.get(`${API_BASE_URL}/cities/${id}`);
-        return response.data;
-    }
 
-    public async getCountryById(id: string) {
-        const response = await Axios.get(`${API_BASE_URL}/countries/${id}`);
+    public async getCity(id: string) {
+        const response = await Axios.get<GetCityResponseDto>(`${API_BASE_URL}/cities/${id}`);
         return response.data;
     }
-
-    public async getCountryForCity(id: string) {
-        const response = await Axios.get(`${API_BASE_URL}/cities/${id}/country`);
-        return response.data;
-    }
-    public async getReviewsForAttraction(id: string) {
-        const response = await Axios.get(`${API_BASE_URL}/attractions/${id}/reviews`);
-        return response.data;
-    }
-    public async getUserForReview(id: string) {
-        const response = await Axios.get(`${API_BASE_URL}/reviews/${id}/user`);
+    public async getChatbotFlow() {
+        const response = await Axios.get<TChatbotFlow>(`${API_BASE_URL}/chatbotFlow`);
         return response.data;
     }
 }

@@ -1,0 +1,7 @@
+.shareOptions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin: 20px;
+
+}

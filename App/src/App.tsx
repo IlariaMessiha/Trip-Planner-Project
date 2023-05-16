@@ -7,21 +7,26 @@ import { SearchPage } from "./Pages/SearchPage";
 
 import { AttractionPage } from "./Pages/AttractionPage";
 import { CityPage } from "./Pages/CityPage";
+import { ChatbotPage } from "./Pages/ChatbotPage";
+import { TripPage } from "./Pages/TripPage";
 
 function App() {
     return (
         <Suspense fallback={null}>
-            <div>
+            <>
                 <NavigationBar />
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/Search" element={<SearchPage />} />
+                        <Route path="/" element={<Dashboard />} />
+
+                        <Route path="/search" element={<SearchPage />} />
+                        <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
-                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/trip" element={<TripPage />} />
                     </Routes>
                 </BrowserRouter>
-            </div>
+            </>
         </Suspense>
     );
 }
