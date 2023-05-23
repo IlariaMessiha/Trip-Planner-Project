@@ -1,10 +1,8 @@
 import { FC, useState } from "react";
-
 import { GrLocation } from "react-icons/gr";
 import styles from "./LocationSearchResult.module.css";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { fetchData } from "../../api/FetchData";
 import React from "react";
 import { Typography } from "@mui/material";
 
@@ -13,22 +11,6 @@ interface LocationSearchResultProps {
     type: string;
 }
 export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item, type }) => {
-    const [locationInfo, setLocationInfo] = useState<string>("");
-    //const [locationActivities, setLocationActivities] = useState<Activity[] | []>([]);
-    React.useEffect(() => {
-        const onMount = async () => {
-            if (type === "city") {
-                const info = null;
-                // await fetchData.getCountryForCity(item.id);
-                // setLocationInfo(info.label);
-                // console.log(locationInfo);
-            } else {
-                setLocationInfo("");
-            }
-        };
-        onMount();
-    }, []);
-
     const { t } = useTranslation();
     if (!item) {
         return null;
@@ -37,21 +19,29 @@ export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item, type
         <div className={styles.searchResultElement}>
             {/* <div className={styles.rightSide}></div> */}
 
-            <Link to={`/location/${item.id}`}>
-                <img src={require("../../assets/images/nice.jpg")} alt="Cover" />
+            <Link
+                to={`/${type.toLowerCase()}/${item.item.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src={require("../../assets/images/new york.jpg")} alt="Cover" />
+                {/* 
+                not sure about the way of importing the image
+                <img src={item.item.imageUrl} alt="Cover" /> 
+                */}
             </Link>
 
             <div className={styles.rightSide}>
-                <Link to={`/location/${item.id}`}>
+                <Link to={`/attraction/${item.item.id}`}>
                     <Typography variant="h3" className={styles.title}>
-                        {item.label}
+                        {item.item.label}
                     </Typography>
                 </Link>
-
+                <Typography variant="body1">{item.item.country.label}</Typography>
                 <div className={styles.resultType}>
-                    <GrLocation /> <Typography variant="body1">Location</Typography>
+                    <GrLocation /> <Typography variant="body1">{t(`common.${type}`)}</Typography>
                 </div>
-                <Typography variant="body1">{locationInfo}</Typography>
+
                 <div className={styles.availableActivities}>
                     {/* {<Typography text={locationActivities.length} variant="body2" />} */}
                     <Typography variant="body2">{t("common.activities")} </Typography>

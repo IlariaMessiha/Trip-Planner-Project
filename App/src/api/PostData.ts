@@ -8,7 +8,10 @@ export class PostData {
         return (await Axios.post<TripDto>(`${API_BASE_URL}/submissions`, submissions)).data;
     }
     public async search(searchQuery: SearchQuery) {
-        return await Axios.post<SearchResult>(`${API_BASE_URL}/search`, searchQuery);
+        console.log("post data : ", searchQuery);
+        const res: any = await Axios.post<SearchResult[]>(`${API_BASE_URL}/search`, searchQuery);
+        console.log("post ressssss : ", res);
+        return (await Axios.post<SearchResult[]>(`${API_BASE_URL}/search`, searchQuery)).data;
     }
 }
 export const postData = new PostData();

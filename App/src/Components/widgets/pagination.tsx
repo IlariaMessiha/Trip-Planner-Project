@@ -1,45 +1,34 @@
-// import React from "react";
-// import PropTypes from "prop-types";
-// import _ from "lodash";
-// import { FC, useEffect, useState } from "react";
+import React from "react";
+import { Pagination, PaginationItem } from "@mui/material";
+import { FC } from "react";
 
-// interface PaginationProps {
-//     itemsCount: number;
-//     pageSize: number;
-//     currentPage: number;
-//     onPageChange: any;
-// }
-export const Pagination = () => {
-    return <div></div>;
+interface PaginationProps {
+    itemsCount: number;
+    pageSize: number;
+    currentPage: number;
+    onPageChange: any;
+}
+
+const PaginationComponent: FC<PaginationProps> = ({
+    itemsCount,
+    pageSize,
+    currentPage,
+    onPageChange,
+}) => {
+    const pagesCount = Math.ceil(itemsCount / pageSize);
+
+    if (pagesCount === 1) return null;
+
+    return (
+        <Pagination
+            page={currentPage}
+            count={pagesCount}
+            onChange={(_, page) => onPageChange(page)}
+            defaultPage={1}
+            shape="rounded"
+            color="primary"
+        />
+    );
 };
-// export const Pagination: FC<PaginationProps> = ({
-//     itemsCount,
-//     pageSize,
-//     currentPage,
-//     onPageChange,
-// }) => {
-//     const pagesCount = Math.ceil(itemsCount / pageSize);
-//     if (pagesCount === 1) return null;
-//     const pages = _.range(1, pagesCount + 1);
 
-//     return (
-//         <ul className="pagination">
-//             {pages.map(page => (
-//                 <li key={page} className={page === currentPage ? "page-item active" : "page-item"}>
-//                     <a className="page-link" onClick={() => onPageChange(page)}>
-//                         {page}
-//                     </a>
-//                 </li>
-//             ))}
-//         </ul>
-//     );
-// };
-
-// Pagination.propTypes = {
-//     itemsCount: PropTypes.number.isRequired,
-//     pageSize: PropTypes.number.isRequired,
-//     currentPage: PropTypes.number.isRequired,
-//     onPageChange: PropTypes.func.isRequired,
-// };
-
-// export default Pagination;
+export default PaginationComponent;

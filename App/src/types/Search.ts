@@ -11,7 +11,7 @@ export type SearchResult = {
 
 export type SearchQuery = {
     label: string;
-    type?: SearchResultType;
+    type?: SearchResultType [];
 };
 
 export type SearchResultType = "City" | "Country" | "Attraction" | "Restaurant" | "Hotel" | "";

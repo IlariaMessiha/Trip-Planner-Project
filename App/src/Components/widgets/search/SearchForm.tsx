@@ -1,22 +1,19 @@
 import { Autocomplete, Button, styled, TextField } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { SearchQuery, SearchResultType } from "../../../types/Search";
+import { SearchQuery, SearchResult, SearchResultType } from "../../../types/Search";
 import { InputText } from "../../core/InputText";
 import styles from "./SearchForm.module.css";
-import { fetchData } from "../../../api/FetchData";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { postData, PostData } from "../../../api/PostData";
 
 type TypeOption = { id: SearchResultType; label: string };
 type TypeOptionArray = TypeOption[];
 
 interface SearchFormProps {
     initialLabel: string;
-    onSubmit: (results: {}, query: SearchQuery) => void;
+    onSubmit: (results: SearchResult[], query: SearchQuery, error: string) => void;
 }
 const SearchButton = styled(Button)({
     backgroundColor: "black",
@@ -42,7 +39,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
 
     const [label, setLabel] = useState<string>(initialLabel);
     const [typeOption, setTypeOption] = useState<TypeOption | null>(null);
-    const [typeOptionArray, setTypeArray] = useState<TypeOptionArray>();
+    const [typeOptionArray, setTypeArray] = useState<TypeOptionArray | null>();
 
     const location = useLocation();
 
@@ -56,47 +53,58 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
 
     const handleSubmit = async (e: any): Promise<void> => {
         e.preventDefault();
-        const filters = typeOptionArray ?? [];
-        let filterString = "";
-        filters.forEach(filter => {
-            filterString += filter.id.toLowerCase() + ",";
-        });
-        const finalFilters = filterString.slice(0, -1);
-        console.log(finalFilters);
 
-        if (finalFilters.length !== 0) {
-            navigate(`/search?q=${label}&filter=${finalFilters}`);
-        } else {
-            navigate(`/search?q=${label}`);
+        if (label) {
+            console.log("label from handle submit : ", label);
+            try {
+                console.log("type option array : ", typeOptionArray);
+                const results = await postData.search({
+                    label: label,
+                    type: typeOptionArray?.map(obj => obj.id),
+                });
+
+                console.log("resssssss: ", results);
+
+                const error = results.length === 0 ? "No Items Found" : "";
+                onSubmit(
+                    results,
+                    {
+                        label: label,
+                        type: typeOptionArray?.map(obj => obj.id),
+                    },
+                    error
+                );
+            } catch (error) {
+                console.error("search form error : ", error);
+            }
         }
     };
 
-    useEffect(() => {
-        const searchParams = new URLSearchParams(location.search);
-        const searchQuery = searchParams.get("q");
-        const searchFilter = searchParams.get("filter");
-        console.log(searchFilter);
+    // useEffect(() => {
+    //     const searchParams = new URLSearchParams(location.search);
+    //     const searchQuery = searchParams.get("q");
+    //     const searchFilter = searchParams.get("filter");
+    //     console.log(searchFilter);
 
-        if (searchQuery) {
-            const fetchDataAndUpdateState = async (label: string) => {
-                try {
-                    const results = await fetchData.getSearchResults(
-                        searchQuery,
-                        searchFilter || ""
-                    );
-                    onSubmit(results, {
-                        label: searchQuery,
-                        type: searchFilter as SearchResultType,
-                    });
-                    setLabel(searchQuery);
-                    setTypeOption(typeOptions.find(type => type.id === searchType));
-                } catch (error) {
-                    console.error(error);
-                }
-            };
-            fetchDataAndUpdateState(searchQuery);
-        }
-    }, [location.search]);
+    //     if (searchQuery) {
+    //         const fetchDataAndUpdateState = async (searchQuery: SearchQuery) => {
+    //             try {
+    //                 const results = await postData.search(
+    //                     searchQuery
+    //                 );
+    //                 onSubmit(results, {
+    //                     label: searchQuery,
+    //                     type: searchFilter as SearchResultType,
+    //                 });
+    //                 setLabel(searchQuery.label);
+    //                 setTypeOption(typeOptions.find(type => type.id === searchType));
+    //             } catch (error) {
+    //                 console.error(error);
+    //             }
+    //         };
+    //         // fetchDataAndUpdateState(searchQuery);
+    //     }
+    // }, [location.search]);
 
     return (
         <form className={styles.searchContainer} onSubmit={handleSubmit}>
@@ -104,6 +112,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                 <InputText
                     label={t("common.search")}
                     onChange={({ target }) => {
+                        console.log("on change text input", target.value.toLowerCase());
                         setLabel(target.value.toLowerCase());
                     }}
                     value={label || ""}
@@ -116,9 +125,12 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 renderInput={params => <TypeTextField {...params} label={t("common.filterBy")} />}
                 onChange={(event, values) => {
-                    // console.log(values);
-
-                    setTypeArray(values);
+                    console.log("valsssssss : ", values);
+                    if (values.length > 0) {
+                        setTypeArray(values);
+                    } else {
+                        setTypeArray(null);
+                    }
                 }}
                 sx={{ width: 200 }}
             />
