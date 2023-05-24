@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ActivitySearchResult } from "../Components/core/ActivitySearchResult";
+
 import { Container } from "../Components/core/layout/Container";
-import { LocationSearchResult } from "../Components/core/LocationSearchResult";
+
 import { SearchForm } from "../Components/widgets/search/SearchForm";
 import { SearchResult } from "../types/Search";
 import styles from "./SearchPage.module.css";
 import { useTranslation } from "react-i18next";
-import  PaginationComponent  from "../Components/widgets/pagination";
+import PaginationComponent from "../Components/widgets/pagination";
 import { paginate } from "../utils/paginate";
+import { SearchTypeItem } from "../Components/widgets/SearchTypeItem";
 
 export const SearchPage = () => {
-   
     const { initialSearchLabel } = useInitialSearchFromUrl();
     const [results, setResults] = useState<SearchResult[]>([]);
     const [unPagedResults, setUnPagedResults] = useState<SearchResult[]>([]);
@@ -29,16 +28,12 @@ export const SearchPage = () => {
     }, [results]);
 
     useEffect(() => {
-        console.log(results);
-    }, []);
-
-    useEffect(() => {
         setPagedResults(paginate(unPagedResults, currentPage, pageSize));
         console.log("paged results :  ", pagedResults);
     }, [currentPage, unPagedResults, pageError]);
 
     const handlePageChange = (page: number) => {
-        console.log("page number : ",page)
+        console.log("page number : ", page);
         setCurrentPage(page);
     };
 
@@ -60,7 +55,6 @@ export const SearchPage = () => {
                         setResults(results);
                         setQueryInfo(query);
                         setPageError(error);
-                        
                     }}
                 />
             </Container>
@@ -73,7 +67,7 @@ export const SearchPage = () => {
                 }}
             >
                 <div className={styles.searchResultContainer}>
-                    <Container className={styles.searchResult}  >
+                    <Container className={styles.searchResult}>
                         <div>
                             {pageError ? (
                                 <h1>{pageError}</h1>
@@ -82,18 +76,7 @@ export const SearchPage = () => {
                                     {pagedResults.map(item => {
                                         return (
                                             <div key={item.item.label}>
-                                                {String(item.type) === "Country" ||
-                                                String(item.type) === "City" ? (
-                                                    <LocationSearchResult
-                                                        item={item}
-                                                        type={String(item.type)}
-                                                    />
-                                                ) : (
-                                                    <ActivitySearchResult
-                                                        item={item}
-                                                        type={String(item.type)}
-                                                    />
-                                                )}
+                                                <SearchTypeItem item={item} />
                                             </div>
                                         );
                                     })}

@@ -8,9 +8,6 @@ import styles from "./SearchForm.module.css";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { postData, PostData } from "../../../api/PostData";
 
-type TypeOption = { id: SearchResultType; label: string };
-type TypeOptionArray = TypeOption[];
-
 interface SearchFormProps {
     initialLabel: string;
     onSubmit: (results: SearchResult[], query: SearchQuery, error: string) => void;
@@ -19,6 +16,8 @@ const SearchButton = styled(Button)({
     backgroundColor: "black",
     color: "white",
     borderColor: "black",
+    padding: "10px",
+
     "&:hover": {
         backgroundColor: "white",
         color: "black",
@@ -38,73 +37,47 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
     const navigate = useNavigate();
 
     const [label, setLabel] = useState<string>(initialLabel);
-    const [typeOption, setTypeOption] = useState<TypeOption | null>(null);
-    const [typeOptionArray, setTypeArray] = useState<TypeOptionArray | null>();
 
-    const location = useLocation();
+    const [searchResultType, setSearchResultType] = useState<SearchResultType[] | undefined>(
+        undefined
+    );
+    const [results, setResults] = useState<SearchResult[] | undefined>(undefined);
 
-    const typeOptions: TypeOption[] = [
-        { id: "Country", label: t("common.country") },
-        { id: "City", label: t("common.city") },
-        { id: "Attraction", label: t("common.attraction") },
-        { id: "Hotel", label: t("common.hotel") },
-        { id: "Restaurant", label: t("common.restaurant") },
+    const resultOptions: SearchResultType[] = [
+        "Country",
+        "City",
+        "Restaurant",
+        "Hotel",
+        "Attraction",
     ];
 
     const handleSubmit = async (e: any): Promise<void> => {
         e.preventDefault();
 
         if (label) {
-            console.log("label from handle submit : ", label);
             try {
-                console.log("type option array : ", typeOptionArray);
-                const results = await postData.search({
+                const _results = await postData.search({
                     label: label,
-                    type: typeOptionArray?.map(obj => obj.id),
+                    type: searchResultType,
                 });
+                setResults(_results);
 
-                console.log("resssssss: ", results);
-
-                const error = results.length === 0 ? "No Items Found" : "";
-                onSubmit(
-                    results,
-                    {
-                        label: label,
-                        type: typeOptionArray?.map(obj => obj.id),
-                    },
-                    error
-                );
+                if (_results) {
+                    const error = _results.length === 0 ? "No Items Found" : "";
+                    onSubmit(
+                        _results,
+                        {
+                            label: label,
+                            type: searchResultType,
+                        },
+                        error
+                    );
+                }
             } catch (error) {
                 console.error("search form error : ", error);
             }
         }
     };
-
-    // useEffect(() => {
-    //     const searchParams = new URLSearchParams(location.search);
-    //     const searchQuery = searchParams.get("q");
-    //     const searchFilter = searchParams.get("filter");
-    //     console.log(searchFilter);
-
-    //     if (searchQuery) {
-    //         const fetchDataAndUpdateState = async (searchQuery: SearchQuery) => {
-    //             try {
-    //                 const results = await postData.search(
-    //                     searchQuery
-    //                 );
-    //                 onSubmit(results, {
-    //                     label: searchQuery,
-    //                     type: searchFilter as SearchResultType,
-    //                 });
-    //                 setLabel(searchQuery.label);
-    //                 setTypeOption(typeOptions.find(type => type.id === searchType));
-    //             } catch (error) {
-    //                 console.error(error);
-    //             }
-    //         };
-    //         // fetchDataAndUpdateState(searchQuery);
-    //     }
-    // }, [location.search]);
 
     return (
         <form className={styles.searchContainer} onSubmit={handleSubmit}>
@@ -121,15 +94,13 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
             <Autocomplete
                 multiple
                 disablePortal
-                options={typeOptions}
-                isOptionEqualToValue={(option, value) => option.id === value.id}
+                options={resultOptions}
                 renderInput={params => <TypeTextField {...params} label={t("common.filterBy")} />}
                 onChange={(event, values) => {
-                    console.log("valsssssss : ", values);
                     if (values.length > 0) {
-                        setTypeArray(values);
+                        setSearchResultType(values);
                     } else {
-                        setTypeArray(null);
+                        setSearchResultType(undefined);
                     }
                 }}
                 sx={{ width: 200 }}

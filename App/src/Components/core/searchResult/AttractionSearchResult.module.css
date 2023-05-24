@@ -4,6 +4,8 @@
     display: flex;
     border-bottom: 1px solid lightgray;
     border-top: 1px solid lightgray;
+    margin-bottom: 20px;
+
 
 }
 
@@ -11,21 +13,22 @@
     display: flex;
     gap: 3px;
 
+
 }
 
-.availableActivities {
+.availableReviews {
     display: flex;
     gap: 3px;
     padding-top: 5px;
+
 }
 
-.availableActivities:hover {
+.availableReviews:hover {
     text-decoration: underline;
 }
 
-
 .rightSide {
-    flex-grow: 1;
+
     padding: 20px;
 }
 
