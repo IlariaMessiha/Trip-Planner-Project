@@ -1,199 +1,222 @@
-import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
-import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "./register.module.css";
+import { useEffect, useState } from "react";
+import { FormGroup, FormHelperText } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import { literal, object, string, TypeOf } from "zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
+const registerSchema = object({
+    firstName: string()
+        .nonempty("Name is required")
+        .max(32, "Name must be less than 100 characters"),
+    lastName: string()
+        .nonempty("Name is required")
+        .max(32, "Name must be less than 100 characters"),
+    email: string().nonempty("Email is required").email("Email is invalid"),
+    password: string()
+        .nonempty("Password is required")
+        .min(8, "Password must be more than 8 characters")
+        .max(32, "Password must be less than 32 characters"),
+    confirmPassword: string().nonempty("Please confirm your password"),
+}).refine(data => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Passwords do not match",
+});
 
-export const Register = () => {
+type RegisterInput = TypeOf<typeof registerSchema>;
+
+const Copyright = (props: any) => {
+    return (
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+            {"Copyright © "}
+            <Link color="inherit" href="https://mui.com/">
+                Your Website
+            </Link>{" "}
+            {new Date().getFullYear()}
+            {"."}
+        </Typography>
+    );
+};
+
+const defaultTheme = createTheme();
+
+export const SignUp = () => {
     const navigate = useNavigate();
 
-    const [loading, setLoading] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>("");
+   
 
-    const registerSchema = Yup.object().shape({
-        firstName: Yup.string()
-            .min(2, "Too Short!")
-            .max(50, "Too Long!")
-            .required("First Name required"),
-
-        lastName: Yup.string()
-            .min(2, "Too Short!")
-            .max(50, "Too Long!")
-            .required("Last Name required"),
-
-        email: Yup.string().email("Please enter a valid Email").required("Email required"),
-        password: Yup.string()
-            .min(8, "Password must be 8 characters long")
-            .matches(/[0-9]/, "Password must include a number")
-            .matches(/[a-z]/, "Password must include a lowercase letter")
-            .matches(/[A-Z]/, "Password must include an uppercase letter")
-            .required("Required"),
-        confirmPassword: Yup.string()
-            .oneOf([Yup.ref("password")], "Passwords must match")
-            .required("Required"),
+    const {
+        register,
+        formState: { errors, isSubmitSuccessful },
+        reset,
+        handleSubmit,
+    } = useForm<RegisterInput>({
+        resolver: zodResolver(registerSchema),
     });
 
-    // useEffect(() => {
-    //     const currentUser = AuthService.getCurrentUser();
-    //     if (currentUser) {
-    //         navigate("/profile");
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            reset();
+        }
+    }, [isSubmitSuccessful]);
 
-    const handleRegister = (formValue: {
-        firstName: string;
-        lastName: string;
-        email: string;
-        password: string;
-        confirmPassword: string;
-    }) => {
-        const { firstName, lastName, email, password, confirmPassword } = formValue;
-
-        setMessage("");
-        setLoading(true);
-
-        console.log(firstName, lastName, email, password, confirmPassword);
-
-        AuthService.register(firstName, lastName, email, password).then(response => {
-            if (response.error) {
-                setMessage(response.error.toString());
-                setLoading(false);
-            } else {
-                navigate("/login");
+    const onSubmitHandler: SubmitHandler<RegisterInput> = values => {
+        AuthService.register(values.firstName, values.lastName, values.email, values.password).then(
+            response => {
+                console.log(response);
+                if (response.error) {
+                    
+                    toast.error(response.error, {
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 4000,
+                        hideProgressBar: true,
+                    });
+                    reset();
+                    console.log("Registration error");
+                } else {
+                    toast.success("User Created Successfully", {
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 4000,
+                        hideProgressBar: true,
+                    });
+                    navigate("/login");
+                }
             }
-        });
+        );
+
+        console.log(values);
     };
+    console.log(errors);
 
     return (
-        <div
-            className={styles.outerMostDiv}
-            style={{ height: "100vh", display: "flex", flexDirection: "column" }}
-        >
-            <div
-                className="card card-container mx-auto page-background"
-                style={{ maxWidth: 500, marginTop: "5rem", borderRadius: "20px" }}
-            >
-                <Formik
-                    initialValues={{
-                        firstName: "",
-                        lastName: "",
-                        email: "",
-                        password: "",
-                        confirmPassword: "",
+        <ThemeProvider theme={defaultTheme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
                     }}
-                    validationSchema={registerSchema}
-                    onSubmit={handleRegister}
                 >
-                    <Form className="m-5">
-                        <h1 style={{}}>Register</h1>
-                        <div className="form-group mx-auto" style={{ maxWidth: 400 }}>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    marginBottom: "1rem",
-                                }}
-                            >
-                                <div style={{ flex: "1", marginRight: "1rem" }}>
-                                    <label htmlFor="firstName">First Name</label>
-                                    <Field
-                                        name="firstName"
-                                        type="text"
-                                        className="form-control form-control-sm"
-                                    />
-                                    <ErrorMessage
-                                        name="firstName"
-                                        component="div"
-                                        className="alert alert-danger"
-                                    />
-                                </div>
-                                <div style={{ flex: "1" }}>
-                                    <label htmlFor="lastName">Last Name</label>
-                                    <Field
-                                        name="lastName"
-                                        type="text"
-                                        className="form-control form-control-sm"
-                                    />
-                                    <ErrorMessage
-                                        name="lastName"
-                                        component="div"
-                                        className="alert alert-danger"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label htmlFor="email">Email</label>
-                                <Field
-                                    name="email"
-                                    type="text"
-                                    className="form-control form-control-sm"
+                    <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign up
+                    </Typography>
+                    <Box
+                        component="form"
+                        noValidate
+                        onSubmit={handleSubmit(onSubmitHandler)}
+                        sx={{ mt: 3 }}
+                    >
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    autoComplete="given-name"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    autoFocus
+                                    error={!!errors["firstName"]}
+                                    helperText={
+                                        errors["firstName"] ? errors["firstName"].message : ""
+                                    }
+                                    {...register("firstName")}
                                 />
-                                <ErrorMessage
-                                    name="email"
-                                    component="div"
-                                    className="alert alert-danger"
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    autoComplete="family-name"
+                                    error={!!errors["lastName"]}
+                                    helperText={
+                                        errors["lastName"] ? errors["lastName"].message : ""
+                                    }
+                                    {...register("lastName")}
                                 />
-                            </div>
-
-                            <div style={{ marginTop: "1rem" }}>
-                                <label htmlFor="password">Password</label>
-                                <Field
-                                    name="password"
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    type="email"
+                                    label="Email Address"
+                                    autoComplete="email"
+                                    error={!!errors["email"]}
+                                    helperText={errors["email"] ? errors["email"].message : ""}
+                                    {...register("email")}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    label="Password"
                                     type="password"
-                                    className="form-control form-control-sm"
+                                    id="password"
+                                    error={!!errors["password"]}
+                                    helperText={
+                                        errors["password"] ? errors["password"].message : ""
+                                    }
+                                    {...register("password")}
                                 />
-                                <ErrorMessage
-                                    name="password"
-                                    component="div"
-                                    className="alert alert-danger"
-                                />
-                            </div>
-
-                            <div style={{ marginTop: "1rem" }}>
-                                <label htmlFor="confirmPassword">Confirm Password</label>
-                                <Field
-                                    name="confirmPassword"
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    autoComplete="confirmPassword"
+                                    fullWidth
+                                    label="Confirm Password"
                                     type="password"
-                                    className="form-control form-control-sm"
+                                    id="confirmPassword"
+                                    error={!!errors["confirmPassword"]}
+                                    helperText={
+                                        errors["confirmPassword"]
+                                            ? errors["confirmPassword"].message
+                                            : ""
+                                    }
+                                    {...register("confirmPassword")}
                                 />
-                                <ErrorMessage
-                                    name="confirmPassword"
-                                    component="div"
-                                    className="alert alert-danger"
-                                />
-                            </div>
-
-                            <div style={{ marginTop: "1rem" }}>
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary btn-block"
-                                    disabled={loading}
-                                >
-                                    {loading && (
-                                        <span className="spinner-border spinner-border-sm"></span>
-                                    )}
-                                    <span>Create Account</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        {message && (
-                            <div className="form-group mx-auto" style={{ maxWidth: 400 }}>
-                                <div className="alert alert-danger" role="alert">
-                                    {message}
-                                </div>
-                            </div>
-                        )}
-
-                        <div>
-                            <Link to="/login">Already have an account ?</Link>
-                        </div>
-                    </Form>
-                </Formik>
-            </div>
-        </div>
+                            </Grid>
+                        </Grid>
+                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                            Sign Up
+                        </Button>
+                        <Grid container>
+                            <Grid item >
+                                <Link href={"/login"} variant="body2">
+                                    Already have an account? Sign in
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+                <Copyright sx={{ mt: 5 }} />
+            </Container>
+        </ThemeProvider>
     );
 };

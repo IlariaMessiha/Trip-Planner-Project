@@ -7,42 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Attraction {
-  id                        Int                         @id @default(autoincrement())
-  label                     String?                     @db.VarChar(255)
-  city_id                   Int?
-  address                   String?                     @db.VarChar(255)
-  phone                     String?                     @db.VarChar(255)
-  suggested_duration        Int?
-  openning_hours_from       DateTime?                   @db.Time(6)
-  openning_hours_to         DateTime?                   @db.Time(6)
-  about                     String?
-  website                   String?                     @db.VarChar(255)
-  type                      String?                     @db.VarChar(255)
-  details                   String?
-  rating                    Int?
-  reservation_link          String?                     @db.VarChar(255)
-  min_age                   Int?
-  attraction_code           String?                     @db.VarChar(255)
-  email                     String?                     @db.VarChar(255)
-  long                      Decimal?                    @db.Decimal(10, 5)
-  lat                       Decimal?                    @db.Decimal(10, 5)
-  entry_fee                 Decimal?                    @db.Decimal(10, 5)
-  city                      city?                       @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "attraction_city_id_foreign")
-  attraction_review         attraction_review[]
-  attraction_tag            attraction_tag[]
-  trip_item                 trip_item[]
-  user_attraction_favourite user_attraction_favourite[]
-}
-
 model attraction_review {
   id            Int         @id @default(autoincrement())
   title         String?     @db.VarChar(255)
   body          String?
-  attraction_id Int?
   rating        Int?
   user_id       Int?
-  Attraction    Attraction? @relation(fields: [attraction_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "attraction_review_attraction_id_foreign")
+  attraction_id Int?
+  Attraction    attraction? @relation(fields: [attraction_id], references: [id], onUpdate: NoAction, map: "attraction_review_attraction_id_foreign")
   user          user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "attraction_review_user_id_foreign")
 }
 
@@ -50,21 +22,23 @@ model attraction_tag {
   id            Int         @id @default(autoincrement())
   attraction_id Int?
   tag_id        Int?
-  Attraction    Attraction? @relation(fields: [attraction_id], references: [id], onUpdate: NoAction, map: "attraction_tag_attraction_id_foreign")
+  Attraction    attraction? @relation(fields: [attraction_id], references: [id], onUpdate: NoAction, map: "attraction_tag_attraction_id_foreign")
   tag           tag?        @relation(fields: [tag_id], references: [id], onUpdate: NoAction, map: "attraction_tag_tag_id_foreign")
 }
 
 model city {
-  id         Int          @id @default(autoincrement())
-  label      String?      @db.VarChar(255)
-  country_id Int?
-  city_code  String?      @db.VarChar(255)
-  long       Decimal?     @db.Decimal(10, 5)
-  lat        Decimal?     @db.Decimal(10, 5)
-  Attraction Attraction[]
-  country    country?     @relation(fields: [country_id], references: [id], onUpdate: NoAction, map: "city_country_id_foreign")
-  hotel      hotel[]
-  restaurant restaurant[]
+  id             Int             @id @default(autoincrement())
+  label          String?         @db.VarChar(255)
+  country_id     Int?
+  city_code      String?         @db.VarChar(255)
+  long           Decimal?        @db.Decimal(10, 5)
+  lat            Decimal?        @db.Decimal(10, 5)
+  city_image     String?         @db.Uuid
+  attraction     attraction[]
+  directus_files directus_files? @relation(fields: [city_image], references: [id], onUpdate: NoAction, map: "city_city_image_foreign")
+  country        country?        @relation(fields: [country_id], references: [id], onUpdate: NoAction, map: "city_country_id_foreign")
+  hotel          hotel[]
+  restaurant     restaurant[]
 }
 
 model country {
@@ -168,12 +142,16 @@ model directus_files {
   location                                                              String?
   tags                                                                  String?
   metadata                                                              Json?               @db.Json
+  attraction                                                            attraction[]
+  city                                                                  city[]
   directus_folders                                                      directus_folders?   @relation(fields: [folder], references: [id], onUpdate: NoAction, map: "directus_files_folder_foreign")
   directus_users_directus_files_modified_byTodirectus_users             directus_users?     @relation("directus_files_modified_byTodirectus_users", fields: [modified_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_modified_by_foreign")
   directus_users_directus_files_uploaded_byTodirectus_users             directus_users?     @relation("directus_files_uploaded_byTodirectus_users", fields: [uploaded_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_uploaded_by_foreign")
   directus_settings_directus_settings_project_logoTodirectus_files      directus_settings[] @relation("directus_settings_project_logoTodirectus_files")
   directus_settings_directus_settings_public_backgroundTodirectus_files directus_settings[] @relation("directus_settings_public_backgroundTodirectus_files")
   directus_settings_directus_settings_public_foregroundTodirectus_files directus_settings[] @relation("directus_settings_public_foregroundTodirectus_files")
+  hotel                                                                 hotel[]
+  restaurant                                                            restaurant[]
 }
 
 model directus_flows {
@@ -186,7 +164,7 @@ model directus_flows {
   trigger             String?               @db.VarChar(255)
   accountability      String?               @default("all") @db.VarChar(255)
   options             Json?                 @db.Json
-  operation           String?               @unique(map: "directus_flows_operation_unique") @db.Uuid
+  operation           String?               @db.Uuid
   date_created        DateTime?             @default(now()) @db.Timestamptz(6)
   user_created        String?               @db.Uuid
   directus_users      directus_users?       @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_flows_user_created_foreign")
@@ -224,24 +202,24 @@ model directus_notifications {
 }
 
 model directus_operations {
-  id                                                                         String               @id @db.Uuid
-  name                                                                       String?              @db.VarChar(255)
-  key                                                                        String               @db.VarChar(255)
-  type                                                                       String               @db.VarChar(255)
+  id                                                                         String                @id @db.Uuid
+  name                                                                       String?               @db.VarChar(255)
+  key                                                                        String                @db.VarChar(255)
+  type                                                                       String                @db.VarChar(255)
   position_x                                                                 Int
   position_y                                                                 Int
-  options                                                                    Json?                @db.Json
-  resolve                                                                    String?              @unique(map: "directus_operations_resolve_unique") @db.Uuid
-  reject                                                                     String?              @unique(map: "directus_operations_reject_unique") @db.Uuid
-  flow                                                                       String               @db.Uuid
-  date_created                                                               DateTime?            @default(now()) @db.Timestamptz(6)
-  user_created                                                               String?              @db.Uuid
-  directus_flows                                                             directus_flows       @relation(fields: [flow], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_operations_flow_foreign")
-  directus_operations_directus_operations_rejectTodirectus_operations        directus_operations? @relation("directus_operations_rejectTodirectus_operations", fields: [reject], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_reject_foreign")
-  other_directus_operations_directus_operations_rejectTodirectus_operations  directus_operations? @relation("directus_operations_rejectTodirectus_operations")
-  directus_operations_directus_operations_resolveTodirectus_operations       directus_operations? @relation("directus_operations_resolveTodirectus_operations", fields: [resolve], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_resolve_foreign")
-  other_directus_operations_directus_operations_resolveTodirectus_operations directus_operations? @relation("directus_operations_resolveTodirectus_operations")
-  directus_users                                                             directus_users?      @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_operations_user_created_foreign")
+  options                                                                    Json?                 @db.Json
+  resolve                                                                    String?               @db.Uuid
+  reject                                                                     String?               @db.Uuid
+  flow                                                                       String                @db.Uuid
+  date_created                                                               DateTime?             @default(now()) @db.Timestamptz(6)
+  user_created                                                               String?               @db.Uuid
+  directus_flows                                                             directus_flows        @relation(fields: [flow], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_operations_flow_foreign")
+  directus_operations_directus_operations_rejectTodirectus_operations        directus_operations?  @relation("directus_operations_rejectTodirectus_operations", fields: [reject], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_reject_foreign")
+  other_directus_operations_directus_operations_rejectTodirectus_operations  directus_operations[] @relation("directus_operations_rejectTodirectus_operations")
+  directus_operations_directus_operations_resolveTodirectus_operations       directus_operations?  @relation("directus_operations_resolveTodirectus_operations", fields: [resolve], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_resolve_foreign")
+  other_directus_operations_directus_operations_resolveTodirectus_operations directus_operations[] @relation("directus_operations_resolveTodirectus_operations")
+  directus_users                                                             directus_users?       @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_operations_user_created_foreign")
 }
 
 model directus_panels {
@@ -398,7 +376,7 @@ model directus_users {
   id                                                                      String                   @id @db.Uuid
   first_name                                                              String?                  @db.VarChar(50)
   last_name                                                               String?                  @db.VarChar(50)
-  email                                                                   String?                  @unique(map: "directus_users_email_unique") @db.VarChar(128)
+  email                                                                   String?                  @db.VarChar(128)
   password                                                                String?                  @db.VarChar(255)
   location                                                                String?                  @db.VarChar(255)
   title                                                                   String?                  @db.VarChar(50)
@@ -410,11 +388,11 @@ model directus_users {
   tfa_secret                                                              String?                  @db.VarChar(255)
   status                                                                  String                   @default("active") @db.VarChar(16)
   role                                                                    String?                  @db.Uuid
-  token                                                                   String?                  @unique(map: "directus_users_token_unique") @db.VarChar(255)
+  token                                                                   String?                  @db.VarChar(255)
   last_access                                                             DateTime?                @db.Timestamptz(6)
   last_page                                                               String?                  @db.VarChar(255)
   provider                                                                String                   @default("default") @db.VarChar(128)
-  external_identifier                                                     String?                  @unique(map: "directus_users_external_identifier_unique") @db.VarChar(255)
+  external_identifier                                                     String?                  @db.VarChar(255)
   auth_data                                                               Json?                    @db.Json
   email_notifications                                                     Boolean?                 @default(true)
   directus_dashboards                                                     directus_dashboards[]
@@ -444,20 +422,22 @@ model directus_webhooks {
 }
 
 model hotel {
-  id                  Int            @id @default(autoincrement())
-  hotel_code          String?        @db.VarChar(255)
-  label               String?        @db.VarChar(255)
-  address             String?        @db.VarChar(255)
+  id                  Int             @id @default(autoincrement())
+  hotel_code          String?         @db.VarChar(255)
+  label               String?         @db.VarChar(255)
+  address             String?         @db.VarChar(255)
   city_id             Int?
-  phone               String?        @db.VarChar(255)
-  email               String?        @db.VarChar(255)
-  website             String?        @db.VarChar(255)
+  phone               String?         @db.VarChar(255)
+  email               String?         @db.VarChar(255)
+  website             String?         @db.VarChar(255)
   rating              Int?
-  reservation_link    String?        @db.VarChar(255)
-  starting_from_price Decimal?       @db.Decimal(10, 5)
-  long                Decimal?       @db.Decimal(10, 5)
-  lat                 Decimal?       @db.Decimal(10, 5)
-  city                city?          @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "hotel_city_id_foreign")
+  reservation_link    String?         @db.VarChar(255)
+  starting_from_price Decimal?        @db.Decimal(10, 5)
+  long                Decimal?        @db.Decimal(10, 5)
+  lat                 Decimal?        @db.Decimal(10, 5)
+  hotel_image         String?         @db.Uuid
+  city                city?           @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "hotel_city_id_foreign")
+  directus_files      directus_files? @relation(fields: [hotel_image], references: [id], onUpdate: NoAction, map: "hotel_hotel_image_foreign")
   hotel_review        hotel_review[]
   hotel_tag           hotel_tag[]
 }
@@ -482,24 +462,26 @@ model hotel_tag {
 }
 
 model restaurant {
-  id                        Int                         @id @default(autoincrement())
-  code                      String?                     @db.VarChar(255)
-  label                     String?                     @db.VarChar(255)
-  city_id                   Int?
-  address                   String?                     @db.VarChar(255)
-  phone                     String?                     @db.VarChar(255)
-  website                   String?                     @db.VarChar(255)
-  food                      String?                     @db.VarChar(255)
-  rating                    Int?
-  email                     String?                     @db.VarChar(255)
-  long                      Decimal?                    @db.Decimal(10, 5)
-  lat                       Decimal?                    @db.Decimal(10, 5)
-  avg_meal_per_person       Decimal?                    @db.Decimal(10, 5)
-  city                      city?                       @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "restaurant_city_id_foreign")
-  restaurant_review         restaurant_review[]
-  retaurant_tag             retaurant_tag[]
-  trip_item                 trip_item[]
-  user_restaurant_favourite user_restaurant_favourite[]
+  id                  Int                 @id @default(autoincrement())
+  code                String?             @db.VarChar(255)
+  label               String?             @db.VarChar(255)
+  city_id             Int?
+  address             String?             @db.VarChar(255)
+  phone               String?             @db.VarChar(255)
+  website             String?             @db.VarChar(255)
+  food                String?             @db.VarChar(255)
+  rating              Int?
+  email               String?             @db.VarChar(255)
+  long                Decimal?            @db.Decimal(10, 5)
+  lat                 Decimal?            @db.Decimal(10, 5)
+  avg_meal_per_person Decimal?            @db.Decimal(10, 5)
+  retaurant_image     String?             @db.Uuid
+  city                city?               @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "restaurant_city_id_foreign")
+  directus_files      directus_files?     @relation(fields: [retaurant_image], references: [id], onUpdate: NoAction, map: "restaurant_retaurant_image_foreign")
+  restaurant_review   restaurant_review[]
+  restaurant_tag      restaurant_tag[]
+  trip_item           trip_item[]
+  user_restaurant     user_restaurant[]
 }
 
 model restaurant_review {
@@ -513,21 +495,13 @@ model restaurant_review {
   user          user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "restaurant_review_user_id_foreign")
 }
 
-model retaurant_tag {
-  id            Int         @id @default(autoincrement())
-  restaurant_id Int?
-  tag_id        Int?
-  restaurant    restaurant? @relation(fields: [restaurant_id], references: [id], onUpdate: NoAction, map: "retaurant_tag_restaurant_id_foreign")
-  tag           tag?        @relation(fields: [tag_id], references: [id], onUpdate: NoAction, map: "retaurant_tag_tag_id_foreign")
-}
-
 model tag {
   id             Int              @id @default(autoincrement())
   code           String?          @db.VarChar(255)
   label          String?          @db.VarChar(255)
   attraction_tag attraction_tag[]
   hotel_tag      hotel_tag[]
-  retaurant_tag  retaurant_tag[]
+  restaurant_tag restaurant_tag[]
 }
 
 model trip {
@@ -536,6 +510,7 @@ model trip {
   user_id        Int?
   arrival_date   DateTime?   @db.Timestamp(6)
   departure_date DateTime?   @db.Date
+  trip_code      String?     @db.VarChar(255)
   user           user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "trip_user_id_foreign")
   trip_item      trip_item[]
 }
@@ -543,40 +518,78 @@ model trip {
 model trip_item {
   id            Int         @id @default(autoincrement())
   datetime      DateTime?   @db.Timestamp(6)
-  attraction_id Int?
   restaurant_id Int?
   trip_id       Int?
-  Attraction    Attraction? @relation(fields: [attraction_id], references: [id], onUpdate: NoAction, map: "trip_item_attraction_id_foreign")
+  attraction_id Int?
+  Attraction    attraction? @relation(fields: [attraction_id], references: [id], onUpdate: NoAction, map: "trip_item_attraction_id_foreign")
   restaurant    restaurant? @relation(fields: [restaurant_id], references: [id], onUpdate: NoAction, map: "trip_item_restaurant_id_foreign")
   trip          trip?       @relation(fields: [trip_id], references: [id], onUpdate: NoAction, map: "trip_item_trip_id_foreign")
 }
 
 model user {
-  id                        Int                         @id @default(autoincrement())
-  firstname                 String?                     @db.VarChar(255)
-  lastname                  String?                     @db.VarChar(255)
-  password                  String?                     @db.VarChar(255)
-  email                     String?                     @db.VarChar(255)
-  attraction_review         attraction_review[]
-  hotel_review              hotel_review[]
-  restaurant_review         restaurant_review[]
-  trip                      trip[]
-  user_attraction_favourite user_attraction_favourite[]
-  user_restaurant_favourite user_restaurant_favourite[]
+  id                Int                 @id @default(autoincrement())
+  firstname         String?             @db.VarChar(255)
+  lastname          String?             @db.VarChar(255)
+  password          String?             @db.VarChar(255)
+  email             String?             @db.VarChar(255)
+  attraction_review attraction_review[]
+  hotel_review      hotel_review[]
+  restaurant_review restaurant_review[]
+  trip              trip[]
+  user_attraction   user_attraction[]
+  user_restaurant   user_restaurant[]
 }
 
-model user_attraction_favourite {
+model attraction {
+  id                  Int                 @id @default(autoincrement())
+  label               String?             @db.VarChar(255)
+  city_id             Int?
+  address             String?             @db.VarChar(255)
+  phone               String?             @db.VarChar(255)
+  suggested_duration  Int?
+  openning_hours_from DateTime?           @db.Time(6)
+  openning_hours_to   DateTime?           @db.Time(6)
+  about               String?
+  website             String?             @db.VarChar(255)
+  type                String?             @db.VarChar(255)
+  details             String?
+  rating              Int?
+  reservation_link    String?             @db.VarChar(255)
+  min_age             Int?
+  code                String?             @db.VarChar(255)
+  email               String?             @db.VarChar(255)
+  long                Decimal?            @db.Decimal(10, 5)
+  lat                 Decimal?            @db.Decimal(10, 5)
+  entry_fee           Decimal?            @db.Decimal(10, 5)
+  image               String?             @db.Uuid
+  city                city?               @relation(fields: [city_id], references: [id], onUpdate: NoAction, map: "attraction_city_id_foreign")
+  directus_files      directus_files?     @relation(fields: [image], references: [id], onUpdate: NoAction, map: "attraction_image_foreign")
+  attraction_review   attraction_review[]
+  attraction_tag      attraction_tag[]
+  trip_item           trip_item[]
+  user_attraction     user_attraction[]
+}
+
+model restaurant_tag {
+  id            Int         @id @default(autoincrement())
+  restaurant_id Int?
+  tag_id        Int?
+  restaurant    restaurant? @relation(fields: [restaurant_id], references: [id], onUpdate: NoAction, map: "restaurant_tag_restaurant_id_foreign")
+  tag           tag?        @relation(fields: [tag_id], references: [id], onUpdate: NoAction, map: "restaurant_tag_tag_id_foreign")
+}
+
+model user_attraction {
   id            Int         @id @default(autoincrement())
   user_id       Int?
   attraction_id Int?
-  Attraction    Attraction? @relation(fields: [attraction_id], references: [id], onUpdate: NoAction, map: "user_attraction_favourite_attraction_id_foreign")
-  user          user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "user_attraction_favourite_user_id_foreign")
+  attraction    attraction? @relation(fields: [attraction_id], references: [id], onUpdate: NoAction, map: "user_attraction_attraction_id_foreign")
+  user          user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "user_attraction_user_id_foreign")
 }
 
-model user_restaurant_favourite {
+model user_restaurant {
   id            Int         @id @default(autoincrement())
   user_id       Int?
   restaurant_id Int?
-  restaurant    restaurant? @relation(fields: [restaurant_id], references: [id], onUpdate: NoAction, map: "user_restaurant_favourite_restaurant_id_foreign")
-  user          user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "user_restaurant_favourite_user_id_foreign")
+  restaurant    restaurant? @relation(fields: [restaurant_id], references: [id], onUpdate: NoAction, map: "user_restaurant_restaurant_id_foreign")
+  user          user?       @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "user_restaurant_user_id_foreign")
 }

@@ -1,22 +1,50 @@
-import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AuthService from "../services/auth.service";
-import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "./login.module.css";
+import { useState, useEffect } from "react";
+import { literal, object, string, TypeOf } from "zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+const registerSchema = object({
+    email: string().nonempty("Email is required").email("Email is invalid"),
+    password: string().nonempty("Password is required"),
+});
+
+type RegisterInput = TypeOf<typeof registerSchema>;
+
+const Copyright = (props: any) => {
+    return (
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+            {"Copyright © "}
+            <Link color="inherit" href="/">
+                Trip Planner
+            </Link>{" "}
+            {new Date().getFullYear()}
+            {"."}
+        </Typography>
+    );
+};
+
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
+
+export const SignIn = (props: any) => {
     const navigate = useNavigate();
-
-    const [loading, setLoading] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>("");
-
-    const SignInSchema = Yup.object().shape({
-        username: Yup.string().email("Please enter a valid Email").required("Email required"),
-        password: Yup.string().required("Password Required"),
-    });
-
     useEffect(() => {
         const currentUser = AuthService.getCurrentUser();
         if (currentUser) {
@@ -24,94 +52,111 @@ export const Login = () => {
         }
     }, []);
 
-    const handleLogin = (formValue: { username: string; password: string }) => {
-        const { username, password } = formValue;
+    const {
+        register,
+        formState: { errors, isSubmitSuccessful },
+        reset,
+        handleSubmit,
+    } = useForm<RegisterInput>({
+        resolver: zodResolver(registerSchema),
+    });
 
-        setMessage("");
-        setLoading(true);
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            reset();
+        }
+    }, [isSubmitSuccessful]);
 
-        AuthService.login(username, password).then(response => {
+    const onSubmitHandler: SubmitHandler<RegisterInput> = values => {
+        AuthService.login(values.email, values.password).then(response => {
+            console.log(response);
             if (response.error) {
-                const resMessage = response.error.toString();
-                setMessage(resMessage);
-                setLoading(false);
+                toast.error(response.error, {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                });
+                reset();
             } else {
+                props.handlelogin();
                 navigate("/");
             }
         });
+
+        console.log(values);
     };
+    console.log(errors);
 
     return (
-        <div
-            className={styles.outerMostDiv}
-            style={{ height: "100vh", display: "flex", flexDirection: "column" }}
-        >
-            <div
-                className="card card-container mx-auto"
-                style={{ width: "30vw", marginTop: "9rem", borderRadius: "20px" }}
-            >
-                <Formik
-                    initialValues={{ username: "", password: "" }}
-                    validationSchema={SignInSchema}
-                    onSubmit={handleLogin}
+        <ThemeProvider theme={defaultTheme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}
                 >
-                    <Form className="m-5">
-                        <h1>Login</h1>
-                        <div className="form-group mx-auto" style={{ maxWidth: 400 }}>
-                            <label htmlFor="username">Email</label>
-                            <Field
-                                name="username"
-                                type="text"
-                                className="form-control form-control-sm"
-                            />
-                            <ErrorMessage
-                                name="username"
-                                component="div"
-                                className="alert alert-danger"
-                            />
-                        </div>
-
-                        <div className="form-group mx-auto" style={{ maxWidth: 400 }}>
-                            <label htmlFor="password">Password</label>
-                            <Field
-                                name="password"
-                                type="password"
-                                className="form-control form-control-sm"
-                            />
-                            <ErrorMessage
-                                name="password"
-                                component="div"
-                                className="alert alert-danger"
-                            />
-                        </div>
-
-                        <div className="form-group mx-auto" style={{ maxWidth: 400 }}>
-                            <button
-                                type="submit"
-                                className="btn btn-primary btn-block"
-                                disabled={loading}
-                            >
-                                {loading && (
-                                    <span className="spinner-border spinner-border-sm"></span>
-                                )}
-                                <span>Login</span>
-                            </button>
-                        </div>
-
-                        {message && (
-                            <div className="form-group mx-auto" style={{ maxWidth: 400 }}>
-                                <div className="alert alert-danger" role="alert">
-                                    {message}
-                                </div>
-                            </div>
-                        )}
-
-                        <div>
-                            <Link to="/register">Don't have account?</Link>
-                        </div>
-                    </Form>
-                </Formik>
-            </div>
-        </div>
+                    <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+                    <Box
+                        component="form"
+                        onSubmit={handleSubmit(onSubmitHandler)}
+                        noValidate
+                        sx={{ mt: 1 }}
+                    >
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            autoComplete="email"
+                            error={!!errors["email"]}
+                            helperText={errors["email"] ? errors["email"].message : ""}
+                            {...register("email")}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            error={!!errors["password"]}
+                            helperText={errors["password"] ? errors["password"].message : ""}
+                            {...register("password")}
+                        />
+                        {/* <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        /> */}
+                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                            Sign In
+                        </Button>
+                        <Grid container>
+                            {/* <Grid item xs>
+                                <Link href="#" variant="body2">
+                                    Forgot password?
+                                </Link>
+                            </Grid> */}
+                            <Grid item>
+                                <Link href="/register" variant="body2">
+                                    {"Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+                <Copyright sx={{ mt: 8, mb: 4 }} />
+            </Container>
+        </ThemeProvider>
     );
 };

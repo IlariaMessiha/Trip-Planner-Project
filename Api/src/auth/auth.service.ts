@@ -28,10 +28,11 @@ export class AuthService {
 
     async signIn(email: string, pass: string): Promise<any> {
         const user = await this.usersService.findUserByMail(email.toLowerCase());
-        console.log(user);
-        const passwordsMatches = await argon2.verify(user.password, pass);
+        let passwordsMatches = null;
 
-        //return {user}
+        if (user) {
+            passwordsMatches = await argon2.verify(user.password, pass);
+        }
 
         if (!user || !passwordsMatches) {
             return { error: "email or password are invalid" };
@@ -41,9 +42,5 @@ export class AuthService {
                 access_token: await this.jwtService.signAsync(payload),
             };
         }
-        //const { password, ...result } = user;
-        // TODO: Generate a JWT and return it here
-        // instead of the user object
-        //return result;
     }
 }

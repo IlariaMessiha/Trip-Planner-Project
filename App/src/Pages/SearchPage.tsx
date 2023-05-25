@@ -8,7 +8,8 @@ import { SearchResult } from "../types/Search";
 import styles from "./SearchPage.module.css";
 import { useTranslation } from "react-i18next";
 
-export const SearchPage = () => {
+export const SearchPage = (props: any) => {
+
     type ResultsType = {
         [key: string]: any[];
     };

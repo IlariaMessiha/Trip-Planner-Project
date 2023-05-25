@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./DropDownProfile.module.css";
 import PersonIcon from "@mui/icons-material/Person";
 import { IconButton, Fade } from "@mui/material";
+import AuthService from "../../services/auth.service";
+import Link from "@mui/material/Link";
 
 type User = {
     isAuthenticated: boolean;
@@ -13,8 +15,8 @@ type User = {
 
 export const DropDownProfileMenu = (props: any) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [user, setUser] = useState<User>({ isAuthenticated: false });
     const open = Boolean(anchorEl);
+    const navigate = useNavigate();
 
     function handleClick(event: React.MouseEvent<HTMLElement>) {
         setAnchorEl(event.currentTarget);
@@ -56,15 +58,41 @@ export const DropDownProfileMenu = (props: any) => {
 
                 // open={open}
             >
-                {props.isAuthenticated ? (
+                {props.currentUser ? (
                     <div>
-                        <MenuItem>Profile</MenuItem>
-                        <MenuItem>Logout</MenuItem>
+                        <MenuItem
+                            onClick={() => {
+                                navigate("/profile");
+                            }}
+                        >
+                            Profile
+                        </MenuItem>
+
+                        <MenuItem
+                            onClick={() => {
+                                props.handleLogout();
+                                navigate("/login");
+                            }}
+                        >
+                            Logout
+                        </MenuItem>
                     </div>
                 ) : (
                     <div>
-                        <MenuItem>Sign In</MenuItem>
-                        <MenuItem>Register</MenuItem>
+                        <MenuItem
+                            onClick={() => {
+                                navigate("/login");
+                            }}
+                        >
+                            Login
+                        </MenuItem>
+                        <MenuItem
+                            onClick={() => {
+                                navigate("/register");
+                            }}
+                        >
+                            Register
+                        </MenuItem>
                     </div>
                 )}
             </Menu>
