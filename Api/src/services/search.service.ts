@@ -14,10 +14,22 @@ export class SearchService {
     async search(searchQuery: SearchQuery): Promise<SearchResult[]> {
         const attractions = await this.prisma.attraction.findMany({
             where: {
-                label: {
-                    contains: searchQuery.label,
-                    mode: "insensitive",
-                },
+                OR: [
+                    {
+                        label: {
+                            contains: searchQuery.label,
+                            mode: "insensitive",
+                        },
+                    },
+                    {
+                        city: {
+                            label: {
+                                startsWith: searchQuery.label,
+                                mode: "insensitive",
+                            },
+                        },
+                    },
+                ],
             },
             include: {
                 directus_files: true,
@@ -25,10 +37,22 @@ export class SearchService {
         });
         const cities = await this.prisma.city.findMany({
             where: {
-                label: {
-                    startsWith: searchQuery.label,
-                    mode: "insensitive",
-                },
+                OR: [
+                    {
+                        label: {
+                            startsWith: searchQuery.label,
+                            mode: "insensitive",
+                        },
+                    },
+                    {
+                        country: {
+                            label: {
+                                startsWith: searchQuery.label,
+                                mode: "insensitive",
+                            },
+                        },
+                    },
+                ],
             },
             include: {
                 attraction: true,
@@ -36,26 +60,59 @@ export class SearchService {
                 country: true,
             },
         });
-        const countries = await this.prisma.country.findMany({
+        const restaurants = await this.prisma.restaurant.findMany({
             where: {
-                label: {
-                    startsWith: searchQuery.label,
-                    mode: "insensitive",
-                },
+                OR: [
+                    {
+                        label: {
+                            contains: searchQuery.label,
+                            mode: "insensitive",
+                        },
+                    },
+                    {
+                        city: {
+                            label: {
+                                startsWith: searchQuery.label,
+                                mode: "insensitive",
+                            },
+                        },
+                    },
+                ],
+            },
+            include: {
+                directus_files: true,
             },
         });
+        const hotels = await this.prisma.hotel.findMany({
+            where: {
+                OR: [
+                    {
+                        label: {
+                            contains: searchQuery.label,
+                            mode: "insensitive",
+                        },
+                    },
+                    {
+                        city: {
+                            label: {
+                                startsWith: searchQuery.label,
+                                mode: "insensitive",
+                            },
+                        },
+                    },
+                ],
+            },
+            include: {
+                directus_files: true,
+            },
+        });
+
         const attractionItems: SearchResult[] = [];
         attractions.map(attraction => {
             attractionItems.push({
                 item: this.mappingDtos.mapAttractionToDto(attraction, attraction.directus_files),
                 type: "Attraction",
             });
-        });
-        const countryItems: SearchResult[] = countries.map(country => {
-            return {
-                item: this.mappingDtos.mapCountryToDto(country),
-                type: "Country",
-            };
         });
 
         const cityItems: SearchResult[] = cities.map(city => {
@@ -68,8 +125,20 @@ export class SearchService {
                 type: "City",
             };
         });
+        const restaurantItems: SearchResult[] = restaurants.map(restaurant => {
+            return {
+                item: this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files),
+                type: "Restaurant",
+            };
+        });
+        const hotelItems: SearchResult[] = hotels.map(hotel => {
+            return {
+                item: this.mappingDtos.mapHotelToDto(hotel, hotel.directus_files),
+                type: "Hotel",
+            };
+        });
         if (!searchQuery.type) {
-            return [...countryItems, ...cityItems, ...attractionItems];
+            return [...cityItems, ...attractionItems, ...restaurantItems, ...hotelItems];
         } else {
             const searchResults: SearchResult[] = [];
             searchQuery.type.map(type => {
@@ -79,8 +148,12 @@ export class SearchService {
                 if (type === "City") {
                     searchResults.push(...cityItems);
                 }
-                if (type === "Country") {
-                    searchResults.push(...countryItems);
+
+                if (type === "Restaurant") {
+                    searchResults.push(...restaurantItems);
+                }
+                if (type === "Hotel") {
+                    searchResults.push(...hotelItems);
                 }
             });
             return searchResults;

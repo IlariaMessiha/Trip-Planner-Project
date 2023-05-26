@@ -7,10 +7,10 @@ import React from "react";
 import { Paper, Typography } from "@mui/material";
 import { RestaurantDto } from "../../../types/dto/common/RestaurantDto";
 
-interface HotelSearchResultProps {
+interface RestaurantSearchResultProps {
     item: RestaurantDto;
 }
-export const HotelSearchResult: FC<HotelSearchResultProps> = ({ item }) => {
+export const RestaurantSearchResult: FC<RestaurantSearchResultProps> = ({ item }) => {
     const { t } = useTranslation();
 
     if (!item) {

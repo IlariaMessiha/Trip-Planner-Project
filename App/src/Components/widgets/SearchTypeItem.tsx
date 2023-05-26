@@ -4,9 +4,11 @@ import { CityDto } from "../../types/dto/common/CityDto";
 import { HotelDto } from "../../types/dto/common/HotelDto";
 import { RestaurantDto } from "../../types/dto/common/RestaurantDto";
 import { SearchResult } from "../../types/Search";
-import { ActivitySearchResult } from "../core/searchResult/AttractionSearchResult";
+
 import { HotelSearchResult } from "../core/searchResult/HotelSearchResult";
-import { LocationSearchResult } from "../core/searchResult/CitySearchResult";
+import { CitySearchResult } from "../core/searchResult/CitySearchResult";
+import { RestaurantSearchResult } from "../core/searchResult/RestaurantSearchResult";
+import { AttractionSearchResult } from "../core/searchResult/AttractionSearchResult";
 
 interface SearchTypeItemProps {
     item: SearchResult;
@@ -22,15 +24,16 @@ export const SearchTypeItem: FC<SearchTypeItemProps> = ({ item }) => {
         return item.type === "Hotel";
     };
 
-    const isSectionItemRestaurant = (item: SearchResult): item is SearchResult<RestaurantDto> => {
+    const isSearchItemRestaurant = (item: SearchResult): item is SearchResult<RestaurantDto> => {
         return item.type === "Restaurant";
     };
     return (
         <div>
-            {isSearchItemAttraction(item) && <ActivitySearchResult item={item.item} />}
+            {isSearchItemAttraction(item) && <AttractionSearchResult item={item.item} />}
             {isSearchItemHotel(item) && <HotelSearchResult item={item.item} />}
+            {isSearchItemRestaurant(item) && <RestaurantSearchResult item={item.item} />}
 
-            {isSearchItemCity(item) && <LocationSearchResult item={item.item} />}
+            {isSearchItemCity(item) && <CitySearchResult item={item.item} />}
         </div>
     );
 };

@@ -3,14 +3,13 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import styles from "./CitySearchResult.module.css";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import React from "react";
 import { Paper, Typography } from "@mui/material";
 import { CityDto } from "../../../types/dto/common/CityDto";
 
-interface LocationSearchResultProps {
+interface CitySearchResultProps {
     item: CityDto;
 }
-export const LocationSearchResult: FC<LocationSearchResultProps> = ({ item }) => {
+export const CitySearchResult: FC<CitySearchResultProps> = ({ item }) => {
     const { t } = useTranslation();
     if (!item) {
         return null;

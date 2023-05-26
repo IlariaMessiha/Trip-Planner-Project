@@ -7,10 +7,10 @@ import React from "react";
 import { Paper, Typography } from "@mui/material";
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
 
-interface ActivitySearchResultProps {
+interface AttractionSearchResultProps {
     item: AttractionDto;
 }
-export const ActivitySearchResult: FC<ActivitySearchResultProps> = ({ item }) => {
+export const AttractionSearchResult: FC<AttractionSearchResultProps> = ({ item }) => {
     const { t } = useTranslation();
 
     if (!item) {

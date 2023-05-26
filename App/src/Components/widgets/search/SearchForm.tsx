@@ -43,13 +43,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
     );
     const [results, setResults] = useState<SearchResult[] | undefined>(undefined);
 
-    const resultOptions: SearchResultType[] = [
-        "Country",
-        "City",
-        "Restaurant",
-        "Hotel",
-        "Attraction",
-    ];
+    const resultOptions: SearchResultType[] = ["City", "Restaurant", "Hotel", "Attraction"];
 
     const handleSubmit = async (e: any): Promise<void> => {
         e.preventDefault();
