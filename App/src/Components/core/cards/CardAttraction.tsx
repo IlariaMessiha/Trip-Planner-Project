@@ -57,20 +57,7 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                             <Typography variant="body1" className={styles.label}>
                                 {attraction.label}
                             </Typography>
-                            {/* {attractionCity ? (
-                                <Typography text={attractionCity?.label} />
-                            ) : (
-                                <div></div>
-                            )}
-                            <div className={styles.availableReviews}>
-                                {attractionReviews ? (
-                                    <Typography text={attractionReviews.length} variant="body2" />
-                                ) : (
-                                    <Typography text="0" variant="body2" />
-                                )}
 
-                                <Typography text={t("common.reviews")} variant="body2" />
-                            </div> */}
                             {attraction.rating && (
                                 <StarsRating
                                     name="half-rating"

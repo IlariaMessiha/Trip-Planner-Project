@@ -18,7 +18,8 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
-                        <Route path="/Search" element={<SearchPage />} />
+
+                        <Route path="/search" element={<SearchPage />} />
                         <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
                         <Route path="/city/:id" element={<CityPage />} />

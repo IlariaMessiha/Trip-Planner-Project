@@ -1,7 +1,14 @@
 {
     "common": {
+        "locations": "Locations",
+        "activities": "Activités",
         "attractions": "Attraction",
+        "Attraction": "Attraction",
         "cities": "Villes",
+        "City": "Ville",
+        "Country" : "Pays",
+        "hotel": "Hôtel",
+        "restaurant": "Restaurant",
         "reviews": "Commentaires",
         "review": "Commenter",
         "search": "Rechercher",
@@ -44,7 +51,8 @@
         "ticket price": "Prix Du Billet",
         "written": "Écrit",
         "buy ticket": "Acheter un billet",
-        "type": "{{type}} attraction"
+        "type": "{{type}} attraction",
+        "suggestedDuration": "Durée suggérée"
     },
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",

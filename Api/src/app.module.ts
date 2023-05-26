@@ -16,6 +16,8 @@ import { CountriesService } from "./services/countries.service";
 import { ReviewsService } from "./services/reviews.service";
 
 import { UserService } from "./services/users.service";
+import { SearchService } from "./services/search.service";
+import { SearchController } from "./controllers/search.controller";
 
 @Module({
     controllers: [
@@ -24,6 +26,7 @@ import { UserService } from "./services/users.service";
         ReviewsController,
         UsersController,
         CommonController,
+        SearchController
     ],
     providers: [
         AttractionsService,
@@ -34,6 +37,7 @@ import { UserService } from "./services/users.service";
         CountriesService,
         PrismaService,
         CommonService,
+        SearchService,
     ],
     imports: [
         ServeStaticModule.forRoot({
