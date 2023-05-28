@@ -24,7 +24,7 @@ export class AuthController {
         if (!body.email || !body.password || !body.firstName || !body.lastName) {
             throw new BadRequestException("Payload incomplete");
         }
-        const userExist = await this.usersService.checkDuplicateMails(body.email.toLowerCase());
+        const userExist = await this.usersService.findUserByMail(body.email);
 
         if (userExist) {
             throw new BadRequestException("Email already exists");
@@ -40,7 +40,7 @@ export class AuthController {
             throw new BadRequestException("Missing email or password");
         }
 
-        const user = await this.usersService.findUserByMail(body.email.toLowerCase());
+        const user = await this.usersService.findUserByMail(body.email);
 
         if (!user) {
             throw new BadRequestException("User not found");
@@ -55,7 +55,12 @@ export class AuthController {
             throw new UnauthorizedException("Invalid credentials");
         }
 
-        const payload = { firstName: user.firstname, lastName: user.lastname, sub: user.id };
+        const payload = {
+            id: user.id,
+            firstName: user.firstname,
+            lastName: user.lastname,
+            email: user.email,
+        };
         const accessToken = this.jwtService.sign(payload);
         return {
             accessToken,

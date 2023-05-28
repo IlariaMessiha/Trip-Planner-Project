@@ -2,7 +2,6 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
-
 import { AttractionsController } from "./controllers/attractions.controller";
 import { CitiesController } from "./controllers/cities.controller";
 import { CommonController } from "./controllers/common.controller";
@@ -20,7 +19,6 @@ import { JwtModule } from "@nestjs/jwt";
 import { AuthController } from "./controllers/auth.controller";
 import { SearchController } from "./controllers/search.controller";
 import { SearchService } from "./services/search.service";
-import { UserService } from "./services/user.service";
 import { UsersService } from "./services/users.service";
 
 @Module({
@@ -35,7 +33,6 @@ import { UsersService } from "./services/users.service";
     ],
     providers: [
         AttractionsService,
-        UserService,
         MappingDtos,
         CityService,
         ReviewsService,
@@ -58,7 +55,7 @@ import { UsersService } from "./services/users.service";
                 return {
                     secret: configService.get("AUTH_JWT_SECRET"),
                     signOptions: {
-                        expiresIn: configService.get("AUTH_JWT_EXPIRES_IN"),
+                        expiresIn: parseInt(configService.get("AUTH_JWT_EXPIRES_IN"), 10),
                     },
                 };
             },

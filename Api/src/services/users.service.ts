@@ -1,9 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
 
-import { user } from "@prisma/client";
-import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 import * as argon2 from "argon2";
+import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 
 @Injectable()
 export class UsersService {
@@ -21,34 +20,15 @@ export class UsersService {
         });
     }
 
-    async checkDuplicateMails(email: string): Promise<boolean> {
-        const mail = String(email);
-        const emailExist = await this.prisma.user.findMany({
-            where: { email: mail },
+    async findUserByMail(email: string) {
+        return this.prisma.user.findFirst({
+            where: { email: email.toLowerCase() },
         });
-        if (emailExist.length !== 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
-    async findUserByMail(email: string): Promise<user> {
-        const mail = String(email);
-        const user = await this.prisma.user.findMany({
-            where: { email: mail },
+    async findUserById(id: number) {
+        return this.prisma.user.findUnique({
+            where: { id },
         });
-
-        return user[0];
-    }
-
-    async getLastUserId(): Promise<any> {
-        const user = await this.prisma.user.findFirst({
-            orderBy: {
-                id: "desc",
-            },
-        });
-
-        return user.id;
     }
 }
