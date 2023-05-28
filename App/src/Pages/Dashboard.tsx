@@ -1,54 +1,57 @@
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { fetchData } from "../api/FetchData";
-import { CardAttraction } from "../Components/core/CardAttraction";
-import { CardCity } from "../Components/core/CardCity";
+import { CardAttraction } from "../Components/core/cards/CardAttraction";
+import { CardCity } from "../Components/core/cards/CardCity";
 import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
-import { Typography } from "../Components/core/Typography";
+import { ChatbotButton } from "../Components/widgets/ChatbotButton";
+
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
+import { SectionItemType } from "../Components/widgets/SectionItemType";
 import { Swiper } from "../Components/widgets/Swiper";
 
-import { Attraction } from "../models/Attraction";
-import { City } from "../models/City";
+import { AttractionDto } from "../types/dto/common/AttractionDto";
+import { CityDto } from "../types/dto/common/CityDto";
+import { SectionDto } from "../types/dto/common/SectionDto";
 
 export const Dashboard = () => {
     const { t } = useTranslation();
-    const [attractions, setAttractions] = useState<Attraction[]>([]);
-    const [cities, setCities] = useState<City[]>([]);
+    const [cities, setCities] = useState<CityDto[]>([]);
+    const [sections, setSections] = useState<SectionDto[]>([]);
 
     useEffect(() => {
         const onMount = async () => {
-            const _attractions = await fetchData.getAttraction();
-            const _cities = await fetchData.getCities();
-            setAttractions(_attractions);
-            setCities(_cities);
+            const response = await fetchData.getDashboard();
+            setSections(response.sections);
         };
 
         onMount();
     }, []);
 
     return (
-        <Container>
-            <Typography text={t("dashboard.slogan")} variant="h1" />
-
+        <div>
+            <Typography variant="h4">{t("dashboard.slogan")}</Typography>
             <SearchEngineAutocomplete />
-            <Section title={t("common.attractions")}>
-                {attractions.length === 0 && <div> Loading... </div>}
-                {attractions.length > 0 && (
-                    <Swiper
-                        items={attractions}
-                        renderItem={attraction => <CardAttraction attraction={attraction} />}
-                    />
-                )}
-            </Section>
-            <Section title={t("common.cities")}>
-                {cities.length === 0 && <div> Loading... </div>}
-
-                {cities.length > 0 && (
-                    <Swiper items={cities} renderItem={city => <CardCity city={city} />} />
-                )}
-            </Section>
-        </Container>
+            <Container>
+                {sections.map((section, i) => {
+                    return (
+                        <Section title={section.title} subtitle={section.subtitle} key={i}>
+                            {section.items.length === 0 && <div> Loading... </div>}
+                            {section.items.length > 0 && (
+                                <Swiper
+                                    items={section.items}
+                                    renderItem={item => (
+                                        <SectionItemType item={item} key={item.value.id} />
+                                    )}
+                                />
+                            )}
+                        </Section>
+                    );
+                })}
+            </Container>
+            <ChatbotButton />
+        </div>
     );
 };

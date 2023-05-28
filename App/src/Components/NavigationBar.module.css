@@ -1,13 +1,13 @@
-nav {
-    border-bottom: 1px solid;
-}
-
-.navbarContainer {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: 0 !important;
+    margin: 0 !important;
+
 }
+
+
 
 .rightSide {
     display: flex;
@@ -20,17 +20,12 @@ nav {
 a {
     color: black;
     text-decoration: none;
-
-
 }
-
-
 
 .logo {
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: larger;
-
 }
 
 .review {

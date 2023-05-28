@@ -12,6 +12,8 @@ import { SignIn } from "./Pages/loginPage";
 import { Profile } from "./Pages/profilePage";
 import { SignUp } from "./Pages/registerPage";
 import AuthService from "./services/auth.service";
+import { ChatbotPage } from "./Pages/ChatbotPage";
+import { TripPage } from "./Pages/TripPage";
 
 function App() {
     const [currentUser, setCurrentUser] = useState<any>(AuthService.getCurrentUser());
@@ -29,12 +31,15 @@ function App() {
 
     return (
         <Suspense fallback={null}>
-            <div>
+            <>
                 <ToastContainer />
                 <BrowserRouter>
                     <NavigationBar currentUser={currentUser} handleLogout={handleLogout} />
                     <Routes>
-                        <Route path="/Search" element={<SearchPage />} />
+                        <Route path="/" element={<Dashboard />} />
+
+                        <Route path="/search" element={<SearchPage />} />
+                        <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
                         <Route path="/register" element={<SignUp />} />
                         <Route path="/city/:id" element={<CityPage />} />
@@ -42,9 +47,10 @@ function App() {
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/" element={<Dashboard />} />
                         <Route path="*" element={<h1>Error</h1>} />
+                        <Route path="/trip" element={<TripPage />} />
                     </Routes>
                 </BrowserRouter>
-            </div>
+            </>
         </Suspense>
     );
 }

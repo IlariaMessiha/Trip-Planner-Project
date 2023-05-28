@@ -1,15 +1,14 @@
-import { Button, Paper, styled } from "@mui/material";
+import { Button, Paper, styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Attraction } from "../../models/Attraction";
+import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import styles from "./AttractionInfo.module.css";
-import { Typography } from "./Typography";
 
 interface AttractionInfoProps {
-    attraction: Attraction;
+    attraction: AttractionDto;
 }
-const ByTicketButton = styled(Button)({
+const BuyTicketButton = styled(Button)({
     borderRadius: "20px",
     backgroundColor: "black",
     width: "100%",
@@ -28,20 +27,32 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                 width: "30%",
             }}
         >
-            <Typography text={t("Activities.about")} variant="h2" />
-            <Typography text={attraction.about} className={styles.activityDescription} />
-            <Typography text={t("Activities.suggested duration")} variant="h4" />
+            <Typography variant="h5">{t("attractions.about")}</Typography>
+            <Typography className={styles.activityDescription}>{attraction.about}</Typography>
+            <Typography variant="h5">{t("attractions.suggestedDuration")}</Typography>
             <div className={styles.suggestedDuration}>
-                <Typography text={attraction.suggested_duration} />
-                <Typography text={t("Activities.hours")} />
+                <Typography>
+                    {t("attractions.suggestedDurationFormat", {
+                        duration: attraction.suggestedDuration,
+                    })}
+                </Typography>
             </div>
             <div className={styles.tickets}>
-                <Typography text={t("Activities.ticket price")} variant="h4" />
-                <Typography text={attraction.entry_fee} />
+                <Typography variant="body2">
+                    {t("attractions.ticketPrice")}{" "}
+                    {t("attractions.ticketPriceFormat", { amount: attraction.entryFee })}
+                </Typography>
             </div>
-            <ByTicketButton variant="contained" size="large">
-                <Typography text={t("Activities.buy ticket")} />
-            </ByTicketButton>
+            {attraction.reservationLink && (
+                <BuyTicketButton
+                    className={styles.buyTicketButton}
+                    variant="contained"
+                    size="large"
+                    href={attraction.reservationLink}
+                >
+                    <Typography variant="button">{t("attractions.buyTicket")}</Typography>
+                </BuyTicketButton>
+            )}
         </Paper>
     );
 };

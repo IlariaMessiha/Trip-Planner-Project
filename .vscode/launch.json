@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "API",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "start:debug"],
+            "sourceMaps": true,
+            "envFile": "${workspaceFolder}/Api/.env",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/Api"
+        }
+    ]
+}

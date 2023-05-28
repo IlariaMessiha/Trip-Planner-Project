@@ -2,15 +2,14 @@
     "common": {
         "locations": "Locations",
         "activities": "Activités",
-        "attractions": "Attractions",
-        "attraction": "Attraction",
-        "country": "Pays",
-        "city": "Ville",
+        "attractions": "Attraction",
+        "Attraction": "Attraction",
         "cities": "Villes",
+        "City": "Ville",
+        "Country" : "Pays",
         "hotel": "Hôtel",
         "restaurant": "Restaurant",
         "reviews": "Commentaires",
-        "activity": "Activité",
         "review": "Commenter",
         "search": "Rechercher",
         "filterBy": "Flitrer Par",
@@ -27,29 +26,8 @@
     "dashboard": {
         "slogan": "Rêve Ton Prochain Voyage"
     },
-    "Locations": {
-        "Barcelona": {
-            "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
-        },
-        "Porto": {
-            "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
-        },
-        "Nice": {
-            "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
-        },
-        "Rio de Janero": {
-            "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
-        },
-        "Paris": {
-            "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
-        },
-        "New York": {
-            "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
-        },
-        "Egypt": {
-            "description": "Porto est une ville côtière du nord-ouest du Portugal connue pour ses ponts majestueux et sa production de porto. Dans le quartier médiéval de Ribeira (au bord de la rivière), d'étroites rues pavées serpentent devant des maisons de marchands et des cafés."
-        },
-        "locationPage": {
+    "cities": {
+        "cityPage": {
             "seeAllPhotos": "Voir toutes les photos",
             "photosOf": "Photos De",
             "topAttraction": "Attraction Principale",
@@ -61,33 +39,29 @@
             "advice4": "Conseils de pros"
         }
     },
-    "Activities": {
+    "attractions": {
         "about": "À propos de",
         "suggested duration": "Durée suggérée",
         "hours": "Heures",
-        "open hours": "Heures d'Ouverture",
+        "open-hours": "Heures d'Ouverture",
+        "from": "de",
+        "to": "à",
         "visit website": "Visiter le Site Web",
         "call": "Appel",
         "ticket price": "Prix Du Billet",
         "written": "Écrit",
         "buy ticket": "Acheter un billet",
-        "Sagrada Familia": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, également connue sous le nom de Sagrada Família, est une grande basilique mineure inachevée dans le quartier de l'Eixample à Barcelone, en Catalogne, en Espagne, et est actuellement la plus grande église catholique romaine inachevée. Conçu par l'architecte catalan Antoni Gaudí (1852–1926), son travail sur le bâtiment fait partie d'un site du patrimoine mondial de l'UNESCO.[7] Le 7 novembre 2010, le pape Benoît XVI a consacré l'église et l'a proclamée basilique mineure."
-        },
-        "Park Guell": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, également connue sous le nom de Sagrada Família, est une grande basilique mineure inachevée dans le quartier de l'Eixample à Barcelone, en Catalogne, en Espagne, et est actuellement la plus grande église catholique romaine inachevée. Conçu par l'architecte catalan Antoni Gaudí (1852–1926), son travail sur le bâtiment fait partie d'un site du patrimoine mondial de l'UNESCO.[7] Le 7 novembre 2010, le pape Benoît XVI a consacré l'église et l'a proclamée basilique mineure."
-        },
-        "Time Square": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, également connue sous le nom de Sagrada Família, est une grande basilique mineure inachevée dans le quartier de l'Eixample à Barcelone, en Catalogne, en Espagne, et est actuellement la plus grande église catholique romaine inachevée. Conçu par l'architecte catalan Antoni Gaudí (1852–1926), son travail sur le bâtiment fait partie d'un site du patrimoine mondial de l'UNESCO.[7] Le 7 novembre 2010, le pape Benoît XVI a consacré l'église et l'a proclamée basilique mineure."
-        },
-        "The Pyramids": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, également connue sous le nom de Sagrada Família, est une grande basilique mineure inachevée dans le quartier de l'Eixample à Barcelone, en Catalogne, en Espagne, et est actuellement la plus grande église catholique romaine inachevée. Conçu par l'architecte catalan Antoni Gaudí (1852–1926), son travail sur le bâtiment fait partie d'un site du patrimoine mondial de l'UNESCO.[7] Le 7 novembre 2010, le pape Benoît XVI a consacré l'église et l'a proclamée basilique mineure."
-        },
-        "Fishing trip, Ain Sokhna": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, également connue sous le nom de Sagrada Família, est une grande basilique mineure inachevée dans le quartier de l'Eixample à Barcelone, en Catalogne, en Espagne, et est actuellement la plus grande église catholique romaine inachevée. Conçu par l'architecte catalan Antoni Gaudí (1852–1926), son travail sur le bâtiment fait partie d'un site du patrimoine mondial de l'UNESCO.[7] Le 7 novembre 2010, le pape Benoît XVI a consacré l'église et l'a proclamée basilique mineure."
-        },
-        "Eiffel Tower": {
-            "description": "La Basílica i Temple Expiatori de la Sagrada Família, également connue sous le nom de Sagrada Família, est une grande basilique mineure inachevée dans le quartier de l'Eixample à Barcelone, en Catalogne, en Espagne, et est actuellement la plus grande église catholique romaine inachevée. Conçu par l'architecte catalan Antoni Gaudí (1852–1926), son travail sur le bâtiment fait partie d'un site du patrimoine mondial de l'UNESCO.[7] Le 7 novembre 2010, le pape Benoît XVI a consacré l'église et l'a proclamée basilique mineure."
-        }
+        "type": "{{type}} attraction",
+        "suggestedDuration": "Durée suggérée"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "${{amount}}/person",
+        "food": "{{type}} food"
+    },
+    "hotels": {
+        "startingFromPrice": "De ${{amount}}/nuit"
+    },
+    "reviews": {
+        "rating": "Notation"
     }
 }

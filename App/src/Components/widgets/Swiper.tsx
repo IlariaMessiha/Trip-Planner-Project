@@ -1,6 +1,5 @@
 import { ReactNode, useRef } from "react";
 import { Navigation, Pagination } from "swiper";
-import "./Swiper.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -12,73 +11,72 @@ import { IconButton } from "@mui/material";
 import { styled } from "@mui/system";
 
 interface SwiperProps<T = any> {
-  items: T[];
-  renderItem: (item: T) => ReactNode;
+    items: T[];
+    renderItem: (item: T) => ReactNode;
 }
 const SwiperArrowsButton = styled(IconButton)({
-  backgroundColor: "black",
-  color: "white",
+    backgroundColor: "black",
+    color: "white",
 
-  "&:hover": {
-    backgroundColor: "white",
-    color: "black",
-  },
+    "&:hover": {
+        backgroundColor: "white",
+        color: "black",
+    },
 });
 
-export const Swiper = <T extends any>({
-  renderItem,
-  items,
-}: SwiperProps<T>) => {
-  const nextButton = useRef(null);
-  const prevButton = useRef(null);
+export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => {
+    const nextButton = useRef(null);
+    const prevButton = useRef(null);
 
-  return (
-    <ReactSwiper
-      breakpoints={{
-        0: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        480: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
+    return (
+        <ReactSwiper
+            className={styles.swiper}
+            breakpoints={{
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                480: {
+                    slidesPerView: 2,
+                    spaceBetween: 5,
+                },
 
-        750: {
-          slidesPerView: 2,
-          spaceBetween: 10,
-        },
-        1090: {
-          slidesPerView: 3,
-          spaceBetween: 5,
-        },
-        1280: {
-          slidesPerView: 3.5,
-          spaceBetween: 20,
-        },
-      }}
-      modules={[Navigation, Pagination]}
-      navigation={{
-        prevEl: prevButton.current,
-        nextEl: nextButton.current,
-      }}
-      pagination={{ clickable: true }}
-      centerInsufficientSlides={true}
-    >
-      {items.map((item, i) => {
-        return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
-      })}
+                750: {
+                    slidesPerView: 3,
+                    spaceBetween: 5,
+                },
+                1090: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+            }}
+            modules={[Navigation]}
+            navigation={{
+                prevEl: prevButton.current,
+                nextEl: nextButton.current,
+            }}
+            pagination={{ clickable: true }}
+            centerInsufficientSlides={true}
+        >
+            <div className={styles.prevButton} ref={prevButton}>
+                <SwiperArrowsButton>
+                    <ArrowBackIcon />
+                </SwiperArrowsButton>
+            </div>
 
-      <div className={styles.prevButton} ref={prevButton}>
-        <SwiperArrowsButton>
-          <ArrowBackIcon />
-        </SwiperArrowsButton>
-      </div>
-      <div className={styles.nextButton} ref={nextButton}>
-        <SwiperArrowsButton>
-          <ArrowForwardIcon />
-        </SwiperArrowsButton>
-      </div>
-    </ReactSwiper>
-  );
+            {items.map((item, i) => {
+                return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
+            })}
+
+            <div className={styles.nextButton} ref={nextButton}>
+                <SwiperArrowsButton>
+                    <ArrowForwardIcon />
+                </SwiperArrowsButton>
+            </div>
+        </ReactSwiper>
+    );
 };

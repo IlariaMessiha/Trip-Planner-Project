@@ -1,0 +1,32 @@
+.userText {
+
+    background-color: #1976d2;
+    padding: 8px 16px;
+
+}
+
+.userMessage {
+
+    display: flex;
+    gap: 10px
+}
+
+.userMessageContainer {
+    float: right;
+
+}
+
+
+
+.botText {
+    max-width: fit-content;
+    background-color: white;
+    padding: 8px 16px;
+    color: black;
+    border: 1px solid #333;
+}
+
+.chatbotMessage {
+    display: flex;
+    gap: 10px;
+}

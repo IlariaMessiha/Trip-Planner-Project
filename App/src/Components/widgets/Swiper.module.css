@@ -1,18 +1,20 @@
 .prevButton,
 .nextButton {
     position: absolute;
-    top: 120px;
+    top: 90px;
     z-index: 1;
+
 
 }
 
 .nextButton {
-    right: 0;
-
-
+    right: 0
 }
 
 .prevButton {
-    left: 0;
+    left: 0
+}
 
+.swiper {
+    padding-bottom: 40px !important;
 }

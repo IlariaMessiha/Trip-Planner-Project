@@ -1,0 +1,21 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:15.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: trip-planner
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - trip-planner
+
+volumes:
+  postgres-data:
+    driver: local
+
+networks:
+  trip-planner:

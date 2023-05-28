@@ -1,36 +1,36 @@
 .searchContainer {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: 10px;
+    /* display: flex;
+    justify-content: space-between; */
+    padding-top: 50px;
+    padding-bottom: 10px;
 }
 
 .searchButton {
-  width: 100px;
-  height: 50px;
+    width: 100px;
+    height: 50px;
 }
 
 .filterForm {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .filterInput {
-  height: 50px;
-  margin-left: 10px;
+    height: 50px;
+    margin-left: 10px;
 }
 
 .searchResultContainer {
-  background-color: #f0f0f0;
-  padding-top: 24px;
+    padding-top: 5px;
+    margin-bottom: 15px;
 }
 
 .searchResult {
-  background-color: white;
-  min-height: 700px;
+    background-color: white;
+    min-height: 700px;
 }
 
 img {
-  width: 200px;
-  height: 200px;
+    width: 200px;
+    height: 200px;
 }

@@ -1,17 +1,17 @@
-import { City } from "../models/City";
-import { Country } from "../models/Country";
-import { Attraction } from "../models/Attraction";
-import { Hotel } from "../models/Hotel";
-import { Restaurant } from "../models/Restaurant";
+import { AttractionDto } from "./dto/common/AttractionDto";
+import { CityDto } from "./dto/common/CityDto";
+import { CountryDto } from "./dto/common/CountryDto";
+import { HotelDto } from "./dto/common/HotelDto";
+import { RestaurantDto } from "./dto/common/RestaurantDto";
 
-export type SearchResult = {
+export type SearchResult<V = any> = {
     type: SearchResultType;
-    item: City | Country | Attraction | Hotel | Restaurant;
+    item: V;
 };
 
 export type SearchQuery = {
     label: string;
-    type?: SearchResultType;
+    type?: SearchResultType[];
 };
 
 export type SearchResultType = "City" | "Country" | "Attraction" | "Restaurant" | "Hotel" | "";
