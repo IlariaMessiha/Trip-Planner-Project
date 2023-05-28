@@ -71,7 +71,7 @@ export const DropDownProfileMenu = (props: any) => {
                         <MenuItem
                             onClick={() => {
                                 props.handleLogout();
-                                navigate("/login");
+                                navigate("/auth/login");
                             }}
                         >
                             Logout
@@ -81,14 +81,14 @@ export const DropDownProfileMenu = (props: any) => {
                     <div>
                         <MenuItem
                             onClick={() => {
-                                navigate("/login");
+                                navigate("/auth/login");
                             }}
                         >
                             Login
                         </MenuItem>
                         <MenuItem
                             onClick={() => {
-                                navigate("/register");
+                                navigate("/auth/register");
                             }}
                         >
                             Register

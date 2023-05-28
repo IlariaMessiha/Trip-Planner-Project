@@ -56,10 +56,8 @@ const Copyright = (props: any) => {
 
 const defaultTheme = createTheme();
 
-export const SignUp = () => {
+export const RegisterPage = () => {
     const navigate = useNavigate();
-
-   
 
     const {
         register,
@@ -81,7 +79,6 @@ export const SignUp = () => {
             response => {
                 console.log(response);
                 if (response.error) {
-                    
                     toast.error(response.error, {
                         position: toast.POSITION.TOP_RIGHT,
                         autoClose: 4000,
@@ -207,7 +204,7 @@ export const SignUp = () => {
                             Sign Up
                         </Button>
                         <Grid container>
-                            <Grid item >
+                            <Grid item>
                                 <Link href={"/login"} variant="body2">
                                     Already have an account? Sign in
                                 </Link>
