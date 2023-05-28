@@ -13,25 +13,24 @@ import { Attraction } from "../models/Attraction";
 import { City } from "../models/City";
 
 export const Dashboard = () => {
-    
-    // const { t } = useTranslation();
-    // const [attractions, setAttractions] = useState<Attraction[]>([]);
-    // const [cities, setCities] = useState<City[]>([]);
+    const { t } = useTranslation();
+    const [attractions, setAttractions] = useState<Attraction[]>([]);
+    const [cities, setCities] = useState<City[]>([]);
 
-    // useEffect(() => {
-    //     const onMount = async () => {
-    //         const _attractions = await fetchData.getAttraction();
-    //         const _cities = await fetchData.getCities();
-    //         setAttractions(_attractions);
-    //         setCities(_cities);
-    //     };
+    useEffect(() => {
+        const onMount = async () => {
+            const _attractions = await fetchData.getAttraction();
+            const _cities = await fetchData.getCities();
+            setAttractions(_attractions);
+            setCities(_cities);
+        };
 
-    //     onMount();
-    // }, []);
+        onMount();
+    }, []);
 
     return (
         <Container>
-            {/* <Typography text={t("dashboard.slogan")} variant="h1" />
+            <Typography text={t("dashboard.slogan")} variant="h1" />
 
             <SearchEngineAutocomplete />
             <Section title={t("common.attractions")}>
@@ -49,7 +48,7 @@ export const Dashboard = () => {
                 {cities.length > 0 && (
                     <Swiper items={cities} renderItem={city => <CardCity city={city} />} />
                 )}
-            </Section> */}
+            </Section>
         </Container>
     );
 };

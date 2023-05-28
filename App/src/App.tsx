@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import { NavigationBar } from "./Components/NavigationBar";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Dashboard } from "./Pages/Dashboard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SearchPage } from "./Pages/SearchPage";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AttractionPage } from "./Pages/AttractionPage";
 import { CityPage } from "./Pages/CityPage";
 import { SignIn } from "./Pages/loginPage";
@@ -50,31 +50,3 @@ function App() {
 }
 
 export default App;
-// {
-//     /*  */
-// }
-
-// const AuthRoutes = [
-//     { path: "/Search", component: <SearchPage /> },
-//     { path: "/attraction/:id", component: <AttractionPage /> },
-//     { path: "/city/:id", component: <CityPage /> },
-//     { path: "/profile", component: <Profile /> },
-//     { path: "/", component: <Dashboard /> },
-// ];
-// const unAuthRoutes = [
-//     { path: "/register", component: <SignUp /> },
-//     { path: "/login", component: <SignIn handleLogin={handlelogin} /> },
-// ];
-
-// if (currentUser) {
-//     unAuthRoutes.push(...AuthRoutes);
-// }
-
-{
-    /* <Routes>
-                        {unAuthRoutes.map(route => (
-                            <Route key={route.path} path={route.path} element={route.component} />
-                        ))}
-                        <Route path="*" element={<h1>Error</h1>} />
-                    </Routes> */
-}
