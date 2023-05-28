@@ -19,8 +19,8 @@ function App() {
         <Suspense fallback={null}>
             <AuthProvider>
                 <ToastContainer />
-                <NavigationBar />
                 <BrowserRouter>
+                    <NavigationBar />
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/search" element={<SearchPage />} />
