@@ -1,4 +1,4 @@
-import { UsersService } from "src/users/users.service";
+import { UsersService } from "src/services/users.service";
 import {
     Body,
     Controller,
@@ -9,8 +9,8 @@ import {
     Request,
     UseGuards,
 } from "@nestjs/common";
-import { AuthGuard } from "./auth.guard";
-import { AuthService } from "./auth.service";
+import { AuthGuard } from "../auth/auth.guard";
+import { AuthService } from "../services/auth.service";
 
 @Controller("auth")
 export class AuthController {
