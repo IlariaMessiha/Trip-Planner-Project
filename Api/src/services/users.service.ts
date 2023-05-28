@@ -2,23 +2,23 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
 
 import { user } from "@prisma/client";
+import { RegisterBody } from "src/types/dto/auth/RegisterBody";
+import * as argon2 from "argon2";
 
 @Injectable()
 export class UsersService {
     constructor(private prisma: PrismaService) {}
 
-    async createUser(userData: any): Promise<user> {
-        const newUser = await this.prisma.user.create({
-            data: userData,
-            select: {
-                id: true,
-                email: true,
-                firstname: true,
-                lastname: true,
-                password: true,
+    async createUser(registerBody: RegisterBody) {
+        const hashedPass = await argon2.hash(registerBody.password);
+        return this.prisma.user.create({
+            data: {
+                email: registerBody.email,
+                firstname: registerBody.firstName,
+                lastname: registerBody.lastName,
+                password: hashedPass,
             },
         });
-        return newUser;
     }
 
     async checkDuplicateMails(email: string): Promise<boolean> {

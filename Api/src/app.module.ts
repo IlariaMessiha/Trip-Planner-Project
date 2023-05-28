@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 
@@ -16,13 +16,11 @@ import { CommonService } from "./services/common.service";
 import { CountriesService } from "./services/countries.service";
 import { ReviewsService } from "./services/reviews.service";
 
+import { JwtModule } from "@nestjs/jwt";
+import { AuthController } from "./controllers/auth.controller";
 import { SearchController } from "./controllers/search.controller";
 import { SearchService } from "./services/search.service";
 import { UserService } from "./services/user.service";
-import { JwtModule } from "@nestjs/jwt";
-import { jwtConstants } from "./auth/constants";
-import { AuthController } from "./controllers/auth.controller";
-import { AuthService } from "./services/auth.service";
 import { UsersService } from "./services/users.service";
 
 @Module({
@@ -45,7 +43,6 @@ import { UsersService } from "./services/users.service";
         PrismaService,
         CommonService,
         SearchService,
-        AuthService,
         UsersService,
     ],
     imports: [
@@ -53,10 +50,18 @@ import { UsersService } from "./services/users.service";
             rootPath: join(__dirname, "..", "public"),
         }),
         ConfigModule.forRoot(),
-        JwtModule.register({
-            global: true,
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: "3000s" },
+        // Authentication.
+        JwtModule.registerAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: (configService: ConfigService) => {
+                return {
+                    secret: configService.get("AUTH_JWT_SECRET"),
+                    signOptions: {
+                        expiresIn: configService.get("AUTH_JWT_EXPIRES_IN"),
+                    },
+                };
+            },
         }),
     ],
 })
