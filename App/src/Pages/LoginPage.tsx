@@ -47,12 +47,6 @@ export const LoginPage = () => {
     const { setUserInContext } = useAuthContext();
 
     const navigate = useNavigate();
-    useEffect(() => {
-        const currentUser = AuthService.getCurrentUser();
-        if (currentUser) {
-            navigate("/");
-        }
-    }, []);
 
     const {
         register,
@@ -150,7 +144,7 @@ export const LoginPage = () => {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link href="/register" variant="body2">
+                                <Link href="/auth/register" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

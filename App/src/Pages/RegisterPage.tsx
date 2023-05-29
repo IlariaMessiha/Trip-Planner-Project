@@ -21,6 +21,9 @@ import { literal, object, string, TypeOf } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import { fetchData } from "../api/FetchData";
+import { UserDto } from "../types/dto/common/UserDto";
+import { useAuthContext } from "../context/authContext";
 const registerSchema = object({
     firstName: string()
         .nonempty("Name is required")
@@ -57,6 +60,7 @@ const Copyright = (props: any) => {
 const defaultTheme = createTheme();
 
 export const RegisterPage = () => {
+    const { setUserInContext } = useAuthContext();
     const navigate = useNavigate();
 
     const {
@@ -74,28 +78,30 @@ export const RegisterPage = () => {
         }
     }, [isSubmitSuccessful]);
 
-    const onSubmitHandler: SubmitHandler<RegisterInput> = values => {
-        AuthService.register(values.firstName, values.lastName, values.email, values.password).then(
-            response => {
-                console.log(response);
-                if (response.error) {
-                    toast.error(response.error, {
-                        position: toast.POSITION.TOP_RIGHT,
-                        autoClose: 4000,
-                        hideProgressBar: true,
-                    });
-                    reset();
-                    console.log("Registration error");
-                } else {
-                    toast.success("User Created Successfully", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        autoClose: 4000,
-                        hideProgressBar: true,
-                    });
-                    navigate("/login");
-                }
-            }
-        );
+    const onSubmitHandler: SubmitHandler<RegisterInput> = async values => {
+        await AuthService.register({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            password: values.password,
+        })
+            .then(async response => {
+                toast.success("User Created Successfully", {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                });
+                navigate("/auth/login");
+            })
+            .catch(e => {
+                toast.error(e.response.data.message, {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                });
+                reset();
+                console.log("Registration error");
+            });
 
         console.log(values);
     };

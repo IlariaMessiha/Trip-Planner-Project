@@ -12,6 +12,7 @@ export const NavigationBar = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
 
     const handleLogout = () => {
+        localStorage.removeItem("accessToken");
         setUserInContext(null);
     };
     return (
