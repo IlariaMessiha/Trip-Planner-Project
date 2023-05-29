@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect, useState } from "react";
 import { UserDto } from "../types/dto/common/UserDto";
 import { AuthContext } from "./authContext";
+import { fetchData } from "../api/FetchData";
 
 interface AuthProviderProps {
     /**
@@ -14,6 +15,16 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
     useEffect(() => {
         // TODO Try to fetch /api/user/me
+        const onMount = async () => {
+            const token = localStorage.getItem("accessToken");
+            if (token) {
+                const _user = await fetchData.getMe(token);
+                setUser(_user);
+            } else {
+                setUser(null);
+            }
+        };
+        onMount();
     }, []);
 
     return (

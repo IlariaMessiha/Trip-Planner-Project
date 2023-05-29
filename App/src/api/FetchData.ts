@@ -7,6 +7,8 @@ import { GetAttractionResponseDto } from "../types/dto/attractions/GetAttraction
 import { GetCityResponseDto } from "../types/dto/cities/GetCityResponseDto";
 import { TChatbotFlow } from "../types/TChatbot";
 
+import { UserDto } from "../types/dto/common/UserDto";
+
 const API_BASE_URL = "http://localhost:3333";
 
 export class FetchData {
@@ -36,6 +38,12 @@ export class FetchData {
     }
     public async getChatbotFlow() {
         const response = await Axios.get<TChatbotFlow>(`${API_BASE_URL}/chatbotFlow`);
+        return response.data;
+    }
+    public async getMe(token: string) {
+        const response = await Axios.get<UserDto>(`${API_BASE_URL}/api/users/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return response.data;
     }
 }

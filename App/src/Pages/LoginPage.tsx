@@ -17,6 +17,8 @@ import { toast } from "react-toastify";
 import { object, string, TypeOf } from "zod";
 import { useAuthContext } from "../context/authContext";
 import AuthService from "../services/auth.service";
+import { postData } from "../api/PostData";
+import { fetchData } from "../api/FetchData";
 
 const registerSchema = object({
     email: string().nonempty("Email is required").email("Email is invalid"),
@@ -67,23 +69,31 @@ export const LoginPage = () => {
         }
     }, [isSubmitSuccessful]);
 
-    const onSubmitHandler: SubmitHandler<RegisterInput> = values => {
-        AuthService.login(values.email, values.password).then(response => {
-            console.log(response);
-            if (response.error) {
-                toast.error(response.error, {
+    const onSubmitHandler: SubmitHandler<RegisterInput> = async values => {
+        await AuthService.login({
+            email: values.email,
+            password: values.password,
+        })
+            .then(async response => {
+                localStorage.setItem("accessToken", response.accessToken);
+                const token = localStorage.getItem("accessToken");
+                if (token) {
+                    const user = await fetchData.getMe(token);
+                    setUserInContext(user);
+                    navigate("/");
+                } else {
+                    setUserInContext(null);
+                }
+            })
+            .catch(e => {
+                toast.error(e.response.data.message, {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 4000,
                     hideProgressBar: true,
                 });
+                console.log(e);
                 reset();
-            } else {
-                setUserInContext(response);
-                navigate("/");
-            }
-        });
-
-        console.log(values);
+            });
     };
     console.log(errors);
 
@@ -134,19 +144,11 @@ export const LoginPage = () => {
                             helperText={errors["password"] ? errors["password"].message : ""}
                             {...register("password")}
                         />
-                        {/* <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        /> */}
+
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                             Sign In
                         </Button>
                         <Grid container>
-                            {/* <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid> */}
                             <Grid item>
                                 <Link href="/register" variant="body2">
                                     {"Don't have an account? Sign Up"}

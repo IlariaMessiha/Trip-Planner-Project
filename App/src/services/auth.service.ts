@@ -1,22 +1,14 @@
 import Axios from "axios";
+import { LoginBody } from "../types/dto/auth/LoginBody";
 const API_BASE_URL = "http://localhost:3333";
 
 class AuthService {
-    login(email: string, password: string) {
-        return Axios.post(API_BASE_URL + "/auth/signin", {
-            email: email,
-            password: password,
-        }).then(response => {
-            if (response.data.access_token) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-            }
-
-            return response.data;
-        });
+    public async login(loginBody: LoginBody) {
+        return (await Axios.post(`${API_BASE_URL}/api/auth/login`, loginBody)).data;
     }
 
     logout() {
-        localStorage.removeItem("user");
+        localStorage.removeItem("accessToken");
     }
 
     register(firstname: string, lastname: string, email: string, password: string) {
