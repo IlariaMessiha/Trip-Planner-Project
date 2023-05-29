@@ -2,7 +2,7 @@ import { Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
 import styles from "./AttractionPage.module.css";
@@ -71,25 +71,25 @@ export const AttractionPage = () => {
                         </div>
                     )}
                     {attraction.website && (
-                        <a href={attraction.website}>
+                        <Link to={attraction.website}>
                             <Typography variant="h6" className={styles.headerButtons}>
                                 {t("attractions.visitWebsite")}
                             </Typography>
-                        </a>
+                        </Link>
                     )}
                     {attraction.phone && (
-                        <a href={`tel:${attraction.phone}`}>
+                        <Link to={`tel:${attraction.phone}`}>
                             <Typography variant="h6" className={styles.headerButtons}>
                                 {t("attractions.call")}
                             </Typography>
-                        </a>
+                        </Link>
                     )}
                     {attraction.email && (
-                        <a href={`mailto:${attraction.email}`}>
+                        <Link to={`mailto:${attraction.email}`}>
                             <Typography variant="h6" className={styles.headerButtons}>
                                 Email
                             </Typography>
-                        </a>
+                        </Link>
                     )}
                 </div>
                 <div className={styles.icons}>

@@ -8,6 +8,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { IconButton, Fade } from "@mui/material";
 import AuthService from "../../services/auth.service";
 import Link from "@mui/material/Link";
+import { useAuthContext } from "../../context/authContext";
 
 type User = {
     isAuthenticated: boolean;
@@ -15,6 +16,7 @@ type User = {
 
 export const DropDownProfileMenu = (props: any) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const { loggedInUser, setUserInContext } = useAuthContext();
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 
@@ -58,7 +60,7 @@ export const DropDownProfileMenu = (props: any) => {
 
                 // open={open}
             >
-                {props.currentUser ? (
+                {loggedInUser ? (
                     <div>
                         <MenuItem
                             onClick={() => {

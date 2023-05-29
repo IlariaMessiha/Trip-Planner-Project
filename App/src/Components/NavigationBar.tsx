@@ -6,6 +6,7 @@ import { useAuthContext } from "../context/authContext";
 import { Container } from "./core/layout/Container";
 import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
 import { DropDownProfileMenu } from "./widgets/DropDownProfileMenu";
+import { Link } from "react-router-dom";
 
 export const NavigationBar = () => {
     const { t } = useTranslation();
@@ -20,9 +21,9 @@ export const NavigationBar = () => {
             <Container>
                 <Toolbar className={styles.navbar}>
                     <div className={styles.leftSide}>
-                        <a href="/">
+                        <Link to={"/"}>
                             <div className={styles.logo}>{t("navBar.logo")}</div>
-                        </a>
+                        </Link>
                     </div>
                     <div className={styles.rightSide}>
                         <DropDownProfileMenu

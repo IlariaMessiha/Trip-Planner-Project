@@ -8,16 +8,6 @@ class AuthService {
         return (await Axios.post(`${API_BASE_URL}/api/auth/login`, loginBody)).data;
     }
 
-    // register(firstname: string, lastname: string, email: string, password: string) {
-    //     return Axios.post(API_BASE_URL + "/auth/signup", {
-    //         firstname,
-    //         lastname,
-    //         email,
-    //         password,
-    //     }).then(response => {
-    //         return response.data;
-    //     });
-    // }
     public async register(registerBody: RegisterBody) {
         return (await Axios.post(`${API_BASE_URL}/api/auth/register`, registerBody)).data;
     }
