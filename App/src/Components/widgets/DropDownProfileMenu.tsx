@@ -5,7 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import { useNavigate } from "react-router-dom";
 import styles from "./DropDownProfile.module.css";
 import PersonIcon from "@mui/icons-material/Person";
-import { IconButton, Fade } from "@mui/material";
+import { IconButton, Fade, Typography } from "@mui/material";
 import AuthService from "../../services/auth.service";
 import Link from "@mui/material/Link";
 import { useAuthContext } from "../../context/authContext";
@@ -22,6 +22,7 @@ export const DropDownProfileMenu = (props: any) => {
 
     function handleClick(event: React.MouseEvent<HTMLElement>) {
         setAnchorEl(event.currentTarget);
+        console.log(loggedInUser);
     }
 
     function handleClose() {
@@ -45,7 +46,15 @@ export const DropDownProfileMenu = (props: any) => {
     return (
         <div>
             <IconButton onClick={handleClick}>
-                <PersonIcon className={styles.profileIcon} />
+                {!loggedInUser ? (
+                    <Avatar sx={{ width: 32, height: 32 }}>
+                        <PersonIcon className={styles.profileIcon} />
+                    </Avatar>
+                ) : (
+                    <Avatar sx={{ width: 32, height: 32 }}>
+                        {loggedInUser.firstName.charAt(0)}
+                    </Avatar>
+                )}
             </IconButton>
 
             <Menu
@@ -57,8 +66,6 @@ export const DropDownProfileMenu = (props: any) => {
                 }}
                 sx={{ width: 200 }}
                 hideBackdrop
-
-                // open={open}
             >
                 {loggedInUser ? (
                     <div>

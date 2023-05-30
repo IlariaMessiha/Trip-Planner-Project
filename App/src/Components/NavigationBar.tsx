@@ -1,6 +1,6 @@
 import styles from "./NavigationBar.module.css";
 
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useAuthContext } from "../context/authContext";
 import { Container } from "./core/layout/Container";

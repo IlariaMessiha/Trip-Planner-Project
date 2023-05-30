@@ -22,8 +22,8 @@ import { UserDto } from "src/types/dto/common/UserDto";
 export const mapUserToDto = (user: user): UserDto => {
     return {
         id: user.id,
-        firstname: user.firstname,
-        lastname: user.lastname,
+        firstName: user.firstname,
+        lastName: user.lastname,
         email: user.email,
     };
 };

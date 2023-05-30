@@ -30,7 +30,7 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
                     <div className={styles.nameAndEmail}>
                         <div className={styles.fullName}>
                             <Typography variant="body1" className={styles.authorName}>
-                                {review.user.firstname} {review.user.lastname}
+                                {review.user.firstName} {review.user.lastName}
                             </Typography>
                         </div>
                         <Typography variant="body2"> {review.user.email}</Typography>
