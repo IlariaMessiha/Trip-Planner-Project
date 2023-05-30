@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -15,14 +13,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import { useEffect, useState } from "react";
-import { FormGroup, FormHelperText } from "@mui/material";
-import Alert from "@mui/material/Alert";
+
 import { literal, object, string, TypeOf } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
-import { fetchData } from "../api/FetchData";
-import { UserDto } from "../types/dto/common/UserDto";
+
 import { useAuthContext } from "../context/authContext";
 const registerSchema = object({
     firstName: string()
@@ -85,7 +81,7 @@ export const RegisterPage = () => {
             email: values.email,
             password: values.password,
         })
-            .then(async response => {
+            .then(async () => {
                 toast.success("User Created Successfully", {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 4000,
