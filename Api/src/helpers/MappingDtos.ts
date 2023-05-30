@@ -11,16 +11,24 @@ import {
 } from "@prisma/client";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { AttractionReviewDto } from "src/types/dto/common/AttractionReviewDto";
+import { AttractionTagDto } from "src/types/dto/common/AttractionTagDto";
 import { CityDto } from "src/types/dto/common/CityDto";
 import { CountryDto } from "src/types/dto/common/CountryDto";
 import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
-import { AttractionTagsDto } from "src/types/dto/tags/AttractionTagsDto";
-import { UserDto } from "src/types/dto/common/UserDto";
-import { AttractionTagDto } from "src/types/dto/common/AttractionTagDto";
 import { TagDto } from "src/types/dto/common/TagDto";
+import { UserDto } from "src/types/dto/common/UserDto";
+
+export const mapUserToDto = (user: user): UserDto => {
+    return {
+        id: user.id,
+        firstName: user.firstname,
+        lastName: user.lastname,
+        email: user.email,
+    };
+};
+
 export class MappingDtos {
-    constructor() {}
     mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
         const long = city.long.toNumber();
         const lat = city.lat.toNumber();
@@ -50,15 +58,6 @@ export class MappingDtos {
             rating: review.rating,
             title: review.title,
             user: user,
-        };
-    }
-    mapUserToDto(user: user): UserDto {
-        return {
-            id: user.id,
-            firstname: user.firstname,
-            lastname: user.lastname,
-            email: user.email,
-            password: user.password,
         };
     }
     mapAttractionToDto(attraction: attraction, image: directus_files): AttractionDto {

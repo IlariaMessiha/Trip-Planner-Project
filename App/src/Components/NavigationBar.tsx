@@ -1,33 +1,35 @@
 import styles from "./NavigationBar.module.css";
 
-import PersonIcon from "@mui/icons-material/Person";
-import AppBar from "@mui/material/AppBar";
-
-import Toolbar from "@mui/material/Toolbar";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-
-import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
+import { useAuthContext } from "../context/authContext";
 import { Container } from "./core/layout/Container";
-import { IconButton } from "@mui/material";
+import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
+import { DropDownProfileMenu } from "./widgets/DropDownProfileMenu";
+import { Link } from "react-router-dom";
 
 export const NavigationBar = () => {
     const { t } = useTranslation();
+    const { loggedInUser, setUserInContext } = useAuthContext();
 
+    const handleLogout = () => {
+        localStorage.removeItem("accessToken");
+        setUserInContext(null);
+    };
     return (
         <AppBar sx={{ backgroundColor: "white" }}>
-            <Container className={styles.container}>
+            <Container>
                 <Toolbar className={styles.navbar}>
                     <div className={styles.leftSide}>
-                        <a href="/">
+                        <Link to={"/"}>
                             <div className={styles.logo}>{t("navBar.logo")}</div>
-                        </a>
+                        </Link>
                     </div>
                     <div className={styles.rightSide}>
-                        {/*  TODO ADD ICON */}
-
-                        <IconButton className={styles.profilePage}>
-                            <PersonIcon className={styles.icon} />
-                        </IconButton>
+                        <DropDownProfileMenu
+                            currentUser={loggedInUser}
+                            handleLogout={handleLogout}
+                        />
                         <DropDownLanguageMenu />
                     </div>
                 </Toolbar>

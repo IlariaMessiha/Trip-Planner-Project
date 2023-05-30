@@ -15,17 +15,20 @@ import { Swiper } from "../Components/widgets/Swiper";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 import { CityDto } from "../types/dto/common/CityDto";
 import { SectionDto } from "../types/dto/common/SectionDto";
+import { useAuthContext } from "../context/authContext";
 
 export const Dashboard = () => {
     const { t } = useTranslation();
     const [cities, setCities] = useState<CityDto[]>([]);
     const [sections, setSections] = useState<SectionDto[]>([]);
+    const { loggedInUser, setUserInContext } = useAuthContext();
 
     useEffect(() => {
         const onMount = async () => {
             const response = await fetchData.getDashboard();
             setSections(response.sections);
         };
+        console.log(loggedInUser);
 
         onMount();
     }, []);

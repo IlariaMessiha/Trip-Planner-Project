@@ -17,10 +17,10 @@ const ChatbotButtonElement = styled(IconButton)({
 });
 export const ChatbotButton = () => {
     return (
-        <a href="/chatbot">
+        <Link to="/chatbot">
             <ChatbotButtonElement size="large">
                 <ChatRoundedIcon fontSize="large" />
             </ChatbotButtonElement>
-        </a>
+        </Link>
     );
 };

@@ -1,15 +1,13 @@
-import Button from "@mui/material/Button";
+import LanguageIcon from "@mui/icons-material/Language";
+import { Fade, IconButton, Typography } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import styles from "./DropDownLanguageMenu.module.css";
-import frenchFlag from "../../assets/images/french flag.jpg";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import americanFlag from "../../assets/images/American flag.jpg";
 import spanishFlag from "../../assets/images/Spanish flag.jpg";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import LanguageIcon from "@mui/icons-material/Language";
-
-import { Fade, IconButton, Typography } from "@mui/material";
+import frenchFlag from "../../assets/images/french flag.jpg";
+import styles from "./DropDownLanguageMenu.module.css";
 
 export const DropDownLanguageMenu = () => {
     const { t, i18n } = useTranslation();
@@ -22,6 +20,19 @@ export const DropDownLanguageMenu = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    useEffect(() => {
+        function handleOutsideClick(event: any) {
+            if (anchorEl && !anchorEl.contains(event.target)) {
+                handleClose();
+            }
+        }
+
+        window.addEventListener("click", handleOutsideClick);
+
+        return () => {
+            window.removeEventListener("click", handleOutsideClick);
+        };
+    }, [anchorEl]);
     const showAmericanFlag = () => {
         setLanguage(0);
         i18n.changeLanguage("en");
