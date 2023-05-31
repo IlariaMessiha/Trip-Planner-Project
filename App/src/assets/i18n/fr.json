@@ -56,7 +56,8 @@
     },
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",
-        "food": "{{type}} food"
+        "food": "Cuisine: {{type}}",
+        "averageMealPrice": "Prix moyen du repas: "
     },
     "hotels": {
         "startingFromPrice": "De {{amount}}$ / nuit",

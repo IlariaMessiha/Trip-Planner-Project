@@ -2,7 +2,7 @@ import { Button, Paper, styled, Typography } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import RoomIcon from "@mui/icons-material/Room";
+
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 

@@ -2,22 +2,17 @@ import { Button, Paper, styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
+import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+
 import { RestaurantDto } from "../../types/dto/common/RestaurantDto";
 import styles from "./RestaurantInfo.module.css";
 
 interface RestaurantInfoProps {
     restaurant: RestaurantDto;
 }
-// const BuyTicketButton = styled(Button)({
-//     borderRadius: "20px",
-//     backgroundColor: "black",
-//     width: "100%",
-//     marginTop: "50px",
-//     "&:hover": {
-//         backgroundColor: "white",
-//         color: "black",
-//     },
-// });
+
 export const RestaurantInfo: FC<RestaurantInfoProps> = ({ restaurant }) => {
     const { t } = useTranslation();
     return (
@@ -28,25 +23,28 @@ export const RestaurantInfo: FC<RestaurantInfoProps> = ({ restaurant }) => {
             }}
         >
             <Typography variant="h6">{t("restaurant.food", { type: restaurant.food })}</Typography>
-            {/* <Typography className={styles.activityDescription}>{attraction.about}</Typography> */}
-            {/* <Typography variant="h5">{t("attractions.suggestedDuration")}</Typography> */}
-
+            {restaurant.rating && (
+                <Box component="fieldset" borderColor="transparent">
+                    <Rating name="rating-bar" value={restaurant.rating} precision={0.5} readOnly />
+                </Box>
+            )}
             <div className={styles.tickets}>
-                <Typography variant="h6">
+                <Typography variant="subtitle1" fontSize="medium">
                     {t("restaurant.averageMealPrice")}
-                    {t("restaurant.averageMealPerPerson", { amount: restaurant.avgMealPerPerson })}
+                    {t("restaurant.averageMealPerPerson", {
+                        amount: restaurant.avgMealPerPerson.toFixed(2),
+                    })}
                 </Typography>
             </div>
-            {/* {attraction.reservationLink && (
-                <BuyTicketButton
-                    className={styles.buyTicketButton}
-                    variant="contained"
-                    size="large"
-                    href={attraction.reservationLink}
-                >
-                    <Typography variant="button">{t("attractions.buyTicket")}</Typography>
-                </BuyTicketButton>
-            )} */}
+
+            {restaurant.address && (
+                <div>
+                    <Typography variant="subtitle1">
+                        <LocationOnIcon fontSize="small" />
+                        <span>{restaurant.address}</span>
+                    </Typography>
+                </div>
+            )}
         </Paper>
     );
 };

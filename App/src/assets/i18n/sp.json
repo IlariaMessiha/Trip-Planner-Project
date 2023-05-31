@@ -57,7 +57,8 @@
     },
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",
-        "food": "{{type}} food"
+        "food": "Cocina: {{type}}",
+        "averageMealPrice": "Precio medio de la comida : "
     },
     "reviews": {
         "rating": "Clasificación"
