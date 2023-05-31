@@ -63,7 +63,8 @@
     },
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",
-        "food": "{{type}} food"
+        "averageMealPrice": "Average Meal Price: ",
+        "food": "Cuisine : {{type}}"
     },
     "reviews": {
         "rating": "Rating"

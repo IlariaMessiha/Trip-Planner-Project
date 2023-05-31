@@ -7,6 +7,7 @@ import {
     directus_files,
     hotel,
     restaurant,
+    restaurant_review,
     user,
 } from "@prisma/client";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
@@ -52,6 +53,16 @@ export class MappingDtos {
         };
     }
     mapReviewToDto(review: attraction_review, user: UserDto): AttractionReviewDto {
+        return {
+            id: review.id,
+            body: review.body,
+            rating: review.rating,
+            title: review.title,
+            user: user,
+        };
+    }
+
+    mapRestaurantReviewToDto(review: restaurant_review, user: UserDto): AttractionReviewDto {
         return {
             id: review.id,
             body: review.body,

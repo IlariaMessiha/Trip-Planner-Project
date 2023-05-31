@@ -13,6 +13,7 @@ import { Profile } from "./Pages/profilePage";
 import { RegisterPage } from "./Pages/RegisterPage";
 import { AuthProvider } from "./context/AuthProvider";
 import { LoginPage } from "./Pages/LoginPage";
+import { RestaurantPage } from "./Pages/RestaurantPage";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/search" element={<SearchPage />} />
                         <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
+                        <Route path="/restaurant/:id" element={<RestaurantPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/trip" element={<TripPage />} />

@@ -4,6 +4,7 @@ import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsD
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 import { CityDto } from "../types/dto/common/CityDto";
 import { GetAttractionResponseDto } from "../types/dto/attractions/GetAttractionResponseDto";
+import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 import { GetCityResponseDto } from "../types/dto/cities/GetCityResponseDto";
 import { TChatbotFlow } from "../types/TChatbot";
 
@@ -18,6 +19,14 @@ export class FetchData {
         );
         return response.data;
     }
+
+    public async getRestaurant(id: string) {
+        const response = await Axios.get<GetRestaurantResponseDto>(
+            `${API_BASE_URL}/restaurants/${id}`
+        );
+        return response.data;
+    }
+
     public async getDashboard() {
         const response = await Axios.get<GetDashboardResponseDto>(`${API_BASE_URL}/dashboard`);
         return response.data;
