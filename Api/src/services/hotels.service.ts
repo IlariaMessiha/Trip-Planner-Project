@@ -1,14 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
-import { GetRestaurantResponseDto } from "src/types/dto/restaurants/GetRestaurantResponseDto";
+// import { GetRestaurantResponseDto } from "src/types/dto/restaurants/GetRestaurantResponseDto";
+import { GetHotelResponseDto } from "src/types/dto/hotels/GetHotelResponseDto";
 import { MappingDtos, mapUserToDto } from "src/helpers/mappingDtos";
 
 @Injectable()
-export class RestaurantsService {
+export class HotelsService {
     constructor(private prisma: PrismaService, private mappingDto: MappingDtos) {}
 
-    async findRestaurant(id: number): Promise<GetRestaurantResponseDto> {
-        const restaurant = await this.prisma.restaurant.findUnique({
+    async findHotel(id: number): Promise<GetHotelResponseDto> {
+        const hotel = await this.prisma.hotel.findUnique({
             where: {
                 id: id,
             },
@@ -19,23 +20,23 @@ export class RestaurantsService {
         });
         const city = await this.prisma.city.findUnique({
             where: {
-                id: restaurant.city_id,
+                id: hotel.city_id,
             },
             include: {
                 directus_files: true,
                 country: true,
             },
         });
-        const reviews = await this.prisma.restaurant_review.findMany({
+        const reviews = await this.prisma.hotel_review.findMany({
             where: {
-                restaurant_id: id,
+                hotel_id: id,
             },
             include: {
                 user: true,
             },
         });
         return {
-            restaurant: this.mappingDto.mapRestaurantToDto(restaurant, restaurant.directus_files),
+            hotel: this.mappingDto.mapHotelToDto(hotel, hotel.directus_files),
             reviews: reviews.map(review => {
                 return this.mappingDto.mapReviewToDto(review, mapUserToDto(review.user));
             }),

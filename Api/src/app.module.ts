@@ -4,6 +4,7 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { AttractionsController } from "./controllers/attractions.controller";
 import { RestaurantsController } from "./controllers/restaurants.controller";
+import { HotelsController } from "./controllers/hotels.controllers";
 import { CitiesController } from "./controllers/cities.controller";
 import { CommonController } from "./controllers/common.controller";
 import { ReviewsController } from "./controllers/reviews.controller";
@@ -12,6 +13,7 @@ import { MappingDtos } from "./helpers/mappingDtos";
 import { PrismaService } from "./prisma.service";
 import { AttractionsService } from "./services/attractions.service";
 import { RestaurantsService } from "./services/restaurants.service";
+import { HotelsService } from "./services/hotels.service";
 import { CityService } from "./services/cities.service";
 import { CommonService } from "./services/common.service";
 import { CountriesService } from "./services/countries.service";
@@ -33,6 +35,7 @@ import { UsersService } from "./services/users.service";
         SearchController,
         AuthController,
         RestaurantsController,
+        HotelsController,
     ],
     providers: [
         AttractionsService,
@@ -45,6 +48,7 @@ import { UsersService } from "./services/users.service";
         SearchService,
         UsersService,
         RestaurantsService,
+        HotelsService,
     ],
     imports: [
         ServeStaticModule.forRoot({

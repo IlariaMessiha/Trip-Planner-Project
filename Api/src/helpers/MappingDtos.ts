@@ -9,9 +9,12 @@ import {
     restaurant,
     restaurant_review,
     user,
+    hotel_review,
 } from "@prisma/client";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { AttractionReviewDto } from "src/types/dto/common/AttractionReviewDto";
+import { HotelReviewDto } from "src/types/dto/common/HotelReviewDto";
+import { RestaurantReviewDto } from "src/types/dto/common/RestaurantReviewDto";
 import { AttractionTagDto } from "src/types/dto/common/AttractionTagDto";
 import { CityDto } from "src/types/dto/common/CityDto";
 import { CountryDto } from "src/types/dto/common/CountryDto";
@@ -52,7 +55,10 @@ export class MappingDtos {
             label: country.label,
         };
     }
-    mapReviewToDto(review: attraction_review, user: UserDto): AttractionReviewDto {
+    mapReviewToDto(
+        review: attraction_review | hotel_review | restaurant_review,
+        user: UserDto
+    ): AttractionReviewDto | HotelReviewDto | RestaurantReviewDto  {
         return {
             id: review.id,
             body: review.body,
@@ -62,15 +68,15 @@ export class MappingDtos {
         };
     }
 
-    mapRestaurantReviewToDto(review: restaurant_review, user: UserDto): AttractionReviewDto {
-        return {
-            id: review.id,
-            body: review.body,
-            rating: review.rating,
-            title: review.title,
-            user: user,
-        };
-    }
+    // mapRestaurantReviewToDto(review: restaurant_review, user: UserDto): AttractionReviewDto {
+    //     return {
+    //         id: review.id,
+    //         body: review.body,
+    //         rating: review.rating,
+    //         title: review.title,
+    //         user: user,
+    //     };
+    // }
     mapAttractionToDto(attraction: attraction, image: directus_files): AttractionDto {
         const long = attraction.long ? attraction.long.toNumber() : null;
         const lat = attraction.lat ? attraction.lat.toNumber() : null;
