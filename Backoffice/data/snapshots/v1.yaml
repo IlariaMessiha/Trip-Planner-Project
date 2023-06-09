@@ -1,0 +1,5750 @@
+version: 1
+directus: 9.22.4
+collections:
+  - collection: attraction
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: attraction
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: attraction
+      schema: public
+  - collection: attraction_review
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: attraction_review
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: attraction_review
+      schema: public
+  - collection: attraction_tag
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: attraction_tag
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: attraction_tag
+      schema: public
+  - collection: city
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: city
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: city
+      schema: public
+  - collection: country
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: country
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: country
+      schema: public
+  - collection: hotel
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: hotel
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: hotel
+      schema: public
+  - collection: hotel_review
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: hotel_review
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: hotel_review
+      schema: public
+  - collection: hotel_tag
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: hotel_tag
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: hotel_tag
+      schema: public
+  - collection: restaurant
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: restaurant
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: restaurant
+      schema: public
+  - collection: restaurant_review
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: restaurant_review
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: restaurant_review
+      schema: public
+  - collection: restaurant_tag
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: restaurant_tag
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: restaurant_tag
+      schema: public
+  - collection: tag
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: tag
+      color: null
+      display_template: "{{code}}\_-\_{{label}}"
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: tag
+      schema: public
+  - collection: trip
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: trip
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: trip
+      schema: public
+  - collection: trip_item
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: trip_item
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: trip_item
+      schema: public
+  - collection: user
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: user
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: user
+      schema: public
+  - collection: user_attraction
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: user_attraction
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: user_attraction
+      schema: public
+  - collection: user_restaurant
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: user_restaurant
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      comment: null
+      name: user_restaurant
+      schema: public
+fields:
+  - collection: attraction
+    field: about
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: about
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: about
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: text
+  - collection: attraction
+    field: address
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: address
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: address
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction
+    field: city_id
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: city_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{label}}'
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: city
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: city_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction
+    type: integer
+  - collection: attraction
+    field: code
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: code
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction
+    field: details
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: details
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: details
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: text
+  - collection: attraction
+    field: email
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: email
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: email
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction
+    field: entry_fee
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: entry_fee
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: entry_fee
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: attraction
+    type: decimal
+  - collection: attraction
+    field: id
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('attraction_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction
+    type: integer
+  - collection: attraction
+    field: image
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: image
+      group: null
+      hidden: false
+      interface: file-image
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: uuid
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: image
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: uuid
+  - collection: attraction
+    field: label
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: label
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: label
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction
+    field: lat
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: lat
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: lat
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: attraction
+    type: decimal
+  - collection: attraction
+    field: long
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: long
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: long
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: attraction
+    type: decimal
+  - collection: attraction
+    field: min_age
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: min_age
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: min_age
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction
+    type: integer
+  - collection: attraction
+    field: openning_hours_from
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: openning_hours_from
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: time without time zone
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: openning_hours_from
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: time
+  - collection: attraction
+    field: openning_hours_to
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: openning_hours_to
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: time without time zone
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: openning_hours_to
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: time
+  - collection: attraction
+    field: phone
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: phone
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: phone
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction
+    field: rating
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: rating
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: rating
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction
+    type: integer
+  - collection: attraction
+    field: reservation_link
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: reservation_link
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: reservation_link
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction
+    field: suggested_duration
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: suggested_duration
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: suggested_duration
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction
+    type: integer
+  - collection: attraction
+    field: tags
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: tags
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema: null
+    type: alias
+  - collection: attraction
+    field: type
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: type
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: type
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction
+    field: website
+    meta:
+      collection: attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: website
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: website
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction
+    type: string
+  - collection: attraction_review
+    field: attraction_id
+    meta:
+      collection: attraction_review
+      conditions: null
+      display: null
+      display_options: null
+      field: attraction_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{label}}'
+      readonly: false
+      required: false
+      sort: 5
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: attraction_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction_review
+    type: integer
+  - collection: attraction_review
+    field: body
+    meta:
+      collection: attraction_review
+      conditions: null
+      display: null
+      display_options: null
+      field: body
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: body
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction_review
+    type: text
+  - collection: attraction_review
+    field: id
+    meta:
+      collection: attraction_review
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('attraction_review_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction_review
+    type: integer
+  - collection: attraction_review
+    field: rating
+    meta:
+      collection: attraction_review
+      conditions: null
+      display: null
+      display_options: null
+      field: rating
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: rating
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction_review
+    type: integer
+  - collection: attraction_review
+    field: title
+    meta:
+      collection: attraction_review
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: title
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: attraction_review
+    type: string
+  - collection: attraction_review
+    field: user_id
+    meta:
+      collection: attraction_review
+      conditions: null
+      display: null
+      display_options: null
+      field: user_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 6
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: user_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction_review
+    type: integer
+  - collection: attraction_tag
+    field: attraction_id
+    meta:
+      collection: attraction_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: attraction_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: attraction_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction_tag
+    type: integer
+  - collection: attraction_tag
+    field: id
+    meta:
+      collection: attraction_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('attraction_tag_id_seq1'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction_tag
+    type: integer
+  - collection: attraction_tag
+    field: tag_id
+    meta:
+      collection: attraction_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: tag_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: tag
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: tag_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: attraction_tag
+    type: integer
+  - collection: city
+    field: city_code
+    meta:
+      collection: city
+      conditions: null
+      display: null
+      display_options: null
+      field: city_code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: city_code
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: city
+    type: string
+  - collection: city
+    field: city_image
+    meta:
+      collection: city
+      conditions: null
+      display: null
+      display_options: null
+      field: city_image
+      group: null
+      hidden: false
+      interface: file-image
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: uuid
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: city_image
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: city
+    type: uuid
+  - collection: city
+    field: country_id
+    meta:
+      collection: city
+      conditions: null
+      display: null
+      display_options: null
+      field: country_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: country
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: country_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: city
+    type: integer
+  - collection: city
+    field: id
+    meta:
+      collection: city
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('city_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: city
+    type: integer
+  - collection: city
+    field: label
+    meta:
+      collection: city
+      conditions: null
+      display: null
+      display_options: null
+      field: label
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: label
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: city
+    type: string
+  - collection: city
+    field: lat
+    meta:
+      collection: city
+      conditions: null
+      display: null
+      display_options: null
+      field: lat
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: lat
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: city
+    type: decimal
+  - collection: city
+    field: long
+    meta:
+      collection: city
+      conditions: null
+      display: null
+      display_options: null
+      field: long
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: long
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: city
+    type: decimal
+  - collection: country
+    field: country_code
+    meta:
+      collection: country
+      conditions: null
+      display: null
+      display_options: null
+      field: country_code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: country_code
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: country
+    type: string
+  - collection: country
+    field: id
+    meta:
+      collection: country
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('country_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: country
+    type: integer
+  - collection: country
+    field: label
+    meta:
+      collection: country
+      conditions: null
+      display: null
+      display_options: null
+      field: label
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: label
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: country
+    type: string
+  - collection: hotel
+    field: address
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: address
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: address
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: string
+  - collection: hotel
+    field: city_id
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: city_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: city
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: city_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel
+    type: integer
+  - collection: hotel
+    field: email
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: email
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: email
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: string
+  - collection: hotel
+    field: hotel_code
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: hotel_code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: hotel_code
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: string
+  - collection: hotel
+    field: hotel_image
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: hotel_image
+      group: null
+      hidden: false
+      interface: file-image
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: uuid
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: hotel_image
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: uuid
+  - collection: hotel
+    field: id
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('hotel_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel
+    type: integer
+  - collection: hotel
+    field: label
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: label
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: label
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: string
+  - collection: hotel
+    field: lat
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: lat
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: lat
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: hotel
+    type: decimal
+  - collection: hotel
+    field: long
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: long
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: long
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: hotel
+    type: decimal
+  - collection: hotel
+    field: phone
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: phone
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: phone
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: string
+  - collection: hotel
+    field: rating
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: rating
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: rating
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel
+    type: integer
+  - collection: hotel
+    field: reservation_link
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: reservation_link
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: reservation_link
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: string
+  - collection: hotel
+    field: starting_from_price
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: starting_from_price
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: starting_from_price
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: hotel
+    type: decimal
+  - collection: hotel
+    field: tags
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: tags
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema: null
+    type: alias
+  - collection: hotel
+    field: website
+    meta:
+      collection: hotel
+      conditions: null
+      display: null
+      display_options: null
+      field: website
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: website
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel
+    type: string
+  - collection: hotel_review
+    field: body
+    meta:
+      collection: hotel_review
+      conditions: null
+      display: null
+      display_options: null
+      field: body
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: body
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel_review
+    type: text
+  - collection: hotel_review
+    field: hotel_id
+    meta:
+      collection: hotel_review
+      conditions: null
+      display: null
+      display_options: null
+      field: hotel_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: hotel
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: hotel_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel_review
+    type: integer
+  - collection: hotel_review
+    field: id
+    meta:
+      collection: hotel_review
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('hotel_review_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel_review
+    type: integer
+  - collection: hotel_review
+    field: rating
+    meta:
+      collection: hotel_review
+      conditions: null
+      display: null
+      display_options: null
+      field: rating
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: rating
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel_review
+    type: integer
+  - collection: hotel_review
+    field: title
+    meta:
+      collection: hotel_review
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: title
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: hotel_review
+    type: string
+  - collection: hotel_review
+    field: user_id
+    meta:
+      collection: hotel_review
+      conditions: null
+      display: null
+      display_options: null
+      field: user_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: user_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel_review
+    type: integer
+  - collection: hotel_tag
+    field: hotel_id
+    meta:
+      collection: hotel_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: hotel_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: hotel
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: hotel_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel_tag
+    type: integer
+  - collection: hotel_tag
+    field: id
+    meta:
+      collection: hotel_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('hotel_tag_id_seq1'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel_tag
+    type: integer
+  - collection: hotel_tag
+    field: tag_id
+    meta:
+      collection: hotel_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: tag_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: tag
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: tag_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: hotel_tag
+    type: integer
+  - collection: restaurant
+    field: address
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: address
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: address
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: string
+  - collection: restaurant
+    field: avg_meal_per_person
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: avg_meal_per_person
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 13
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: avg_meal_per_person
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: restaurant
+    type: decimal
+  - collection: restaurant
+    field: city_id
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: city_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: city
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: city_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant
+    type: integer
+  - collection: restaurant
+    field: code
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: code
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: string
+  - collection: restaurant
+    field: email
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: email
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 10
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: email
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: string
+  - collection: restaurant
+    field: food
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: food
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: food
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: string
+  - collection: restaurant
+    field: id
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('restaurant_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant
+    type: integer
+  - collection: restaurant
+    field: label
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: label
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: label
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: string
+  - collection: restaurant
+    field: lat
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: lat
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 12
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: lat
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: restaurant
+    type: decimal
+  - collection: restaurant
+    field: long
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: long
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 11
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: numeric
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: long
+      numeric_precision: 10
+      numeric_scale: 5
+      schema: public
+      table: restaurant
+    type: decimal
+  - collection: restaurant
+    field: phone
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: phone
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: phone
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: string
+  - collection: restaurant
+    field: rating
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: rating
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 9
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: rating
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant
+    type: integer
+  - collection: restaurant
+    field: retaurant_image
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: retaurant_image
+      group: null
+      hidden: false
+      interface: file-image
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 14
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: uuid
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: retaurant_image
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: uuid
+  - collection: restaurant
+    field: tags
+    meta:
+      collection: restaurant
+      conditions: null
+      display: related-values
+      display_options:
+        template: "{{tag_id.code}}\_-\_{{tag_id.label}}"
+      field: tags
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: "{{tag_id.code}}\_-\_{{tag_id.label}}"
+      readonly: false
+      required: false
+      sort: 15
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema: null
+    type: alias
+  - collection: restaurant
+    field: website
+    meta:
+      collection: restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: website
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: website
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant
+    type: string
+  - collection: restaurant_review
+    field: body
+    meta:
+      collection: restaurant_review
+      conditions: null
+      display: null
+      display_options: null
+      field: body
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: body
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant_review
+    type: text
+  - collection: restaurant_review
+    field: id
+    meta:
+      collection: restaurant_review
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('restaurant_review_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant_review
+    type: integer
+  - collection: restaurant_review
+    field: rating
+    meta:
+      collection: restaurant_review
+      conditions: null
+      display: null
+      display_options: null
+      field: rating
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: rating
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant_review
+    type: integer
+  - collection: restaurant_review
+    field: restaurant_id
+    meta:
+      collection: restaurant_review
+      conditions: null
+      display: null
+      display_options: null
+      field: restaurant_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: restaurant_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant_review
+    type: integer
+  - collection: restaurant_review
+    field: title
+    meta:
+      collection: restaurant_review
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: title
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: restaurant_review
+    type: string
+  - collection: restaurant_review
+    field: user_id
+    meta:
+      collection: restaurant_review
+      conditions: null
+      display: null
+      display_options: null
+      field: user_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: user_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant_review
+    type: integer
+  - collection: restaurant_tag
+    field: id
+    meta:
+      collection: restaurant_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('restaurant_tag_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant_tag
+    type: integer
+  - collection: restaurant_tag
+    field: restaurant_id
+    meta:
+      collection: restaurant_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: restaurant_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: restaurant_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant_tag
+    type: integer
+  - collection: restaurant_tag
+    field: tag_id
+    meta:
+      collection: restaurant_tag
+      conditions: null
+      display: null
+      display_options: null
+      field: tag_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: tag
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: tag_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: restaurant_tag
+    type: integer
+  - collection: tag
+    field: code
+    meta:
+      collection: tag
+      conditions: null
+      display: null
+      display_options: null
+      field: code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: code
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: tag
+    type: string
+  - collection: tag
+    field: id
+    meta:
+      collection: tag
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('tag_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: tag
+    type: integer
+  - collection: tag
+    field: label
+    meta:
+      collection: tag
+      conditions: null
+      display: null
+      display_options: null
+      field: label
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: label
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: tag
+    type: string
+  - collection: trip
+    field: arrival_date
+    meta:
+      collection: trip
+      conditions: null
+      display: null
+      display_options: null
+      field: arrival_date
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: timestamp without time zone
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: arrival_date
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: trip
+    type: dateTime
+  - collection: trip
+    field: departure_date
+    meta:
+      collection: trip
+      conditions: null
+      display: null
+      display_options: null
+      field: departure_date
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: date
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: departure_date
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: trip
+    type: date
+  - collection: trip
+    field: id
+    meta:
+      collection: trip
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('trip_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: trip
+    type: integer
+  - collection: trip
+    field: label
+    meta:
+      collection: trip
+      conditions: null
+      display: null
+      display_options: null
+      field: label
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: label
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: trip
+    type: string
+  - collection: trip
+    field: trip_code
+    meta:
+      collection: trip
+      conditions: null
+      display: null
+      display_options: null
+      field: trip_code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: trip_code
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: trip
+    type: string
+  - collection: trip
+    field: user_id
+    meta:
+      collection: trip
+      conditions: null
+      display: null
+      display_options: null
+      field: user_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: user_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: trip
+    type: integer
+  - collection: trip_item
+    field: attraction_id
+    meta:
+      collection: trip_item
+      conditions: null
+      display: null
+      display_options: null
+      field: attraction_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: attraction_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: trip_item
+    type: integer
+  - collection: trip_item
+    field: datetime
+    meta:
+      collection: trip_item
+      conditions: null
+      display: null
+      display_options: null
+      field: datetime
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: timestamp without time zone
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: datetime
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: trip_item
+    type: dateTime
+  - collection: trip_item
+    field: id
+    meta:
+      collection: trip_item
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('trip_item_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: trip_item
+    type: integer
+  - collection: trip_item
+    field: restaurant_id
+    meta:
+      collection: trip_item
+      conditions: null
+      display: null
+      display_options: null
+      field: restaurant_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: restaurant_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: trip_item
+    type: integer
+  - collection: trip_item
+    field: trip_id
+    meta:
+      collection: trip_item
+      conditions: null
+      display: null
+      display_options: null
+      field: trip_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: trip
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: trip_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: trip_item
+    type: integer
+  - collection: user
+    field: attraction_favorites
+    meta:
+      collection: user
+      conditions: null
+      display: null
+      display_options: null
+      field: attraction_favorites
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema: null
+    type: alias
+  - collection: user
+    field: email
+    meta:
+      collection: user
+      conditions: null
+      display: null
+      display_options: null
+      field: email
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: email
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: user
+    type: string
+  - collection: user
+    field: firstname
+    meta:
+      collection: user
+      conditions: null
+      display: null
+      display_options: null
+      field: firstname
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: firstname
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: user
+    type: string
+  - collection: user
+    field: id
+    meta:
+      collection: user
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('user_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: user
+    type: integer
+  - collection: user
+    field: lastname
+    meta:
+      collection: user
+      conditions: null
+      display: null
+      display_options: null
+      field: lastname
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: lastname
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: user
+    type: string
+  - collection: user
+    field: password
+    meta:
+      collection: user
+      conditions: null
+      display: null
+      display_options: null
+      field: password
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: character varying
+      default_value: null
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: password
+      numeric_precision: null
+      numeric_scale: null
+      schema: public
+      table: user
+    type: string
+  - collection: user
+    field: restaurant_favorites
+    meta:
+      collection: user
+      conditions: null
+      display: null
+      display_options: null
+      field: restaurant_favorites
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema: null
+    type: alias
+  - collection: user_attraction
+    field: attraction_id
+    meta:
+      collection: user_attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: attraction_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: attraction_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: user_attraction
+    type: integer
+  - collection: user_attraction
+    field: id
+    meta:
+      collection: user_attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('user_attraction_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: user_attraction
+    type: integer
+  - collection: user_attraction
+    field: user_id
+    meta:
+      collection: user_attraction
+      conditions: null
+      display: null
+      display_options: null
+      field: user_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: user_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: user_attraction
+    type: integer
+  - collection: user_restaurant
+    field: id
+    meta:
+      collection: user_restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: nextval('user_restaurant_id_seq'::regclass)
+      foreign_key_column: null
+      foreign_key_schema: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: true
+      max_length: null
+      name: id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: user_restaurant
+    type: integer
+  - collection: user_restaurant
+    field: restaurant_id
+    meta:
+      collection: user_restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: restaurant_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: restaurant_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: user_restaurant
+    type: integer
+  - collection: user_restaurant
+    field: user_id
+    meta:
+      collection: user_restaurant
+      conditions: null
+      display: null
+      display_options: null
+      field: user_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: null
+      data_type: integer
+      default_value: null
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: user_id
+      numeric_precision: 32
+      numeric_scale: 0
+      schema: public
+      table: user_restaurant
+    type: integer
+relations:
+  - collection: attraction
+    field: city_id
+    meta:
+      junction_field: null
+      many_collection: attraction
+      many_field: city_id
+      one_allowed_collections: null
+      one_collection: city
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: city
+    schema:
+      column: city_id
+      constraint_name: attraction_city_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: city
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: attraction
+  - collection: attraction
+    field: image
+    meta:
+      junction_field: null
+      many_collection: attraction
+      many_field: image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_files
+    schema:
+      column: image
+      constraint_name: attraction_image_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: attraction
+  - collection: attraction_review
+    field: attraction_id
+    meta:
+      junction_field: null
+      many_collection: attraction_review
+      many_field: attraction_id
+      one_allowed_collections: null
+      one_collection: attraction
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: attraction
+    schema:
+      column: attraction_id
+      constraint_name: attraction_review_attraction_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: attraction_review
+  - collection: attraction_review
+    field: user_id
+    meta:
+      junction_field: null
+      many_collection: attraction_review
+      many_field: user_id
+      one_allowed_collections: null
+      one_collection: user
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: user
+    schema:
+      column: user_id
+      constraint_name: attraction_review_user_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: attraction_review
+  - collection: attraction_tag
+    field: attraction_id
+    meta:
+      junction_field: tag_id
+      many_collection: attraction_tag
+      many_field: attraction_id
+      one_allowed_collections: null
+      one_collection: attraction
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: tags
+      sort_field: null
+    related_collection: attraction
+    schema:
+      column: attraction_id
+      constraint_name: attraction_tag_attraction_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: attraction_tag
+  - collection: attraction_tag
+    field: tag_id
+    meta:
+      junction_field: attraction_id
+      many_collection: attraction_tag
+      many_field: tag_id
+      one_allowed_collections: null
+      one_collection: tag
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: tag
+    schema:
+      column: tag_id
+      constraint_name: attraction_tag_tag_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: tag
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: attraction_tag
+  - collection: city
+    field: city_image
+    meta:
+      junction_field: null
+      many_collection: city
+      many_field: city_image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_files
+    schema:
+      column: city_image
+      constraint_name: city_city_image_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: city
+  - collection: city
+    field: country_id
+    meta:
+      junction_field: null
+      many_collection: city
+      many_field: country_id
+      one_allowed_collections: null
+      one_collection: country
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: country
+    schema:
+      column: country_id
+      constraint_name: city_country_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: country
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: city
+  - collection: hotel
+    field: city_id
+    meta:
+      junction_field: null
+      many_collection: hotel
+      many_field: city_id
+      one_allowed_collections: null
+      one_collection: city
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: city
+    schema:
+      column: city_id
+      constraint_name: hotel_city_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: city
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: hotel
+  - collection: hotel
+    field: hotel_image
+    meta:
+      junction_field: null
+      many_collection: hotel
+      many_field: hotel_image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_files
+    schema:
+      column: hotel_image
+      constraint_name: hotel_hotel_image_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: hotel
+  - collection: hotel_review
+    field: hotel_id
+    meta:
+      junction_field: null
+      many_collection: hotel_review
+      many_field: hotel_id
+      one_allowed_collections: null
+      one_collection: hotel
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: hotel
+    schema:
+      column: hotel_id
+      constraint_name: hotel_review_hotel_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: hotel
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: hotel_review
+  - collection: hotel_review
+    field: user_id
+    meta:
+      junction_field: null
+      many_collection: hotel_review
+      many_field: user_id
+      one_allowed_collections: null
+      one_collection: user
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: user
+    schema:
+      column: user_id
+      constraint_name: hotel_review_user_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: hotel_review
+  - collection: hotel_tag
+    field: hotel_id
+    meta:
+      junction_field: tag_id
+      many_collection: hotel_tag
+      many_field: hotel_id
+      one_allowed_collections: null
+      one_collection: hotel
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: tags
+      sort_field: null
+    related_collection: hotel
+    schema:
+      column: hotel_id
+      constraint_name: hotel_tag_hotel_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: hotel
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: hotel_tag
+  - collection: hotel_tag
+    field: tag_id
+    meta:
+      junction_field: hotel_id
+      many_collection: hotel_tag
+      many_field: tag_id
+      one_allowed_collections: null
+      one_collection: tag
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: tag
+    schema:
+      column: tag_id
+      constraint_name: hotel_tag_tag_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: tag
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: hotel_tag
+  - collection: restaurant
+    field: city_id
+    meta:
+      junction_field: null
+      many_collection: restaurant
+      many_field: city_id
+      one_allowed_collections: null
+      one_collection: city
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: city
+    schema:
+      column: city_id
+      constraint_name: restaurant_city_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: city
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: restaurant
+  - collection: restaurant
+    field: retaurant_image
+    meta:
+      junction_field: null
+      many_collection: restaurant
+      many_field: retaurant_image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_files
+    schema:
+      column: retaurant_image
+      constraint_name: restaurant_retaurant_image_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: directus_files
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: restaurant
+  - collection: restaurant_review
+    field: restaurant_id
+    meta:
+      junction_field: null
+      many_collection: restaurant_review
+      many_field: restaurant_id
+      one_allowed_collections: null
+      one_collection: restaurant
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: restaurant
+    schema:
+      column: restaurant_id
+      constraint_name: restaurant_review_restaurant_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: restaurant_review
+  - collection: restaurant_review
+    field: user_id
+    meta:
+      junction_field: null
+      many_collection: restaurant_review
+      many_field: user_id
+      one_allowed_collections: null
+      one_collection: user
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: user
+    schema:
+      column: user_id
+      constraint_name: restaurant_review_user_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: restaurant_review
+  - collection: restaurant_tag
+    field: restaurant_id
+    meta:
+      junction_field: tag_id
+      many_collection: restaurant_tag
+      many_field: restaurant_id
+      one_allowed_collections: null
+      one_collection: restaurant
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: tags
+      sort_field: null
+    related_collection: restaurant
+    schema:
+      column: restaurant_id
+      constraint_name: restaurant_tag_restaurant_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: restaurant_tag
+  - collection: restaurant_tag
+    field: tag_id
+    meta:
+      junction_field: restaurant_id
+      many_collection: restaurant_tag
+      many_field: tag_id
+      one_allowed_collections: null
+      one_collection: tag
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: tag
+    schema:
+      column: tag_id
+      constraint_name: restaurant_tag_tag_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: tag
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: restaurant_tag
+  - collection: retaurant_tag
+    field: restaurant_id
+    meta:
+      junction_field: null
+      many_collection: retaurant_tag
+      many_field: restaurant_id
+      one_allowed_collections: null
+      one_collection: restaurant
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: restaurant
+    schema: null
+  - collection: retaurant_tag
+    field: tag_id
+    meta:
+      junction_field: null
+      many_collection: retaurant_tag
+      many_field: tag_id
+      one_allowed_collections: null
+      one_collection: tag
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: tag
+    schema: null
+  - collection: trip
+    field: user_id
+    meta:
+      junction_field: null
+      many_collection: trip
+      many_field: user_id
+      one_allowed_collections: null
+      one_collection: user
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: user
+    schema:
+      column: user_id
+      constraint_name: trip_user_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: trip
+  - collection: trip_item
+    field: attraction_id
+    meta:
+      junction_field: null
+      many_collection: trip_item
+      many_field: attraction_id
+      one_allowed_collections: null
+      one_collection: attraction
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: attraction
+    schema:
+      column: attraction_id
+      constraint_name: trip_item_attraction_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: trip_item
+  - collection: trip_item
+    field: restaurant_id
+    meta:
+      junction_field: null
+      many_collection: trip_item
+      many_field: restaurant_id
+      one_allowed_collections: null
+      one_collection: restaurant
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: restaurant
+    schema:
+      column: restaurant_id
+      constraint_name: trip_item_restaurant_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: trip_item
+  - collection: trip_item
+    field: trip_id
+    meta:
+      junction_field: null
+      many_collection: trip_item
+      many_field: trip_id
+      one_allowed_collections: null
+      one_collection: trip
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: trip
+    schema:
+      column: trip_id
+      constraint_name: trip_item_trip_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: trip
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: trip_item
+  - collection: user_attraction
+    field: attraction_id
+    meta:
+      junction_field: user_id
+      many_collection: user_attraction
+      many_field: attraction_id
+      one_allowed_collections: null
+      one_collection: attraction
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: attraction
+    schema:
+      column: attraction_id
+      constraint_name: user_attraction_attraction_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: attraction
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: user_attraction
+  - collection: user_attraction
+    field: user_id
+    meta:
+      junction_field: attraction_id
+      many_collection: user_attraction
+      many_field: user_id
+      one_allowed_collections: null
+      one_collection: user
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: attraction_favorites
+      sort_field: null
+    related_collection: user
+    schema:
+      column: user_id
+      constraint_name: user_attraction_user_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: user_attraction
+  - collection: user_restaurant
+    field: restaurant_id
+    meta:
+      junction_field: user_id
+      many_collection: user_restaurant
+      many_field: restaurant_id
+      one_allowed_collections: null
+      one_collection: restaurant
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: restaurant
+    schema:
+      column: restaurant_id
+      constraint_name: user_restaurant_restaurant_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: restaurant
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: user_restaurant
+  - collection: user_restaurant
+    field: user_id
+    meta:
+      junction_field: restaurant_id
+      many_collection: user_restaurant
+      many_field: user_id
+      one_allowed_collections: null
+      one_collection: user
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: restaurant_favorites
+      sort_field: null
+    related_collection: user
+    schema:
+      column: user_id
+      constraint_name: user_restaurant_user_id_foreign
+      foreign_key_column: id
+      foreign_key_schema: public
+      foreign_key_table: user
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: user_restaurant
