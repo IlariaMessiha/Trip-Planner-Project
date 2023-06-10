@@ -31,16 +31,6 @@ export const HotelInfo: FC<HotelInfoProps> = ({ hotel }) => {
                 width: "30%",
             }}
         >
-            {/* <Typography variant="h5">{t("attractions.about")}</Typography> */}
-            {/* <Typography className={styles.activityDescription}>{attraction.about}</Typography> */}
-            {/* <Typography variant="h5">{t("attractions.suggestedDuration")}</Typography> */}
-            {/* <div className={styles.suggestedDuration}>
-                <Typography>
-                    {t("attractions.suggestedDurationFormat", {
-                        duration: attraction.suggestedDuration,
-                    })}
-                </Typography>
-            </div> */}
             {hotel.address && (
                 <div>
                     <Typography variant="subtitle1">

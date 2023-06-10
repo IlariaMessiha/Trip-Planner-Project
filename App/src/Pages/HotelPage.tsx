@@ -60,16 +60,6 @@ export const HotelPage = () => {
             <Typography variant="h3">{hotel.label}</Typography>
             <div className={styles.header}>
                 <div className={styles.communicate}>
-                    {/* {attraction.openingHours && dayjs(attraction.openingHours?.from).isValid() && (
-                        <div className={styles.openHours}>
-                            <Typography variant="h6">
-                                {t("attractions.openHours", {
-                                    from: dayjs(attraction.openingHours?.from).format("HH:mm"),
-                                    to: dayjs(attraction.openingHours?.to).format("HH:mm"),
-                                })}
-                            </Typography>
-                        </div>
-                    )} */}
                     {hotel.website && (
                         <a href={hotel.website}>
                             <Typography variant="h6" className={styles.headerButtons}>
