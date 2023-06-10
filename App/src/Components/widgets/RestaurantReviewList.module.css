@@ -1,0 +1,9 @@
+.container {
+    margin-top: 50px;
+    width: 60%;
+}
+
+.reviewsTitle {
+    text-decoration: underline;
+    margin: 0;
+}

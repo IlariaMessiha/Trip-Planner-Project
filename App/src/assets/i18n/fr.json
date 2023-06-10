@@ -6,7 +6,7 @@
         "Attraction": "Attraction",
         "cities": "Villes",
         "City": "Ville",
-        "Country" : "Pays",
+        "Country": "Pays",
         "hotel": "Hôtel",
         "restaurant": "Restaurant",
         "reviews": "Commentaires",
@@ -46,7 +46,7 @@
         "open-hours": "Heures d'Ouverture",
         "from": "de",
         "to": "à",
-        "visit website": "Visiter le Site Web",
+        "visitWebsite": "Visiter le Site Web",
         "call": "Appel",
         "ticket price": "Prix Du Billet",
         "written": "Écrit",
@@ -56,10 +56,12 @@
     },
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",
-        "food": "{{type}} food"
+        "food": "Cuisine: {{type}}",
+        "averageMealPrice": "Prix moyen du repas: "
     },
     "hotels": {
-        "startingFromPrice": "De ${{amount}}/nuit"
+        "startingFromPrice": "De {{amount}}$ / nuit",
+        "bookNow": "Reserve maintenant"
     },
     "reviews": {
         "rating": "Notation"

@@ -44,7 +44,7 @@
         "open-hours": "Horarios de Apertura",
         "from": "de",
         "to": "a",
-        "visit website": "Visita la Página Web",
+        "visitWebsite": "Visita la Página Web",
         "call": "Llamar",
         "ticket price": "Precio Del Boleto",
         "written": "Escrito",
@@ -52,11 +52,13 @@
         "type": "{{type}} Atraccion"
     },
     "hotels": {
-        "startingFromPrice": "de ${{amount}}/noche"
+        "startingFromPrice": "de {{amount}}$ / noche",
+        "bookNow": "Reservar ahora"
     },
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",
-        "food": "{{type}} food"
+        "food": "Cocina: {{type}}",
+        "averageMealPrice": "Precio medio de la comida : "
     },
     "reviews": {
         "rating": "Clasificación"

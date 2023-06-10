@@ -59,11 +59,13 @@
         "type": "{{type}} attraction"
     },
     "hotels": {
-        "startingFromPrice": "from ${{amount}}/night"
+        "startingFromPrice": "from {{amount}}$ / night",
+        "bookNow": "Book Now"
     },
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",
-        "food": "{{type}} food"
+        "averageMealPrice": "Average Meal Price: ",
+        "food": "Cuisine : {{type}}"
     },
     "reviews": {
         "rating": "Rating"

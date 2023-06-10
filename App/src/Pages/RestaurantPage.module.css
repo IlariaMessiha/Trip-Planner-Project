@@ -1,0 +1,46 @@
+.image {
+    width: 60%;
+    display: block;
+    height: 600px;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.imageAndDescription {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+}
+
+.openHours {
+    display: flex;
+    gap: 5px;
+}
+
+.communicate {
+    display: flex;
+    gap: 30px;
+}
+
+.headerButtons {
+    text-decoration: underline;
+}
+
+.headerButtons:hover {
+    opacity: 0.5;
+}
+
+.icons {
+    display: flex;
+    gap: 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
