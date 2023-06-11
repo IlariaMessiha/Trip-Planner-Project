@@ -1,23 +1,16 @@
-import { useState, useEffect } from "react";
+import PersonIcon from "@mui/icons-material/Person";
+import { IconButton } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Avatar from "@mui/material/Avatar";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./DropDownProfile.module.css";
-import PersonIcon from "@mui/icons-material/Person";
-import { IconButton, Fade, Typography } from "@mui/material";
-import AuthService from "../../services/auth.service";
-import Link from "@mui/material/Link";
 import { useAuthContext } from "../../context/authContext";
-
-type User = {
-    isAuthenticated: boolean;
-};
+import styles from "./DropDownProfile.module.css";
 
 export const DropDownProfileMenu = (props: any) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const { loggedInUser, setUserInContext } = useAuthContext();
-    const open = Boolean(anchorEl);
+    const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
 
     function handleClick(event: React.MouseEvent<HTMLElement>) {

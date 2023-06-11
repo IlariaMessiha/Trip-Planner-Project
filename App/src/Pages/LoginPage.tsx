@@ -15,10 +15,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { object, string, TypeOf } from "zod";
+import { fetchData } from "../api/FetchData";
 import { useAuthContext } from "../context/authContext";
 import AuthService from "../services/auth.service";
-import { postData } from "../api/PostData";
-import { fetchData } from "../api/FetchData";
 
 const registerSchema = object({
     email: string().nonempty("Email is required").email("Email is invalid"),
@@ -61,7 +60,7 @@ export const LoginPage = () => {
         if (isSubmitSuccessful) {
             reset();
         }
-    }, [isSubmitSuccessful]);
+    }, [isSubmitSuccessful, reset]);
 
     const onSubmitHandler: SubmitHandler<RegisterInput> = async values => {
         await AuthService.login({

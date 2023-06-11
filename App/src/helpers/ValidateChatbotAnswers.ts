@@ -1,6 +1,4 @@
 import { fetchData } from "../api/FetchData";
-import { TChatbotAnswer, TChatbotQuestion } from "../types/TChatbot";
-import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsDto";
 
 export const validateMap = {
     "existing-destination": async (answerValue: string) => {

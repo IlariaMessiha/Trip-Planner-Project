@@ -2,21 +2,20 @@ import { Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
-import styles from "./RestaurantPage.module.css";
-import IosShareIcon from "@mui/icons-material/IosShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import styles from "./RestaurantPage.module.css";
 
 import EditIcon from "@mui/icons-material/Edit";
-import dayjs from "dayjs";
-import { RestaurantInfo } from "../Components/core/RestaurantInfo";
-import { SharePopup } from "../Components/widgets/SharePopup";
 import Tooltip from "@mui/material/Tooltip";
+import { RestaurantInfo } from "../Components/core/RestaurantInfo";
+import { RestaurantReviewList } from "../Components/widgets/RestaurantReviewList";
+import { SharePopup } from "../Components/widgets/SharePopup";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
 import { RestaurantReviewDto } from "../types/dto/common/RestaurantReviewDto";
-import { RestaurantReviewList } from "../Components/widgets/RestaurantReviewList";
 
 const ShareButton = styled(IconButton)({
     color: "black",

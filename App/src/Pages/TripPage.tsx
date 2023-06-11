@@ -1,23 +1,20 @@
-import { useEffect, useState } from "react";
-import { TripDto } from "../types/dto/common/TripDto";
-import { Pagination, Typography } from "@mui/material";
-import { Container } from "../Components/core/layout/Container";
-import { SectionItemType } from "../Components/widgets/SectionItemType";
-import { CardAttraction } from "../Components/core/cards/CardAttraction";
-import { CardRestaurant } from "../Components/core/cards/CardRestaurant";
-import styles from "./TripPage.module.css";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
 import Timeline from "@mui/lab/Timeline";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
-import RestaurantIcon from "@mui/icons-material/Restaurant";
-import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineOppositeContent, {
     timelineOppositeContentClasses,
 } from "@mui/lab/TimelineOppositeContent";
-import { TripItem } from "../Components/core/TripItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import { Pagination, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Container } from "../Components/core/layout/Container";
+import { SectionItemType } from "../Components/widgets/SectionItemType";
+import { TripDto } from "../types/dto/common/TripDto";
+import styles from "./TripPage.module.css";
 
 export const TripPage = () => {
     const [trip, setTrip] = useState<TripDto | null>(null);
