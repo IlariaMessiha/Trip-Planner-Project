@@ -6,7 +6,7 @@ import {
     toAttractionsFilter,
     toRestaurantsFilter,
 } from "src/helpers/filtersHelper";
-import { MappingDtos } from "src/helpers/mappingDtos";
+import { MappingDtos } from "src/helpers/MappingDtos";
 import { PrismaService } from "src/prisma.service";
 
 import {

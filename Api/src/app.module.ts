@@ -9,7 +9,7 @@ import { CitiesController } from "./controllers/cities.controller";
 import { CommonController } from "./controllers/common.controller";
 import { ReviewsController } from "./controllers/reviews.controller";
 import { UsersController } from "./controllers/users.controller";
-import { MappingDtos } from "./helpers/mappingDtos";
+import { MappingDtos } from "./helpers/MappingDtos";
 import { PrismaService } from "./prisma.service";
 import { AttractionsService } from "./services/attractions.service";
 import { RestaurantsService } from "./services/restaurants.service";

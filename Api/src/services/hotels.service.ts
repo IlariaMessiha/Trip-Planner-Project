@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
 // import { GetRestaurantResponseDto } from "src/types/dto/restaurants/GetRestaurantResponseDto";
 import { GetHotelResponseDto } from "src/types/dto/hotels/GetHotelResponseDto";
-import { MappingDtos, mapUserToDto } from "src/helpers/mappingDtos";
+import { MappingDtos, mapUserToDto } from "src/helpers/MappingDtos";
 
 @Injectable()
 export class HotelsService {
