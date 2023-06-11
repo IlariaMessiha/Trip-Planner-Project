@@ -2,7 +2,7 @@ import Axios from "axios";
 import { SearchQuery, SearchResult } from "../types/Search";
 import { TChatbotSubmission } from "../types/TChatbot";
 import { TripDto } from "../types/dto/common/TripDto";
-const API_BASE_URL = "http://localhost:3333";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export class PostData {
     public async postSubmission(submissions: TChatbotSubmission[]) {
         return (await Axios.post<TripDto>(`${API_BASE_URL}/submissions`, submissions)).data;

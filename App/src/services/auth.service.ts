@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { LoginBody } from "../types/dto/auth/LoginBody";
 import { RegisterBody } from "../types/dto/auth/RegisterBody";
-const API_BASE_URL = "http://localhost:3333";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 class AuthService {
     public async login(loginBody: LoginBody) {

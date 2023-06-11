@@ -44,6 +44,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:dev": "serve build -s -n -L -p 3000",
     "start:prod": "serve build -s -n -L -p $PORT",
     "build": "react-scripts build",
     "test": "react-scripts test",

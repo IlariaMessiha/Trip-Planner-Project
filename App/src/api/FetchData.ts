@@ -9,7 +9,7 @@ import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurant
 
 import { UserDto } from "../types/dto/common/UserDto";
 
-const API_BASE_URL = "http://localhost:3333";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export class FetchData {
     public async getAttraction(id: string) {
