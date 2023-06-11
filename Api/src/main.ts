@@ -7,6 +7,8 @@ async function bootstrap() {
             origin: ["http://localhost:3000"],
         },
     });
-    await app.listen(3333);
+    const port = process.env.PORT || 3333;
+    console.log(`Listening on port ${port}`);
+    await app.listen(port);
 }
 bootstrap();

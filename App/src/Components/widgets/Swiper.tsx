@@ -1,14 +1,14 @@
-import { ReactNode, useRef } from "react";
-import { Navigation, Pagination } from "swiper";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import styles from "./Swiper.module.css";
-import "swiper/css";
-import { Swiper as ReactSwiper, SwiperSlide } from "swiper/react";
 import { IconButton } from "@mui/material";
 import { styled } from "@mui/system";
+import { ReactNode, useRef } from "react";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Swiper as ReactSwiper, SwiperSlide } from "swiper/react";
+import styles from "./Swiper.module.css";
 
 interface SwiperProps<T = any> {
     items: T[];

@@ -1,12 +1,12 @@
 import styles from "./NavigationBar.module.css";
 
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/authContext";
 import { Container } from "./core/layout/Container";
 import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
 import { DropDownProfileMenu } from "./widgets/DropDownProfileMenu";
-import { Link } from "react-router-dom";
 
 export const NavigationBar = () => {
     const { t } = useTranslation();

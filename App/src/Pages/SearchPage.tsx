@@ -5,7 +5,6 @@ import { Container } from "../Components/core/layout/Container";
 import { SearchForm } from "../Components/widgets/search/SearchForm";
 import { SearchResult } from "../types/Search";
 import styles from "./SearchPage.module.css";
-import { useTranslation } from "react-i18next";
 import PaginationComponent from "../Components/widgets/pagination";
 import { paginate } from "../utils/paginate";
 import { SearchTypeItem } from "../Components/widgets/SearchTypeItem";
@@ -16,34 +15,28 @@ export const SearchPage = () => {
     const [unPagedResults, setUnPagedResults] = useState<SearchResult[]>([]);
     const [pagedResults, setPagedResults] = useState<SearchResult[]>([]);
     const [totalItemsCount, setTotalItemCount] = useState<number>(0);
-    const [queryInfo, setQueryInfo] = useState<{}>();
-    const { t } = useTranslation();
     const [pageError, setPageError] = useState<string>("");
     const pageSize = 3;
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     useEffect(() => {
-        getUpdatedResults();
-        setCurrentPage(1);
-    }, [results]);
-
-    useEffect(() => {
-        setPagedResults(paginate(unPagedResults, currentPage, pageSize));
-        console.log("paged results :  ", pagedResults);
-    }, [currentPage, unPagedResults, pageError]);
-
-    const handlePageChange = (page: number) => {
-        console.log("page number : ", page);
-        setCurrentPage(page);
-    };
-
-    const getUpdatedResults = () => {
         console.log("results", results);
         if (results.length > 0) {
             setTotalItemCount(results.length);
             setUnPagedResults(results);
             setPageError("");
         }
+        setCurrentPage(1);
+    }, [results]);
+
+    useEffect(() => {
+        setPagedResults(paginate(unPagedResults, currentPage, pageSize));
+        console.log("paged results :  ", pagedResults);
+    }, [currentPage, unPagedResults, pageError, pagedResults]);
+
+    const handlePageChange = (page: number) => {
+        console.log("page number : ", page);
+        setCurrentPage(page);
     };
 
     return (
@@ -53,7 +46,6 @@ export const SearchPage = () => {
                     initialLabel={initialSearchLabel}
                     onSubmit={(results, query, error) => {
                         setResults(results);
-                        setQueryInfo(query);
                         setPageError(error);
                     }}
                 />

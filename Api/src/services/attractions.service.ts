@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
 import { GetAttractionResponseDto } from "src/types/dto/attractions/GetAttractionResponseDto";
-import { MappingDtos, mapUserToDto } from "src/helpers/mappingDtos";
+import { MappingDtos, mapUserToDto } from "src/helpers/MappingDtos";
 
 @Injectable()
 export class AttractionsService {

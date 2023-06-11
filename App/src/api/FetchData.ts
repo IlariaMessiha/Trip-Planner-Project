@@ -1,17 +1,15 @@
 import Axios from "axios";
+import { TChatbotFlow } from "../types/TChatbot";
+import { GetAttractionResponseDto } from "../types/dto/attractions/GetAttractionResponseDto";
+import { GetCityResponseDto } from "../types/dto/cities/GetCityResponseDto";
 import { GetDashboardResponseDto } from "../types/dto/dashboard/GetDashboardResponse";
 import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsDto";
-import { AttractionDto } from "../types/dto/common/AttractionDto";
-import { CityDto } from "../types/dto/common/CityDto";
-import { GetAttractionResponseDto } from "../types/dto/attractions/GetAttractionResponseDto";
-import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 import { GetHotelResponseDto } from "../types/dto/hotel/GetHotelResponseDto";
-import { GetCityResponseDto } from "../types/dto/cities/GetCityResponseDto";
-import { TChatbotFlow } from "../types/TChatbot";
+import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 
 import { UserDto } from "../types/dto/common/UserDto";
 
-const API_BASE_URL = "http://localhost:3333";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export class FetchData {
     public async getAttraction(id: string) {
@@ -28,9 +26,7 @@ export class FetchData {
         return response.data;
     }
     public async getHotel(id: string) {
-        const response = await Axios.get<GetHotelResponseDto>(
-            `${API_BASE_URL}/hotels/${id}`
-        );
+        const response = await Axios.get<GetHotelResponseDto>(`${API_BASE_URL}/hotels/${id}`);
         return response.data;
     }
 

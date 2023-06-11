@@ -1,25 +1,23 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
-import { useEffect, useState } from "react";
 
-import { literal, object, string, TypeOf } from "zod";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { object, string, TypeOf } from "zod";
 
-import { useAuthContext } from "../context/authContext";
 const registerSchema = object({
     firstName: string()
         .nonempty("Name is required")
@@ -56,7 +54,6 @@ const Copyright = (props: any) => {
 const defaultTheme = createTheme();
 
 export const RegisterPage = () => {
-    const { setUserInContext } = useAuthContext();
     const navigate = useNavigate();
 
     const {
@@ -72,7 +69,7 @@ export const RegisterPage = () => {
         if (isSubmitSuccessful) {
             reset();
         }
-    }, [isSubmitSuccessful]);
+    }, [isSubmitSuccessful, reset]);
 
     const onSubmitHandler: SubmitHandler<RegisterInput> = async values => {
         await AuthService.register({

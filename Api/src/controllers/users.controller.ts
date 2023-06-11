@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "src/auth/auth.guard";
 import { AuthUserPayload } from "src/auth/authUser.decorator";
-import { mapUserToDto } from "src/helpers/mappingDtos";
+import { mapUserToDto } from "src/helpers/MappingDtos";
 import { UsersService } from "src/services/users.service";
 import { AuthUser } from "src/types/AuthUser";
 

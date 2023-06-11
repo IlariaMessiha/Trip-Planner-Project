@@ -1,12 +1,11 @@
-import { FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { CardActionArea, IconButton, Typography, styled } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea, IconButton, styled, Typography } from "@mui/material";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import styles from "./CardCity.module.css";
+import { FC } from "react";
 import { Link } from "react-router-dom";
+import styles from "./CardCity.module.css";
 
 import { CityDto } from "../../../types/dto/common/CityDto";
 
@@ -23,7 +22,6 @@ const FavoriteButton = styled(IconButton)({
 });
 
 export const CardCity: FC<CardCityProps> = ({ city }) => {
-    const { t } = useTranslation();
     return (
         <Card className={styles.item} sx={{ width: 280 }}>
             <FavoriteButton>

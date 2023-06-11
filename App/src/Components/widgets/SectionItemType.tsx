@@ -3,7 +3,6 @@ import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import { CityDto } from "../../types/dto/common/CityDto";
 import { HotelDto } from "../../types/dto/common/HotelDto";
 import { RestaurantDto } from "../../types/dto/common/RestaurantDto";
-import { SectionDto } from "../../types/dto/common/SectionDto";
 import { SectionItemDto } from "../../types/dto/common/SectionItemDto";
 import { CardAttraction } from "../core/cards/CardAttraction";
 import { CardCity } from "../core/cards/CardCity";

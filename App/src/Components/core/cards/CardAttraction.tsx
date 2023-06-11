@@ -1,4 +1,4 @@
-import styles from "./CardAttraction.module.css";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import {
     Card,
     CardActionArea,
@@ -9,14 +9,12 @@ import {
     Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { FC } from "react";
+import styles from "./CardAttraction.module.css";
 
 import { Link } from "react-router-dom";
 
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
-import { SectionItemDto } from "../../../types/dto/common/SectionItemDto";
 
 interface CardAttractionProps {
     attraction: AttractionDto;
@@ -35,7 +33,6 @@ const StarsRating = styled(Rating)({
     },
 });
 export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
-    const { t } = useTranslation();
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>

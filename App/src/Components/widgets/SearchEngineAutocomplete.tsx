@@ -1,10 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { SearchResult } from "../../types/Search";
-import { GrLocation } from "react-icons/gr";
-import { InputTextSearch } from "../core/InputTextSearch";
-import { Typography } from "../core/Typography";
-import styles from "./SearchEngineAutocomplete.module.css";
+import { FC } from "react";
 
 interface SearchEngineProps {}
 

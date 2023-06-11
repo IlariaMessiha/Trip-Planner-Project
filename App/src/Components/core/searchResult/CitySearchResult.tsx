@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import styles from "./CitySearchResult.module.css";
+import { Paper, Typography } from "@mui/material";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Paper, Typography } from "@mui/material";
 import { CityDto } from "../../../types/dto/common/CityDto";
+import styles from "./CitySearchResult.module.css";
 
 interface CitySearchResultProps {
     item: CityDto;

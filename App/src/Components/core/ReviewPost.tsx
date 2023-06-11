@@ -1,14 +1,10 @@
 import { Avatar, Rating, styled, Typography } from "@mui/material";
 import { FC } from "react";
 
-import styles from "./ReviewPost.module.css";
 import { useTranslation } from "react-i18next";
-
-import React from "react";
-import { fetchData } from "../../api/FetchData";
+import styles from "./ReviewPost.module.css";
 
 import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
-import { UserDto } from "../../types/dto/common/UserDto";
 
 interface ReviewPostProps {
     review: AttractionReviewDto;

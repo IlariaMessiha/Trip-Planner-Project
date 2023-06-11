@@ -1,12 +1,11 @@
 import { Autocomplete, Button, styled, TextField } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { postData } from "../../../api/PostData";
 import { SearchQuery, SearchResult, SearchResultType } from "../../../types/Search";
 import { InputText } from "../../core/InputText";
 import styles from "./SearchForm.module.css";
-import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
-import { postData, PostData } from "../../../api/PostData";
 
 interface SearchFormProps {
     initialLabel: string;
@@ -34,14 +33,13 @@ const TypeTextField = styled(TextField)({
 
 export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
 
     const [label, setLabel] = useState<string>(initialLabel);
 
     const [searchResultType, setSearchResultType] = useState<SearchResultType[] | undefined>(
         undefined
     );
-    const [results, setResults] = useState<SearchResult[] | undefined>(undefined);
+    // const [results, setResults] = useState<SearchResult[] | undefined>(undefined);
 
     const resultOptions: SearchResultType[] = ["City", "Restaurant", "Hotel", "Attraction"];
 
@@ -54,7 +52,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                     label: label,
                     type: searchResultType,
                 });
-                setResults(_results);
+                // setResults(_results);
 
                 if (_results) {
                     const error = _results.length === 0 ? "No Items Found" : "";

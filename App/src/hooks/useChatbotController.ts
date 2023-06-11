@@ -1,23 +1,58 @@
-import { useEffect, useState } from "react";
-import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
 import dayjs from "dayjs";
 import { orderBy } from "lodash";
-import { TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
-import { fetchData } from "../api/FetchData";
-import { validateMap } from "../helpers/ValidateChatbotAnswers";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PostData, postData } from "../api/PostData";
+import { fetchData } from "../api/FetchData";
+import { postData } from "../api/PostData";
+import { validateMap } from "../helpers/ValidateChatbotAnswers";
+import { TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
+import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
 import { TripDto } from "../types/dto/common/TripDto";
 
 export const useChatbotController = () => {
     const [messages, setMessages] = useState<TMessage[]>([]);
     const [questions, setQuestions] = useState<TChatbotQuestion[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [trip, setTrip] = useState<TripDto | null>(null);
 
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
     const navigate = useNavigate();
 
+    const displayQuestion = useCallback(
+        (questions: TChatbotQuestion[], index: number) => {
+            setCurrentQuestionIndex(index);
+
+            const currentQuestion = questions[index];
+            if (!currentQuestion) {
+                throw new Error("index not found");
+            }
+
+            const botQuestion: TMessageBotQuestionData = {
+                code: currentQuestion.code,
+                text: currentQuestion.text,
+                type: currentQuestion.type,
+                answers: currentQuestion.answers?.map(answer => ({
+                    code: answer.code,
+                    text: answer.text,
+                })),
+            };
+            const newMessage: TMessage = {
+                data: botQuestion,
+                dataType: "bot-question",
+                sender: {
+                    avatar: "",
+                    displayName: "bot",
+                    id: "0",
+                },
+                sentAt: dayjs().toISOString(),
+            };
+            if (messages.length === 0) {
+                setMessages([newMessage]);
+            } else {
+                setMessages(prev => [...prev, newMessage]);
+            }
+        },
+        [messages.length]
+    );
     useEffect(() => {
         const onMount = async () => {
             const response = await fetchData.getChatbotFlow();
@@ -27,41 +62,8 @@ export const useChatbotController = () => {
         };
 
         onMount();
-    }, []);
+    }, [currentQuestionIndex, displayQuestion]);
 
-    const displayQuestion = (questions: TChatbotQuestion[], index: number) => {
-        setCurrentQuestionIndex(index);
-
-        const currentQuestion = questions[index];
-        if (!currentQuestion) {
-            throw new Error("index not found");
-        }
-
-        const botQuestion: TMessageBotQuestionData = {
-            code: currentQuestion.code,
-            text: currentQuestion.text,
-            type: currentQuestion.type,
-            answers: currentQuestion.answers?.map(answer => ({
-                code: answer.code,
-                text: answer.text,
-            })),
-        };
-        const newMessage: TMessage = {
-            data: botQuestion,
-            dataType: "bot-question",
-            sender: {
-                avatar: "",
-                displayName: "bot",
-                id: "0",
-            },
-            sentAt: dayjs().toISOString(),
-        };
-        if (messages.length === 0) {
-            setMessages([newMessage]);
-        } else {
-            setMessages(prev => [...prev, newMessage]);
-        }
-    };
     const handleChatInput = (value: string) => {
         const newMessage: TMessage = {
             data: value,
@@ -189,7 +191,6 @@ export const useChatbotController = () => {
     };
     const submitAnswers = async () => {
         const _trip = await postData.postSubmission(submissions);
-        setTrip(_trip);
         setValue("trip", _trip);
         navigate("/trip");
         // console.log(localStorage.getItem("trip"));

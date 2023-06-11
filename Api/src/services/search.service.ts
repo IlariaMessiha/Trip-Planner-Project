@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 // import { Client } from "@elastic/elasticsearch";
 
 import { SearchQuery, SearchResult } from "src/types/dto/search/searchDto";
-import { MappingDtos } from "src/helpers/mappingDtos";
+import { MappingDtos } from "src/helpers/MappingDtos";
 
 @Injectable()
 export class SearchService {

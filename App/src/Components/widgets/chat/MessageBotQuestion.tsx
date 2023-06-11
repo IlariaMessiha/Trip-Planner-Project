@@ -1,10 +1,10 @@
-import { Avatar, Box, Button, Card, Typography } from "@mui/material";
-import styles from "./MessageBotQuestion.module.css";
-import { TMessage } from "../../../types/TMessage";
+import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
+import { Avatar, Button, Card, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import { FC } from "react";
 import { TChatbotAnswer } from "../../../types/TChatbot";
-import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
-import dayjs from "dayjs";
+import { TMessage } from "../../../types/TMessage";
+import styles from "./MessageBotQuestion.module.css";
 interface MessageBotQuestionProps {
     message: TMessage;
     onAnswerSelect: (answerCode: string, answerText: string) => void;

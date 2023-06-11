@@ -1,5 +1,4 @@
-import React from "react";
-import { Pagination, PaginationItem } from "@mui/material";
+import { Pagination } from "@mui/material";
 import { FC } from "react";
 
 interface PaginationProps {
