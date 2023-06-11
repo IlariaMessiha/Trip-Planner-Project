@@ -69,7 +69,7 @@ export const RegisterPage = () => {
         if (isSubmitSuccessful) {
             reset();
         }
-    }, [isSubmitSuccessful]);
+    }, [isSubmitSuccessful, reset]);
 
     const onSubmitHandler: SubmitHandler<RegisterInput> = async values => {
         await AuthService.register({
