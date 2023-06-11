@@ -8,6 +8,7 @@ import { GetHotelResponseDto } from "../types/dto/hotel/GetHotelResponseDto";
 import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 
 import { UserDto } from "../types/dto/common/UserDto";
+import { ReviewDto } from "../types/dto/common/ReviewDto";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -54,6 +55,12 @@ export class FetchData {
     }
     public async getMe(token: string) {
         const response = await Axios.get<UserDto>(`${API_BASE_URL}/api/users/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return response.data;
+    }
+    public async getProfileReviews(id: number, token: string) {
+        const response = await Axios.get<ReviewDto[]>(`${API_BASE_URL}/api/users/${id}/reviews`, {
             headers: { Authorization: `Bearer ${token}` },
         });
         return response.data;

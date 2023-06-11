@@ -4,10 +4,10 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./ReviewPost.module.css";
 
-import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
+import { ReviewDto } from "../../types/dto/common/ReviewDto";
 
 interface ReviewPostProps {
-    review: AttractionReviewDto;
+    review: ReviewDto;
 }
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {

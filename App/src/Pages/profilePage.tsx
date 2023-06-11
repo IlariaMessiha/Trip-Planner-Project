@@ -3,21 +3,33 @@ import { useAuthContext } from "../context/authContext";
 import { Avatar, Box, Paper, Tab, Tabs, Typography } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 
 import { Container } from "../Components/core/layout/Container";
 import styles from "./ProfilePage.module.css";
+import { fetchData } from "../api/FetchData";
+import { ReviewDto } from "../types/dto/common/ReviewDto";
+import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
+import { ReviewPost } from "../Components/core/ReviewPost";
+import { ReviewList } from "../Components/widgets/ReviewList";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
     const [value, setValue] = useState<string>("1");
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
-        console.log(value, newValue);
-    };
-    if (!loggedInUser) {
+    const [reviews, setReviews] = useState<ReviewDto[]>([]);
+    const token = localStorage.getItem("accessToken");
+
+    if (!loggedInUser || !token) {
         return null;
     }
+    const handleChange = async (event: React.SyntheticEvent, newValue: string) => {
+        setValue(newValue);
+        if (newValue === "1") {
+            const response = await fetchData.getProfileReviews(loggedInUser.id, token);
+            setReviews(response);
+            console.log(response);
+        }
+    };
+
     return (
         <Container className={styles.container}>
             <Paper className={styles.header}>
@@ -45,7 +57,7 @@ export const ProfilePage = () => {
                 </Box>
             </Paper>
             <Paper className={styles.content}>
-                <div>PageContent</div>
+                {value === "1" && <ReviewList reviews={reviews} />}
             </Paper>
         </Container>
     );

@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { ReviewsService } from "src/services/reviews.service";
 
@@ -10,5 +10,4 @@ export class ReviewsController {
     getReviewById(@Param("id") id: string) {
         return this.reviewService.findReviewById(id);
     }
-    // TODO remove this endpoint, use getReviewById instead
 }

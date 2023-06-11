@@ -22,6 +22,7 @@ import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { TagDto } from "src/types/dto/common/TagDto";
 import { UserDto } from "src/types/dto/common/UserDto";
+import { ReviewDto } from "src/types/dto/common/ReviewDto";
 
 export const mapUserToDto = (user: user): UserDto => {
     return {
@@ -29,6 +30,39 @@ export const mapUserToDto = (user: user): UserDto => {
         firstName: user.firstname,
         lastName: user.lastname,
         email: user.email,
+    };
+};
+export const mapAttractionReviewToDto = (
+    attractionReview: attraction_review,
+    user: UserDto
+): ReviewDto => {
+    return {
+        id: attractionReview.id,
+        body: attractionReview.body,
+        rating: attractionReview.rating,
+        title: attractionReview.title,
+        user: user,
+    };
+};
+export const mapHotelReviewToDto = (hotelReview: hotel_review, user: UserDto): ReviewDto => {
+    return {
+        id: hotelReview.id,
+        body: hotelReview.body,
+        rating: hotelReview.rating,
+        title: hotelReview.title,
+        user: user,
+    };
+};
+export const mapRestaurantReviewToDto = (
+    restaurantReview: restaurant_review,
+    user: UserDto
+): ReviewDto => {
+    return {
+        id: restaurantReview.id,
+        body: restaurantReview.body,
+        rating: restaurantReview.rating,
+        title: restaurantReview.title,
+        user: user,
     };
 };
 
@@ -58,7 +92,7 @@ export class MappingDtos {
     mapReviewToDto(
         review: attraction_review | hotel_review | restaurant_review,
         user: UserDto
-    ): AttractionReviewDto | HotelReviewDto | RestaurantReviewDto  {
+    ): AttractionReviewDto | HotelReviewDto | RestaurantReviewDto {
         return {
             id: review.id,
             body: review.body,
