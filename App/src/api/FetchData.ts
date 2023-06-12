@@ -7,8 +7,9 @@ import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsD
 import { GetHotelResponseDto } from "../types/dto/hotel/GetHotelResponseDto";
 import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 
-import { UserDto } from "../types/dto/common/UserDto";
+import { FavoriteItem } from "../types/dto/common/FavouriteItemDto";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
+import { UserDto } from "../types/dto/common/UserDto";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -63,6 +64,15 @@ export class FetchData {
         const response = await Axios.get<ReviewDto[]>(`${API_BASE_URL}/api/users/${id}/reviews`, {
             headers: { Authorization: `Bearer ${token}` },
         });
+        return response.data;
+    }
+    public async getProfileFavorites(id: number, token: string) {
+        const response = await Axios.get<FavoriteItem[]>(
+            `${API_BASE_URL}/api/users/${id}/favorites`,
+            {
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
         return response.data;
     }
 }

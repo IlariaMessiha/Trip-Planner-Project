@@ -1,4 +1,4 @@
-import { FavoriteItem as FavoriteItem } from "./FavouriteItemDto";
+import { FavoriteItem } from "../common/FavouriteItemDto";
 
 export interface GetUserFavoritesDto {
     favorites: FavoriteItem[];

@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/authContext";
 
 import { Container } from "../Components/core/layout/Container";
+import { FavoritesList } from "../Components/widgets/FavoritesList";
 import { ReviewList } from "../Components/widgets/ReviewList";
 import { fetchData } from "../api/FetchData";
+import { FavoriteItem } from "../types/dto/common/FavouriteItemDto";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
 import styles from "./ProfilePage.module.css";
 
@@ -14,6 +16,7 @@ export const ProfilePage = () => {
     const { loggedInUser } = useAuthContext();
     const [value, setValue] = useState<string>("1");
     const [reviews, setReviews] = useState<ReviewDto[]>([]);
+    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
     const token = localStorage.getItem("accessToken");
 
     useEffect(() => {
@@ -34,6 +37,10 @@ export const ProfilePage = () => {
         if (newValue === "1") {
             const response = await fetchData.getProfileReviews(loggedInUser.id, token);
             setReviews(response);
+        }
+        if (newValue === "2") {
+            const response = await fetchData.getProfileFavorites(loggedInUser.id, token);
+            setFavorites(response);
         }
     };
 
@@ -65,6 +72,7 @@ export const ProfilePage = () => {
             </Paper>
             <Paper className={styles.content}>
                 {value === "1" && <ReviewList reviews={reviews} />}
+                {value === "2" && favorites && <FavoritesList favorites={favorites} />}
             </Paper>
         </Container>
     );

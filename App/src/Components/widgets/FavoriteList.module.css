@@ -1,0 +1,8 @@
+.favoriteItem {
+    padding: 20px;
+    margin: 10px;
+}
+
+.labelAndImage {
+    display: flex;
+}

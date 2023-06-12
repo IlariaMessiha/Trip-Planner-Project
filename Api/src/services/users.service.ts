@@ -7,12 +7,14 @@ import {
     mapAttractionToDto,
     mapHotelReviewToDto,
     mapRestaurantReviewToDto,
+    mapRestaurantToDto,
     mapUserToDto,
 } from "src/helpers/mappingDtos";
 import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 
 import { ReviewDto } from "src/types/dto/common/ReviewDto";
-import { GetUserFavoritesDto } from "src/types/dto/profile/GetUserFavouritesDto";
+
+import { FavoriteItem } from "src/types/dto/common/FavouriteItemDto";
 
 @Injectable()
 export class UsersService {
@@ -78,7 +80,7 @@ export class UsersService {
 
         return [...attractionReviewsItems, ...hotelReviewsItems, ...restaurantReviewsItems];
     }
-    async findUserFavorites(userId: number): Promise<GetUserFavoritesDto> {
+    async findUserFavorites(userId: number): Promise<FavoriteItem[]> {
         const attractions = await this.prisma.attraction.findMany({
             where: {
                 user_attraction: {
@@ -91,13 +93,30 @@ export class UsersService {
                 directus_files: true,
             },
         });
-        return {
-            favorites: attractions.map(attraction => {
-                return {
-                    item: mapAttractionToDto(attraction, attraction.directus_files),
-                    type: "attraction",
-                };
-            }),
-        };
+        const restaurants = await this.prisma.restaurant.findMany({
+            where: {
+                user_restaurant: {
+                    some: {
+                        user_id: userId,
+                    },
+                },
+            },
+            include: {
+                directus_files: true,
+            },
+        });
+        const attractionsItems: FavoriteItem[] = attractions.map(attraction => {
+            return {
+                item: mapAttractionToDto(attraction, attraction.directus_files),
+                type: "attraction",
+            };
+        });
+        const restaurantsItems: FavoriteItem[] = restaurants.map(restaurant => {
+            return {
+                item: mapRestaurantToDto(restaurant, restaurant.directus_files),
+                type: "restaurant",
+            };
+        });
+        return [...attractionsItems, ...restaurantsItems];
     }
 }

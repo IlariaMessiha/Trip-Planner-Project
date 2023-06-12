@@ -6,24 +6,19 @@ import {
     toAttractionsFilter,
     toRestaurantsFilter,
 } from "src/helpers/filtersHelper";
-import { mapAttractionToDto, MappingDtos } from "src/helpers/MappingDtos";
+import { mapAttractionToDto, MappingDtos, mapRestaurantToDto } from "src/helpers/MappingDtos";
 import { PrismaService } from "src/prisma.service";
 
-import {
-    TChatbotFilter,
-    TChatbotFlow,
-    TChatbotQuestion,
-    TChatbotSubmission,
-} from "src/types/TChatbot";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
+import { TChatbotFilter, TChatbotFlow, TChatbotSubmission } from "src/types/TChatbot";
 
-import { GetDashboardResponseDto } from "src/types/dto/dashboard/GetDashboardResponseDto";
-import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
-import { GetFilteredAttractionAndRestaurantsDto as GetFilteredAttractionAndRestaurantsDto } from "src/types/dto/trips/GetFilteredAttractionAndRestaurantsDto";
+import { find, hasIn, slice } from "lodash";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { TripDto } from "src/types/dto/common/TripDto";
 import { TripItemDto } from "src/types/dto/common/TripItemDto";
-import { find, has, hasIn, pickBy, slice } from "lodash";
+import { GetDashboardResponseDto } from "src/types/dto/dashboard/GetDashboardResponseDto";
+import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
+import { GetFilteredAttractionAndRestaurantsDto } from "src/types/dto/trips/GetFilteredAttractionAndRestaurantsDto";
 
 @Injectable()
 export class CommonService {
@@ -141,7 +136,7 @@ export class CommonService {
                 return mapAttractionToDto(attraction, attraction.directus_files);
             }),
             restaurants: restaurants.map(restaurant => {
-                return this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files);
+                return mapRestaurantToDto(restaurant, restaurant.directus_files);
             }),
         };
     }

@@ -3,13 +3,10 @@ import { FC } from "react";
 
 import { ReviewPost } from "../core/ReviewPost";
 
-import styles from "./AttractionReviewList.module.css";
 import { useTranslation } from "react-i18next";
+import styles from "./AttractionReviewList.module.css";
 
 import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
-import { ReviewDto } from "../../types/dto/common/ReviewDto";
-import { HotelReviewDto } from "../../types/dto/common/HotelReviewDto";
-import { RestaurantReviewDto } from "../../types/dto/common/RestaurantReviewDto";
 
 interface AttractionReviewListProps {
     reviews: AttractionReviewDto[];

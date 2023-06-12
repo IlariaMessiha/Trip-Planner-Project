@@ -100,6 +100,31 @@ export const mapAttractionToDto = (
         },
     };
 };
+export const mapRestaurantToDto = (
+    restaurant: restaurant,
+    image: directus_files
+): RestaurantDto => {
+    const long = restaurant.long ? restaurant.long.toNumber() : null;
+    const lat = restaurant.lat ? restaurant.lat.toNumber() : null;
+
+    const mapLocation = lat && long ? { lat, long } : null;
+    const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
+
+    return {
+        id: restaurant.id,
+        label: restaurant.label,
+        address: restaurant.address,
+        phone: restaurant.phone,
+        imageUrl: imageUrl,
+        website: restaurant.website,
+        rating: restaurant.rating,
+        email: restaurant.email,
+        mapLocation: mapLocation,
+        code: restaurant.code,
+        avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
+        food: restaurant.food,
+    };
+};
 
 export class MappingDtos {
     mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
@@ -169,28 +194,7 @@ export class MappingDtos {
             startingFromPrice: hotel.starting_from_price.toNumber(),
         };
     }
-    mapRestaurantToDto(restaurant: restaurant, image: directus_files): RestaurantDto {
-        const long = restaurant.long ? restaurant.long.toNumber() : null;
-        const lat = restaurant.lat ? restaurant.lat.toNumber() : null;
 
-        const mapLocation = lat && long ? { lat, long } : null;
-        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
-
-        return {
-            id: restaurant.id,
-            label: restaurant.label,
-            address: restaurant.address,
-            phone: restaurant.phone,
-            imageUrl: imageUrl,
-            website: restaurant.website,
-            rating: restaurant.rating,
-            email: restaurant.email,
-            mapLocation: mapLocation,
-            code: restaurant.code,
-            avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
-            food: restaurant.food,
-        };
-    }
     // mapDtoToRestaurant(restaurant: RestaurantDto): restaurant {
     //     return {
     //         id: restaurant.id,
