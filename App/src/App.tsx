@@ -9,12 +9,12 @@ import { CityPage } from "./Pages/CityPage";
 import { Dashboard } from "./Pages/Dashboard";
 import { SearchPage } from "./Pages/SearchPage";
 import { TripPage } from "./Pages/TripPage";
-import { Profile } from "./Pages/profilePage";
 import { RegisterPage } from "./Pages/RegisterPage";
 import { AuthProvider } from "./context/AuthProvider";
 import { LoginPage } from "./Pages/LoginPage";
 import { RestaurantPage } from "./Pages/RestaurantPage";
 import { HotelPage } from "./Pages/HotelPage";
+import { ProfilePage } from "./Pages/profilePage";
 
 function App() {
     return (
@@ -31,7 +31,7 @@ function App() {
                         <Route path="/restaurant/:id" element={<RestaurantPage />} />
                         <Route path="/hotel/:id" element={<HotelPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route path="profile" element={<ProfilePage />} />
                         <Route path="/trip" element={<TripPage />} />
 
                         <Route path={"/auth"}>

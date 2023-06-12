@@ -18,6 +18,7 @@ import { AttractionDto } from "../types/dto/common/AttractionDto";
 
 import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
 import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
+import { ReviewDto } from "../types/dto/common/ReviewDto";
 
 const ShareButton = styled(IconButton)({
     color: "black",

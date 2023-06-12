@@ -22,6 +22,7 @@ import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { TagDto } from "src/types/dto/common/TagDto";
 import { UserDto } from "src/types/dto/common/UserDto";
+import { ReviewDto } from "src/types/dto/common/ReviewDto";
 
 export const mapUserToDto = (user: user): UserDto => {
     return {
@@ -29,6 +30,99 @@ export const mapUserToDto = (user: user): UserDto => {
         firstName: user.firstname,
         lastName: user.lastname,
         email: user.email,
+    };
+};
+export const mapAttractionReviewToDto = (
+    attractionReview: attraction_review,
+    user: UserDto
+): ReviewDto => {
+    return {
+        id: attractionReview.id,
+        body: attractionReview.body,
+        rating: attractionReview.rating,
+        title: attractionReview.title,
+        user: user,
+    };
+};
+export const mapHotelReviewToDto = (hotelReview: hotel_review, user: UserDto): ReviewDto => {
+    return {
+        id: hotelReview.id,
+        body: hotelReview.body,
+        rating: hotelReview.rating,
+        title: hotelReview.title,
+        user: user,
+    };
+};
+export const mapRestaurantReviewToDto = (
+    restaurantReview: restaurant_review,
+    user: UserDto
+): ReviewDto => {
+    return {
+        id: restaurantReview.id,
+        body: restaurantReview.body,
+        rating: restaurantReview.rating,
+        title: restaurantReview.title,
+        user: user,
+    };
+};
+export const mapAttractionToDto = (
+    attraction: attraction,
+    image: directus_files
+): AttractionDto => {
+    const long = attraction.long ? attraction.long.toNumber() : null;
+    const lat = attraction.lat ? attraction.lat.toNumber() : null;
+
+    const mapLocation = lat && long ? { long, lat } : null;
+    const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
+
+    return {
+        id: attraction.id,
+        label: attraction.label,
+        about: attraction.about,
+        address: attraction.address,
+        phone: attraction.phone,
+        suggestedDuration: attraction.suggested_duration,
+        entryFee: attraction.entry_fee ? attraction.entry_fee.toNumber() : null,
+        imageUrl: imageUrl,
+        website: attraction.website,
+        type: attraction.type,
+        rating: attraction.rating,
+        reservationLink: attraction.reservation_link,
+        minAge: attraction.min_age,
+        email: attraction.email,
+        mapLocation: mapLocation,
+
+        openingHours: {
+            from: attraction.openning_hours_from
+                ? attraction.openning_hours_from.toISOString()
+                : null,
+            to: attraction.openning_hours_to ? attraction.openning_hours_to.toISOString() : null,
+        },
+    };
+};
+export const mapRestaurantToDto = (
+    restaurant: restaurant,
+    image: directus_files
+): RestaurantDto => {
+    const long = restaurant.long ? restaurant.long.toNumber() : null;
+    const lat = restaurant.lat ? restaurant.lat.toNumber() : null;
+
+    const mapLocation = lat && long ? { lat, long } : null;
+    const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
+
+    return {
+        id: restaurant.id,
+        label: restaurant.label,
+        address: restaurant.address,
+        phone: restaurant.phone,
+        imageUrl: imageUrl,
+        website: restaurant.website,
+        rating: restaurant.rating,
+        email: restaurant.email,
+        mapLocation: mapLocation,
+        code: restaurant.code,
+        avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
+        food: restaurant.food,
     };
 };
 
@@ -78,40 +172,7 @@ export class MappingDtos {
     //         user: user,
     //     };
     // }
-    mapAttractionToDto(attraction: attraction, image: directus_files): AttractionDto {
-        const long = attraction.long ? attraction.long.toNumber() : null;
-        const lat = attraction.lat ? attraction.lat.toNumber() : null;
 
-        const mapLocation = lat && long ? { long, lat } : null;
-        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
-
-        return {
-            id: attraction.id,
-            label: attraction.label,
-            about: attraction.about,
-            address: attraction.address,
-            phone: attraction.phone,
-            suggestedDuration: attraction.suggested_duration,
-            entryFee: attraction.entry_fee ? attraction.entry_fee.toNumber() : null,
-            imageUrl: imageUrl,
-            website: attraction.website,
-            type: attraction.type,
-            rating: attraction.rating,
-            reservationLink: attraction.reservation_link,
-            minAge: attraction.min_age,
-            email: attraction.email,
-            mapLocation: mapLocation,
-
-            openingHours: {
-                from: attraction.openning_hours_from
-                    ? attraction.openning_hours_from.toISOString()
-                    : null,
-                to: attraction.openning_hours_to
-                    ? attraction.openning_hours_to.toISOString()
-                    : null,
-            },
-        };
-    }
     mapHotelToDto(hotel: hotel, image: directus_files): HotelDto {
         const long = hotel.long ? hotel.long.toNumber() : null;
         const lat = hotel.lat ? hotel.lat.toNumber() : null;
@@ -133,28 +194,7 @@ export class MappingDtos {
             startingFromPrice: hotel.starting_from_price.toNumber(),
         };
     }
-    mapRestaurantToDto(restaurant: restaurant, image: directus_files): RestaurantDto {
-        const long = restaurant.long ? restaurant.long.toNumber() : null;
-        const lat = restaurant.lat ? restaurant.lat.toNumber() : null;
 
-        const mapLocation = lat && long ? { lat, long } : null;
-        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
-
-        return {
-            id: restaurant.id,
-            label: restaurant.label,
-            address: restaurant.address,
-            phone: restaurant.phone,
-            imageUrl: imageUrl,
-            website: restaurant.website,
-            rating: restaurant.rating,
-            email: restaurant.email,
-            mapLocation: mapLocation,
-            code: restaurant.code,
-            avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
-            food: restaurant.food,
-        };
-    }
     // mapDtoToRestaurant(restaurant: RestaurantDto): restaurant {
     //     return {
     //         id: restaurant.id,

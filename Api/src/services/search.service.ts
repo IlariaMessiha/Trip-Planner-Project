@@ -1,11 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
-// import { Client } from "@elastic/elasticsearch";
 
+import { MappingDtos, mapAttractionToDto, mapRestaurantToDto } from "src/helpers/MappingDtos";
 import { SearchQuery, SearchResult } from "src/types/dto/search/searchDto";
-import { MappingDtos } from "src/helpers/MappingDtos";
 
 @Injectable()
 export class SearchService {
@@ -110,7 +107,7 @@ export class SearchService {
         const attractionItems: SearchResult[] = [];
         attractions.map(attraction => {
             attractionItems.push({
-                item: this.mappingDtos.mapAttractionToDto(attraction, attraction.directus_files),
+                item: mapAttractionToDto(attraction, attraction.directus_files),
                 type: "Attraction",
             });
         });
@@ -127,7 +124,7 @@ export class SearchService {
         });
         const restaurantItems: SearchResult[] = restaurants.map(restaurant => {
             return {
-                item: this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files),
+                item: mapRestaurantToDto(restaurant, restaurant.directus_files),
                 type: "Restaurant",
             };
         });

@@ -1,17 +1,14 @@
 import { Divider, Typography } from "@mui/material";
 import { FC } from "react";
-
 import { ReviewPost } from "../core/ReviewPost";
-
+import styles from "./ReviewList.module.css";
 import { useTranslation } from "react-i18next";
-import styles from "./AttractionReviewList.module.css";
+import { ReviewDto } from "../../types/dto/common/ReviewDto";
 
-import { AttractionReviewDto } from "../../types/dto/common/AttractionReviewDto";
-
-interface AttractionReviewListProps {
-    reviews: AttractionReviewDto[];
+interface ReviewListProps {
+    reviews: ReviewDto[];
 }
-export const AttractionReviewList: FC<AttractionReviewListProps> = ({ reviews }) => {
+export const ReviewList: FC<ReviewListProps> = ({ reviews }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
