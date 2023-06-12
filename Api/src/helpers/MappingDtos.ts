@@ -73,7 +73,7 @@ export const mapAttractionToDto = (
     const lat = attraction.lat ? attraction.lat.toNumber() : null;
 
     const mapLocation = lat && long ? { long, lat } : null;
-    const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
+    const imageUrl = image ? `${process.env.ASSETS_PATH}/${image.filename_disk}` : null;
 
     return {
         id: attraction.id,
@@ -108,7 +108,7 @@ export const mapRestaurantToDto = (
     const lat = restaurant.lat ? restaurant.lat.toNumber() : null;
 
     const mapLocation = lat && long ? { lat, long } : null;
-    const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
+    const imageUrl = image ? `${process.env.ASSETS_PATH}/${image.filename_disk}` : null;
 
     return {
         id: restaurant.id,
@@ -132,7 +132,7 @@ export class MappingDtos {
         const lat = city.lat ? city.lat.toNumber() : null;
 
         const mapLocation = lat && long ? { lat, long } : null;
-        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
+        const imageUrl = image ? `${process.env.ASSETS_PATH}/${image.filename_disk}` : null;
 
         return {
             id: city.id,
@@ -177,7 +177,7 @@ export class MappingDtos {
         const long = hotel.long ? hotel.long.toNumber() : null;
         const lat = hotel.lat ? hotel.lat.toNumber() : null;
         const mapLocation = lat && long ? { lat, long } : null;
-        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
+        const imageUrl = image ? `${process.env.ASSETS_PATH}/${image.filename_disk}` : null;
 
         return {
             id: hotel.id,
