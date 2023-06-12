@@ -2,15 +2,17 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
 
 import * as argon2 from "argon2";
-import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 import {
     mapAttractionReviewToDto,
+    mapAttractionToDto,
     mapHotelReviewToDto,
     mapRestaurantReviewToDto,
     mapUserToDto,
 } from "src/helpers/mappingDtos";
+import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 
 import { ReviewDto } from "src/types/dto/common/ReviewDto";
+import { GetUserFavoritesDto } from "src/types/dto/profile/GetUserFavouritesDto";
 
 @Injectable()
 export class UsersService {
@@ -75,5 +77,27 @@ export class UsersService {
         });
 
         return [...attractionReviewsItems, ...hotelReviewsItems, ...restaurantReviewsItems];
+    }
+    async findUserFavorites(userId: number): Promise<GetUserFavoritesDto> {
+        const attractions = await this.prisma.attraction.findMany({
+            where: {
+                user_attraction: {
+                    some: {
+                        user_id: userId,
+                    },
+                },
+            },
+            include: {
+                directus_files: true,
+            },
+        });
+        return {
+            favorites: attractions.map(attraction => {
+                return {
+                    item: mapAttractionToDto(attraction, attraction.directus_files),
+                    type: "attraction",
+                };
+            }),
+        };
     }
 }

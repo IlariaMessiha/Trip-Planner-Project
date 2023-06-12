@@ -65,6 +65,40 @@ export const mapRestaurantReviewToDto = (
         user: user,
     };
 };
+export const mapAttractionToDto = (
+    attraction: attraction,
+    image: directus_files
+): AttractionDto => {
+    const long = attraction.long ? attraction.long.toNumber() : null;
+    const lat = attraction.lat ? attraction.lat.toNumber() : null;
+
+    const mapLocation = lat && long ? { long, lat } : null;
+
+    return {
+        id: attraction.id,
+        label: attraction.label,
+        about: attraction.about,
+        address: attraction.address,
+        phone: attraction.phone,
+        suggestedDuration: attraction.suggested_duration,
+        entryFee: attraction.entry_fee ? attraction.entry_fee.toNumber() : null,
+        imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+        website: attraction.website,
+        type: attraction.type,
+        rating: attraction.rating,
+        reservationLink: attraction.reservation_link,
+        minAge: attraction.min_age,
+        email: attraction.email,
+        mapLocation: mapLocation,
+
+        openingHours: {
+            from: attraction.openning_hours_from
+                ? attraction.openning_hours_from.toISOString()
+                : null,
+            to: attraction.openning_hours_to ? attraction.openning_hours_to.toISOString() : null,
+        },
+    };
+};
 
 export class MappingDtos {
     mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
@@ -111,39 +145,7 @@ export class MappingDtos {
     //         user: user,
     //     };
     // }
-    mapAttractionToDto(attraction: attraction, image: directus_files): AttractionDto {
-        const long = attraction.long ? attraction.long.toNumber() : null;
-        const lat = attraction.lat ? attraction.lat.toNumber() : null;
 
-        const mapLocation = lat && long ? { long, lat } : null;
-
-        return {
-            id: attraction.id,
-            label: attraction.label,
-            about: attraction.about,
-            address: attraction.address,
-            phone: attraction.phone,
-            suggestedDuration: attraction.suggested_duration,
-            entryFee: attraction.entry_fee ? attraction.entry_fee.toNumber() : null,
-            imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
-            website: attraction.website,
-            type: attraction.type,
-            rating: attraction.rating,
-            reservationLink: attraction.reservation_link,
-            minAge: attraction.min_age,
-            email: attraction.email,
-            mapLocation: mapLocation,
-
-            openingHours: {
-                from: attraction.openning_hours_from
-                    ? attraction.openning_hours_from.toISOString()
-                    : null,
-                to: attraction.openning_hours_to
-                    ? attraction.openning_hours_to.toISOString()
-                    : null,
-            },
-        };
-    }
     mapHotelToDto(hotel: hotel, image: directus_files): HotelDto {
         const long = hotel.long.toNumber();
         const lat = hotel.lat.toNumber();

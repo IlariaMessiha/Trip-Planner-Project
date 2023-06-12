@@ -6,7 +6,7 @@ import {
     toAttractionsFilter,
     toRestaurantsFilter,
 } from "src/helpers/filtersHelper";
-import { MappingDtos } from "src/helpers/MappingDtos";
+import { mapAttractionToDto, MappingDtos } from "src/helpers/MappingDtos";
 import { PrismaService } from "src/prisma.service";
 
 import {
@@ -72,10 +72,7 @@ export class CommonService {
                     items: attractions.map(attraction => {
                         return {
                             type: "attraction",
-                            value: this.mappingDtos.mapAttractionToDto(
-                                attraction,
-                                attraction.directus_files
-                            ),
+                            value: mapAttractionToDto(attraction, attraction.directus_files),
                         };
                     }),
                 },
@@ -141,7 +138,7 @@ export class CommonService {
         console.log(fieldFilters);
         return {
             attractions: attractions.map(attraction => {
-                return this.mappingDtos.mapAttractionToDto(attraction, attraction.directus_files);
+                return mapAttractionToDto(attraction, attraction.directus_files);
             }),
             restaurants: restaurants.map(restaurant => {
                 return this.mappingDtos.mapRestaurantToDto(restaurant, restaurant.directus_files);
@@ -158,7 +155,7 @@ export class CommonService {
         let trip: TripDto = null;
 
         const swap = (i: number) => {
-            let sum: number = 0;
+            let sum = 0;
             const tripRestaurants: RestaurantDto[] = slice(restaurants, i, i + 3);
             const tripAttractions: AttractionDto[] = slice(attractions, i, i + 4);
             tripRestaurants.map(r => {
@@ -238,9 +235,8 @@ export class CommonService {
     }
 
     calculateBudget(globalFilters: TChatbotFilter[]) {
-        let budget: number = 0;
-        let avg: number = 0;
-        globalFilters.map(filter => {});
+        let budget = 0;
+        let avg = 0;
         const globalBudget = find(globalFilters, "globalBudget");
         if (globalBudget) {
             if (hasIn(globalBudget, "gte")) {

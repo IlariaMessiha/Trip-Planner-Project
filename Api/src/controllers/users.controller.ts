@@ -19,4 +19,8 @@ export class UsersController {
     getUserReview(@Param("userId", ParseIntPipe) id: number) {
         return this.usersService.findUserReviews(id);
     }
+    @Get("/:userId/favorites")
+    getUserFavorites(@Param("userId", ParseIntPipe) id: number) {
+        return this.usersService.findUserFavorites(id);
+    }
 }
