@@ -2,23 +2,15 @@
     padding-top: 100px;
 }
 
-.userInfo {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    padding-bottom: 20px;
-}
 
-.header {
-    padding: 10px;
-}
-
-.tabs {
-    display: flex;
-    gap: 20px
-}
 
 .content {
     margin-top: 20px;
-    padding: 10px;
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+}
+
+.tabContent {
+    width: 100%;
 }

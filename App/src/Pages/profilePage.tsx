@@ -1,9 +1,11 @@
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
-import { Avatar, Box, Paper, Tab, Typography } from "@mui/material";
+import { Avatar, Box, Button, Paper, Tab, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/authContext";
 
+import SettingsIcon from "@mui/icons-material/Settings";
+import { useNavigate } from "react-router-dom";
 import { Container } from "../Components/core/layout/Container";
 import { FavoritesList } from "../Components/widgets/FavoritesList";
 import { ReviewList } from "../Components/widgets/ReviewList";
@@ -11,9 +13,10 @@ import { fetchData } from "../api/FetchData";
 import { FavoriteItem } from "../types/dto/common/FavouriteItemDto";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
 import styles from "./ProfilePage.module.css";
+import { ProfileHeader } from "../Components/core/ProfileHeader";
 
 export const ProfilePage = () => {
-    const { loggedInUser } = useAuthContext();
+    const { loggedInUser, setUserInContext } = useAuthContext();
     const [value, setValue] = useState<string>("1");
     const [reviews, setReviews] = useState<ReviewDto[]>([]);
     const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
@@ -43,37 +46,32 @@ export const ProfilePage = () => {
             setFavorites(response);
         }
     };
+    const logOut = () => {
+        localStorage.removeItem("accessToken");
+        setUserInContext(null);
+    };
 
     return (
         <Container className={styles.container}>
-            <Paper className={styles.header}>
-                <div className={styles.userInfo}>
-                    <Avatar sx={{ width: 80, height: 80, fontSize: "xx-large" }}>
-                        {loggedInUser.firstName.charAt(0)}
-                    </Avatar>
-                    <div>
-                        <Typography variant="h4">
-                            {loggedInUser?.firstName} {loggedInUser.lastName}
-                        </Typography>
-                        <Typography variant="subtitle2">{loggedInUser?.email}</Typography>
-                    </div>
+            <ProfileHeader value={value} handleChange={handleChange} loggedInUser={loggedInUser} />
+            <div className={styles.content}>
+                <Paper sx={{ padding: "20px", height: 100 }}>
+                    <Button
+                        variant="outlined"
+                        startIcon={<SettingsIcon />}
+                        sx={{ marginBottom: "20px" }}
+                    >
+                        Edit Profile
+                    </Button>
+                    <Button variant="text" sx={{ color: "red" }} onClick={logOut}>
+                        Logout
+                    </Button>
+                </Paper>
+                <div className={styles.tabContent}>
+                    {value === "1" && <ReviewList reviews={reviews} />}
+                    {value === "2" && favorites && <FavoritesList favorites={favorites} />}
                 </div>
-                <Box sx={{ width: "100%", typography: "body1" }}>
-                    <TabContext value={value}>
-                        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                            <TabList aria-label="lab API tabs example" onChange={handleChange}>
-                                <Tab label="Reviews" value="1" />
-                                <Tab label="Favorites" value="2" />
-                                <Tab label="Trips" value="3" />
-                            </TabList>
-                        </Box>
-                    </TabContext>
-                </Box>
-            </Paper>
-            <Paper className={styles.content}>
-                {value === "1" && <ReviewList reviews={reviews} />}
-                {value === "2" && favorites && <FavoritesList favorites={favorites} />}
-            </Paper>
+            </div>
         </Container>
     );
 };
