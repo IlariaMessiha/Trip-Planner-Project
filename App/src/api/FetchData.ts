@@ -7,7 +7,7 @@ import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsD
 import { GetHotelResponseDto } from "../types/dto/hotel/GetHotelResponseDto";
 import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 
-import { FavoriteItem } from "../types/dto/common/FavouriteItemDto";
+import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
 import { UserDto } from "../types/dto/common/UserDto";
 

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FavoriteItem } from "../../types/dto/common/FavouriteItemDto";
+import { FavoriteItem } from "../../types/dto/common/FavoriteItemDto";
 import { AttractionSearchResult } from "../core/searchResult/AttractionSearchResult";
 import { RestaurantSearchResult } from "../core/searchResult/RestaurantSearchResult";
 import { AttractionDto } from "../../types/dto/common/AttractionDto";

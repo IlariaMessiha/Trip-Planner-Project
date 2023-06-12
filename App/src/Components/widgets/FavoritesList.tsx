@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FavoriteItem } from "../../types/dto/common/FavouriteItemDto";
+import { FavoriteItem } from "../../types/dto/common/FavoriteItemDto";
 import { FavoriteItemType } from "./FavoriteItemType";
 
 interface FavoriteList {
