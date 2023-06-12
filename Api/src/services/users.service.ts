@@ -9,7 +9,7 @@ import {
     mapRestaurantReviewToDto,
     mapRestaurantToDto,
     mapUserToDto,
-} from "src/helpers/mappingDtos";
+} from "src/helpers/MappingDtos";
 import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 
 import { ReviewDto } from "src/types/dto/common/ReviewDto";
