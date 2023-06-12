@@ -14,7 +14,7 @@ import { AuthProvider } from "./context/AuthProvider";
 import { LoginPage } from "./Pages/LoginPage";
 import { RestaurantPage } from "./Pages/RestaurantPage";
 import { HotelPage } from "./Pages/HotelPage";
-import { ProfilePage } from "./Pages/ProfilePage";
+import { ProfilePage } from "./Pages/profilePage";
 
 function App() {
     return (

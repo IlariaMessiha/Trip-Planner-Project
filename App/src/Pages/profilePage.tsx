@@ -1,22 +1,30 @@
-import { useEffect, useState } from "react";
-import { useAuthContext } from "../context/authContext";
-import { Avatar, Box, Paper, Tab, Tabs, Typography } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
+import { Avatar, Box, Paper, Tab, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../context/authContext";
 
 import { Container } from "../Components/core/layout/Container";
-import styles from "./ProfilePage.module.css";
+import { ReviewList } from "../Components/widgets/ReviewList";
 import { fetchData } from "../api/FetchData";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
-import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
-import { ReviewPost } from "../Components/core/ReviewPost";
-import { ReviewList } from "../Components/widgets/ReviewList";
+import styles from "./ProfilePage.module.css";
 
 export const ProfilePage = () => {
-    const { loggedInUser, setUserInContext } = useAuthContext();
+    const { loggedInUser } = useAuthContext();
     const [value, setValue] = useState<string>("1");
     const [reviews, setReviews] = useState<ReviewDto[]>([]);
     const token = localStorage.getItem("accessToken");
+
+    useEffect(() => {
+        const onMount = async () => {
+            if (loggedInUser && token) {
+                const response = await fetchData.getProfileReviews(loggedInUser.id, token);
+                setReviews(response);
+            }
+        };
+        onMount();
+    }, [loggedInUser, token]);
 
     if (!loggedInUser || !token) {
         return null;
@@ -26,7 +34,6 @@ export const ProfilePage = () => {
         if (newValue === "1") {
             const response = await fetchData.getProfileReviews(loggedInUser.id, token);
             setReviews(response);
-            console.log(response);
         }
     };
 
