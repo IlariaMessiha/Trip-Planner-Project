@@ -102,17 +102,18 @@ export const mapAttractionToDto = (
 
 export class MappingDtos {
     mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
-        const long = city.long.toNumber();
-        const lat = city.lat.toNumber();
+        const long = city.long ? city.long.toNumber() : null;
+        const lat = city.lat ? city.lat.toNumber() : null;
 
         const mapLocation = lat && long ? { lat, long } : null;
+        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
 
         return {
             id: city.id,
             label: city.label,
             cityCode: city.city_code,
             mapLocation: mapLocation,
-            imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+            imageUrl: imageUrl,
             country: country,
         };
     }
@@ -147,17 +148,17 @@ export class MappingDtos {
     // }
 
     mapHotelToDto(hotel: hotel, image: directus_files): HotelDto {
-        const long = hotel.long.toNumber();
-        const lat = hotel.lat.toNumber();
-
+        const long = hotel.long ? hotel.long.toNumber() : null;
+        const lat = hotel.lat ? hotel.lat.toNumber() : null;
         const mapLocation = lat && long ? { lat, long } : null;
+        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
 
         return {
             id: hotel.id,
             label: hotel.label,
             address: hotel.address,
             phone: hotel.phone,
-            imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+            imageUrl: imageUrl,
             website: hotel.website,
             rating: hotel.rating,
             reservationLink: hotel.reservation_link,
@@ -168,17 +169,18 @@ export class MappingDtos {
         };
     }
     mapRestaurantToDto(restaurant: restaurant, image: directus_files): RestaurantDto {
-        const long = restaurant.long.toNumber();
-        const lat = restaurant.lat.toNumber();
+        const long = restaurant.long ? restaurant.long.toNumber() : null;
+        const lat = restaurant.lat ? restaurant.lat.toNumber() : null;
 
         const mapLocation = lat && long ? { lat, long } : null;
+        const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
 
         return {
             id: restaurant.id,
             label: restaurant.label,
             address: restaurant.address,
             phone: restaurant.phone,
-            imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+            imageUrl: imageUrl,
             website: restaurant.website,
             rating: restaurant.rating,
             email: restaurant.email,
