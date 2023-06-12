@@ -5,20 +5,19 @@ import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
-import styles from "./AttractionPage.module.css";
-import IosShareIcon from "@mui/icons-material/IosShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import styles from "./AttractionPage.module.css";
 
 import EditIcon from "@mui/icons-material/Edit";
+import Tooltip from "@mui/material/Tooltip";
 import dayjs from "dayjs";
 import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
-import Tooltip from "@mui/material/Tooltip";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 
-import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
 import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
-import { ReviewDto } from "../types/dto/common/ReviewDto";
+import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
 
 const ShareButton = styled(IconButton)({
     color: "black",

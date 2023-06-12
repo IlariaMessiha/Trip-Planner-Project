@@ -1,11 +1,9 @@
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import { Avatar, Box, Button, Paper, Tab, Typography } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/authContext";
 
 import SettingsIcon from "@mui/icons-material/Settings";
-import { useNavigate } from "react-router-dom";
+import { ProfileHeader } from "../Components/core/ProfileHeader";
 import { Container } from "../Components/core/layout/Container";
 import { FavoritesList } from "../Components/widgets/FavoritesList";
 import { ReviewList } from "../Components/widgets/ReviewList";
@@ -13,7 +11,6 @@ import { fetchData } from "../api/FetchData";
 import { FavoriteItem } from "../types/dto/common/FavouriteItemDto";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
 import styles from "./ProfilePage.module.css";
-import { ProfileHeader } from "../Components/core/ProfileHeader";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
