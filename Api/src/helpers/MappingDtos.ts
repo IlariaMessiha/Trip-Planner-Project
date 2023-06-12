@@ -73,6 +73,7 @@ export const mapAttractionToDto = (
     const lat = attraction.lat ? attraction.lat.toNumber() : null;
 
     const mapLocation = lat && long ? { long, lat } : null;
+    const imageUrl = image ? `http://localhost:8055/assets/${image.filename_disk}` : null;
 
     return {
         id: attraction.id,
@@ -82,7 +83,7 @@ export const mapAttractionToDto = (
         phone: attraction.phone,
         suggestedDuration: attraction.suggested_duration,
         entryFee: attraction.entry_fee ? attraction.entry_fee.toNumber() : null,
-        imageUrl: `http://localhost:8055/assets/${image.filename_disk}`,
+        imageUrl: imageUrl,
         website: attraction.website,
         type: attraction.type,
         rating: attraction.rating,
