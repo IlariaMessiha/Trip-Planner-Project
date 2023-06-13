@@ -1,5 +1,4 @@
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { CardActionArea, IconButton, Typography, styled } from "@mui/material";
+import { CardActionArea, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -12,21 +11,10 @@ import { CityDto } from "../../../types/dto/common/CityDto";
 interface CardCityProps {
     city: CityDto;
 }
-const FavoriteButton = styled(IconButton)({
-    position: "absolute",
-    backgroundColor: "white",
-    color: "black",
-    top: 6,
-    right: 10,
-    zIndex: 10,
-});
 
 export const CardCity: FC<CardCityProps> = ({ city }) => {
     return (
         <Card className={styles.item} sx={{ width: 280 }}>
-            <FavoriteButton>
-                <FavoriteBorderOutlinedIcon />
-            </FavoriteButton>
             <Link key={city.id} to={`/city/${city.id}`}>
                 <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                     {city.imageUrl && (
