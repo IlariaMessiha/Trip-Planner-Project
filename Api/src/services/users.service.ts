@@ -15,6 +15,7 @@ import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 import { ReviewDto } from "src/types/dto/common/ReviewDto";
 
 import { FavoriteItem } from "src/types/dto/common/FavouriteItemDto";
+import { LikedItem } from "src/types/dto/likes/LikedItemDto";
 
 @Injectable()
 export class UsersService {
@@ -118,5 +119,23 @@ export class UsersService {
             };
         });
         return [...attractionsItems, ...restaurantsItems];
+    }
+    async like(likedItem: LikedItem): Promise<LikedItem> {
+        if (likedItem.type === "attraction") {
+            await this.prisma.user_attraction.create({
+                data: {
+                    attraction_id: likedItem.item.id,
+                    user_id: likedItem.userId,
+                },
+            });
+        } else if (likedItem.type === "restaurants") {
+            await this.prisma.user_restaurant.create({
+                data: {
+                    restaurant_id: likedItem.item.id,
+                    user_id: likedItem.userId,
+                },
+            });
+        }
+        return likedItem;
     }
 }
