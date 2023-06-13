@@ -1,8 +1,9 @@
 import styles from "./NavigationBar.module.css";
 
-import { AppBar, Toolbar } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import { AppBar, IconButton, Toolbar } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/authContext";
 import { Container } from "./core/layout/Container";
 import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
@@ -11,6 +12,7 @@ import { DropDownProfileMenu } from "./widgets/DropDownProfileMenu";
 export const NavigationBar = () => {
     const { t } = useTranslation();
     const { loggedInUser, setUserInContext } = useAuthContext();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem("accessToken");
@@ -26,11 +28,28 @@ export const NavigationBar = () => {
                         </Link>
                     </div>
                     <div className={styles.rightSide}>
-                        <DropDownProfileMenu
-                            currentUser={loggedInUser}
-                            handleLogout={handleLogout}
-                        />
-                        <DropDownLanguageMenu />
+                        {loggedInUser ? (
+                            <>
+                                <DropDownProfileMenu
+                                    currentUser={loggedInUser}
+                                    handleLogout={handleLogout}
+                                />
+                                <DropDownLanguageMenu />
+                            </>
+                        ) : (
+                            <>
+                                <IconButton
+                                    onClick={() => {
+                                        navigate("/auth/login");
+                                    }}
+                                >
+                                    <LoginIcon
+                                        className={styles.profileIcon}
+                                        sx={{ color: "black" }}
+                                    />
+                                </IconButton>
+                            </>
+                        )}
                     </div>
                 </Toolbar>
             </Container>

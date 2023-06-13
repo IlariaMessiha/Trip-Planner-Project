@@ -39,15 +39,9 @@ export const DropDownProfileMenu = (props: any) => {
     return (
         <div>
             <IconButton onClick={handleClick}>
-                {!loggedInUser ? (
-                    <Avatar sx={{ width: 32, height: 32 }}>
-                        <PersonIcon className={styles.profileIcon} />
-                    </Avatar>
-                ) : (
-                    <Avatar sx={{ width: 32, height: 32 }}>
-                        {loggedInUser.firstName.charAt(0)}
-                    </Avatar>
-                )}
+                <Avatar sx={{ width: 32, height: 32 }}>
+                    <PersonIcon className={styles.profileIcon} />
+                </Avatar>
             </IconButton>
 
             <Menu
@@ -60,7 +54,7 @@ export const DropDownProfileMenu = (props: any) => {
                 sx={{ width: 200 }}
                 hideBackdrop
             >
-                {loggedInUser ? (
+                {loggedInUser && (
                     <div>
                         <MenuItem
                             onClick={() => {
@@ -77,23 +71,6 @@ export const DropDownProfileMenu = (props: any) => {
                             }}
                         >
                             Logout
-                        </MenuItem>
-                    </div>
-                ) : (
-                    <div>
-                        <MenuItem
-                            onClick={() => {
-                                navigate("/auth/login");
-                            }}
-                        >
-                            Login
-                        </MenuItem>
-                        <MenuItem
-                            onClick={() => {
-                                navigate("/auth/register");
-                            }}
-                        >
-                            Register
                         </MenuItem>
                     </div>
                 )}
