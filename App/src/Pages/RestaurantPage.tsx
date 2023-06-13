@@ -12,7 +12,7 @@ import styles from "./RestaurantPage.module.css";
 import EditIcon from "@mui/icons-material/Edit";
 import Tooltip from "@mui/material/Tooltip";
 import { RestaurantInfo } from "../Components/core/RestaurantInfo";
-import { RestaurantReviewList } from "../Components/widgets/RestaurantReviewList";
+import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
 import { RestaurantReviewDto } from "../types/dto/common/RestaurantReviewDto";
@@ -106,7 +106,7 @@ export const RestaurantPage = () => {
                 )}
             </div>
             <div className={styles.reviewsContainer}>
-                {reviews && <RestaurantReviewList reviews={reviews} />}
+                {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>
     );

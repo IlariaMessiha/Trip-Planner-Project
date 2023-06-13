@@ -34,7 +34,6 @@ export const NavigationBar = () => {
                                     currentUser={loggedInUser}
                                     handleLogout={handleLogout}
                                 />
-                                <DropDownLanguageMenu />
                             </>
                         ) : (
                             <>
@@ -50,6 +49,7 @@ export const NavigationBar = () => {
                                 </IconButton>
                             </>
                         )}
+                        <DropDownLanguageMenu />
                     </div>
                 </Toolbar>
             </Container>

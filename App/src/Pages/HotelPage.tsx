@@ -15,7 +15,7 @@ import { HotelInfo } from "../Components/core/HotelInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { HotelDto } from "../types/dto/common/HotelDto";
 
-import { HotelReviewList } from "../Components/widgets/HotelReviewList";
+import { ReviewList } from "../Components/widgets/ReviewList";
 import { HotelReviewDto } from "../types/dto/common/HotelReviewDto";
 
 const ShareButton = styled(IconButton)({
@@ -103,7 +103,7 @@ export const HotelPage = () => {
                 )}
             </div>
             <div className={styles.reviewsContainer}>
-                {reviews && <HotelReviewList reviews={reviews} />}
+                {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>
     );

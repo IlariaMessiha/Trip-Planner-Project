@@ -16,7 +16,7 @@ import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 
-import { AttractionReviewList } from "../Components/widgets/AttractionReviewList";
+import { ReviewList } from "../Components/widgets/ReviewList";
 import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
 
 const ShareButton = styled(IconButton)({
@@ -118,7 +118,7 @@ export const AttractionPage = () => {
                 )}
             </div>
             <div className={styles.reviewsContainer}>
-                {reviews && <AttractionReviewList reviews={reviews} />}
+                {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>
     );

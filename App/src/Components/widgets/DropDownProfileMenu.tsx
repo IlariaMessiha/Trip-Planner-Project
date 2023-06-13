@@ -1,6 +1,5 @@
 import PersonIcon from "@mui/icons-material/Person";
 import { IconButton } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
@@ -39,9 +38,7 @@ export const DropDownProfileMenu = (props: any) => {
     return (
         <div>
             <IconButton onClick={handleClick}>
-                <Avatar sx={{ width: 32, height: 32 }}>
-                    <PersonIcon className={styles.profileIcon} />
-                </Avatar>
+                <PersonIcon className={styles.profileIcon} sx={{ color: "black" }} />
             </IconButton>
 
             <Menu
