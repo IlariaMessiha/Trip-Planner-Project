@@ -1,8 +1,6 @@
-import { Button, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/authContext";
 
-import SettingsIcon from "@mui/icons-material/Settings";
 import { ProfileHeader } from "../Components/core/ProfileHeader";
 import { Container } from "../Components/core/layout/Container";
 import { FavoritesList } from "../Components/widgets/FavoritesList";
@@ -11,6 +9,7 @@ import { fetchData } from "../api/FetchData";
 import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
 import styles from "./ProfilePage.module.css";
+import { ProfileTabs } from "../Components/core/ProfileTabs";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
@@ -50,20 +49,10 @@ export const ProfilePage = () => {
 
     return (
         <Container className={styles.container}>
-            <ProfileHeader value={value} handleChange={handleChange} loggedInUser={loggedInUser} />
+            <ProfileHeader loggedInUser={loggedInUser} logOut={logOut} />
+
             <div className={styles.content}>
-                <Paper sx={{ padding: "20px", height: 100 }}>
-                    <Button
-                        variant="outlined"
-                        startIcon={<SettingsIcon />}
-                        sx={{ marginBottom: "20px" }}
-                    >
-                        Edit Profile
-                    </Button>
-                    <Button variant="text" sx={{ color: "red" }} onClick={logOut}>
-                        Logout
-                    </Button>
-                </Paper>
+                <ProfileTabs handleChange={handleChange} value={value} />
                 <div className={styles.tabContent}>
                     {value === "1" && <ReviewList reviews={reviews} />}
                     {value === "2" && favorites && <FavoritesList favorites={favorites} />}

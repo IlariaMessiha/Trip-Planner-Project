@@ -1,16 +1,17 @@
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import { Avatar, Box, Paper, Tab, Typography } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Avatar, Button, Paper, Typography } from "@mui/material";
 import { FC } from "react";
 import { UserDto } from "../../types/dto/common/UserDto";
 import styles from "./ProfileHeader.module.css";
+import { useNavigate } from "react-router-dom";
 
 interface ProfileHeaderProps {
     loggedInUser: UserDto;
-    value: string;
-    handleChange: (event: React.SyntheticEvent, newValue: string) => void;
+
+    logOut: () => void;
 }
-export const ProfileHeader: FC<ProfileHeaderProps> = ({ loggedInUser, value, handleChange }) => {
+export const ProfileHeader: FC<ProfileHeaderProps> = ({ loggedInUser, logOut }) => {
+    const navigate = useNavigate();
     return (
         <Paper className={styles.header}>
             <div className={styles.userInfo}>
@@ -24,17 +25,17 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({ loggedInUser, value, han
                     <Typography variant="subtitle2">{loggedInUser?.email}</Typography>
                 </div>
             </div>
-            <Box sx={{ width: "100%", typography: "body1" }}>
-                <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                        <TabList aria-label="lab API tabs example" onChange={handleChange}>
-                            <Tab label="Reviews" value="1" />
-                            <Tab label="Favorites" value="2" />
-                            <Tab label="Trips" value="3" />
-                        </TabList>
-                    </Box>
-                </TabContext>
-            </Box>
+            <Button
+                variant="text"
+                sx={{ color: "black", gap: "5px" }}
+                onClick={() => {
+                    logOut();
+                    navigate("/auth/login");
+                }}
+            >
+                <LogoutIcon />
+                <Typography variant="subtitle2">LOGOUT</Typography>
+            </Button>
         </Paper>
     );
 };
