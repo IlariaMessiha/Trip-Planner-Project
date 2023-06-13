@@ -16,12 +16,12 @@ export const CitySearchResult: FC<CitySearchResultProps> = ({ item }) => {
     }
     return (
         <Paper className={styles.searchResultElement}>
-            <Link to={`/city/${item.id}`} target="_blank" rel="noopener noreferrer">
+            <Link to={`/city/${item.id}`}>
                 {item.imageUrl && <img src={item.imageUrl} alt="Cover" />}
             </Link>
 
             <div className={styles.rightSide}>
-                <Link to={`/attraction/${item.id}`}>
+                <Link to={`/city/${item.id}`}>
                     <Typography variant="h4" className={styles.title}>
                         {item.label}
                     </Typography>
