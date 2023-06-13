@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/authContext";
 
 import { ProfileHeader } from "../Components/core/ProfileHeader";
+import { ProfileTabs } from "../Components/core/ProfileTabs";
 import { Container } from "../Components/core/layout/Container";
 import { FavoritesList } from "../Components/widgets/FavoritesList";
 import { ReviewList } from "../Components/widgets/ReviewList";
@@ -9,7 +10,6 @@ import { fetchData } from "../api/FetchData";
 import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 import { ReviewDto } from "../types/dto/common/ReviewDto";
 import styles from "./ProfilePage.module.css";
-import { ProfileTabs } from "../Components/core/ProfileTabs";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();

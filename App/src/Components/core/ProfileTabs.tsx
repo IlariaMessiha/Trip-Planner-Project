@@ -1,10 +1,10 @@
+import CreateIcon from "@mui/icons-material/Create";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import { Box, Tab } from "@mui/material";
 import { FC } from "react";
-import CreateIcon from "@mui/icons-material/Create";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 interface ProfileTabsProps {
     value: string;
     handleChange: (event: React.SyntheticEvent, newValue: string) => void;

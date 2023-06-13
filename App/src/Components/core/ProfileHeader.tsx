@@ -1,9 +1,9 @@
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Avatar, Button, Paper, Typography } from "@mui/material";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserDto } from "../../types/dto/common/UserDto";
 import styles from "./ProfileHeader.module.css";
-import { useNavigate } from "react-router-dom";
 
 interface ProfileHeaderProps {
     loggedInUser: UserDto;
