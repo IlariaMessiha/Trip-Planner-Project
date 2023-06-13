@@ -8,6 +8,7 @@ import { useAuthContext } from "../context/authContext";
 import { Container } from "./core/layout/Container";
 import { DropDownLanguageMenu } from "./widgets/DropDownLanguageMenu";
 import { DropDownProfileMenu } from "./widgets/DropDownProfileMenu";
+import SearchIcon from "@mui/icons-material/Search";
 
 export const NavigationBar = () => {
     const { t } = useTranslation();
@@ -28,6 +29,13 @@ export const NavigationBar = () => {
                         </Link>
                     </div>
                     <div className={styles.rightSide}>
+                        <IconButton
+                            onClick={() => {
+                                navigate("/search");
+                            }}
+                        >
+                            <SearchIcon sx={{ color: "black" }} />
+                        </IconButton>
                         {loggedInUser ? (
                             <>
                                 <DropDownProfileMenu

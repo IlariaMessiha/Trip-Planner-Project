@@ -19,12 +19,12 @@ export const HotelSearchResult: FC<HotelSearchResultProps> = ({ item }) => {
     return (
         <>
             <Paper className={styles.searchResultElement}>
-                <Link to={`/hotel/${item.id}`} target="_blank" rel="noopener noreferrer">
+                <Link to={`/hotel/${item.id}`}>
                     {item.imageUrl && <img src={item.imageUrl} alt="Cover" />}
                 </Link>
 
                 <div className={styles.rightSide}>
-                    <Link to={`/hotel/${item.id}`} target="_blank" rel="noopener noreferrer">
+                    <Link to={`/hotel/${item.id}`}>
                         <Typography variant="h4" className={styles.title}>
                             {item.label}
                         </Typography>
