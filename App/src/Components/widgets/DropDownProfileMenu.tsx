@@ -1,6 +1,5 @@
 import PersonIcon from "@mui/icons-material/Person";
 import { IconButton } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
@@ -39,15 +38,7 @@ export const DropDownProfileMenu = (props: any) => {
     return (
         <div>
             <IconButton onClick={handleClick}>
-                {!loggedInUser ? (
-                    <Avatar sx={{ width: 32, height: 32 }}>
-                        <PersonIcon className={styles.profileIcon} />
-                    </Avatar>
-                ) : (
-                    <Avatar sx={{ width: 32, height: 32 }}>
-                        {loggedInUser.firstName.charAt(0)}
-                    </Avatar>
-                )}
+                <PersonIcon className={styles.profileIcon} sx={{ color: "black" }} />
             </IconButton>
 
             <Menu
@@ -60,7 +51,7 @@ export const DropDownProfileMenu = (props: any) => {
                 sx={{ width: 200 }}
                 hideBackdrop
             >
-                {loggedInUser ? (
+                {loggedInUser && (
                     <div>
                         <MenuItem
                             onClick={() => {
@@ -77,23 +68,6 @@ export const DropDownProfileMenu = (props: any) => {
                             }}
                         >
                             Logout
-                        </MenuItem>
-                    </div>
-                ) : (
-                    <div>
-                        <MenuItem
-                            onClick={() => {
-                                navigate("/auth/login");
-                            }}
-                        >
-                            Login
-                        </MenuItem>
-                        <MenuItem
-                            onClick={() => {
-                                navigate("/auth/register");
-                            }}
-                        >
-                            Register
                         </MenuItem>
                     </div>
                 )}
