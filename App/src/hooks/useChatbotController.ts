@@ -52,11 +52,11 @@ export const useChatbotController = () => {
             const response = await fetchData.getChatbotFlow();
             const sortedQuestions = orderBy(response.questions, "sort");
             setQuestions(sortedQuestions);
-            displayQuestion(sortedQuestions, currentQuestionIndex);
+            displayQuestion(sortedQuestions, 0);
         };
 
         onMount();
-    }, [currentQuestionIndex, displayQuestion]);
+    }, [displayQuestion]);
 
     const handleChatInput = (value: string) => {
         const newMessage: TMessage = {
