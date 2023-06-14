@@ -6,19 +6,24 @@ import {
     toAttractionsFilter,
     toRestaurantsFilter,
 } from "src/helpers/filtersHelper";
-import { mapAttractionToDto, MappingDtos, mapRestaurantToDto } from "src/helpers/MappingDtos";
+import { mapAttractionToDto, MappingDtos } from "src/helpers/MappingDtos";
 import { PrismaService } from "src/prisma.service";
 
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
-import { TChatbotFilter, TChatbotFlow, TChatbotSubmission } from "src/types/TChatbot";
+import {
+    TChatbotFilter,
+    TChatbotFlow,
+    TChatbotQuestion,
+    TChatbotQuestionSearchTarget,
+    TChatbotSubmission,
+} from "src/types/TChatbot";
 
-import { find, hasIn, slice } from "lodash";
+import { find, hasIn } from "lodash";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { TripDto } from "src/types/dto/common/TripDto";
 import { TripItemDto } from "src/types/dto/common/TripItemDto";
 import { GetDashboardResponseDto } from "src/types/dto/dashboard/GetDashboardResponseDto";
 import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
-import { GetFilteredAttractionAndRestaurantsDto } from "src/types/dto/trips/GetFilteredAttractionAndRestaurantsDto";
 
 @Injectable()
 export class CommonService {
@@ -91,28 +96,36 @@ export class CommonService {
         return flow;
     }
 
-    deduceFiltersFromSubmissions(submissions: TChatbotSubmission[]) {
-        return submissions.map(submission => {
+    deduceFiltersByTarget(submissions: TChatbotSubmission[]) {
+        return submissions.reduce((filtersByTarget, submission) => {
             const question = flow.questions.find(
                 question => question.code === submission.questionCode
             );
-
-            if (question.type === "text") {
-                return replaceDynamicValueInFilter(question.filter || {}, submission.value);
+            const filter = this.deduceFilterFromSubmission(submission, question);
+            if (filter && Object.keys(filter).length > 0) {
+                question.searchTargets.forEach(target => {
+                    filtersByTarget[target] = [...(filtersByTarget[target] || []), filter];
+                });
             }
-            if (question.answers) {
-                const selectedAnswer = question.answers.find(
-                    answer => answer.code === submission.value || answer.text === submission.value
-                );
-                if (selectedAnswer.filter) {
-                    return selectedAnswer.filter;
-                }
-            }
-        });
+            return filtersByTarget;
+        }, {} as Record<TChatbotQuestionSearchTarget, TChatbotFilter[]>);
     }
-    async findFilteredAttractionAndRestaurants(
-        filters: TChatbotFilter[]
-    ): Promise<GetFilteredAttractionAndRestaurantsDto> {
+
+    deduceFilterFromSubmission(submission: TChatbotSubmission, question: TChatbotQuestion) {
+        if (question.type === "text") {
+            return replaceDynamicValueInFilter(question.filter || {}, submission.value);
+        }
+        if (question.answers) {
+            const selectedAnswer = question.answers.find(
+                answer => answer.code === submission.value || answer.text === submission.value
+            );
+            if (selectedAnswer.filter) {
+                return selectedAnswer.filter;
+            }
+        }
+    }
+
+    async findAttractionPool(filters: TChatbotFilter[]) {
         const fieldFilters: TChatbotFilter[] = getFieldFilters(filters);
         const attractions = await this.prisma.attraction.findMany({
             where: {
@@ -122,6 +135,12 @@ export class CommonService {
                 directus_files: true,
             },
         });
+
+        return attractions;
+    }
+
+    async findRestaurantPool(filters: TChatbotFilter[]) {
+        const fieldFilters: TChatbotFilter[] = getFieldFilters(filters);
         const restaurants = await this.prisma.restaurant.findMany({
             where: {
                 AND: toRestaurantsFilter(fieldFilters),
@@ -130,46 +149,33 @@ export class CommonService {
                 directus_files: true,
             },
         });
-        console.log(fieldFilters);
-        return {
-            attractions: attractions.map(attraction => {
-                return mapAttractionToDto(attraction, attraction.directus_files);
-            }),
-            restaurants: restaurants.map(restaurant => {
-                return mapRestaurantToDto(restaurant, restaurant.directus_files);
-            }),
-        };
+        return restaurants;
     }
-    async createTrip(
-        attractionAndRestaurant: Promise<GetFilteredAttractionAndRestaurantsDto>,
-        globalFilters: TChatbotFilter[]
-    ): Promise<TripDto> {
-        const attractions: AttractionDto[] = (await attractionAndRestaurant).attractions;
-        const restaurants: RestaurantDto[] = (await attractionAndRestaurant).restaurants;
-        const budget = this.calculateBudget(globalFilters);
-        let trip: TripDto = null;
+    // async createTrip(globalFilters: TChatbotFilter[]): Promise<TripDto> {
+    //     const budget = this.calculateBudget(globalFilters);
+    //     let trip: TripDto = null;
 
-        const swap = (i: number) => {
-            let sum = 0;
-            const tripRestaurants: RestaurantDto[] = slice(restaurants, i, i + 3);
-            const tripAttractions: AttractionDto[] = slice(attractions, i, i + 4);
-            tripRestaurants.map(r => {
-                sum += r.avgMealPerPerson;
-            });
-            tripAttractions.map(a => {
-                sum += a.entryFee;
-            });
+    //     const swap = (i: number) => {
+    //         let sum = 0;
+    //         const tripRestaurants: RestaurantDto[] = slice(restaurants, i, i + 3);
+    //         const tripAttractions: AttractionDto[] = slice(attractions, i, i + 4);
+    //         tripRestaurants.map(r => {
+    //             sum += r.avgMealPerPerson;
+    //         });
+    //         tripAttractions.map(a => {
+    //             sum += a.entryFee;
+    //         });
 
-            if (sum > budget + 10) {
-                console.log("true");
-                swap(i + 1);
-            } else {
-                trip = this.orderOneDayActivities(tripRestaurants, tripAttractions);
-            }
-        };
-        swap(0);
-        return trip;
-    }
+    //         if (sum > budget + 10) {
+    //             console.log("true");
+    //             swap(i + 1);
+    //         } else {
+    //             trip = this.orderOneDayActivities(tripRestaurants, tripAttractions);
+    //         }
+    //     };
+    //     swap(0);
+    //     return trip;
+    // }
     //ex: camp nou datetime=18:00 and his opening hours to is 17
     //if after breakfast attractions' time surpasses lunch time
     // if i don't have enough restaurants (less than 3) tripItem is created with undefined restaurants

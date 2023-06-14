@@ -11,8 +11,10 @@ export type TChatbotQuestion = {
     filterAggregation?: "and" | "or";
     shouldAskIf?: TChatbotFilter;
     validation?: TChatbotValidation;
+    searchTargets: TChatbotQuestionSearchTarget[];
 };
 
+export type TChatbotQuestionSearchTarget = "attractions" | "restaurants" | "global";
 export type TChatbotQuestionType = "text" | "multiple-choices" | "single-choice";
 
 export type TChatbotAnswer = {

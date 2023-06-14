@@ -20,11 +20,14 @@ export class CommonController {
     }
 
     @Post("/submissions")
-    postSubmissions(@Body() submissions: TChatbotSubmission[]) {
-        const filters = this.commonService.deduceFiltersFromSubmissions(submissions);
-        const attractionsAndRestaurants =
-            this.commonService.findFilteredAttractionAndRestaurants(filters);
-
-        return this.commonService.createTrip(attractionsAndRestaurants, filters);
+    async postSubmissions(@Body() submissions: TChatbotSubmission[]) {
+        const filtersByTarget = this.commonService.deduceFiltersByTarget(submissions);
+        const attractionPool = await this.commonService.findAttractionPool(
+            filtersByTarget.attractions
+        );
+        const restaurantPool = await this.commonService.findRestaurantPool(
+            filtersByTarget.restaurants
+        );
+        // return this.commonService.createTrip(attractionPool, restaurantPool, filtersByTarget);
     }
 }
