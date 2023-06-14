@@ -2,7 +2,7 @@ import { Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -18,6 +18,8 @@ import { AttractionDto } from "../types/dto/common/AttractionDto";
 
 import { ReviewList } from "../Components/widgets/ReviewList";
 import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
+import { useAuthContext } from "../context/authContext";
+import { postData } from "../api/PostData";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -35,6 +37,8 @@ export const AttractionPage = () => {
     const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
     const [reviews, setReviews] = useState<AttractionReviewDto[] | undefined>(undefined);
     const { id } = useParams();
+    const { loggedInUser } = useAuthContext();
+    const navigate = useNavigate();
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
@@ -55,6 +59,21 @@ export const AttractionPage = () => {
     if (!attraction) {
         return null;
     }
+    const like = (attraction: AttractionDto) => {
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            postData.like(
+                {
+                    item: attraction,
+                    type: "attraction",
+                    userId: loggedInUser.id,
+                },
+                token
+            );
+        } else {
+            navigate("/auth/login");
+        }
+    };
     return (
         <Container className={styles.container}>
             <Typography variant="h3">{attraction.label}</Typography>
@@ -97,7 +116,11 @@ export const AttractionPage = () => {
                         <IosShareIcon />
                     </ShareButton>
                     <SharePopup url={window.location.href} open={open} onClose={handleClose} />
-                    <FavoriteButton className={styles.shareButton}>
+                    <FavoriteButton
+                        onClick={() => {
+                            like(attraction);
+                        }}
+                    >
                         <FavoriteBorderIcon />
                     </FavoriteButton>
                     <Tooltip title={t("common.review")}>

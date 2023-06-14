@@ -9,14 +9,14 @@ import {
     Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./CardAttraction.module.css";
 
 import { Link, useNavigate } from "react-router-dom";
 
-import { AttractionDto } from "../../../types/dto/common/AttractionDto";
 import { postData } from "../../../api/PostData";
 import { useAuthContext } from "../../../context/authContext";
+import { AttractionDto } from "../../../types/dto/common/AttractionDto";
 
 interface CardAttractionProps {
     attraction: AttractionDto;
@@ -37,7 +37,7 @@ const StarsRating = styled(Rating)({
 export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
-    const [flag, setFlag] = useState(true);
+
     const like = (attraction: AttractionDto) => {
         const token = localStorage.getItem("accessToken");
         if (loggedInUser && token) {
@@ -49,7 +49,6 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                 },
                 token
             );
-            setFlag(false);
         } else {
             navigate("/auth/login");
         }
@@ -61,7 +60,6 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
                     onClick={() => {
                         like(attraction);
                     }}
-                    disabled={!flag}
                 >
                     <FavoriteBorderOutlinedIcon />
                 </FavoriteButton>
