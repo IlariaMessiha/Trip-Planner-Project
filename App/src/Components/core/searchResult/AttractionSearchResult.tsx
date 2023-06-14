@@ -27,7 +27,6 @@ export const AttractionSearchResult: FC<AttractionSearchResultProps> = ({ item }
                         <Typography variant="h4" className={styles.title}>
                             {item.label}
                         </Typography>
-                        {/* {item.item.label} */}
                     </Link>
 
                     <div className={styles.resultType}>
