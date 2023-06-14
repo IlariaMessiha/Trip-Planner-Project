@@ -1,7 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
 import { GetRestaurantResponseDto } from "src/types/dto/restaurants/GetRestaurantResponseDto";
-import { MappingDtos, mapRestaurantToDto, mapUserToDto } from "src/helpers/MappingDtos";
+import {
+    MappingDtos,
+    mapRestaurantReviewToDto,
+    mapRestaurantToDto,
+    mapUserToDto,
+} from "src/helpers/MappingDtos";
 
 @Injectable()
 export class RestaurantsService {
@@ -37,7 +42,11 @@ export class RestaurantsService {
         return {
             restaurant: mapRestaurantToDto(restaurant, restaurant.directus_files),
             reviews: reviews.map(review => {
-                return this.mappingDto.mapReviewToDto(review, mapUserToDto(review.user));
+                return mapRestaurantReviewToDto(
+                    review,
+                    mapUserToDto(review.user),
+                    mapRestaurantToDto(restaurant, restaurant.directus_files)
+                );
             }),
             city: this.mappingDto.mapCityToDto(
                 city,

@@ -5,7 +5,7 @@ export interface AttractionReviewDto {
     id: number;
     title: string;
     body: string;
-    // attraction: AttractionDto;
+    attraction: AttractionDto;
     rating: number;
     user: UserDto;
 }

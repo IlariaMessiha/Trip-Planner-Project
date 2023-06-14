@@ -5,17 +5,15 @@ import * as argon2 from "argon2";
 import {
     mapAttractionReviewToDto,
     mapAttractionToDto,
-    mapHotelReviewToDto,
     mapRestaurantReviewToDto,
     mapRestaurantToDto,
     mapUserToDto,
 } from "src/helpers/MappingDtos";
 import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 
-import { ReviewDto } from "src/types/dto/common/ReviewDto";
-
 import { FavoriteItem } from "src/types/dto/common/FavouriteItemDto";
 import { LikedItem } from "src/types/dto/likes/LikedItemDto";
+import { ReviewDto } from "src/types/dto/reviews/ReviewDto";
 
 @Injectable()
 export class UsersService {
@@ -51,35 +49,50 @@ export class UsersService {
             },
             include: {
                 user: true,
+                Attraction: {
+                    include: {
+                        directus_files: true,
+                    },
+                },
             },
         });
-        const hotelReviews = await this.prisma.hotel_review.findMany({
-            where: {
-                user_id: userId,
-            },
-            include: {
-                user: true,
-            },
-        });
+
         const restaurantReviews = await this.prisma.restaurant_review.findMany({
             where: {
                 user_id: userId,
             },
             include: {
                 user: true,
+                restaurant: {
+                    include: {
+                        directus_files: true,
+                    },
+                },
             },
         });
         const attractionReviewsItems: ReviewDto[] = attractionReviews.map(review => {
-            return mapAttractionReviewToDto(review, mapUserToDto(review.user));
-        });
-        const hotelReviewsItems: ReviewDto[] = hotelReviews.map(review => {
-            return mapHotelReviewToDto(review, mapUserToDto(review.user));
-        });
-        const restaurantReviewsItems: ReviewDto[] = restaurantReviews.map(review => {
-            return mapRestaurantReviewToDto(review, mapUserToDto(review.user));
+            return {
+                review: mapAttractionReviewToDto(
+                    review,
+                    mapUserToDto(review.user),
+                    mapAttractionToDto(review.Attraction, review.Attraction.directus_files)
+                ),
+                type: "attractionReview",
+            };
         });
 
-        return [...attractionReviewsItems, ...hotelReviewsItems, ...restaurantReviewsItems];
+        const restaurantReviewsItems: ReviewDto[] = restaurantReviews.map(review => {
+            return {
+                review: mapRestaurantReviewToDto(
+                    review,
+                    mapUserToDto(review.user),
+                    mapRestaurantToDto(review.restaurant, review.restaurant.directus_files)
+                ),
+                type: "attractionReview",
+            };
+        });
+
+        return [...attractionReviewsItems, ...restaurantReviewsItems];
     }
     async findUserFavorites(userId: number): Promise<FavoriteItem[]> {
         const attractions = await this.prisma.attraction.findMany({
@@ -137,5 +150,29 @@ export class UsersService {
             });
         }
         return likedItem;
+    }
+    async writeReview(item: ReviewDto): Promise<ReviewDto> {
+        if (item.type === "attractionReview") {
+            await this.prisma.attraction_review.create({
+                data: {
+                    attraction_id: item.review.id,
+                    body: item.review.body,
+                    title: item.review.title,
+                    rating: item.review.rating,
+                    user_id: item.review.user.id,
+                },
+            });
+        } else if (item.type === "restaurantReview") {
+            await this.prisma.restaurant_review.create({
+                data: {
+                    restaurant_id: item.review.id,
+                    body: item.review.body,
+                    title: item.review.title,
+                    rating: item.review.rating,
+                    user_id: item.review.user.id,
+                },
+            });
+        }
+        return item;
     }
 }
