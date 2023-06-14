@@ -20,6 +20,7 @@ import { ReviewList } from "../Components/widgets/ReviewList";
 import { useAuthContext } from "../context/authContext";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import { ReviewForm } from "../Components/widgets/ReviewForm";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -29,7 +30,8 @@ const FavoriteButton = styled(IconButton)({
 });
 
 export const AttractionPage = () => {
-    const [open, setOpen] = React.useState(false);
+    const [sharePopupState, setSharePopupState] = useState(false);
+    const [formState, setFormState] = useState(false);
     const { t } = useTranslation();
     const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
     const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
@@ -47,10 +49,10 @@ export const AttractionPage = () => {
         onMount();
     }, [id]);
     const handleClickOpen = () => {
-        setOpen(true);
+        setSharePopupState(true);
     };
     const handleClose = () => {
-        setOpen(false);
+        setSharePopupState(false);
     };
 
     if (!attraction) {
@@ -70,6 +72,12 @@ export const AttractionPage = () => {
         } else {
             navigate("/auth/login");
         }
+    };
+    const openForm = () => {
+        setFormState(true);
+    };
+    const closeForm = () => {
+        setFormState(false);
     };
     return (
         <Container className={styles.container}>
@@ -112,7 +120,11 @@ export const AttractionPage = () => {
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
-                    <SharePopup url={window.location.href} open={open} onClose={handleClose} />
+                    <SharePopup
+                        url={window.location.href}
+                        open={sharePopupState}
+                        onClose={handleClose}
+                    />
                     <FavoriteButton
                         onClick={() => {
                             like(attraction);
@@ -135,15 +147,22 @@ export const AttractionPage = () => {
             <Typography variant="h4" className={styles.reviewsTitle}>
                 {t("common.reviews")}:
             </Typography>
-            <Button
-                variant="text"
-                startIcon={<EditIcon className={styles.icon} />}
-                sx={{ color: "black" }}
-            >
-                Write a Review
-            </Button>
+            {!formState ? (
+                <Button
+                    variant="text"
+                    startIcon={<EditIcon className={styles.icon} />}
+                    sx={{ color: "black" }}
+                    onClick={openForm}
+                >
+                    Write a Review
+                </Button>
+            ) : (
+                <IconButton onClick={closeForm} sx={{ color: "red" }}>
+                    <CloseIcon />
+                </IconButton>
+            )}
             <div className={styles.reviewsContainer}>
-                <ReviewForm type="attractionReview" itemId={attraction.id} />
+                {formState && <ReviewForm type="attractionReview" itemId={attraction.id} />}
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>

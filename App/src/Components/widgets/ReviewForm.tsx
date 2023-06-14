@@ -21,7 +21,6 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
     const { loggedInUser } = useAuthContext();
     const token = localStorage.getItem("accessToken");
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
         if (rating && title && body && loggedInUser && token)
             postData.writeReview(
                 {
