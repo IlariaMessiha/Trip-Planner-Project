@@ -1,4 +1,4 @@
-import { Container, IconButton, styled, Typography } from "@mui/material";
+import { Button, Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
@@ -9,25 +9,22 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./AttractionPage.module.css";
 
-import EditIcon from "@mui/icons-material/Edit";
-import Tooltip from "@mui/material/Tooltip";
 import dayjs from "dayjs";
 import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 
+import EditIcon from "@mui/icons-material/Edit";
 import { postData } from "../api/PostData";
 import { ReviewList } from "../Components/widgets/ReviewList";
 import { useAuthContext } from "../context/authContext";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { ReviewForm } from "../Components/widgets/ReviewForm";
 
 const ShareButton = styled(IconButton)({
     color: "black",
 });
 const FavoriteButton = styled(IconButton)({
-    color: "black",
-});
-const ReviewButton = styled(IconButton)({
     color: "black",
 });
 
@@ -123,11 +120,6 @@ export const AttractionPage = () => {
                     >
                         <FavoriteBorderIcon />
                     </FavoriteButton>
-                    <Tooltip title={t("common.review")}>
-                        <ReviewButton>
-                            <EditIcon className={styles.icon} />
-                        </ReviewButton>
-                    </Tooltip>
                 </div>
             </div>
             <div className={styles.imageAndDescription}>
@@ -140,7 +132,18 @@ export const AttractionPage = () => {
                     />
                 )}
             </div>
+            <Typography variant="h4" className={styles.reviewsTitle}>
+                {t("common.reviews")}:
+            </Typography>
+            <Button
+                variant="text"
+                startIcon={<EditIcon className={styles.icon} />}
+                sx={{ color: "black" }}
+            >
+                Write a Review
+            </Button>
             <div className={styles.reviewsContainer}>
+                <ReviewForm type="attractionReview" itemId={attraction.id} />
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>

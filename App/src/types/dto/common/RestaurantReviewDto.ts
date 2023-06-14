@@ -4,7 +4,7 @@ export interface RestaurantReviewDto {
     id: number;
     title: string;
     body: string;
-    // restaurant: RestaurantDto;
+    itemId: number;
     rating: number;
     user: UserDto;
 }

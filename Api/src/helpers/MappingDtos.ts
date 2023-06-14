@@ -32,7 +32,7 @@ export const mapUserToDto = (user: user): UserDto => {
 export const mapAttractionReviewToDto = (
     attractionReview: attraction_review,
     user: UserDto,
-    attraction: AttractionDto
+    attraction: number
 ): AttractionReviewDto => {
     return {
         id: attractionReview.id,
@@ -40,14 +40,14 @@ export const mapAttractionReviewToDto = (
         rating: attractionReview.rating,
         title: attractionReview.title,
         user: user,
-        attraction: attraction,
+        itemId: attraction,
     };
 };
 
 export const mapRestaurantReviewToDto = (
     restaurantReview: restaurant_review,
     user: UserDto,
-    restaurant: RestaurantDto
+    restaurant: number
 ): RestaurantReviewDto => {
     return {
         id: restaurantReview.id,
@@ -55,7 +55,7 @@ export const mapRestaurantReviewToDto = (
         rating: restaurantReview.rating,
         title: restaurantReview.title,
         user: user,
-        restaurant: restaurant,
+        itemId: restaurant,
     };
 };
 export const mapAttractionToDto = (

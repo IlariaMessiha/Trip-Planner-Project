@@ -46,7 +46,7 @@ export class RestaurantsService {
                     review: mapRestaurantReviewToDto(
                         review,
                         mapUserToDto(review.user),
-                        mapRestaurantToDto(restaurant, restaurant.directus_files)
+                        restaurant.id
                     ),
                     type: "restaurantReview",
                 };

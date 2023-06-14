@@ -75,7 +75,7 @@ export class UsersService {
                 review: mapAttractionReviewToDto(
                     review,
                     mapUserToDto(review.user),
-                    mapAttractionToDto(review.Attraction, review.Attraction.directus_files)
+                    review.Attraction.id
                 ),
                 type: "attractionReview",
             };
@@ -86,7 +86,7 @@ export class UsersService {
                 review: mapRestaurantReviewToDto(
                     review,
                     mapUserToDto(review.user),
-                    mapRestaurantToDto(review.restaurant, review.restaurant.directus_files)
+                    review.restaurant.id
                 ),
                 type: "attractionReview",
             };
@@ -155,7 +155,7 @@ export class UsersService {
         if (item.type === "attractionReview") {
             await this.prisma.attraction_review.create({
                 data: {
-                    attraction_id: item.review.id,
+                    attraction_id: item.review.itemId,
                     body: item.review.body,
                     title: item.review.title,
                     rating: item.review.rating,
@@ -165,7 +165,7 @@ export class UsersService {
         } else if (item.type === "restaurantReview") {
             await this.prisma.restaurant_review.create({
                 data: {
-                    restaurant_id: item.review.id,
+                    restaurant_id: item.review.itemId,
                     body: item.review.body,
                     title: item.review.title,
                     rating: item.review.rating,

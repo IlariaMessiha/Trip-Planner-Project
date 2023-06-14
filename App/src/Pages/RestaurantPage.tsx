@@ -1,4 +1,4 @@
-import { Container, IconButton, styled, Typography } from "@mui/material";
+import { Button, Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,7 @@ import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { ReviewForm } from "../Components/widgets/ReviewForm";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -128,7 +129,18 @@ export const RestaurantPage = () => {
                     />
                 )}
             </div>
+            <Typography variant="h4" className={styles.reviewsTitle}>
+                {t("common.reviews")}:
+            </Typography>
+            <Button
+                variant="text"
+                startIcon={<EditIcon className={styles.icon} />}
+                sx={{ color: "black" }}
+            >
+                Write a Review
+            </Button>
             <div className={styles.reviewsContainer}>
+                <ReviewForm itemId={restaurant.id} type="restaurantReview" />
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>

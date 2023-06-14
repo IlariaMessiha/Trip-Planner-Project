@@ -47,7 +47,7 @@ export class AttractionsService {
                     review: mapAttractionReviewToDto(
                         review,
                         mapUserToDto(review.user),
-                        mapAttractionToDto(attraction, attraction.directus_files)
+                        attraction.id
                     ),
                     type: "attractionReview",
                 };
