@@ -1,11 +1,10 @@
-import { FC } from "react";
-import styles from "./AttractionSearchResult.module.css";
-import { useTranslation } from "react-i18next";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
-import { Link } from "react-router-dom";
-import React from "react";
 import { Paper, Typography } from "@mui/material";
+import { FC } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
+import styles from "./AttractionSearchResult.module.css";
 
 interface AttractionSearchResultProps {
     item: AttractionDto;
@@ -19,12 +18,12 @@ export const AttractionSearchResult: FC<AttractionSearchResultProps> = ({ item }
     return (
         <>
             <Paper className={styles.searchResultElement}>
-                <Link to={`/attraction/${item.id}`} target="_blank" rel="noopener noreferrer">
+                <Link to={`/attraction/${item.id}`}>
                     {item.imageUrl && <img src={item.imageUrl} alt="Cover" />}
                 </Link>
 
                 <div className={styles.rightSide}>
-                    <Link to={`/attraction/${item.id}`} target="_blank" rel="noopener noreferrer">
+                    <Link to={`/attraction/${item.id}`}>
                         <Typography variant="h4" className={styles.title}>
                             {item.label}
                         </Typography>

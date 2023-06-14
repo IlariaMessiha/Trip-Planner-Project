@@ -2,7 +2,7 @@ import { Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -11,9 +11,11 @@ import styles from "./RestaurantPage.module.css";
 
 import EditIcon from "@mui/icons-material/Edit";
 import Tooltip from "@mui/material/Tooltip";
+import { postData } from "../api/PostData";
 import { RestaurantInfo } from "../Components/core/RestaurantInfo";
 import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
+import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
 import { RestaurantReviewDto } from "../types/dto/common/RestaurantReviewDto";
 
@@ -33,6 +35,23 @@ export const RestaurantPage = () => {
     const [restaurant, setRestaurant] = React.useState<RestaurantDto | null>(null);
     const [reviews, setReviews] = useState<RestaurantReviewDto[] | undefined>(undefined);
     const { id } = useParams();
+    const { loggedInUser } = useAuthContext();
+    const navigate = useNavigate();
+    const like = (restaurant: RestaurantDto) => {
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            postData.like(
+                {
+                    item: restaurant,
+                    type: "restaurants",
+                    userId: loggedInUser.id,
+                },
+                token
+            );
+        } else {
+            navigate("/auth/login");
+        }
+    };
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
@@ -85,7 +104,11 @@ export const RestaurantPage = () => {
                         <IosShareIcon />
                     </ShareButton>
                     <SharePopup url={window.location.href} open={open} onClose={handleClose} />
-                    <FavoriteButton className={styles.shareButton}>
+                    <FavoriteButton
+                        onClick={() => {
+                            like(restaurant);
+                        }}
+                    >
                         <FavoriteBorderIcon />
                     </FavoriteButton>
                     <Tooltip title={t("common.review")}>

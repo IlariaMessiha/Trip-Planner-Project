@@ -1,3 +1,4 @@
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import {
     Card,
     CardActionArea,
@@ -10,9 +11,10 @@ import {
 } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { postData } from "../../../api/PostData";
+import { useAuthContext } from "../../../context/authContext";
 import { RestaurantDto } from "../../../types/dto/common/RestaurantDto";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styles from "./CardRestaurant.module.css";
 
 interface CardRestaurantProps {
@@ -32,11 +34,32 @@ const StarsRating = styled(Rating)({
     },
 });
 export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
+    const { loggedInUser } = useAuthContext();
+    const navigate = useNavigate();
     const { t } = useTranslation();
+    const like = (restaurant: RestaurantDto) => {
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            postData.like(
+                {
+                    item: restaurant,
+                    type: "restaurants",
+                    userId: loggedInUser.id,
+                },
+                token
+            );
+        } else {
+            navigate("/auth/login");
+        }
+    };
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>
-                <FavoriteButton>
+                <FavoriteButton
+                    onClick={() => {
+                        like(restaurant);
+                    }}
+                >
                     <FavoriteBorderOutlinedIcon />
                 </FavoriteButton>
                 <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>

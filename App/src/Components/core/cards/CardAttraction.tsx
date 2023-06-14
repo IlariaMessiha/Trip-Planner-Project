@@ -12,8 +12,10 @@ import { styled } from "@mui/material/styles";
 import { FC } from "react";
 import styles from "./CardAttraction.module.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+import { postData } from "../../../api/PostData";
+import { useAuthContext } from "../../../context/authContext";
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
 
 interface CardAttractionProps {
@@ -33,10 +35,32 @@ const StarsRating = styled(Rating)({
     },
 });
 export const CardAttraction: FC<CardAttractionProps> = ({ attraction }) => {
+    const { loggedInUser } = useAuthContext();
+    const navigate = useNavigate();
+
+    const like = (attraction: AttractionDto) => {
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            postData.like(
+                {
+                    item: attraction,
+                    type: "attraction",
+                    userId: loggedInUser.id,
+                },
+                token
+            );
+        } else {
+            navigate("/auth/login");
+        }
+    };
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>
-                <FavoriteButton>
+                <FavoriteButton
+                    onClick={() => {
+                        like(attraction);
+                    }}
+                >
                     <FavoriteBorderOutlinedIcon />
                 </FavoriteButton>
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>

@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./HotelPage.module.css";
 
@@ -21,9 +20,7 @@ import { HotelReviewDto } from "../types/dto/common/HotelReviewDto";
 const ShareButton = styled(IconButton)({
     color: "black",
 });
-const FavoriteButton = styled(IconButton)({
-    color: "black",
-});
+
 const ReviewButton = styled(IconButton)({
     color: "black",
 });
@@ -86,9 +83,6 @@ export const HotelPage = () => {
                         <IosShareIcon />
                     </ShareButton>
                     <SharePopup url={window.location.href} open={open} onClose={handleClose} />
-                    <FavoriteButton className={styles.shareButton}>
-                        <FavoriteBorderIcon />
-                    </FavoriteButton>
                     <Tooltip title={t("common.review")}>
                         <ReviewButton>
                             <EditIcon className={styles.icon} />

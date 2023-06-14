@@ -3,7 +3,6 @@ import {
     CardActionArea,
     CardContent,
     CardMedia,
-    IconButton,
     Rating,
     styled,
     Typography,
@@ -12,20 +11,12 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { HotelDto } from "../../../types/dto/common/HotelDto";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styles from "./CardHotel.module.css";
 
 interface CardHotelProps {
     hotel: HotelDto;
 }
-const FavoriteButton = styled(IconButton)({
-    position: "absolute",
-    backgroundColor: "white",
-    color: "black",
-    top: 6,
-    right: 10,
-    zIndex: 10,
-});
+
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {
         color: "blue",
@@ -36,9 +27,6 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>
-                <FavoriteButton>
-                    <FavoriteBorderOutlinedIcon />
-                </FavoriteButton>
                 <Link key={hotel.id} to={`/hotel/${hotel.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                         {hotel.imageUrl && (
