@@ -49,11 +49,7 @@ export class UsersService {
             },
             include: {
                 user: true,
-                Attraction: {
-                    include: {
-                        directus_files: true,
-                    },
-                },
+                Attraction: true,
             },
         });
 
@@ -63,11 +59,7 @@ export class UsersService {
             },
             include: {
                 user: true,
-                restaurant: {
-                    include: {
-                        directus_files: true,
-                    },
-                },
+                restaurant: true,
             },
         });
         const attractionReviewsItems: ReviewDto[] = attractionReviews.map(review => {
@@ -88,7 +80,7 @@ export class UsersService {
                     mapUserToDto(review.user),
                     review.restaurant.id
                 ),
-                type: "attractionReview",
+                type: "restaurantReview",
             };
         });
 

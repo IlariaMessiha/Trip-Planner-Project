@@ -21,7 +21,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
     const { loggedInUser } = useAuthContext();
     const token = localStorage.getItem("accessToken");
     const handleSubmit = (e: React.FormEvent) => {
-        if (rating && title && body && loggedInUser && token)
+        if (body && title && rating && loggedInUser && token) {
             postData.writeReview(
                 {
                     review: {
@@ -36,6 +36,8 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
                 },
                 token
             );
+        } else if (!loggedInUser) {
+        }
     };
 
     return (

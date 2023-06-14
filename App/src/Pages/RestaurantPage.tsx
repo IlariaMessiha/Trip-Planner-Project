@@ -19,6 +19,7 @@ import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import { ReviewForm } from "../Components/widgets/ReviewForm";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -31,7 +32,8 @@ const ReviewButton = styled(IconButton)({
 });
 
 export const RestaurantPage = () => {
-    const [open, setOpen] = React.useState(false);
+    const [sharePopupState, setSharePopupState] = React.useState(false);
+    const [formState, setFormState] = useState(false);
     const { t } = useTranslation();
     const [restaurant, setRestaurant] = React.useState<RestaurantDto | null>(null);
     const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
@@ -64,10 +66,16 @@ export const RestaurantPage = () => {
         onMount();
     }, [id]);
     const handleClickOpen = () => {
-        setOpen(true);
+        setSharePopupState(true);
     };
     const handleClose = () => {
-        setOpen(false);
+        setSharePopupState(false);
+    };
+    const openForm = () => {
+        setFormState(true);
+    };
+    const closeForm = () => {
+        setFormState(false);
     };
 
     if (!restaurant) {
@@ -104,7 +112,11 @@ export const RestaurantPage = () => {
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
-                    <SharePopup url={window.location.href} open={open} onClose={handleClose} />
+                    <SharePopup
+                        url={window.location.href}
+                        open={sharePopupState}
+                        onClose={handleClose}
+                    />
                     <FavoriteButton
                         onClick={() => {
                             like(restaurant);
@@ -132,15 +144,22 @@ export const RestaurantPage = () => {
             <Typography variant="h4" className={styles.reviewsTitle}>
                 {t("common.reviews")}:
             </Typography>
-            <Button
-                variant="text"
-                startIcon={<EditIcon className={styles.icon} />}
-                sx={{ color: "black" }}
-            >
-                Write a Review
-            </Button>
+            {!formState ? (
+                <Button
+                    variant="text"
+                    startIcon={<EditIcon className={styles.icon} />}
+                    sx={{ color: "black" }}
+                    onClick={openForm}
+                >
+                    Write a Review
+                </Button>
+            ) : (
+                <IconButton onClick={closeForm} sx={{ color: "red" }}>
+                    <CloseIcon />
+                </IconButton>
+            )}
             <div className={styles.reviewsContainer}>
-                <ReviewForm itemId={restaurant.id} type="restaurantReview" />
+                {formState && <ReviewForm type="restaurantReview" itemId={restaurant.id} />}
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>
