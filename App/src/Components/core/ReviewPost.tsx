@@ -3,8 +3,7 @@ import { FC } from "react";
 
 import { useTranslation } from "react-i18next";
 import styles from "./ReviewPost.module.css";
-
-import { ReviewDto } from "../../types/dto/common/ReviewDto";
+import { ReviewDto } from "../../types/dto/reviews/ReviewDto";
 
 interface ReviewPostProps {
     review: ReviewDto;
@@ -26,23 +25,23 @@ export const ReviewPost: FC<ReviewPostProps> = ({ review }) => {
                     <div className={styles.nameAndEmail}>
                         <div className={styles.fullName}>
                             <Typography variant="body1" className={styles.authorName}>
-                                {review.user.firstName} {review.user.lastName}
+                                {review.review.user.firstName} {review.review.user.lastName}
                             </Typography>
                         </div>
-                        <Typography variant="body2"> {review.user.email}</Typography>
+                        <Typography variant="body2"> {review.review.user.email}</Typography>
                     </div>
                 </div>
             </div>
 
             <Typography variant="body1" className={styles.title}>
-                {review.title}
+                {review.review.title}
             </Typography>
-            <Typography variant="body1">{review.body}</Typography>
+            <Typography variant="body1">{review.review.body}</Typography>
             <div className={styles.rating}>
                 <Typography variant="caption">{t("reviews.rating")}:</Typography>
                 <StarsRating
                     name="half-rating"
-                    defaultValue={review.rating}
+                    defaultValue={review.review.rating}
                     precision={0.5}
                     readOnly
                     size="small"

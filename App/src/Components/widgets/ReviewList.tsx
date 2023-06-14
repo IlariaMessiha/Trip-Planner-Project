@@ -3,7 +3,7 @@ import { FC } from "react";
 import { ReviewPost } from "../core/ReviewPost";
 import styles from "./ReviewList.module.css";
 import { useTranslation } from "react-i18next";
-import { ReviewDto } from "../../types/dto/common/ReviewDto";
+import { ReviewDto } from "../../types/dto/reviews/ReviewDto";
 
 interface ReviewListProps {
     reviews: ReviewDto[];
@@ -16,7 +16,7 @@ export const ReviewList: FC<ReviewListProps> = ({ reviews }) => {
                 {t("common.reviews")}:
             </Typography>
             {reviews?.map(review => (
-                <div key={review.id}>
+                <div key={review.review.id}>
                     <ReviewPost review={review} />
                     <Divider />
                 </div>

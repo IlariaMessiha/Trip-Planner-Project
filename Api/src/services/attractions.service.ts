@@ -43,11 +43,14 @@ export class AttractionsService {
         return {
             attraction: mapAttractionToDto(attraction, attraction.directus_files),
             reviews: reviews.map(review => {
-                return mapAttractionReviewToDto(
-                    review,
-                    mapUserToDto(review.user),
-                    mapAttractionToDto(attraction, attraction.directus_files)
-                );
+                return {
+                    review: mapAttractionReviewToDto(
+                        review,
+                        mapUserToDto(review.user),
+                        mapAttractionToDto(attraction, attraction.directus_files)
+                    ),
+                    type: "attractionReview",
+                };
             }),
             city: this.mappingDto.mapCityToDto(
                 city,

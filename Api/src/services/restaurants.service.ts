@@ -42,11 +42,14 @@ export class RestaurantsService {
         return {
             restaurant: mapRestaurantToDto(restaurant, restaurant.directus_files),
             reviews: reviews.map(review => {
-                return mapRestaurantReviewToDto(
-                    review,
-                    mapUserToDto(review.user),
-                    mapRestaurantToDto(restaurant, restaurant.directus_files)
-                );
+                return {
+                    review: mapRestaurantReviewToDto(
+                        review,
+                        mapUserToDto(review.user),
+                        mapRestaurantToDto(restaurant, restaurant.directus_files)
+                    ),
+                    type: "restaurantReview",
+                };
             }),
             city: this.mappingDto.mapCityToDto(
                 city,

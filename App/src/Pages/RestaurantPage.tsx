@@ -17,7 +17,7 @@ import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
-import { RestaurantReviewDto } from "../types/dto/common/RestaurantReviewDto";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -33,7 +33,7 @@ export const RestaurantPage = () => {
     const [open, setOpen] = React.useState(false);
     const { t } = useTranslation();
     const [restaurant, setRestaurant] = React.useState<RestaurantDto | null>(null);
-    const [reviews, setReviews] = useState<RestaurantReviewDto[] | undefined>(undefined);
+    const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();

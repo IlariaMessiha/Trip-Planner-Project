@@ -8,8 +8,9 @@ import { GetHotelResponseDto } from "../types/dto/hotel/GetHotelResponseDto";
 import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 
 import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
-import { ReviewDto } from "../types/dto/common/ReviewDto";
+
 import { UserDto } from "../types/dto/common/UserDto";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 

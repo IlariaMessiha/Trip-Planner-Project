@@ -16,10 +16,10 @@ import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 
-import { ReviewList } from "../Components/widgets/ReviewList";
-import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
-import { useAuthContext } from "../context/authContext";
 import { postData } from "../api/PostData";
+import { ReviewList } from "../Components/widgets/ReviewList";
+import { useAuthContext } from "../context/authContext";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -35,7 +35,7 @@ export const AttractionPage = () => {
     const [open, setOpen] = React.useState(false);
     const { t } = useTranslation();
     const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
-    const [reviews, setReviews] = useState<AttractionReviewDto[] | undefined>(undefined);
+    const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
