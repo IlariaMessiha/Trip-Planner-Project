@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
 import { ChatbotButton } from "../Components/widgets/ChatbotButton";

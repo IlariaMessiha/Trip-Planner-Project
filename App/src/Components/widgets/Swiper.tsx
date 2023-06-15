@@ -1,6 +1,4 @@
-import { IconButton } from "@mui/material";
-import { styled } from "@mui/system";
-import { ReactNode, useRef } from "react";
+import { ReactNode } from "react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,15 +10,6 @@ interface SwiperProps<T = any> {
     items: T[];
     renderItem: (item: T) => ReactNode;
 }
-const SwiperArrowsButton = styled(IconButton)({
-    backgroundColor: "black",
-    color: "white",
-
-    "&:hover": {
-        backgroundColor: "white",
-        color: "black",
-    },
-});
 
 export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => {
     return (
