@@ -104,7 +104,6 @@ export class TripService {
     ): Promise<TripDto> {
         const budget = this.calculateBudget(globalFilters);
         let trip: TripDto = null;
-        console.log(attractionsPool);
 
         const swap = (i: number) => {
             let sum = 0;
@@ -117,7 +116,6 @@ export class TripService {
             tripAttractions.map(a => {
                 sum += a.entryFee;
             });
-            console.log("sum:", sum, "budget:", budget);
 
             if (sum > budget + 10) {
                 swap(i + 1);

@@ -77,8 +77,6 @@ export const TripPage = () => {
                                 <TimelineConnector />
                             </TimelineSeparator>
                             <TimelineContent className={styles.itemContent}>
-                                {/* {item.attraction && <TripItem item={item.attraction} />}
-                                {item.restaurant && <TripItem item={item.restaurant} />} */}
                                 {item.item.value && <SectionItemType item={item.item} />}
                             </TimelineContent>
                         </TimelineItem>
