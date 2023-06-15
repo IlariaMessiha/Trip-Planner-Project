@@ -1,8 +1,4 @@
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { IconButton } from "@mui/material";
-import { styled } from "@mui/system";
-import { ReactNode, useRef } from "react";
+import { ReactNode } from "react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -14,20 +10,8 @@ interface SwiperProps<T = any> {
     items: T[];
     renderItem: (item: T) => ReactNode;
 }
-const SwiperArrowsButton = styled(IconButton)({
-    backgroundColor: "black",
-    color: "white",
-
-    "&:hover": {
-        backgroundColor: "white",
-        color: "black",
-    },
-});
 
 export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => {
-    const nextButton = useRef(null);
-    const prevButton = useRef(null);
-
     return (
         <ReactSwiper
             className={styles.swiper}
@@ -36,16 +20,16 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
                     slidesPerView: 1,
                     spaceBetween: 10,
                 },
-                480: {
+                400: {
                     slidesPerView: 2,
                     spaceBetween: 5,
                 },
 
-                750: {
+                800: {
                     slidesPerView: 3,
                     spaceBetween: 5,
                 },
-                1090: {
+                900: {
                     slidesPerView: 4,
                     spaceBetween: 10,
                 },
@@ -55,28 +39,13 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
                 },
             }}
             modules={[Navigation]}
-            navigation={{
-                prevEl: prevButton.current,
-                nextEl: nextButton.current,
-            }}
+            navigation
             pagination={{ clickable: true }}
             centerInsufficientSlides={true}
         >
-            <div className={styles.prevButton} ref={prevButton}>
-                <SwiperArrowsButton>
-                    <ArrowBackIcon />
-                </SwiperArrowsButton>
-            </div>
-
             {items.map((item, i) => {
                 return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
             })}
-
-            <div className={styles.nextButton} ref={nextButton}>
-                <SwiperArrowsButton>
-                    <ArrowForwardIcon />
-                </SwiperArrowsButton>
-            </div>
         </ReactSwiper>
     );
 };
