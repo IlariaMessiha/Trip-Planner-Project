@@ -9,8 +9,8 @@ interface FavoriteList {
 export const FavoritesList: FC<FavoriteList> = ({ favorites }) => {
     return (
         <div>
-            {favorites.map(favorite => {
-                return <FavoriteItemType item={favorite} />;
+            {favorites.map((favorite, i) => {
+                return <FavoriteItemType item={favorite} key={i} />;
             })}
         </div>
     );

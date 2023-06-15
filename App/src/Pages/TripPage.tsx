@@ -47,7 +47,7 @@ export const TripPage = () => {
             >
                 {trip?.tripItems.map((item, i) => {
                     return (
-                        <TimelineItem className={styles.item}>
+                        <TimelineItem className={styles.item} key={i}>
                             <TimelineOppositeContent color="textSecondary">
                                 {item.dateTime === "7:00" ? (
                                     <Typography variant="h6">Breakfast</Typography>
@@ -79,7 +79,7 @@ export const TripPage = () => {
                             <TimelineContent className={styles.itemContent}>
                                 {/* {item.attraction && <TripItem item={item.attraction} />}
                                 {item.restaurant && <TripItem item={item.restaurant} />} */}
-                                <SectionItemType item={item.item} />
+                                {item.item.value && <SectionItemType item={item.item} />}
                             </TimelineContent>
                         </TimelineItem>
                     );
