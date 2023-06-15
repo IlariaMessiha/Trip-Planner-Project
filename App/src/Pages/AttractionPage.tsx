@@ -152,7 +152,9 @@ export const AttractionPage = () => {
                     variant="text"
                     startIcon={<EditIcon className={styles.icon} />}
                     sx={{ color: "black" }}
-                    onClick={openForm}
+                    onClick={() => {
+                        loggedInUser ? openForm() : navigate("/auth/login");
+                    }}
                 >
                     Write a Review
                 </Button>

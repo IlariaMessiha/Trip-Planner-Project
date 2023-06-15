@@ -149,7 +149,9 @@ export const RestaurantPage = () => {
                     variant="text"
                     startIcon={<EditIcon className={styles.icon} />}
                     sx={{ color: "black" }}
-                    onClick={openForm}
+                    onClick={() => {
+                        loggedInUser ? openForm() : navigate("/api/auth/login");
+                    }}
                 >
                     Write a Review
                 </Button>
