@@ -24,6 +24,8 @@ import { AuthController } from "./controllers/auth.controller";
 import { SearchController } from "./controllers/search.controller";
 import { SearchService } from "./services/search.service";
 import { UsersService } from "./services/users.service";
+import { TripController } from "./controllers/trip.controller";
+import { TripService } from "./services/trip.service";
 
 @Module({
     controllers: [
@@ -36,6 +38,7 @@ import { UsersService } from "./services/users.service";
         AuthController,
         RestaurantsController,
         HotelsController,
+        TripController,
     ],
     providers: [
         AttractionsService,
@@ -49,6 +52,7 @@ import { UsersService } from "./services/users.service";
         UsersService,
         RestaurantsService,
         HotelsService,
+        TripService,
     ],
     imports: [
         ServeStaticModule.forRoot({

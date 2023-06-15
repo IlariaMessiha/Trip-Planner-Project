@@ -1,6 +1,6 @@
-import { TChatbotFilter, TChatbotQuestion, TChatbotSubmission } from "src/types/TChatbot";
-import { mapValues, partition, pickBy } from "lodash";
 import { Prisma } from "@prisma/client";
+import { mapValues } from "lodash";
+import { TChatbotFilter } from "src/types/TChatbot";
 
 export const replaceDynamicValueInFilter = (
     filter: TChatbotFilter,
@@ -21,7 +21,6 @@ export const toAttractionsFilter = (filters: TChatbotFilter[]): Prisma.attractio
     return filters.map(filter => ({
         min_age: mapPrismaNumberFilter(filter.minAge),
         city: mapPrismaCity(filter.preferredDestination),
-
         // attraction_tag: mapPrismaTagsFilter(filter.tags),
     }));
 };
@@ -89,19 +88,4 @@ export const mapPrismaTagsFilter = (
             },
         },
     };
-};
-
-export const getGlobalFilters = (filters: TChatbotFilter[]) => {
-    return filters
-        .map(filter => {
-            return pickBy(filter, (val, key) => key.startsWith("global"));
-        })
-        .filter(filter => Object.keys(filter).length > 0);
-};
-export const getFieldFilters = (filters: TChatbotFilter[]) => {
-    return filters
-        .map(filter => {
-            return pickBy(filter, (val, key) => !key.startsWith("global"));
-        })
-        .filter(filter => Object.keys(filter).length > 0);
 };

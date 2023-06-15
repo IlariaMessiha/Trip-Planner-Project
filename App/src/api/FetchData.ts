@@ -37,7 +37,9 @@ export class FetchData {
         return response.data;
     }
     public async getDestinations() {
-        const response = await Axios.get<GetDestinationNameDto>(`${API_BASE_URL}/destinations`);
+        const response = await Axios.get<GetDestinationNameDto>(
+            `${API_BASE_URL}/trip/destinations`
+        );
         return response.data;
     }
 
@@ -51,7 +53,7 @@ export class FetchData {
         return response.data;
     }
     public async getChatbotFlow() {
-        const response = await Axios.get<TChatbotFlow>(`${API_BASE_URL}/chatbotFlow`);
+        const response = await Axios.get<TChatbotFlow>(`${API_BASE_URL}/trip/chatbotFlow`);
         return response.data;
     }
     public async getMe(token: string) {

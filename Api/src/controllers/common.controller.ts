@@ -10,24 +10,4 @@ export class CommonController {
     getDashboard() {
         return this.commonService.findDashboardContent();
     }
-    @Get("/destinations")
-    getDestinations() {
-        return this.commonService.findDestinations();
-    }
-    @Get("/chatbotFlow")
-    getChatbotFlow() {
-        return this.commonService.findChatbotFlow();
-    }
-
-    @Post("/submissions")
-    async postSubmissions(@Body() submissions: TChatbotSubmission[]) {
-        const filtersByTarget = this.commonService.deduceFiltersByTarget(submissions);
-        const attractionPool = await this.commonService.findAttractionPool(
-            filtersByTarget.attractions
-        );
-        const restaurantPool = await this.commonService.findRestaurantPool(
-            filtersByTarget.restaurants
-        );
-        // return this.commonService.createTrip(attractionPool, restaurantPool, filtersByTarget);
-    }
 }

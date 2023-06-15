@@ -22,14 +22,9 @@ export type TChatbotAnswer = {
     text: string;
     filter?: TChatbotFilter;
 };
-export type TChatbotFilterKey =
-    | "globalBudget"
-    | "globalPreferredDestination"
-    | "globalTripDuration"
-    | string;
 
 export type TChatbotFilter = {
-    [key: TChatbotFilterKey]: {
+    [key: string]: {
         equals?: string;
         not?: string;
         in?: string[];
