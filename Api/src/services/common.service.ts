@@ -31,7 +31,7 @@ export class CommonService {
                 directus_files: true,
             },
         });
-        const attractions = await this.prisma.attraction.findMany({
+        const beachAttractions = await this.prisma.attraction.findMany({
             where: {
                 type: {
                     equals: "beach",
@@ -44,9 +44,33 @@ export class CommonService {
                 attraction_tag: true,
             },
         });
+        const egyptAttractions = await this.prisma.attraction.findMany({
+            where: {
+                city: {
+                    country: {
+                        country_code: "egypt",
+                    },
+                },
+            },
+            include: {
+                city: true,
+                directus_files: true,
+                attraction_tag: true,
+            },
+        });
 
         return {
             sections: [
+                {
+                    title: "Places to in Egypt ",
+                    subtitle: "Go to these places for a close-up look at Egypt.",
+                    items: egyptAttractions.map(attraction => {
+                        return {
+                            type: "attraction",
+                            value: mapAttractionToDto(attraction, attraction.directus_files),
+                        };
+                    }),
+                },
                 {
                     title: "Where to go right now",
                     subtitle: "Spots at the top of travelers'must-go lists",
@@ -64,7 +88,7 @@ export class CommonService {
                 {
                     title: "Top activities for beach lovers",
                     subtitle: "Recommended based on your activity",
-                    items: attractions.map(attraction => {
+                    items: beachAttractions.map(attraction => {
                         return {
                             type: "attraction",
                             value: mapAttractionToDto(attraction, attraction.directus_files),

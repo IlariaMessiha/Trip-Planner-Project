@@ -1,19 +1,17 @@
-import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
 import { ChatbotButton } from "../Components/widgets/ChatbotButton";
 import { fetchData } from "../api/FetchData";
+import styles from "./Dashboard.module.css";
 
-import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 import { SectionItemType } from "../Components/widgets/SectionItemType";
 import { Swiper } from "../Components/widgets/Swiper";
 
 import { SectionDto } from "../types/dto/common/SectionDto";
 
 export const Dashboard = () => {
-    const { t } = useTranslation();
     const [sections, setSections] = useState<SectionDto[]>([]);
 
     useEffect(() => {
@@ -27,9 +25,7 @@ export const Dashboard = () => {
 
     return (
         <div>
-            <Typography variant="h4">{t("dashboard.slogan")}</Typography>
-            <SearchEngineAutocomplete />
-            <Container>
+            <Container className={styles.container}>
                 {sections.map((section, i) => {
                     return (
                         <Section title={section.title} subtitle={section.subtitle} key={i}>
