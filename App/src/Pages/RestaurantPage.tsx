@@ -150,7 +150,7 @@ export const RestaurantPage = () => {
                     startIcon={<EditIcon className={styles.icon} />}
                     sx={{ color: "black" }}
                     onClick={() => {
-                        loggedInUser ? openForm() : navigate("/api/auth/login");
+                        loggedInUser ? openForm() : navigate("/auth/login");
                     }}
                 >
                     Write a Review
