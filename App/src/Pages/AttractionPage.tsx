@@ -1,4 +1,4 @@
-import { Container, IconButton, styled, Typography } from "@mui/material";
+import { Button, Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
@@ -9,17 +9,18 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./AttractionPage.module.css";
 
-import EditIcon from "@mui/icons-material/Edit";
-import Tooltip from "@mui/material/Tooltip";
 import dayjs from "dayjs";
 import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
 
-import { ReviewList } from "../Components/widgets/ReviewList";
-import { AttractionReviewDto } from "../types/dto/common/AttractionReviewDto";
-import { useAuthContext } from "../context/authContext";
+import EditIcon from "@mui/icons-material/Edit";
 import { postData } from "../api/PostData";
+import { ReviewList } from "../Components/widgets/ReviewList";
+import { useAuthContext } from "../context/authContext";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { ReviewForm } from "../Components/widgets/ReviewForm";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -27,15 +28,13 @@ const ShareButton = styled(IconButton)({
 const FavoriteButton = styled(IconButton)({
     color: "black",
 });
-const ReviewButton = styled(IconButton)({
-    color: "black",
-});
 
 export const AttractionPage = () => {
-    const [open, setOpen] = React.useState(false);
+    const [sharePopupState, setSharePopupState] = useState(false);
+    const [formState, setFormState] = useState(false);
     const { t } = useTranslation();
     const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
-    const [reviews, setReviews] = useState<AttractionReviewDto[] | undefined>(undefined);
+    const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
@@ -50,10 +49,10 @@ export const AttractionPage = () => {
         onMount();
     }, [id]);
     const handleClickOpen = () => {
-        setOpen(true);
+        setSharePopupState(true);
     };
     const handleClose = () => {
-        setOpen(false);
+        setSharePopupState(false);
     };
 
     if (!attraction) {
@@ -73,6 +72,12 @@ export const AttractionPage = () => {
         } else {
             navigate("/auth/login");
         }
+    };
+    const openForm = () => {
+        setFormState(true);
+    };
+    const closeForm = () => {
+        setFormState(false);
     };
     return (
         <Container className={styles.container}>
@@ -115,7 +120,11 @@ export const AttractionPage = () => {
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
-                    <SharePopup url={window.location.href} open={open} onClose={handleClose} />
+                    <SharePopup
+                        url={window.location.href}
+                        open={sharePopupState}
+                        onClose={handleClose}
+                    />
                     <FavoriteButton
                         onClick={() => {
                             like(attraction);
@@ -123,11 +132,6 @@ export const AttractionPage = () => {
                     >
                         <FavoriteBorderIcon />
                     </FavoriteButton>
-                    <Tooltip title={t("common.review")}>
-                        <ReviewButton>
-                            <EditIcon className={styles.icon} />
-                        </ReviewButton>
-                    </Tooltip>
                 </div>
             </div>
             <div className={styles.imageAndDescription}>
@@ -140,7 +144,25 @@ export const AttractionPage = () => {
                     />
                 )}
             </div>
+            <Typography variant="h4" className={styles.reviewsTitle}>
+                {t("common.reviews")}:
+            </Typography>
+            {!formState ? (
+                <Button
+                    variant="text"
+                    startIcon={<EditIcon className={styles.icon} />}
+                    sx={{ color: "black" }}
+                    onClick={openForm}
+                >
+                    Write a Review
+                </Button>
+            ) : (
+                <IconButton onClick={closeForm} sx={{ color: "red" }}>
+                    <CloseIcon />
+                </IconButton>
+            )}
             <div className={styles.reviewsContainer}>
+                {formState && <ReviewForm type="attractionReview" itemId={attraction.id} />}
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>

@@ -45,7 +45,6 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
 
     const handleSubmit = async (e: any): Promise<void> => {
         e.preventDefault();
-
         if (label) {
             try {
                 const _results = await postData.search({

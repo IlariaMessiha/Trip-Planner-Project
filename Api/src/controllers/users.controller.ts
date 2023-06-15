@@ -5,6 +5,7 @@ import { mapUserToDto } from "src/helpers/MappingDtos";
 import { UsersService } from "src/services/users.service";
 import { AuthUser } from "src/types/AuthUser";
 import { LikedItem } from "src/types/dto/likes/LikedItemDto";
+import { ReviewDto } from "src/types/dto/reviews/ReviewDto";
 
 @UseGuards(AuthGuard)
 @Controller("/api/users")
@@ -27,5 +28,9 @@ export class UsersController {
     @Post("/like")
     like(@Body() likedItem: LikedItem) {
         return this.usersService.like(likedItem);
+    }
+    @Post("/review")
+    writeReview(@Body() reviewDto: ReviewDto) {
+        return this.usersService.writeReview(reviewDto);
     }
 }

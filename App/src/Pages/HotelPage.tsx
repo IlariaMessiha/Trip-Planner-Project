@@ -1,5 +1,5 @@
 import { Container, IconButton, styled, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
@@ -14,9 +14,6 @@ import { HotelInfo } from "../Components/core/HotelInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { HotelDto } from "../types/dto/common/HotelDto";
 
-import { ReviewList } from "../Components/widgets/ReviewList";
-import { HotelReviewDto } from "../types/dto/common/HotelReviewDto";
-
 const ShareButton = styled(IconButton)({
     color: "black",
 });
@@ -29,14 +26,13 @@ export const HotelPage = () => {
     const [open, setOpen] = React.useState(false);
     const { t } = useTranslation();
     const [hotel, setHotel] = React.useState<HotelDto | null>(null);
-    const [reviews, setReviews] = useState<HotelReviewDto[] | undefined>(undefined);
+
     const { id } = useParams();
     React.useEffect(() => {
         const onMount = async () => {
             if (id) {
                 const response = await fetchData.getHotel(id);
                 setHotel(response.hotel);
-                setReviews(response.reviews);
             }
         };
         onMount();
@@ -95,9 +91,6 @@ export const HotelPage = () => {
                 {hotel.imageUrl && (
                     <img src={hotel.imageUrl} className={styles.image} alt={hotel.label} />
                 )}
-            </div>
-            <div className={styles.reviewsContainer}>
-                {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>
     );

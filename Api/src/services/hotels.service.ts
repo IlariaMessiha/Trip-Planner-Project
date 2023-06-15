@@ -27,19 +27,9 @@ export class HotelsService {
                 country: true,
             },
         });
-        const reviews = await this.prisma.hotel_review.findMany({
-            where: {
-                hotel_id: id,
-            },
-            include: {
-                user: true,
-            },
-        });
+
         return {
             hotel: this.mappingDto.mapHotelToDto(hotel, hotel.directus_files),
-            reviews: reviews.map(review => {
-                return this.mappingDto.mapReviewToDto(review, mapUserToDto(review.user));
-            }),
             city: this.mappingDto.mapCityToDto(
                 city,
                 city.directus_files,

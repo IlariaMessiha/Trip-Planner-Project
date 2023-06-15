@@ -9,20 +9,17 @@ import {
     restaurant,
     restaurant_review,
     user,
-    hotel_review,
 } from "@prisma/client";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { AttractionReviewDto } from "src/types/dto/common/AttractionReviewDto";
-import { HotelReviewDto } from "src/types/dto/common/HotelReviewDto";
-import { RestaurantReviewDto } from "src/types/dto/common/RestaurantReviewDto";
 import { AttractionTagDto } from "src/types/dto/common/AttractionTagDto";
 import { CityDto } from "src/types/dto/common/CityDto";
 import { CountryDto } from "src/types/dto/common/CountryDto";
 import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
+import { RestaurantReviewDto } from "src/types/dto/common/RestaurantReviewDto";
 import { TagDto } from "src/types/dto/common/TagDto";
 import { UserDto } from "src/types/dto/common/UserDto";
-import { ReviewDto } from "src/types/dto/common/ReviewDto";
 
 export const mapUserToDto = (user: user): UserDto => {
     return {
@@ -34,35 +31,31 @@ export const mapUserToDto = (user: user): UserDto => {
 };
 export const mapAttractionReviewToDto = (
     attractionReview: attraction_review,
-    user: UserDto
-): ReviewDto => {
+    user: UserDto,
+    attraction: number
+): AttractionReviewDto => {
     return {
         id: attractionReview.id,
         body: attractionReview.body,
         rating: attractionReview.rating,
         title: attractionReview.title,
         user: user,
+        itemId: attraction,
     };
 };
-export const mapHotelReviewToDto = (hotelReview: hotel_review, user: UserDto): ReviewDto => {
-    return {
-        id: hotelReview.id,
-        body: hotelReview.body,
-        rating: hotelReview.rating,
-        title: hotelReview.title,
-        user: user,
-    };
-};
+
 export const mapRestaurantReviewToDto = (
     restaurantReview: restaurant_review,
-    user: UserDto
-): ReviewDto => {
+    user: UserDto,
+    restaurant: number
+): RestaurantReviewDto => {
     return {
         id: restaurantReview.id,
         body: restaurantReview.body,
         rating: restaurantReview.rating,
         title: restaurantReview.title,
         user: user,
+        itemId: restaurant,
     };
 };
 export const mapAttractionToDto = (
@@ -150,28 +143,6 @@ export class MappingDtos {
             label: country.label,
         };
     }
-    mapReviewToDto(
-        review: attraction_review | hotel_review | restaurant_review,
-        user: UserDto
-    ): AttractionReviewDto | HotelReviewDto | RestaurantReviewDto {
-        return {
-            id: review.id,
-            body: review.body,
-            rating: review.rating,
-            title: review.title,
-            user: user,
-        };
-    }
-
-    // mapRestaurantReviewToDto(review: restaurant_review, user: UserDto): AttractionReviewDto {
-    //     return {
-    //         id: review.id,
-    //         body: review.body,
-    //         rating: review.rating,
-    //         title: review.title,
-    //         user: user,
-    //     };
-    // }
 
     mapHotelToDto(hotel: hotel, image: directus_files): HotelDto {
         const long = hotel.long ? hotel.long.toNumber() : null;

@@ -1,4 +1,4 @@
-import { Container, IconButton, styled, Typography } from "@mui/material";
+import { Button, Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
@@ -17,7 +17,9 @@ import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
-import { RestaurantReviewDto } from "../types/dto/common/RestaurantReviewDto";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { ReviewForm } from "../Components/widgets/ReviewForm";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -30,10 +32,11 @@ const ReviewButton = styled(IconButton)({
 });
 
 export const RestaurantPage = () => {
-    const [open, setOpen] = React.useState(false);
+    const [sharePopupState, setSharePopupState] = React.useState(false);
+    const [formState, setFormState] = useState(false);
     const { t } = useTranslation();
     const [restaurant, setRestaurant] = React.useState<RestaurantDto | null>(null);
-    const [reviews, setReviews] = useState<RestaurantReviewDto[] | undefined>(undefined);
+    const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
@@ -63,10 +66,16 @@ export const RestaurantPage = () => {
         onMount();
     }, [id]);
     const handleClickOpen = () => {
-        setOpen(true);
+        setSharePopupState(true);
     };
     const handleClose = () => {
-        setOpen(false);
+        setSharePopupState(false);
+    };
+    const openForm = () => {
+        setFormState(true);
+    };
+    const closeForm = () => {
+        setFormState(false);
     };
 
     if (!restaurant) {
@@ -103,7 +112,11 @@ export const RestaurantPage = () => {
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
-                    <SharePopup url={window.location.href} open={open} onClose={handleClose} />
+                    <SharePopup
+                        url={window.location.href}
+                        open={sharePopupState}
+                        onClose={handleClose}
+                    />
                     <FavoriteButton
                         onClick={() => {
                             like(restaurant);
@@ -128,7 +141,25 @@ export const RestaurantPage = () => {
                     />
                 )}
             </div>
+            <Typography variant="h4" className={styles.reviewsTitle}>
+                {t("common.reviews")}:
+            </Typography>
+            {!formState ? (
+                <Button
+                    variant="text"
+                    startIcon={<EditIcon className={styles.icon} />}
+                    sx={{ color: "black" }}
+                    onClick={openForm}
+                >
+                    Write a Review
+                </Button>
+            ) : (
+                <IconButton onClick={closeForm} sx={{ color: "red" }}>
+                    <CloseIcon />
+                </IconButton>
+            )}
             <div className={styles.reviewsContainer}>
+                {formState && <ReviewForm type="restaurantReview" itemId={restaurant.id} />}
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>

@@ -8,8 +8,9 @@ import { FavoritesList } from "../Components/widgets/FavoritesList";
 import { ReviewList } from "../Components/widgets/ReviewList";
 import { fetchData } from "../api/FetchData";
 import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
-import { ReviewDto } from "../types/dto/common/ReviewDto";
+
 import styles from "./ProfilePage.module.css";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
