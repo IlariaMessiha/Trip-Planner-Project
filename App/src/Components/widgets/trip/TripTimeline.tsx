@@ -1,21 +1,24 @@
 import Timeline from "@mui/lab/Timeline";
 import { FC } from "react";
-import { TripDto } from "../../../types/dto/common/TripDto";
+import { TripItemDto } from "../../../types/dto/common/TripDto";
 import { TripTimelineItem } from "./TripTimelineItem";
+import timelineOppositeContentClasses from "@mui/lab/TimelineOppositeContent/timelineOppositeContentClasses";
 
 interface TripTimelineProps {
-    trip: TripDto;
+    tripItems: TripItemDto[];
 }
 
-export const TripTimeline: FC<TripTimelineProps> = ({ trip }) => {
+export const TripTimeline: FC<TripTimelineProps> = ({ tripItems }) => {
     return (
-        <Timeline>
-            {trip?.tripItems.map((item, i) => (
-                <TripTimelineItem
-                    tripItem={item}
-                    key={i}
-                    isLastItem={i === trip.tripItems.length - 1}
-                />
+        <Timeline
+            sx={{
+                [`& .${timelineOppositeContentClasses.root}`]: {
+                    flex: 0.2,
+                },
+            }}
+        >
+            {tripItems.map((item, i) => (
+                <TripTimelineItem tripItem={item} key={i} isLastItem={i === tripItems.length - 1} />
             ))}
         </Timeline>
     );

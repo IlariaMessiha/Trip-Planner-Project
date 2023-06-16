@@ -1,12 +1,12 @@
-import { FC } from "react";
-import { TripDto } from "../../../types/dto/common/TripDto";
 import { Paper } from "@mui/material";
+import { FC } from "react";
+import { TripItemDto } from "../../../types/dto/common/TripDto";
 
 interface TripTimelineMapProps {
-    trip: TripDto;
+    tripItems: TripItemDto[];
 }
 
-export const TripTimelineMap: FC<TripTimelineMapProps> = ({ trip }) => {
+export const TripTimelineMap: FC<TripTimelineMapProps> = ({ tripItems }) => {
     // TODO : Add here a map with all the destinations
     return (
         <Paper

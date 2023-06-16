@@ -1,43 +1,36 @@
 import { Typography } from "@mui/material";
-import { useState } from "react";
+import { PageLayout } from "../Components/core/layout/PageLayout";
 import { TripTimeline } from "../Components/widgets/trip/TripTimeline";
 import { TripTimelineIntro } from "../Components/widgets/trip/TripTimelineIntro";
 import { TripTimelineMap } from "../Components/widgets/trip/TripTimelineMap";
-import { trip as mockTrip } from "../mock";
-import { TripDto } from "../types/dto/common/TripDto";
+import { useTripTimeline } from "../hooks/useTripTimeline";
 import styles from "./TripPage.module.css";
-import { PageLayout } from "../Components/core/layout/PageLayout";
+import dayjs from "dayjs";
 
 export const TripPage = () => {
-    const [trip, setTrip] = useState<TripDto | null>(mockTrip);
-    // useEffect(() => {
-    //     const _trip = getValue("trip");
-    //     if (_trip) setTrip(_trip);
-    // }, []);
-    // const getValue = (key: string, defaultValue = {}) => {
-    //     try {
-    //         const item = window.localStorage.getItem(key);
-    //         return item ? JSON.parse(item) : defaultValue;
-    //     } catch (error) {
-    //         console.log(error);
-    //         return defaultValue;
-    //     }
-    // };
-
+    const { trip, setVisibleDay, visibleDay } = useTripTimeline();
     // TODO : Create a TripTimelineEmpty component to be displayed here.
     if (!trip) return <Typography variant="h4">No trip found</Typography>;
 
+    console.log("visibleDay", visibleDay);
+    const filteredTripItems = trip.tripItems.filter(item =>
+        dayjs(item.dateTime).isSame(visibleDay, "day")
+    );
     return (
         <PageLayout className={styles.page}>
             <div className={styles.content}>
                 <div className={styles.contentTrip}>
-                    <TripTimelineIntro trip={trip} />
+                    <TripTimelineIntro
+                        trip={trip}
+                        visibleDay={visibleDay}
+                        setVisibleDay={setVisibleDay}
+                    />
                     <div className={styles.contentTimeline}>
-                        <TripTimeline trip={trip} />
+                        <TripTimeline tripItems={filteredTripItems} />
                     </div>
                 </div>
                 <div className={styles.contentMap}>
-                    <TripTimelineMap trip={trip} />
+                    <TripTimelineMap tripItems={filteredTripItems} />
                 </div>
             </div>
         </PageLayout>

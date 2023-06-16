@@ -1,14 +1,14 @@
 import { TripDto } from "./types/dto/common/TripDto";
 
-export const trip: TripDto = {
+export const mockTrip: TripDto = {
     id: 1,
     tripCode: "barcelona-2021",
-    arrivalDate: "",
-    departureDate: "",
+    departureDate: "2023-08-01T00:00:00.000Z",
+    arrivalDate: "2023-08-07T00:00:00.000Z",
     label: "",
     tripItems: [
         {
-            dateTime: "7:00",
+            dateTime: "2023-08-01T07:00:00.000Z",
             type: "restaurant",
             value: {
                 id: 2,
@@ -26,7 +26,7 @@ export const trip: TripDto = {
             },
         },
         {
-            dateTime: "9:00",
+            dateTime: "2023-08-01T09:00:00.000Z",
             type: "attraction",
             value: {
                 id: 17,
@@ -51,7 +51,7 @@ export const trip: TripDto = {
             },
         },
         {
-            dateTime: "10:00",
+            dateTime: "2023-08-01T11:00:00.000Z",
             type: "attraction",
             value: {
                 id: 7,
@@ -76,7 +76,7 @@ export const trip: TripDto = {
             },
         },
         {
-            dateTime: "14:00",
+            dateTime: "2023-08-01T14:00:00.000Z",
             type: "restaurant",
             value: {
                 id: 3,
@@ -94,7 +94,7 @@ export const trip: TripDto = {
             },
         },
         {
-            dateTime: "16:00",
+            dateTime: "2023-08-01T16:00:00.000Z",
             type: "attraction",
             value: {
                 id: 8,
@@ -116,7 +116,25 @@ export const trip: TripDto = {
             },
         },
         {
-            dateTime: "17:00",
+            dateTime: "2023-08-01T20:00:00.000Z",
+            type: "restaurant",
+            value: {
+                id: 4,
+                label: "Grama Laounge",
+                address: "Calle de la Cruz 19, 28012 Madrid Spain",
+                phone: "34912405587",
+                imageUrl: null,
+                website: "https://gramabar.com/",
+                rating: 1,
+                email: "info@gramabar.com ",
+                mapLocation: { lat: -3.70299, long: 40.42048 },
+                code: "grama-laounge",
+                avgMealPerPerson: 11.79411,
+                food: "Latin",
+            },
+        },
+        {
+            dateTime: "2023-08-02T09:00:00.000Z",
             type: "attraction",
             value: {
                 id: 9,
@@ -138,24 +156,6 @@ export const trip: TripDto = {
                     from: "1970-01-01T07:30:00.000Z",
                     to: "1970-01-01T17:00:00.000Z",
                 },
-            },
-        },
-        {
-            dateTime: "21:00",
-            type: "restaurant",
-            value: {
-                id: 4,
-                label: "Grama Laounge",
-                address: "Calle de la Cruz 19, 28012 Madrid Spain",
-                phone: "34912405587",
-                imageUrl: null,
-                website: "https://gramabar.com/",
-                rating: 1,
-                email: "info@gramabar.com ",
-                mapLocation: { lat: -3.70299, long: 40.42048 },
-                code: "grama-laounge",
-                avgMealPerPerson: 11.79411,
-                food: "Latin",
             },
         },
     ],
