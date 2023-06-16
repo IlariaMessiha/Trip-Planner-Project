@@ -14,9 +14,13 @@ export const TripTimelineMap: FC<TripTimelineMapProps> = ({ trip }) => {
                 height: "100%",
                 display: "flex",
                 backgroundColor: "#DDD",
-                margin: "20px",
                 boxSizing: "border-box",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "white",
             }}
-        ></Paper>
+        >
+            Display Map Here
+        </Paper>
     );
 };
