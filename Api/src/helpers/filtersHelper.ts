@@ -1,6 +1,6 @@
-import { TChatbotFilter, TChatbotQuestion, TChatbotSubmission } from "src/types/TChatbot";
-import { mapValues, partition, pickBy } from "lodash";
 import { Prisma } from "@prisma/client";
+import { mapValues } from "lodash";
+import { TChatbotFilter } from "src/types/TChatbot";
 
 export const replaceDynamicValueInFilter = (
     filter: TChatbotFilter,
@@ -18,16 +18,19 @@ export const replaceDynamicValueInFilter = (
 };
 
 export const toAttractionsFilter = (filters: TChatbotFilter[]): Prisma.attractionWhereInput[] => {
+    filters.map(filter => {
+        console.log(filter.tags);
+    });
     return filters.map(filter => ({
         min_age: mapPrismaNumberFilter(filter.minAge),
         city: mapPrismaCity(filter.preferredDestination),
-
-        // attraction_tag: mapPrismaTagsFilter(filter.tags),
+        attraction_tag: mapPrismaAttractionTagsFilter(filter.tags),
     }));
 };
 export const toRestaurantsFilter = (filters: TChatbotFilter[]): Prisma.restaurantWhereInput[] => {
     return filters.map(filter => ({
         city: mapPrismaCity(filter.preferredDestination),
+        restaurant_tag: mapPrismaAttractionTagsFilter(filter.tags),
     }));
 };
 export const mapPrismaCity = (rule: TChatbotFilter[string]): Prisma.cityWhereInput => {
@@ -79,7 +82,7 @@ export const mapPrismaNumberFilter = (rule: TChatbotFilter[string]): Prisma.IntN
     };
 };
 
-export const mapPrismaTagsFilter = (
+export const mapPrismaAttractionTagsFilter = (
     rule: TChatbotFilter[string] | undefined
 ): Prisma.Attraction_tagListRelationFilter => {
     return {
@@ -90,18 +93,14 @@ export const mapPrismaTagsFilter = (
         },
     };
 };
-
-export const getGlobalFilters = (filters: TChatbotFilter[]) => {
-    return filters
-        .map(filter => {
-            return pickBy(filter, (val, key) => key.startsWith("global"));
-        })
-        .filter(filter => Object.keys(filter).length > 0);
-};
-export const getFieldFilters = (filters: TChatbotFilter[]) => {
-    return filters
-        .map(filter => {
-            return pickBy(filter, (val, key) => !key.startsWith("global"));
-        })
-        .filter(filter => Object.keys(filter).length > 0);
+export const mapRestaurantPrismaTagsFilter = (
+    rule: TChatbotFilter[string] | undefined
+): Prisma.Restaurant_tagListRelationFilter => {
+    return {
+        some: {
+            tag: {
+                code: { in: rule?.in, mode: "insensitive", notIn: rule?.notIn },
+            },
+        },
+    };
 };

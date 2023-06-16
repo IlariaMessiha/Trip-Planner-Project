@@ -17,52 +17,46 @@ export const useChatbotController = () => {
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
     const navigate = useNavigate();
 
-    const displayQuestion = useCallback(
-        (questions: TChatbotQuestion[], index: number) => {
-            setCurrentQuestionIndex(index);
+    const displayQuestion = useCallback((questions: TChatbotQuestion[], index: number) => {
+        setCurrentQuestionIndex(index);
 
-            const currentQuestion = questions[index];
-            if (!currentQuestion) {
-                throw new Error("index not found");
-            }
+        const currentQuestion = questions[index];
+        if (!currentQuestion) {
+            throw new Error("index not found");
+        }
 
-            const botQuestion: TMessageBotQuestionData = {
-                code: currentQuestion.code,
-                text: currentQuestion.text,
-                type: currentQuestion.type,
-                answers: currentQuestion.answers?.map(answer => ({
-                    code: answer.code,
-                    text: answer.text,
-                })),
-            };
-            const newMessage: TMessage = {
-                data: botQuestion,
-                dataType: "bot-question",
-                sender: {
-                    avatar: "",
-                    displayName: "bot",
-                    id: "0",
-                },
-                sentAt: dayjs().toISOString(),
-            };
-            if (messages.length === 0) {
-                setMessages([newMessage]);
-            } else {
-                setMessages(prev => [...prev, newMessage]);
-            }
-        },
-        [messages.length]
-    );
+        const botQuestion: TMessageBotQuestionData = {
+            code: currentQuestion.code,
+            text: currentQuestion.text,
+            type: currentQuestion.type,
+            answers: currentQuestion.answers?.map(answer => ({
+                code: answer.code,
+                text: answer.text,
+            })),
+        };
+        const newMessage: TMessage = {
+            data: botQuestion,
+            dataType: "bot-question",
+            sender: {
+                avatar: "",
+                displayName: "bot",
+                id: "0",
+            },
+            sentAt: dayjs().toISOString(),
+        };
+        setMessages(prev => [...prev, newMessage]);
+    }, []);
+
     useEffect(() => {
         const onMount = async () => {
             const response = await fetchData.getChatbotFlow();
             const sortedQuestions = orderBy(response.questions, "sort");
             setQuestions(sortedQuestions);
-            displayQuestion(sortedQuestions, currentQuestionIndex);
+            displayQuestion(sortedQuestions, 0);
         };
 
         onMount();
-    }, [currentQuestionIndex, displayQuestion]);
+    }, [displayQuestion]);
 
     const handleChatInput = (value: string) => {
         const newMessage: TMessage = {
