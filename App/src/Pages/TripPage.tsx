@@ -4,6 +4,7 @@ import { Container } from "../Components/core/layout/Container";
 import { TripTimeline } from "../Components/widgets/trip/TripTimeline";
 import { TripDto } from "../types/dto/common/TripDto";
 import styles from "./TripPage.module.css";
+import { TripTimelineIntro } from "../Components/widgets/trip/TripTimelineIntro";
 
 export const TripPage = () => {
     const [trip, setTrip] = useState<TripDto | null>(null);
@@ -21,11 +22,13 @@ export const TripPage = () => {
         }
     };
 
+    // TODO : Create a TripTimelineEmpty component to be displayed here.
+    if (!trip) return <Typography variant="h4">No trip found</Typography>;
+
     return (
         <Container className={styles.container}>
-            <Typography variant="h4">Your Recommended trip</Typography>
-            <Typography variant="h5">Day 1</Typography>
-            {trip && <TripTimeline trip={trip} />}
+            <TripTimelineIntro trip={trip} />
+            <TripTimeline trip={trip} />
         </Container>
     );
 };

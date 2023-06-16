@@ -13,7 +13,7 @@ export const TripTimeline: FC<TripTimelineProps> = ({ trip }) => {
         <Timeline
             sx={{
                 [`& .${timelineOppositeContentClasses.root}`]: {
-                    flex: 0.2,
+                    flex: 0.5,
                 },
             }}
         >
