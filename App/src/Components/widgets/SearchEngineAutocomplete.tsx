@@ -9,6 +9,9 @@ import { AutoCompleteResult } from "../../types/dto/autocompleteType";
 
 interface SearchEngineProps {}
 
+const AUTOCOMPLETE_POLL_RATE = 2;
+
+
 export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
 
     const [results, setResults] = useState<AutoCompleteResult[]>([]);
@@ -19,12 +22,13 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
       const _query: string = target.value.toLowerCase();
       setQuery(_query);
       
-      const _results = autoCompleteData.autoCompleteSearch(_query);
 
-      if (_query === "") {
-        setResults([]); 
-      } else {
+      if (_query.length >= AUTOCOMPLETE_POLL_RATE) {
+        const _results = autoCompleteData.autoCompleteSearch(_query);
         setResults(await _results);
+      }
+      else {
+        setResults([]);
       }
     };
 

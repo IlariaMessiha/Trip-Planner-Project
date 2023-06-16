@@ -9,6 +9,7 @@ import { SectionItemType } from "../Components/widgets/SectionItemType";
 import { Swiper } from "../Components/widgets/Swiper";
 
 import { SectionDto } from "../types/dto/common/SectionDto";
+import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
 
 export const Dashboard = () => {
     const [sections, setSections] = useState<SectionDto[]>([]);
@@ -24,6 +25,7 @@ export const Dashboard = () => {
 
     return (
         <div>
+            <SearchEngineAutocomplete />
             <Container className={styles.container}>
                 {sections.map((section, i) => {
                     return (
