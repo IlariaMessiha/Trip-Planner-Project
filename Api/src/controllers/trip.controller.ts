@@ -23,6 +23,9 @@ export class TripController {
         const restaurantPool = await this.tripService.findRestaurantPool(
             filtersByTarget.restaurants
         );
-        return this.tripService.createTrip(filtersByTarget.global, restaurantPool, attractionPool);
+
+        const tripItemsPerDay = this.tripService.createTripItemPerDay(filtersByTarget.global);
+        this.tripService.addBreakfast(restaurantPool, tripItemsPerDay);
+        return this.tripService.addAttractions(attractionPool, tripItemsPerDay);
     }
 }

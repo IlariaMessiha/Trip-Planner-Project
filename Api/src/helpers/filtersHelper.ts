@@ -18,9 +18,6 @@ export const replaceDynamicValueInFilter = (
 };
 
 export const toAttractionsFilter = (filters: TChatbotFilter[]): Prisma.attractionWhereInput[] => {
-    filters.map(filter => {
-        console.log(filter.tags);
-    });
     return filters.map(filter => ({
         min_age: mapPrismaNumberFilter(filter.minAge),
         city: mapPrismaCity(filter.preferredDestination),

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { find, hasIn, slice } from "lodash";
+import { find, hasIn, slice, sortBy } from "lodash";
 import { flow } from "src/data/ChatbotFlow";
 import { MappingDtos, mapAttractionToDto, mapRestaurantToDto } from "src/helpers/MappingDtos";
 import {
@@ -8,6 +8,8 @@ import {
     toRestaurantsFilter,
 } from "src/helpers/filtersHelper";
 import { PrismaService } from "src/prisma.service";
+import { AttractionWithImage } from "src/types/AttractionWithImage";
+import { RestaurantWithTags } from "src/types/RestaurantWithTags";
 import {
     TChatbotFilter,
     TChatbotFlow,
@@ -69,7 +71,7 @@ export class TripService {
         }
     }
 
-    async findAttractionPool(filters: TChatbotFilter[]) {
+    async findAttractionPool(filters: TChatbotFilter[]): Promise<AttractionWithImage[]> {
         const attractions = await this.prisma.attraction.findMany({
             where: {
                 AND: toAttractionsFilter(filters),
@@ -80,23 +82,87 @@ export class TripService {
         });
 
         return attractions.map(attraction => {
-            return mapAttractionToDto(attraction, attraction.directus_files);
+            return { attraction: attraction, image: attraction.directus_files };
         });
     }
 
-    async findRestaurantPool(filters: TChatbotFilter[]) {
+    async findRestaurantPool(filters: TChatbotFilter[]): Promise<RestaurantWithTags[]> {
         const restaurants = await this.prisma.restaurant.findMany({
             where: {
                 AND: toRestaurantsFilter(filters),
             },
             include: {
                 directus_files: true,
+                restaurant_tag: {
+                    include: {
+                        tag: true,
+                    },
+                },
             },
         });
         return restaurants.map(restaurant => {
-            return mapRestaurantToDto(restaurant, restaurant.directus_files);
+            return {
+                restaurant: restaurant,
+                tags: restaurant.restaurant_tag.map(tag => {
+                    return tag.tag;
+                }),
+                image: restaurant.directus_files,
+            };
         });
     }
+    createTripItemPerDay(globalFilters: TChatbotFilter[]): { key: string; value: TripItemDto[] }[] {
+        const globalTripDuration = find(globalFilters, "tripDuration");
+        const tripItemsPerDay: { key: string; value: TripItemDto[] }[] = [];
+        tripItemsPerDay.length = parseInt(globalTripDuration.tripDuration.equals);
+        return tripItemsPerDay;
+    }
+
+    addBreakfast(
+        restaurantsPool: RestaurantWithTags[],
+        tripItemsPerDay: { key: string; value: TripItemDto[] }[]
+    ): { key: string; value: TripItemDto[] }[] {
+        const breakfastRestaurantsItems: RestaurantWithTags[] = [];
+        restaurantsPool.map(restaurant => {
+            return restaurant.tags.map(tag => {
+                if (tag.code === "food-meal" && tag.label === "Breakfast") {
+                    breakfastRestaurantsItems.push(restaurant);
+                }
+            });
+        });
+        for (let i = 0; i < tripItemsPerDay.length; i++) {
+            tripItemsPerDay[i] = {
+                key: `day${i + 1}`,
+                value: [
+                    {
+                        dateTime: "8:00",
+                        type: "restaurant",
+                        value: mapRestaurantToDto(
+                            breakfastRestaurantsItems[i].restaurant,
+                            breakfastRestaurantsItems[i].image
+                        ),
+                    },
+                ],
+            };
+        }
+
+        return tripItemsPerDay;
+    }
+
+    addAttractions(
+        attractionsPool: AttractionWithImage[],
+        tripItemsPerDay: { key: string; value: TripItemDto[] }[]
+    ): { key: string; value: TripItemDto[] }[] {
+        sortBy(attractionsPool, "suggested_duration").reverse();
+        tripItemsPerDay.map((tripItemPerDay, i) => {
+            tripItemPerDay.value.push({
+                dateTime: "9:00",
+                type: "attraction",
+                value: mapAttractionToDto(attractionsPool[i].attraction, attractionsPool[i].image),
+            });
+        });
+        return tripItemsPerDay;
+    }
+
     async createTrip(
         globalFilters: TChatbotFilter[],
         restaurantsPool: RestaurantDto[],
@@ -135,46 +201,40 @@ export class TripService {
         const tripItems: TripItemDto[] = [];
         tripItems.push({
             dateTime: "7:00",
-            item: {
-                type: "restaurant",
-                value: restaurants[0],
-            },
+
+            type: "restaurant",
+            value: restaurants[0],
         });
         attractions.slice(0, 2).map((attraction, i) => {
             tripItems.push({
                 dateTime: attractions[i - 1]
                     ? `${9 + attractions[i - 1].suggestedDuration}:00`
                     : "9:00",
-                item: {
-                    type: "attraction",
-                    value: attraction,
-                },
+
+                type: "attraction",
+                value: attraction,
             });
         });
         tripItems.push({
             dateTime: "14:00",
-            item: {
-                type: "restaurant",
-                value: restaurants[1],
-            },
+
+            type: "restaurant",
+            value: restaurants[1],
         });
         attractions.slice(2, 4).map((attraction, i) => {
             tripItems.push({
                 dateTime: attractions[i - 1]
                     ? `${16 + attractions[i - 1].suggestedDuration}:00`
                     : "16:00",
-                item: {
-                    type: "attraction",
-                    value: attraction,
-                },
+
+                type: "attraction",
+                value: attraction,
             });
         });
         tripItems.push({
             dateTime: "21:00",
-            item: {
-                type: "restaurant",
-                value: restaurants[2],
-            },
+            type: "restaurant",
+            value: restaurants[2],
         });
 
         return {
