@@ -1,5 +1,4 @@
 import Timeline from "@mui/lab/Timeline";
-import { timelineOppositeContentClasses } from "@mui/lab/TimelineOppositeContent";
 import { FC } from "react";
 import { TripDto } from "../../../types/dto/common/TripDto";
 import { TripTimelineItem } from "./TripTimelineItem";
@@ -10,13 +9,7 @@ interface TripTimelineProps {
 
 export const TripTimeline: FC<TripTimelineProps> = ({ trip }) => {
     return (
-        <Timeline
-            sx={{
-                [`& .${timelineOppositeContentClasses.root}`]: {
-                    flex: 0.5,
-                },
-            }}
-        >
+        <Timeline>
             {trip?.tripItems.map((item, i) => (
                 <TripTimelineItem
                     tripItem={item}

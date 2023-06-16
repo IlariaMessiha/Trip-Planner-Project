@@ -1,11 +1,12 @@
 import { Typography } from "@mui/material";
 import { useState } from "react";
-import { Container } from "../Components/core/layout/Container";
 import { TripTimeline } from "../Components/widgets/trip/TripTimeline";
 import { TripTimelineIntro } from "../Components/widgets/trip/TripTimelineIntro";
+import { TripTimelineMap } from "../Components/widgets/trip/TripTimelineMap";
 import { trip as mockTrip } from "../mock";
 import { TripDto } from "../types/dto/common/TripDto";
 import styles from "./TripPage.module.css";
+import { PageLayout } from "../Components/core/layout/PageLayout";
 
 export const TripPage = () => {
     const [trip, setTrip] = useState<TripDto | null>(mockTrip);
@@ -27,9 +28,18 @@ export const TripPage = () => {
     if (!trip) return <Typography variant="h4">No trip found</Typography>;
 
     return (
-        <Container className={styles.container}>
-            <TripTimelineIntro trip={trip} />
-            <TripTimeline trip={trip} />
-        </Container>
+        <PageLayout className={styles.page}>
+            <div className={styles.content}>
+                <div className={styles.contentTrip}>
+                    <TripTimelineIntro trip={trip} />
+                    <div className={styles.contentTimeline}>
+                        <TripTimeline trip={trip} />
+                    </div>
+                </div>
+                <div className={styles.contentMap}>
+                    <TripTimelineMap trip={trip} />
+                </div>
+            </div>
+        </PageLayout>
     );
 };
