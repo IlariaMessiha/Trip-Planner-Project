@@ -28,19 +28,24 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
         // If user updates the start date, all the destinations will be updated accordingly.
         // If user updates the duration, a new recalculation for the trip is necessary
     };
+
+    const handleAdd = () => {
+        // TODO :  A user can add a new restaurant or attraction to the trip.
+    };
+
     return (
         <div className={styles.intro}>
             <Typography variant="h4">{trip.label || "Your Recommended trip"}</Typography>
             <div className={styles.actions}>
-                <Button variant="outlined">Update</Button>
-                <Button variant="outlined">Add new destination</Button>
+                <Button variant="outlined" onClick={handleUpdateTrip}>
+                    Update
+                </Button>
+                <Button variant="outlined" onClick={handleAdd}>
+                    Add new destination
+                </Button>
             </div>
 
             <Tabs value={tabValue} onChange={handleChange} aria-label="basic tabs example">
-                {/* <Tab label="Item One" {...a11yProps(0)} />
-                <Tab label="Item Two" {...a11yProps(1)} />
-                <Tab label="Item Three" {...a11yProps(2)} /> */}
-
                 {range(tripDurationInDays).map(day => (
                     <Tab
                         key={day}
