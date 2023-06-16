@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { FC } from "react";
-import { TripItemDto } from "../../../types/dto/common/TripItemDto";
+import { TripItemDto } from "../../../types/dto/common/TripDto";
 
 interface TripTimelineItemMetaProps {
     tripItem: TripItemDto;

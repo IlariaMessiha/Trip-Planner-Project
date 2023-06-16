@@ -1,5 +1,3 @@
-import { TripItemDto } from "./TripItemDto";
-
 export interface TripDto {
     id: number;
     label: string;
@@ -7,4 +5,10 @@ export interface TripDto {
     departureDate: string;
     tripCode: string;
     tripItems: TripItemDto[];
+}
+
+export interface TripItemDto<V = any> {
+    dateTime: string;
+    type: "attraction" | "city" | "hotel" | "restaurant";
+    value: V;
 }

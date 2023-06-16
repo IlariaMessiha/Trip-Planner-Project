@@ -5,11 +5,11 @@ import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent/TimelineOppositeContent";
 import TimelineSeparator from "@mui/lab/TimelineSeparator/TimelineSeparator";
 import { FC } from "react";
-import { TripItemDto } from "../../../types/dto/common/TripItemDto";
 import { SectionItemType } from "../SectionItemType";
 import styles from "./TripTimelineItem.module.css";
 import { TripTimelineItemIcon } from "./TripTimelineItemIcon";
 import { TripTimelineItemMeta } from "./TripTimelineItemMeta";
+import { TripItemDto } from "../../../types/dto/common/TripDto";
 
 interface TripTimelineItemProps {
     tripItem: TripItemDto;
@@ -29,7 +29,7 @@ export const TripTimelineItem: FC<TripTimelineItemProps> = ({ tripItem, isLastIt
                 {!isLastItem && <TimelineConnector />}
             </TimelineSeparator>
             <TimelineContent className={styles.itemContent}>
-                {tripItem.item.value && <SectionItemType item={tripItem.item} />}
+                {tripItem.value && <SectionItemType item={tripItem} />}
             </TimelineContent>
         </TimelineItem>
     );
