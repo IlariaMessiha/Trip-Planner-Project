@@ -7,6 +7,7 @@ export const flow: TChatbotFlow = {
             sort: 1,
             text: "Who are you traveling with?",
             type: "single-choice",
+            searchTargets: ["attractions"],
             answers: [
                 {
                     code: "myself",
@@ -50,6 +51,7 @@ export const flow: TChatbotFlow = {
             sort: 2,
             text: "What is the minimum age of your group ?",
             type: "text",
+            searchTargets: ["attractions", "restaurants"],
             validation: {
                 type: "valid-age",
                 onError: {
@@ -69,27 +71,28 @@ export const flow: TChatbotFlow = {
             sort: 3,
             text: "What is you estimated budget for this trip, excluding accommodation ?",
             type: "single-choice",
+            searchTargets: ["global"],
             answers: [
                 {
                     code: "lessThan1000",
                     text: "Less than $1000",
                     filter: {
                         tags: { in: ["budget", "cheap", "low-cost"] },
-                        globalBudget: { lte: "1000" },
+                        budget: { lte: "1000" },
                     },
                 },
                 {
                     code: "1000-2000",
                     text: "$1000 - $2000",
                     filter: {
-                        globalBudget: { gte: "1000", lte: "2000" },
+                        budget: { gte: "1000", lte: "2000" },
                     },
                 },
                 {
                     code: "2000-3000",
                     text: "$2000 - $3000",
                     filter: {
-                        globalBudget: { gte: "2000", lte: "3000" },
+                        budget: { gte: "2000", lte: "3000" },
                     },
                 },
                 {
@@ -97,7 +100,7 @@ export const flow: TChatbotFlow = {
                     text: "more than $3000",
                     filter: {
                         tags: { in: ["luxury", "expensive", "high-end", "premium"] },
-                        globalBudget: { gte: "3000" },
+                        budget: { gte: "3000" },
                     },
                 },
                 {
@@ -112,8 +115,9 @@ export const flow: TChatbotFlow = {
             sort: 4,
             text: "How long are you planning to stay ?(in weeks)",
             type: "text",
+            searchTargets: ["global"],
             filter: {
-                globalTripDuration: { equals: "$value" },
+                tripDuration: { equals: "$value" },
             },
             validation: {
                 type: "valid-duration",
@@ -128,6 +132,7 @@ export const flow: TChatbotFlow = {
             sort: 5,
             text: "What is your preferred destination (country, city) ? type 'any' if you don't have a preference",
             type: "text",
+            searchTargets: ["attractions", "restaurants"],
             validation: {
                 type: "existing-destination",
                 onError: {
@@ -145,6 +150,7 @@ export const flow: TChatbotFlow = {
             text: "Choose a theme for your trip.",
             type: "multiple-choices",
             filterAggregation: "or",
+            searchTargets: ["attractions"],
             answers: [
                 {
                     code: "physicalActivity",
@@ -202,6 +208,7 @@ export const flow: TChatbotFlow = {
             sort: 7,
             text: "What kind of physical activity do you prefer ?",
             type: "multiple-choices",
+            searchTargets: ["attractions"],
             filterAggregation: "or",
             shouldAskIf: {
                 preferredThemes: { in: ["physicalActivity"] },
@@ -251,6 +258,7 @@ export const flow: TChatbotFlow = {
             sort: 8,
             text: "What are your food preferences ?",
             type: "multiple-choices",
+            searchTargets: ["restaurants"],
             filterAggregation: "and",
             answers: [
                 {
@@ -297,6 +305,7 @@ export const flow: TChatbotFlow = {
             sort: 9,
             text: "Submit answers to plan your trip",
             type: "single-choice",
+            searchTargets: [],
             answers: [
                 {
                     code: "submit",

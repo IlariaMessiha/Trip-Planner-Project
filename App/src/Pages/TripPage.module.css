@@ -1,17 +1,22 @@
-.container {
-    margin-top: 100px;
+.page {
+    height: 100vh;
 }
 
-
-
-
-
-.item {
-    margin-top: 20px;
-}
-
-.itemContent {
+.content {
+    height: 100%;
     display: flex;
-    gap: 10px;
+}
 
+.contentTrip {
+    height: 100%;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.contentTimeline {
+    overflow: auto;
+}
+
+.contentMap {
+    flex-basis: 50%;
 }

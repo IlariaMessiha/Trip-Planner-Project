@@ -10,21 +10,4 @@ export class CommonController {
     getDashboard() {
         return this.commonService.findDashboardContent();
     }
-    @Get("/destinations")
-    getDestinations() {
-        return this.commonService.findDestinations();
-    }
-    @Get("/chatbotFlow")
-    getChatbotFlow() {
-        return this.commonService.findChatbotFlow();
-    }
-
-    @Post("/submissions")
-    postSubmissions(@Body() submissions: TChatbotSubmission[]) {
-        const filters = this.commonService.deduceFiltersFromSubmissions(submissions);
-        const attractionsAndRestaurants =
-            this.commonService.findFilteredAttractionAndRestaurants(filters);
-
-        return this.commonService.createTrip(attractionsAndRestaurants, filters);
-    }
 }

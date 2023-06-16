@@ -1,0 +1,8 @@
+.item {
+    margin-top: 20px;
+}
+
+.itemContent {
+    display: flex;
+    gap: 10px;
+}
