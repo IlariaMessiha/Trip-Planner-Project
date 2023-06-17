@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
 import { find } from "lodash";
+import { AuthGuard } from "src/auth/auth.guard";
+import { AuthUserPayload } from "src/auth/authUser.decorator";
 import { TripBuilder } from "src/classes/TripBuilder";
 import { mapTripToDto } from "src/helpers/MappingDtos";
 import { TripService } from "src/services/trip.service";
+import { AuthUser } from "src/types/AuthUser";
 import { TChatbotSubmission } from "src/types/TChatbot";
 
 @Controller("/trip")
@@ -18,7 +21,11 @@ export class TripController {
     }
 
     @Post("/submissions")
-    async postSubmissions(@Body() submissions: TChatbotSubmission[]) {
+    @UseGuards(AuthGuard)
+    async postSubmissions(
+        @Body() submissions: TChatbotSubmission[],
+        @AuthUserPayload() authUser: AuthUser
+    ) {
         const filtersByTarget = this.tripService.deduceFiltersByTarget(submissions);
         const attractionPool = await this.tripService.findAttractionPool(
             filtersByTarget.attractions
@@ -37,8 +44,7 @@ export class TripController {
         tripBuilder.addRestaurantTripItem(restaurantPool, "dinner");
         const trip = tripBuilder.build();
 
-        // TODO add user id
-        const savedTrip = await this.tripService.saveTrip(trip, 5);
+        const savedTrip = await this.tripService.saveTrip(trip, authUser.id);
         return mapTripToDto(savedTrip);
     }
 }
