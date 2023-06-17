@@ -59,7 +59,7 @@ export class AuthController {
             id: user.id,
             firstName: user.firstname,
             lastName: user.lastname,
-            email: user.email,
+            email: user.email.toLowerCase(),
         };
         const accessToken = this.jwtService.sign(payload);
         return {

@@ -23,7 +23,7 @@ export class UsersService {
         const hashedPass = await argon2.hash(registerBody.password);
         return this.prisma.user.create({
             data: {
-                email: registerBody.email,
+                email: registerBody.email.toLowerCase(),
                 firstname: registerBody.firstName,
                 lastname: registerBody.lastName,
                 password: hashedPass,
