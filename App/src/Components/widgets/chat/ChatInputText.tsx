@@ -1,10 +1,11 @@
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { FC, useState } from "react";
-interface chatInputProps {
+
+interface ChatInputTextProps {
     onSubmit: (value: string) => void;
 }
-export const ChatInput: FC<chatInputProps> = ({ onSubmit }) => {
+export const ChatInputText: FC<ChatInputTextProps> = ({ onSubmit }) => {
     const [inputValue, setInputValue] = useState("");
 
     return (
