@@ -197,10 +197,6 @@ export const flow: TChatbotFlow = {
                         tags: { in: ["shopping", "boutiques"] },
                     },
                 },
-                {
-                    code: "submit",
-                    text: "Submit",
-                },
             ],
         },
         {
@@ -247,10 +243,6 @@ export const flow: TChatbotFlow = {
                     text: "Nothing specific",
                     filter: {},
                 },
-                {
-                    code: "submit",
-                    text: "Submit",
-                },
             ],
         },
         {
@@ -294,24 +286,14 @@ export const flow: TChatbotFlow = {
                     text: "Nothing specific",
                     filter: {},
                 },
-                {
-                    code: "submit",
-                    text: "Submit",
-                },
             ],
         },
         {
             code: "submitQuestion",
             sort: 9,
-            text: "Submit answers to plan your trip",
-            type: "single-choice",
+            text: "You are all set ! We will now search for the best options for your trip.",
+            type: "submit",
             searchTargets: [],
-            answers: [
-                {
-                    code: "submit",
-                    text: "Submit",
-                },
-            ],
         },
     ],
 };

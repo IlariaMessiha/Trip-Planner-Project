@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 import { postData } from "../api/PostData";
 import { validateMap } from "../helpers/ValidateChatbotAnswers";
-import { TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
+import { TChatbotAnswer, TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
 import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
-import { TripDto } from "../types/dto/common/TripDto";
 
 export const useChatbotController = () => {
     const [messages, setMessages] = useState<TMessage[]>([]);
@@ -15,6 +14,8 @@ export const useChatbotController = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const navigate = useNavigate();
 
     const displayQuestion = useCallback((questions: TChatbotQuestion[], index: number) => {
@@ -70,11 +71,16 @@ export const useChatbotController = () => {
             sentAt: dayjs().toISOString(),
         };
         setMessages(prev => [...prev, newMessage]);
-        treatAnswer(value);
+
+        treatTextAnswer(value);
     };
-    const handleAnswerSelect = (code: string, label: string) => {
+    const handleAnswerSelect = (values: TChatbotAnswer[]) => {
+        if (values.length === 0) {
+            return;
+        }
+
         const newMessage: TMessage = {
-            data: label,
+            data: values.map(value => value.text).join(", "),
             dataType: "text",
             sender: {
                 avatar: "",
@@ -83,11 +89,9 @@ export const useChatbotController = () => {
             },
             sentAt: dayjs().toISOString(),
         };
-        if (!(code === "submit")) {
-            setMessages(prev => [...prev, newMessage]);
-        }
+        setMessages(prev => [...prev, newMessage]);
 
-        treatAnswer(code);
+        treatSelectAnswer(values);
     };
     const addResponseToSubmission = (currentQuestion: TChatbotQuestion, answerValue: string) => {
         const newSubmission: TChatbotSubmission = {
@@ -98,66 +102,31 @@ export const useChatbotController = () => {
         setSubmissions(prev => [...prev, newSubmission]);
     };
 
-    const treatAnswer = (answerValue: string) => {
+    const treatSelectAnswer = (values: TChatbotAnswer[]) => {
         const currentQuestion = questions[currentQuestionIndex];
 
-        const answerCode = currentQuestion.answers?.find(
-            answer => answer.code.toLowerCase() === answerValue.toLowerCase()
-        );
-        const answerLabel = currentQuestion.answers?.find(
-            answer => answer.text.toLowerCase() === answerValue.toLowerCase()
-        );
         if (!currentQuestion) {
             throw new Error("index not found");
         }
-        if (currentQuestion.type === "single-choice") {
-            if (answerCode || answerLabel) {
-                checkIfLastQuestion(currentQuestion, answerValue);
-            } else {
-                const newMessage: TMessage = {
-                    data: "choose from the provided options",
-                    dataType: "text",
-                    sender: {
-                        avatar: "",
-                        displayName: "bot",
-                        id: "0",
-                    },
-                    sentAt: dayjs().toISOString(),
-                };
-                setMessages(prev => [...prev, newMessage]);
-                displayQuestion(questions, currentQuestionIndex);
-            }
-        } else if (currentQuestion.type === "multiple-choices") {
-            if (answerValue === "submit") {
-                displayQuestion(questions, currentQuestionIndex + 1);
-            } else if (answerCode || answerLabel) {
-                addResponseToSubmission(currentQuestion, answerValue);
-            } else {
-                const newMessage: TMessage = {
-                    data: "choose from the provided options",
-                    dataType: "text",
-                    sender: {
-                        avatar: "",
-                        displayName: "bot",
-                        id: "0",
-                    },
-                    sentAt: dayjs().toISOString(),
-                };
-                setMessages(prev => [...prev, newMessage]);
-                displayQuestion(questions, currentQuestionIndex);
-            }
-        } else if (currentQuestion.type === "text") {
-            if (currentQuestion.validation) {
-                textQuestionValidation(answerValue, currentQuestion);
-            }
-        }
+
+        values.forEach(value => {
+            addResponseToSubmission(currentQuestion, value.code);
+        });
+        displayQuestion(questions, currentQuestionIndex + 1);
     };
-    const textQuestionValidation = async (
-        answerValue: string,
-        currentQuestion: TChatbotQuestion
-    ) => {
+
+    const treatTextAnswer = async (answerValue: string) => {
+        const currentQuestion = questions[currentQuestionIndex];
+
         const validate = validateMap[currentQuestion.validation?.type as keyof typeof validateMap];
-        if (await validate(answerValue)) {
+        if (!validate) {
+            addResponseToSubmission(currentQuestion, answerValue);
+            return;
+        }
+
+        const isValidationOk = await validate(answerValue);
+
+        if (isValidationOk) {
             addResponseToSubmission(currentQuestion, answerValue);
             displayQuestion(questions, currentQuestionIndex + 1);
         } else {
@@ -175,31 +144,25 @@ export const useChatbotController = () => {
             displayQuestion(questions, currentQuestionIndex);
         }
     };
-    const checkIfLastQuestion = (currentQuestion: TChatbotQuestion, answerValue: string) => {
-        if (currentQuestionIndex === questions.length - 1) {
-            submitAnswers();
-        } else {
-            addResponseToSubmission(currentQuestion, answerValue);
-            displayQuestion(questions, currentQuestionIndex + 1);
-        }
-    };
-    const submitAnswers = async () => {
-        const _trip = await postData.postSubmission(submissions);
-        setValue("trip", _trip);
-        navigate(`/trip/${_trip.id}`);
-        // console.log(localStorage.getItem("trip"));
-    };
-    const setValue = (key: string, value: TripDto) => {
+
+    const submitAndGoToTrip = async () => {
         try {
-            window.localStorage.setItem(key, JSON.stringify(value));
+            setIsSubmitting(true);
+            const _trip = await postData.postSubmission(submissions);
+            navigate(`/profile/trip/${_trip.id}`);
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return {
         messages,
+        currentQuestion: questions[currentQuestionIndex],
+        isSubmitting,
         handleChatInput,
         handleAnswerSelect,
+        submitAndGoToTrip,
     };
 };

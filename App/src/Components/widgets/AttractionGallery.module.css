@@ -8,17 +8,12 @@
     position: absolute;
     top: 250px;
     z-index: 1;
-
 }
-
 
 .nextButton {
     right: 0;
-
-
 }
 
 .prevButton {
     left: 0;
-
 }
