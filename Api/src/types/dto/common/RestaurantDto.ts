@@ -1,4 +1,4 @@
-import { AttractionTagsDto } from "../tags/AttractionTagsDto";
+import { RestaurantTagDto } from "./RestaurantTagDto";
 
 export interface RestaurantDto {
     id: number;
@@ -16,5 +16,5 @@ export interface RestaurantDto {
     } | null;
     imageUrl: string | null;
     avgMealPerPerson: number | null;
-    tags?: AttractionTagsDto[];
+    tags?: RestaurantTagDto[];
 }

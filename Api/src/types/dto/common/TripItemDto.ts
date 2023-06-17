@@ -1,8 +1,10 @@
 import { AttractionDto } from "./AttractionDto";
 import { RestaurantDto } from "./RestaurantDto";
-import { SectionItemDto } from "./SectionItemDto";
 
 export interface TripItemDto {
     dateTime: string;
-    item: SectionItemDto;
+    type: "attraction" | "restaurant";
+    value: AttractionDto | RestaurantDto;
 }
+
+export type TripItemsByDayDto = Record<string, TripItemDto[]>;
