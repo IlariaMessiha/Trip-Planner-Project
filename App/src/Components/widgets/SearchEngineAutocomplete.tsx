@@ -35,7 +35,7 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
     const navigate = useNavigate();
     const onSubmit = (e: any) => {
       e.preventDefault();
-      navigate(`/Search?q=${query}`);
+      navigate(`/search?q=${query}`);
     };
 
     return (
