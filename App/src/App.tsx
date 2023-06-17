@@ -31,10 +31,10 @@ function App() {
                         <Route path="/restaurant/:id" element={<RestaurantPage />} />
                         <Route path="/hotel/:id" element={<HotelPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
-                        <Route path="/trip/:id" element={<TripPage />} />
 
                         <Route path={"/profile"} element={<RouteAuthGuard access="private" />}>
                             <Route path="" element={<ProfilePage />} />
+                            <Route path="trip/:id" element={<TripPage />} />
                         </Route>
                         <Route path="/chatbot" element={<RouteAuthGuard access="private" />}>
                             <Route path="" element={<ChatbotPage />} />

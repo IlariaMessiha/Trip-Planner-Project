@@ -7,7 +7,11 @@ interface RouteAuthGuardProps {
 }
 
 export const RouteAuthGuard: FC<RouteAuthGuardProps> = ({ access }) => {
-    const { loggedInUser } = useAuthContext();
+    const { loggedInUser, isFetchingUser } = useAuthContext();
+
+    if (isFetchingUser) {
+        return <Outlet />;
+    }
 
     if (access === "anonymous" && loggedInUser) {
         return <Navigate to={"/"} replace />;

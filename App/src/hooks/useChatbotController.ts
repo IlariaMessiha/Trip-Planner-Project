@@ -149,7 +149,7 @@ export const useChatbotController = () => {
         try {
             setIsSubmitting(true);
             const _trip = await postData.postSubmission(submissions);
-            navigate(`/trip/${_trip.id}`);
+            navigate(`/profile/trip/${_trip.id}`);
         } catch (error) {
             console.log(error);
         } finally {
