@@ -3,16 +3,14 @@
     position: absolute;
     top: 90px;
     z-index: 1;
-
-
 }
 
 .nextButton {
-    right: 0
+    right: 0;
 }
 
 .prevButton {
-    left: 0
+    left: 0;
 }
 
 .swiper {
