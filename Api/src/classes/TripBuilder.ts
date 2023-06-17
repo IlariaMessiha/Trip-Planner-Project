@@ -1,11 +1,8 @@
+import { attraction } from "@prisma/client";
 import * as dayjs from "dayjs";
 import { chain, findKey, last, mapValues, range, sortBy } from "lodash";
-import { mapAttractionToDto, mapRestaurantToDto } from "src/helpers/MappingDtos";
-import { AttractionWithImage } from "src/types/AttractionWithImage";
 import { RestaurantWithTags } from "src/types/RestaurantWithTags";
-import { AttractionDto } from "src/types/dto/common/AttractionDto";
-import { TripDto } from "src/types/dto/common/TripDto";
-import { TripItemDto, TripItemsByDayDto } from "src/types/dto/common/TripItemDto";
+import { Trip, TripItem, TripItemsByDay } from "src/types/Trip";
 
 export class TripBuilder {
     private label = "Your recommended trip";
@@ -14,7 +11,7 @@ export class TripBuilder {
     // The user could change them in the future.
     private startDate = dayjs().add(1, "week");
     private endDate = this.startDate.add(this.tripDurationInDays - 1, "day");
-    private tripItemsByDay: TripItemsByDayDto;
+    private tripItemsByDay: TripItemsByDay;
 
     public constructor(private readonly tripDurationInDays: number) {}
 
@@ -22,8 +19,8 @@ export class TripBuilder {
         this.createTripItemsByDay();
     }
 
-    public build(): TripDto {
-        const trip: TripDto = {
+    public build() {
+        const trip: Trip = {
             label: this.label,
             startDate: this.startDate.toISOString(),
             endDate: this.endDate.toISOString(),
@@ -43,7 +40,7 @@ export class TripBuilder {
         };
 
         const filteredRestaurants = restaurantsPool.filter(restaurant =>
-            restaurant.tags.some(tag => tag.code === tagByMeal[meal])
+            restaurant.restaurant_tag.some(item => item.tag.code === tagByMeal[meal])
         );
 
         const selectOne = (date: string) => {
@@ -59,23 +56,17 @@ export class TripBuilder {
                 ...items,
                 {
                     dateTime: this.getPreviousItemEndDateTime(items, date),
-                    type: "restaurant" as TripItemDto["type"],
-                    value: mapRestaurantToDto(
-                        restaurantTripItem.restaurant,
-                        restaurantTripItem.image
-                    ),
+                    restaurant: restaurantTripItem,
                 },
             ];
         });
     }
 
-    public addAttractionTripItem(attractionsPool: AttractionWithImage[]) {
-        const sortedPool = sortBy(attractionsPool, a => a.attraction.suggested_duration).reverse();
+    public addAttractionTripItem(attractionsPool: attraction[]) {
+        const sortedPool = sortBy(attractionsPool, a => a.suggested_duration).reverse();
 
         sortedPool.forEach(attractionItem => {
-            const firstAvailableDay = this.findFirstAvailableDay(
-                attractionItem.attraction.suggested_duration
-            );
+            const firstAvailableDay = this.findFirstAvailableDay(attractionItem.suggested_duration);
 
             this.tripItemsByDay[firstAvailableDay] = [
                 ...this.tripItemsByDay[firstAvailableDay],
@@ -84,8 +75,7 @@ export class TripBuilder {
                         this.tripItemsByDay[firstAvailableDay],
                         firstAvailableDay
                     ),
-                    type: "attraction",
-                    value: mapAttractionToDto(attractionItem.attraction, attractionItem.image),
+                    attraction: attractionItem,
                 },
             ];
         });
@@ -101,11 +91,11 @@ export class TripBuilder {
             .value();
     }
 
-    private getPreviousItemEndDateTime(items: TripItemDto[], date: string) {
+    private getPreviousItemEndDateTime(items: TripItem[], date: string) {
         const previousItem = last(items);
 
         const previousItemDuration = previousItem
-            ? (previousItem.value as AttractionDto).suggestedDuration || 2
+            ? previousItem.attraction?.suggested_duration || 2
             : 0;
 
         return previousItem

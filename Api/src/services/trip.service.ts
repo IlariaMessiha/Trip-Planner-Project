@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { Prisma } from "@prisma/client";
 import { flow } from "src/data/ChatbotFlow";
 import { MappingDtos } from "src/helpers/MappingDtos";
 import {
@@ -7,8 +8,6 @@ import {
     toRestaurantsFilter,
 } from "src/helpers/filtersHelper";
 import { PrismaService } from "src/prisma.service";
-import { AttractionWithImage } from "src/types/AttractionWithImage";
-import { RestaurantWithTags } from "src/types/RestaurantWithTags";
 import {
     TChatbotFilter,
     TChatbotFlow,
@@ -16,6 +15,7 @@ import {
     TChatbotQuestionSearchTarget,
     TChatbotSubmission,
 } from "src/types/TChatbot";
+import { Trip } from "src/types/Trip";
 import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
 
 @Injectable()
@@ -66,28 +66,20 @@ export class TripService {
         }
     }
 
-    async findAttractionPool(filters: TChatbotFilter[]): Promise<AttractionWithImage[]> {
-        const attractions = await this.prisma.attraction.findMany({
+    async findAttractionPool(filters: TChatbotFilter[]) {
+        return await this.prisma.attraction.findMany({
             where: {
                 AND: toAttractionsFilter(filters),
             },
-            include: {
-                directus_files: true,
-            },
-        });
-
-        return attractions.map(attraction => {
-            return { attraction: attraction, image: attraction.directus_files };
         });
     }
 
-    async findRestaurantPool(filters: TChatbotFilter[]): Promise<RestaurantWithTags[]> {
-        const restaurants = await this.prisma.restaurant.findMany({
+    async findRestaurantPool(filters: TChatbotFilter[]) {
+        return await this.prisma.restaurant.findMany({
             where: {
                 AND: toRestaurantsFilter(filters),
             },
             include: {
-                directus_files: true,
                 restaurant_tag: {
                     include: {
                         tag: true,
@@ -95,14 +87,43 @@ export class TripService {
                 },
             },
         });
-        return restaurants.map(restaurant => {
-            return {
-                restaurant: restaurant,
-                tags: restaurant.restaurant_tag.map(tag => {
-                    return tag.tag;
-                }),
-                image: restaurant.directus_files,
-            };
+    }
+
+    async saveTrip(trip: Trip, user_id: number) {
+        return await this.prisma.trip.create({
+            data: {
+                label: trip.label,
+                start_date: trip.startDate,
+                end_date: trip.endDate,
+                user_id,
+                trip_items: {
+                    createMany: {
+                        data: trip.tripItems.map(
+                            (tripItem): Prisma.trip_itemCreateManyTripInput => ({
+                                attraction_id: tripItem.attraction?.id || null,
+                                restaurant_id: tripItem.restaurant?.id || null,
+                                datetime: tripItem.dateTime,
+                            })
+                        ),
+                    },
+                },
+            },
+            include: {
+                trip_items: {
+                    include: {
+                        attraction: {
+                            include: {
+                                directus_files: true,
+                            },
+                        },
+                        restaurant: {
+                            include: {
+                                directus_files: true,
+                            },
+                        },
+                    },
+                },
+            },
         });
     }
 }

@@ -1,7 +1,7 @@
-import { directus_files, restaurant, tag } from "@prisma/client";
+import { restaurant, restaurant_tag, tag } from "@prisma/client";
 
-export interface RestaurantWithTags {
-    restaurant: restaurant;
-    image: directus_files;
-    tags: tag[];
-}
+export type RestaurantWithTags = restaurant & {
+    restaurant_tag: (restaurant_tag & {
+        tag: tag;
+    })[];
+};

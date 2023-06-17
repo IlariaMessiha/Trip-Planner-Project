@@ -1,6 +1,7 @@
 import { TripDto } from "./types/dto/common/TripDto";
 
 export const mockTrip: TripDto = {
+    id: 3,
     label: "Your recommended trip",
     startDate: "2023-06-24T14:30:12.078Z",
     endDate: "2023-06-28T14:30:12.078Z",
