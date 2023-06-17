@@ -1,7 +1,7 @@
 import { TripItemDto } from "./TripItemDto";
 
 export interface TripDto {
-    // id: number;
+    id: number;
     label: string;
     startDate: string;
     endDate: string;

@@ -1,4 +1,5 @@
 export interface TripDto {
+    id: number;
     label: string;
     endDate: string;
     startDate: string;

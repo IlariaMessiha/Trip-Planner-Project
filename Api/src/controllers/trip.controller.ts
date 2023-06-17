@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { find } from "lodash";
 import { TripBuilder } from "src/classes/TripBuilder";
+import { mapTripToDto } from "src/helpers/MappingDtos";
 import { TripService } from "src/services/trip.service";
 import { TChatbotSubmission } from "src/types/TChatbot";
 
@@ -36,6 +37,8 @@ export class TripController {
         tripBuilder.addRestaurantTripItem(restaurantPool, "dinner");
         const trip = tripBuilder.build();
 
-        return trip;
+        // TODO add user id
+        const savedTrip = await this.tripService.saveTrip(trip, 5);
+        return mapTripToDto(savedTrip);
     }
 }

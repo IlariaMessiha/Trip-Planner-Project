@@ -10,6 +10,7 @@ import {
     restaurant_review,
     user,
 } from "@prisma/client";
+import { TripFull } from "src/types/Trip";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
 import { AttractionReviewDto } from "src/types/dto/common/AttractionReviewDto";
 import { AttractionTagDto } from "src/types/dto/common/AttractionTagDto";
@@ -19,6 +20,7 @@ import { HotelDto } from "src/types/dto/common/HotelDto";
 import { RestaurantDto } from "src/types/dto/common/RestaurantDto";
 import { RestaurantReviewDto } from "src/types/dto/common/RestaurantReviewDto";
 import { TagDto } from "src/types/dto/common/TagDto";
+import { TripDto } from "src/types/dto/common/TripDto";
 import { UserDto } from "src/types/dto/common/UserDto";
 
 export const mapUserToDto = (user: user): UserDto => {
@@ -116,6 +118,24 @@ export const mapRestaurantToDto = (
         code: restaurant.code,
         avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
         food: restaurant.food,
+    };
+};
+
+export const mapTripToDto = (trip: TripFull): TripDto => {
+    return {
+        id: trip.id,
+        label: trip.label,
+        startDate: trip.start_date.toISOString(),
+        endDate: trip.end_date.toISOString(),
+        tripItems: trip.trip_items.map(tripItem => {
+            return {
+                dateTime: tripItem.datetime.toISOString(),
+                type: tripItem.attraction_id ? "attraction" : "restaurant",
+                value: tripItem.attraction_id
+                    ? mapAttractionToDto(tripItem.attraction, tripItem.attraction?.directus_files)
+                    : mapRestaurantToDto(tripItem.restaurant, tripItem.restaurant?.directus_files),
+            };
+        }),
     };
 };
 
