@@ -15,7 +15,7 @@ import {
     TChatbotQuestionSearchTarget,
     TChatbotSubmission,
 } from "src/types/TChatbot";
-import { Trip, TripFull } from "src/types/Trip";
+import { Trip } from "src/types/Trip";
 import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
 
 @Injectable()
@@ -126,8 +126,8 @@ export class TripService {
             },
         });
     }
-    async findTrip(id: number): Promise<TripFull> {
-        const trip = await this.prisma.trip.findUnique({
+    async findTrip(id: number) {
+        return await this.prisma.trip.findUnique({
             where: {
                 id,
             },
@@ -148,14 +148,5 @@ export class TripService {
                 },
             },
         });
-        return {
-            end_date: trip.end_date,
-            id: trip.id,
-            label: trip.label,
-            start_date: trip.start_date,
-            trip_code: trip.trip_code,
-            user_id: trip.user_id,
-            trip_items: trip.trip_items,
-        };
     }
 }

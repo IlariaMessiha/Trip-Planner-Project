@@ -15,6 +15,7 @@ import { LoginPage } from "./Pages/LoginPage";
 import { RestaurantPage } from "./Pages/RestaurantPage";
 import { HotelPage } from "./Pages/HotelPage";
 import { ProfilePage } from "./Pages/profilePage";
+import { RouteAuthGuard } from "./Components/core/RouteAuthGuard";
 
 function App() {
     return (
@@ -26,15 +27,20 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/search" element={<SearchPage />} />
-                        <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/attraction/:id" element={<AttractionPage />} />
                         <Route path="/restaurant/:id" element={<RestaurantPage />} />
                         <Route path="/hotel/:id" element={<HotelPage />} />
                         <Route path="/city/:id" element={<CityPage />} />
-                        <Route path="profile" element={<ProfilePage />} />
                         <Route path="/trip/:id" element={<TripPage />} />
 
-                        <Route path={"/auth"}>
+                        <Route path={"/profile"} element={<RouteAuthGuard access="private" />}>
+                            <Route path="" element={<ProfilePage />} />
+                        </Route>
+                        <Route path="/chatbot" element={<RouteAuthGuard access="private" />}>
+                            <Route path="" element={<ChatbotPage />} />
+                        </Route>
+
+                        <Route path={"/auth"} element={<RouteAuthGuard access="anonymous" />}>
                             <Route path="login" element={<LoginPage />} />
                             <Route path="register" element={<RegisterPage />} />
                         </Route>

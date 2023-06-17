@@ -79,7 +79,8 @@ export class FetchData {
         );
         return response.data;
     }
-    public async getTrip(id: number, token: string) {
+    public async getTrip(id: number) {
+        const token = localStorage.getItem("accessToken");
         const response = await Axios.get<TripDto>(`${API_BASE_URL}/trip/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
         });

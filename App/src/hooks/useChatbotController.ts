@@ -8,11 +8,8 @@ import { validateMap } from "../helpers/ValidateChatbotAnswers";
 import { TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
 import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
 import { TripDto } from "../types/dto/common/TripDto";
-import { useAuthContext } from "../context/authContext";
 
 export const useChatbotController = () => {
-    const token = localStorage.getItem("accessToken");
-    const { loggedInUser } = useAuthContext();
     const [messages, setMessages] = useState<TMessage[]>([]);
     const [questions, setQuestions] = useState<TChatbotQuestion[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -187,14 +184,9 @@ export const useChatbotController = () => {
         }
     };
     const submitAnswers = async () => {
-        if (token && loggedInUser) {
-            const _trip = await postData.postSubmission(submissions, token);
-            setValue("trip", _trip);
-            navigate(`/trip/${_trip.id}`);
-        } else {
-            navigate("/auth/login");
-        }
-
+        const _trip = await postData.postSubmission(submissions);
+        setValue("trip", _trip);
+        navigate(`/trip/${_trip.id}`);
         // console.log(localStorage.getItem("trip"));
     };
     const setValue = (key: string, value: TripDto) => {

@@ -6,7 +6,8 @@ import { LikedItem } from "../types/dto/likes/LikedItemDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export class PostData {
-    public async postSubmission(submissions: TChatbotSubmission[], token: string) {
+    public async postSubmission(submissions: TChatbotSubmission[]) {
+        const token = localStorage.getItem("accessToken");
         const res = await Axios.post<TripDto>(`${API_BASE_URL}/trip/submissions`, submissions, {
             headers: { Authorization: `Bearer ${token}` },
         });
