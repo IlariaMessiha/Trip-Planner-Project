@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { TripService } from "src/services/trip.service";
 import { TChatbotSubmission } from "src/types/TChatbot";
+import { TripDto } from "src/types/dto/common/TripDto";
 
 @Controller("/trip")
 export class TripController {
@@ -24,8 +25,35 @@ export class TripController {
             filtersByTarget.restaurants
         );
 
-        const tripItemsPerDay = this.tripService.createTripItemPerDay(filtersByTarget.global);
-        this.tripService.addBreakfast(restaurantPool, tripItemsPerDay);
-        return this.tripService.addAttractions(attractionPool, tripItemsPerDay);
+        const { tripItemsPerDay, endDate, startDate } = this.tripService.createTripItemsPerDay(
+            filtersByTarget.global
+        );
+
+        const tripItemsByDayWithBreakfast = this.tripService.addRestaurantTripItem(
+            restaurantPool,
+            tripItemsPerDay,
+            startDate,
+            "breakfast"
+        );
+        // const tripItemsPerDayWithAttraction = this.tripService.addAttractions(
+        //     attractionPool,
+        //     tripItemsPerDayWithBreakfast
+        // );
+        const finalTripItemsByDay = this.tripService.addRestaurantTripItem(
+            restaurantPool,
+            tripItemsByDayWithBreakfast,
+            startDate,
+            "dinner"
+        );
+
+        const trip: TripDto = {
+            label: "Your recommended trip",
+            startDate,
+            endDate,
+            // tripItems: [],
+            tripItems: Object.values(finalTripItemsByDay).flat(),
+        };
+
+        return trip;
     }
 }

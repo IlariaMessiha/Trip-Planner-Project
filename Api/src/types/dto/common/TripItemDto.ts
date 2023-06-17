@@ -6,3 +6,5 @@ export interface TripItemDto {
     type: "attraction" | "restaurant";
     value: AttractionDto | RestaurantDto;
 }
+
+export type TripItemsByDayDto = Record<string, TripItemDto[]>;
