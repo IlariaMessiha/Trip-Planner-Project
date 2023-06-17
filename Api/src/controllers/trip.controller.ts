@@ -1,7 +1,8 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
+import { find } from "lodash";
+import { TripBuilder } from "src/classes/TripBuilder";
 import { TripService } from "src/services/trip.service";
 import { TChatbotSubmission } from "src/types/TChatbot";
-import { TripDto } from "src/types/dto/common/TripDto";
 
 @Controller("/trip")
 export class TripController {
@@ -25,34 +26,15 @@ export class TripController {
             filtersByTarget.restaurants
         );
 
-        const { tripItemsPerDay, endDate, startDate } = this.tripService.createTripItemsPerDay(
-            filtersByTarget.global
-        );
+        const durationFilter = find(filtersByTarget.global, "tripDuration");
+        const nbDays = parseInt(durationFilter.tripDuration.equals) || 5;
 
-        const tripItemsByDayWithBreakfast = this.tripService.addRestaurantTripItem(
-            restaurantPool,
-            tripItemsPerDay,
-            startDate,
-            "breakfast"
-        );
-        // const tripItemsPerDayWithAttraction = this.tripService.addAttractions(
-        //     attractionPool,
-        //     tripItemsPerDayWithBreakfast
-        // );
-        const finalTripItemsByDay = this.tripService.addRestaurantTripItem(
-            restaurantPool,
-            tripItemsByDayWithBreakfast,
-            startDate,
-            "dinner"
-        );
-
-        const trip: TripDto = {
-            label: "Your recommended trip",
-            startDate,
-            endDate,
-            // tripItems: [],
-            tripItems: Object.values(finalTripItemsByDay).flat(),
-        };
+        const tripBuilder = new TripBuilder(nbDays);
+        tripBuilder.init();
+        tripBuilder.addRestaurantTripItem(restaurantPool, "breakfast");
+        tripBuilder.addAttractionTripItem(attractionPool);
+        tripBuilder.addRestaurantTripItem(restaurantPool, "dinner");
+        const trip = tripBuilder.build();
 
         return trip;
     }

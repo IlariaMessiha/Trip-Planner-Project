@@ -12,4 +12,4 @@ fi
 BIN_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ROOT_DIR="$(cd "$BIN_DIR/.." && pwd)"
 
-wget -P Backoffice/data/uploads/  -i $BIN_DIR/upload_urls.txt
+wget -P Backoffice/uploads/  -i $BIN_DIR/upload_urls.txt

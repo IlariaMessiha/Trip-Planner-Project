@@ -1,9 +1,7 @@
 export interface TripDto {
-    id: number;
     label: string;
-    arrivalDate: string;
-    departureDate: string;
-    tripCode: string;
+    endDate: string;
+    startDate: string;
     tripItems: TripItemDto[];
 }
 
