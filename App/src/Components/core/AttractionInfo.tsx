@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { AttractionDto } from "../../types/dto/common/AttractionDto";
 import styles from "./AttractionInfo.module.css";
+import Map from "../widgets/maps/myMap";
 
 interface AttractionInfoProps {
     attraction: AttractionDto;
@@ -52,6 +53,14 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                 >
                     <Typography variant="button">{t("attractions.buyTicket")}</Typography>
                 </BuyTicketButton>
+            )}
+
+            {attraction.mapLocation?.lat && (
+                <Map
+                    long={attraction.mapLocation?.long}
+                    lat={attraction.mapLocation?.lat}
+                    zoom={15}
+                />
             )}
         </Paper>
     );

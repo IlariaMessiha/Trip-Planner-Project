@@ -11,8 +11,10 @@ export interface RestaurantDto {
     food: string;
     rating: number;
     email: string;
-    long: number;
-    lat: number;
+    mapLocation: {
+        long: number;
+        lat: number;
+    } | null;
     avgMealPerPerson: number;
     imageUrl: string;
 }

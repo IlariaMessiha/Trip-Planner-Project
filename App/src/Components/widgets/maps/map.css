@@ -1,0 +1,12 @@
+.App {
+    height: 50vh;
+    width: 100vw;
+    max-width: 100%;
+    max-height: 50%;
+    margin-top: 2rem;
+}
+
+.map-container {
+    height: 100%;
+    width: 100%;
+}
