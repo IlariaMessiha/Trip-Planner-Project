@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post, UseGuards } from "@nestjs/common";
 import { find } from "lodash";
 import { AuthGuard } from "src/auth/auth.guard";
 import { AuthUserPayload } from "src/auth/authUser.decorator";
@@ -46,5 +46,10 @@ export class TripController {
 
         const savedTrip = await this.tripService.saveTrip(trip, authUser.id);
         return mapTripToDto(savedTrip);
+    }
+    @Get("/:id")
+    @UseGuards(AuthGuard)
+    async getTrip(@Param("id", ParseIntPipe) id: number) {
+        return mapTripToDto(await this.tripService.findTrip(id));
     }
 }

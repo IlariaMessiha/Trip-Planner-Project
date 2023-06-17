@@ -11,6 +11,7 @@ import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 
 import { UserDto } from "../types/dto/common/UserDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { TripDto } from "../types/dto/common/TripDto";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -76,6 +77,12 @@ export class FetchData {
                 headers: { Authorization: `Bearer ${token}` },
             }
         );
+        return response.data;
+    }
+    public async getTrip(id: number, token: string) {
+        const response = await Axios.get<TripDto>(`${API_BASE_URL}/trip/${id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return response.data;
     }
 }
