@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
+import Map from "../Components/widgets/maps/myMap";
 
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./HotelPage.module.css";

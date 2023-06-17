@@ -1,6 +1,7 @@
 import { Paper, Typography } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
+import Map from "../widgets/maps/myMap";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Box from "@mui/material/Box";
@@ -44,6 +45,14 @@ export const RestaurantInfo: FC<RestaurantInfoProps> = ({ restaurant }) => {
                         <span>{restaurant.address}</span>
                     </Typography>
                 </div>
+            )}
+
+            {restaurant.mapLocation?.lat && (
+                <Map
+                    long={restaurant.mapLocation?.long}
+                    lat={restaurant.mapLocation?.lat}
+                    zoom={5}
+                />
             )}
         </Paper>
     );

@@ -1,5 +1,6 @@
 import { Button, Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
+import Map from "../Components/widgets/maps/myMap";
 
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";

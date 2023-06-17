@@ -12,7 +12,9 @@ export interface HotelDto {
     rating: number;
     reservationLink: string;
     startingFromPrice: number;
-    long: number;
-    lat: number;
+    mapLocation: {
+        long: number;
+        lat: number;
+    } | null;
     imageUrl: string;
 }

@@ -32,7 +32,9 @@ export const SearchPage = () => {
     useEffect(() => {
         setPagedResults(paginate(unPagedResults, currentPage, pageSize));
         console.log("paged results :  ", pagedResults);
-    }, [currentPage, unPagedResults, pageError, pagedResults]);
+    }, [currentPage, unPagedResults, pageError]);
+
+    // adding pagedResults in the dependency list makes the page re-render many many times so I removed it
 
     const handlePageChange = (page: number) => {
         console.log("page number : ", page);
