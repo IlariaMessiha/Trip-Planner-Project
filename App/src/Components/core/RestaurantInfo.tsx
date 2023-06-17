@@ -51,7 +51,7 @@ export const RestaurantInfo: FC<RestaurantInfoProps> = ({ restaurant }) => {
                 <Map
                     long={restaurant.mapLocation?.long}
                     lat={restaurant.mapLocation?.lat}
-                    zoom={5}
+                    zoom={15}
                 />
             )}
         </Paper>

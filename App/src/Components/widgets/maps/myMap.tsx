@@ -1,7 +1,6 @@
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import { useMemo } from "react";
+import { FC, useMemo } from "react";
 import "./map.css";
-import { FC } from "react";
 
 interface MapProps {
     long: number;
@@ -16,7 +15,7 @@ const Map: FC<MapProps> = ({ long, lat, zoom }) => {
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: `${GOOGLE_MAPS_API_KEY}`,
     });
-    const center = useMemo(() => ({ lat: lat, lng: long }), []);
+    const center = useMemo(() => ({ lat: lat, lng: long }), [lat, long]);
     console.log(lat, long);
 
     return (

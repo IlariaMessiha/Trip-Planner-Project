@@ -59,7 +59,7 @@ export const AttractionInfo: FC<AttractionInfoProps> = ({ attraction }) => {
                 <Map
                     long={attraction.mapLocation?.long}
                     lat={attraction.mapLocation?.lat}
-                    zoom={5}
+                    zoom={15}
                 />
             )}
         </Paper>

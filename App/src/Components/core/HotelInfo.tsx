@@ -67,7 +67,7 @@ export const HotelInfo: FC<HotelInfoProps> = ({ hotel }) => {
             )}
 
             {hotel.mapLocation?.lat && (
-                <Map long={hotel.mapLocation?.long} lat={hotel.mapLocation?.lat} zoom={5} />
+                <Map long={hotel.mapLocation?.long} lat={hotel.mapLocation?.lat} zoom={15} />
             )}
         </Paper>
     );
