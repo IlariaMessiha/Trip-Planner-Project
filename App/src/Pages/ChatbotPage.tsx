@@ -1,18 +1,24 @@
 import { Container } from "../Components/core/layout/Container";
-import { ChatInputText } from "../Components/widgets/chat/ChatInputText";
+import { ChatInput } from "../Components/widgets/chat/ChatInput";
 import { ChatMessages } from "../Components/widgets/chat/ChatMessages";
 import { useChatbotController } from "../hooks/useChatbotController";
 import styles from "./ChatbotPage.module.css";
 
 export const ChatbotPage = () => {
-    const { messages, handleChatInput, handleAnswerSelect } = useChatbotController();
+    const { messages, currentQuestion, handleChatInput, handleAnswerSelect } =
+        useChatbotController();
+
     return (
         <Container className={styles.container}>
             <div className={styles.chat}>
-                <ChatMessages messages={messages} onAnswerSelect={handleAnswerSelect} />
+                <ChatMessages messages={messages} />
             </div>
             <div className={styles.input}>
-                <ChatInputText onSubmit={handleChatInput} />
+                <ChatInput
+                    currentQuestion={currentQuestion}
+                    onTextSubmit={handleChatInput}
+                    onAnswerSelect={handleAnswerSelect}
+                />
             </div>
         </Container>
     );

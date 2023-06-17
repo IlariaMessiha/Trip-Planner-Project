@@ -197,10 +197,6 @@ export const flow: TChatbotFlow = {
                         tags: { in: ["shopping", "boutiques"] },
                     },
                 },
-                {
-                    code: "submit",
-                    text: "Submit",
-                },
             ],
         },
         {
@@ -247,10 +243,6 @@ export const flow: TChatbotFlow = {
                     text: "Nothing specific",
                     filter: {},
                 },
-                {
-                    code: "submit",
-                    text: "Submit",
-                },
             ],
         },
         {
@@ -293,10 +285,6 @@ export const flow: TChatbotFlow = {
                     code: "nothingSpecific",
                     text: "Nothing specific",
                     filter: {},
-                },
-                {
-                    code: "submit",
-                    text: "Submit",
                 },
             ],
         },

@@ -3,7 +3,6 @@
     padding: 8px 16px;
 
     border: 1px solid #333;
-
 }
 
 .chatbotMessage {
@@ -20,8 +19,6 @@
     grid-template-columns: auto auto auto;
     row-gap: 10px;
     margin-top: 20px;
-
-
 }
 
 .date {
