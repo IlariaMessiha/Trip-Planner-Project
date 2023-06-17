@@ -1,6 +1,5 @@
 import { Button, Container, IconButton, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
-import Map from "../Components/widgets/maps/myMap";
 
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,17 +9,17 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./RestaurantPage.module.css";
 
+import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
 import Tooltip from "@mui/material/Tooltip";
 import { postData } from "../api/PostData";
 import { RestaurantInfo } from "../Components/core/RestaurantInfo";
+import { ReviewForm } from "../Components/widgets/ReviewForm";
 import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
-import { ReviewForm } from "../Components/widgets/ReviewForm";
-import CloseIcon from "@mui/icons-material/Close";
 
 const ShareButton = styled(IconButton)({
     color: "black",
