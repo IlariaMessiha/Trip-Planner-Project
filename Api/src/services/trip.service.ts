@@ -60,7 +60,7 @@ export class TripService {
             const selectedAnswer = question.answers.find(
                 answer => answer.code === submission.value || answer.text === submission.value
             );
-            if (selectedAnswer.filter) {
+            if (selectedAnswer?.filter) {
                 return selectedAnswer.filter;
             }
         }

@@ -1,6 +1,6 @@
 import * as dayjs from "dayjs";
-import { chain, cloneDeep, last, mapValues, range } from "lodash";
-import { mapRestaurantToDto } from "src/helpers/MappingDtos";
+import { chain, findKey, last, mapValues, range, sortBy } from "lodash";
+import { mapAttractionToDto, mapRestaurantToDto } from "src/helpers/MappingDtos";
 import { AttractionWithImage } from "src/types/AttractionWithImage";
 import { RestaurantWithTags } from "src/types/RestaurantWithTags";
 import { AttractionDto } from "src/types/dto/common/AttractionDto";
@@ -24,7 +24,7 @@ export class TripBuilder {
 
     public build(): TripDto {
         const trip: TripDto = {
-            label: "Your recommended trip",
+            label: this.label,
             startDate: this.startDate.toISOString(),
             endDate: this.endDate.toISOString(),
             tripItems: Object.values(this.tripItemsByDay).flat(),
@@ -53,25 +53,16 @@ export class TripBuilder {
         };
 
         this.tripItemsByDay = mapValues(this.tripItemsByDay, (items, date) => {
-            const breakfastRestaurant = selectOne(date);
-            const previousItem = last(items);
-
-            const previousItemDuration = previousItem
-                ? (previousItem.value as AttractionDto).suggestedDuration || 2
-                : 0;
-
-            const dateTime = previousItem
-                ? dayjs(previousItem.dateTime).add(previousItemDuration, "hour").toISOString()
-                : dayjs(date).hour(8).minute(0).second(0).toISOString();
+            const restaurantTripItem = selectOne(date);
 
             return [
                 ...items,
                 {
-                    dateTime,
+                    dateTime: this.getPreviousItemEndDateTime(items, date),
                     type: "restaurant" as TripItemDto["type"],
                     value: mapRestaurantToDto(
-                        breakfastRestaurant.restaurant,
-                        breakfastRestaurant.image
+                        restaurantTripItem.restaurant,
+                        restaurantTripItem.image
                     ),
                 },
             ];
@@ -79,17 +70,25 @@ export class TripBuilder {
     }
 
     public addAttractionTripItem(attractionsPool: AttractionWithImage[]) {
-        const newTripItemsPerDay = cloneDeep(this.tripItemsByDay);
+        const sortedPool = sortBy(attractionsPool, a => a.attraction.suggested_duration).reverse();
 
-        // sortBy(attractionsPool, "suggested_duration").reverse();
-        // newTripItemsPerDay.map((items, i) => {
-        //     items.push({
-        //         dateTime: "9:00",
-        //         type: "attraction",
-        //         value: mapAttractionToDto(attractionsPool[i].attraction, attractionsPool[i].image),
-        //     });
-        // });
-        return newTripItemsPerDay;
+        sortedPool.forEach(attractionItem => {
+            const firstAvailableDay = this.findFirstAvailableDay(
+                attractionItem.attraction.suggested_duration
+            );
+
+            this.tripItemsByDay[firstAvailableDay] = [
+                ...this.tripItemsByDay[firstAvailableDay],
+                {
+                    dateTime: this.getPreviousItemEndDateTime(
+                        this.tripItemsByDay[firstAvailableDay],
+                        firstAvailableDay
+                    ),
+                    type: "attraction",
+                    value: mapAttractionToDto(attractionItem.attraction, attractionItem.image),
+                },
+            ];
+        });
     }
 
     /** Implementation */
@@ -100,5 +99,29 @@ export class TripBuilder {
             .keyBy(date => date)
             .mapValues(() => [])
             .value();
+    }
+
+    private getPreviousItemEndDateTime(items: TripItemDto[], date: string) {
+        const previousItem = last(items);
+
+        const previousItemDuration = previousItem
+            ? (previousItem.value as AttractionDto).suggestedDuration || 2
+            : 0;
+
+        return previousItem
+            ? dayjs(previousItem.dateTime).add(previousItemDuration, "hour").toISOString()
+            : dayjs(date).hour(8).minute(0).second(0).toISOString();
+    }
+
+    private findFirstAvailableDay(suggestedDuration: number) {
+        const LastHourOfDay = 18;
+
+        return findKey(this.tripItemsByDay, (items, date) => {
+            const previousItemEndDateTime = this.getPreviousItemEndDateTime(items, date);
+            const endOfDay = dayjs(date).hour(LastHourOfDay).minute(0).second(0);
+            const availableHours = endOfDay.diff(previousItemEndDateTime, "hour");
+
+            return availableHours >= suggestedDuration;
+        });
     }
 }
