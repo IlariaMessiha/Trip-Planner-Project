@@ -6,8 +6,11 @@ import { LikedItem } from "../types/dto/likes/LikedItemDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export class PostData {
-    public async postSubmission(submissions: TChatbotSubmission[]) {
-        return (await Axios.post<TripDto>(`${API_BASE_URL}/trip/submissions`, submissions)).data;
+    public async postSubmission(submissions: TChatbotSubmission[], token: string) {
+        const res = await Axios.post<TripDto>(`${API_BASE_URL}/trip/submissions`, submissions, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return res.data;
     }
     public async search(searchQuery: SearchQuery) {
         console.log("post data : ", searchQuery);
