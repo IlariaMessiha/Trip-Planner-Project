@@ -53,10 +53,12 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
           {firstResults && firstResults.length > 0 ? firstResults.
             map(({ type, label, id })  => {
               return (
+                <Link to={`/${type}/${id}`}>
                 <div className={styles.searchResultElement}>
-                <GrLocation className={styles.itemIcon} />
-                {label}
-              </div>
+                  <GrLocation className={styles.itemIcon} />
+                  {label}
+                </div>
+              </Link>
               );
             }): (<div></div>)}
 

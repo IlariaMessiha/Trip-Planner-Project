@@ -47,7 +47,7 @@ export class AutoCompleteService {
         if (city !== null) {
             const cityObj = {
                 label: city.label,
-                type: "City",
+                type: "city",
                 id: city.id,
                 country_id: city.country_id
             }
@@ -57,7 +57,7 @@ export class AutoCompleteService {
         if (attraction !== null) {
             const attractionObj = { 
                 label: attraction.label,
-                type: "Attraction",
+                type: "attraction",
                 id: attraction.id,
                 city_id: attraction.city_id
             }  
@@ -68,7 +68,7 @@ export class AutoCompleteService {
         if (restaurant !== null) {
             const restaurantObj = {
                 label: restaurant.label,
-                type: "Restaurant",
+                type: "restaurant",
                 id: restaurant.id,
                 city_id: restaurant.city_id
             }
@@ -78,7 +78,7 @@ export class AutoCompleteService {
         if (hotel !== null) {
             const hotelObj = {
                 label: hotel.label,
-                type: "Hotel",
+                type: "hotel",
                 id: hotel.id,
                 city_id: hotel.city_id
             }
