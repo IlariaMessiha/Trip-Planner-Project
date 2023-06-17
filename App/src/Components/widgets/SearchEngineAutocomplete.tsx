@@ -61,38 +61,6 @@ export const SearchEngineAutocomplete: FC<SearchEngineProps> = () => {
               </Link>
               );
             }): (<div></div>)}
-
-            {/* {firstResults.map(({ type,  }) => {
-              return (
-                <div key={`${type}-${item.id}`}>
-                  {type === "location" ? (
-                    <div className={styles.searchResultElement}>
-                      <GrLocation className={styles.itemIcon} />
-                      <Link to={`/location/${item.id}`}>
-                        <Typography
-                          text={item.name}
-                          className={styles.itemName}
-                        />
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className={styles.searchResultElement}>
-                      <img
-                        src={item.coverImage}
-                        className={styles.itemPhotos}
-                        alt="Cover "
-                      />
-                      <Link to={`/activity/${item.id}`}>
-                        <Typography
-                          text={item.name}
-                          className={styles.itemName}
-                        />
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              );
-            })} */}
           </div>
         </div>
       </div>
