@@ -16,11 +16,11 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
     visibleDay,
     setVisibleDay,
 }) => {
-    const tripDurationInDays = dayjs(trip.arrivalDate).diff(dayjs(trip.departureDate), "day");
-    const tabValue = visibleDay ? dayjs(visibleDay).diff(dayjs(trip.departureDate), "day") : 0;
+    const tripDurationInDays = dayjs(trip.endDate).diff(dayjs(trip.startDate), "day");
+    const tabValue = visibleDay ? dayjs(visibleDay).diff(dayjs(trip.startDate), "day") : 0;
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setVisibleDay(dayjs(trip.departureDate).add(newValue, "day").toISOString());
+        setVisibleDay(dayjs(trip.startDate).add(newValue, "day").toISOString());
     };
 
     const handleUpdateTrip = () => {
@@ -49,7 +49,7 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
                 {range(tripDurationInDays).map(day => (
                     <Tab
                         key={day}
-                        label={dayjs(trip.departureDate).add(day, "day").format("DD MMM")}
+                        label={dayjs(trip.startDate).add(day, "day").format("DD MMM")}
                         {...a11yProps(day)}
                     />
                 ))}

@@ -113,7 +113,7 @@ export const flow: TChatbotFlow = {
         {
             code: "tripDuration",
             sort: 4,
-            text: "How long are you planning to stay ?(in weeks)",
+            text: "How long are you planning to stay ?",
             type: "text",
             searchTargets: ["global"],
             filter: {
