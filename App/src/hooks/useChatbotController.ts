@@ -7,7 +7,6 @@ import { postData } from "../api/PostData";
 import { validateMap } from "../helpers/ValidateChatbotAnswers";
 import { TChatbotAnswer, TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
 import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
-import { TripDto } from "../types/dto/common/TripDto";
 
 export const useChatbotController = () => {
     const [messages, setMessages] = useState<TMessage[]>([]);
@@ -15,6 +14,8 @@ export const useChatbotController = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const navigate = useNavigate();
 
     const displayQuestion = useCallback((questions: TChatbotQuestion[], index: number) => {
@@ -108,17 +109,10 @@ export const useChatbotController = () => {
             throw new Error("index not found");
         }
 
-        if (
-            currentQuestion.type === "single-choice" &&
-            currentQuestionIndex === questions.length - 1
-        ) {
-            submitAnswers();
-        } else {
-            values.forEach(value => {
-                addResponseToSubmission(currentQuestion, value.code);
-            });
-            displayQuestion(questions, currentQuestionIndex + 1);
-        }
+        values.forEach(value => {
+            addResponseToSubmission(currentQuestion, value.code);
+        });
+        displayQuestion(questions, currentQuestionIndex + 1);
     };
 
     const treatTextAnswer = async (answerValue: string) => {
@@ -151,24 +145,24 @@ export const useChatbotController = () => {
         }
     };
 
-    const submitAnswers = async () => {
-        const _trip = await postData.postSubmission(submissions);
-        setValue("trip", _trip);
-        navigate(`/trip/${_trip.id}`);
-        // console.log(localStorage.getItem("trip"));
-    };
-    const setValue = (key: string, value: TripDto) => {
+    const submitAndGoToTrip = async () => {
         try {
-            window.localStorage.setItem(key, JSON.stringify(value));
+            setIsSubmitting(true);
+            const _trip = await postData.postSubmission(submissions);
+            navigate(`/trip/${_trip.id}`);
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return {
         messages,
         currentQuestion: questions[currentQuestionIndex],
+        isSubmitting,
         handleChatInput,
         handleAnswerSelect,
+        submitAndGoToTrip,
     };
 };

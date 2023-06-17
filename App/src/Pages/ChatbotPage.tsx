@@ -5,8 +5,14 @@ import { useChatbotController } from "../hooks/useChatbotController";
 import styles from "./ChatbotPage.module.css";
 
 export const ChatbotPage = () => {
-    const { messages, currentQuestion, handleChatInput, handleAnswerSelect } =
-        useChatbotController();
+    const {
+        messages,
+        isSubmitting,
+        currentQuestion,
+        handleChatInput,
+        handleAnswerSelect,
+        submitAndGoToTrip,
+    } = useChatbotController();
 
     return (
         <Container className={styles.container}>
@@ -15,9 +21,11 @@ export const ChatbotPage = () => {
             </div>
             <div className={styles.input}>
                 <ChatInput
+                    isSubmitting={isSubmitting}
                     currentQuestion={currentQuestion}
                     onTextSubmit={handleChatInput}
                     onAnswerSelect={handleAnswerSelect}
+                    submitAndGoToTrip={submitAndGoToTrip}
                 />
             </div>
         </Container>

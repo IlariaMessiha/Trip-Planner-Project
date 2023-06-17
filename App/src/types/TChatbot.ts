@@ -13,7 +13,7 @@ export type TChatbotQuestion = {
     validation?: TChatbotValidation;
 };
 
-export type TChatbotQuestionType = "text" | "multiple-choices" | "single-choice";
+export type TChatbotQuestionType = "text" | "multiple-choices" | "single-choice" | "submit";
 
 export type TChatbotAnswer = {
     code: string;

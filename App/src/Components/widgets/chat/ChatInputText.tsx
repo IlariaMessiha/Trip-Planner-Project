@@ -17,6 +17,7 @@ export const ChatInputText: FC<ChatInputTextProps> = ({ onSubmit }) => {
             }}
         >
             <TextField
+                autoFocus
                 value={inputValue}
                 label="Response"
                 variant="outlined"

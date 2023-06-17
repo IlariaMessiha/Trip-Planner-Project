@@ -291,15 +291,9 @@ export const flow: TChatbotFlow = {
         {
             code: "submitQuestion",
             sort: 9,
-            text: "Submit answers to plan your trip",
-            type: "single-choice",
+            text: "You are all set ! We will now search for the best options for your trip.",
+            type: "submit",
             searchTargets: [],
-            answers: [
-                {
-                    code: "submit",
-                    text: "Submit",
-                },
-            ],
         },
     ],
 };
