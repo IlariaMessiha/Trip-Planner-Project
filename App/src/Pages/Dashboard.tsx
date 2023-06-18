@@ -4,14 +4,17 @@ import { Section } from "../Components/core/layout/Section";
 import { ChatbotButton } from "../Components/widgets/ChatbotButton";
 import { fetchData } from "../api/FetchData";
 import styles from "./Dashboard.module.css";
-
 import { SectionItemType } from "../Components/widgets/SectionItemType";
 import { Swiper } from "../Components/widgets/Swiper";
+import { useAuthContext } from "../context/authContext";
+import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 
 import { SectionDto } from "../types/dto/common/SectionDto";
 
 export const Dashboard = () => {
     const [sections, setSections] = useState<SectionDto[]>([]);
+    const [userFavs, setUserFavs] = useState<FavoriteItem[]>([]);
+    const { loggedInUser } = useAuthContext();
 
     useEffect(() => {
         const onMount = async () => {
@@ -21,6 +24,19 @@ export const Dashboard = () => {
 
         onMount();
     }, []);
+
+    useEffect(() => {
+        const getUserLikes = async (id: number, token: string) => {
+            const userFavs = await fetchData.getProfileFavorites(id, token);
+            setUserFavs(userFavs);
+        };
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            getUserLikes(loggedInUser.id, token);
+        } else {
+            setUserFavs([]);
+        }
+    }, [loggedInUser]);
 
     return (
         <div>
@@ -33,7 +49,11 @@ export const Dashboard = () => {
                                 <Swiper
                                     items={section.items}
                                     renderItem={item => (
-                                        <SectionItemType item={item} key={item.value.id} />
+                                        <SectionItemType
+                                            item={item}
+                                            key={item.value.id}
+                                            userFavs={userFavs}
+                                        />
                                     )}
                                 />
                             )}

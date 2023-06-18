@@ -1,4 +1,5 @@
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
     Card,
     CardActionArea,
@@ -9,7 +10,7 @@ import {
     styled,
     Typography,
 } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../../api/PostData";
@@ -19,24 +20,32 @@ import styles from "./CardRestaurant.module.css";
 
 interface CardRestaurantProps {
     restaurant: RestaurantDto;
+    liked: boolean;
 }
-const FavoriteButton = styled(IconButton)({
+
+const FavoriteButton = styled(IconButton)(() => ({
     position: "absolute",
     backgroundColor: "white",
     color: "black",
     top: 6,
     right: 10,
     zIndex: 10,
-});
+
+    // Additional styles for the icon
+    "& .MuiSvgIcon-root": {
+        fill: "black",
+    },
+}));
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {
         color: "blue",
     },
 });
-export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
+export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) => {
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const [likedLoc, setLikedLoc] = useState<boolean>(liked);
     const like = (restaurant: RestaurantDto) => {
         const token = localStorage.getItem("accessToken");
         if (loggedInUser && token) {
@@ -48,19 +57,45 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant }) => {
                 },
                 token
             );
+            setLikedLoc(true);
         } else {
             navigate("/auth/login");
         }
     };
+    const dislike = (restaurant: RestaurantDto) => {
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            postData.dislike(
+                {
+                    item: restaurant,
+                    type: "restaurants",
+                    userId: loggedInUser.id,
+                },
+                token
+            );
+            setLikedLoc(false);
+        } else {
+            navigate("/auth/login");
+        }
+    };
+    useEffect(() => {
+        setLikedLoc(liked);
+        console.log("liked use effect");
+    }, [liked]);
+
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>
                 <FavoriteButton
                     onClick={() => {
-                        like(restaurant);
+                        if (likedLoc) {
+                            dislike(restaurant);
+                        } else {
+                            like(restaurant);
+                        }
                     }}
                 >
-                    <FavoriteBorderOutlinedIcon />
+                    {likedLoc ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
                 </FavoriteButton>
                 <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>

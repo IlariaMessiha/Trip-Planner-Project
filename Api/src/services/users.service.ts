@@ -23,7 +23,7 @@ export class UsersService {
         const hashedPass = await argon2.hash(registerBody.password);
         return this.prisma.user.create({
             data: {
-                email: registerBody.email,
+                email: registerBody.email.toLowerCase(),
                 firstname: registerBody.firstName,
                 lastname: registerBody.lastName,
                 password: hashedPass,
@@ -67,7 +67,7 @@ export class UsersService {
                 review: mapAttractionReviewToDto(
                     review,
                     mapUserToDto(review.user),
-                    review.Attraction.id
+                    review.Attraction?.id
                 ),
                 type: "attractionReview",
             };
@@ -142,6 +142,24 @@ export class UsersService {
             });
         }
         return likedItem;
+    }
+
+    async dislike(likedItem: LikedItem): Promise<void> {
+        if (likedItem.type === "attraction") {
+            await this.prisma.user_attraction.deleteMany({
+                where: {
+                    user_id: likedItem.userId,
+                    attraction_id: likedItem.item.id,
+                },
+            });
+        } else if (likedItem.type === "restaurants") {
+            await this.prisma.user_restaurant.deleteMany({
+                where: {
+                    user_id: likedItem.userId,
+                    restaurant_id: likedItem.item.id,
+                },
+            });
+        }
     }
     async writeReview(item: ReviewDto): Promise<ReviewDto> {
         if (item.type === "attractionReview") {

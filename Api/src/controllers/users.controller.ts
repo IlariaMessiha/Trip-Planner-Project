@@ -29,6 +29,11 @@ export class UsersController {
     like(@Body() likedItem: LikedItem) {
         return this.usersService.like(likedItem);
     }
+
+    @Post("/dislike")
+    dislike(@Body() likedItem: LikedItem) {
+        return this.usersService.dislike(likedItem);
+    }
     @Post("/review")
     writeReview(@Body() reviewDto: ReviewDto) {
         return this.usersService.writeReview(reviewDto);
