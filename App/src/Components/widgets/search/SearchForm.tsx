@@ -1,5 +1,5 @@
 import { Autocomplete, Button, styled, TextField } from "@mui/material";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { postData } from "../../../api/PostData";
