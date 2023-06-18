@@ -67,7 +67,7 @@ export class UsersService {
                 review: mapAttractionReviewToDto(
                     review,
                     mapUserToDto(review.user),
-                    review.Attraction.id
+                    review.Attraction?.id
                 ),
                 type: "attractionReview",
             };
