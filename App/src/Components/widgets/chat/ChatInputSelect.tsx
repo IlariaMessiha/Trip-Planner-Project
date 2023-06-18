@@ -34,6 +34,7 @@ export const ChatInputSelect: FC<ChatInputSelectProps> = ({ onSubmit, options, i
                 const isSelected = selectedValues.includes(choice.code);
                 return (
                     <Chip
+                        key={choice.code}
                         label={choice.text}
                         color="primary"
                         variant={isSelected ? "filled" : "outlined"}

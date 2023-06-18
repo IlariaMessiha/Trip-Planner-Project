@@ -31,6 +31,9 @@ export const toRestaurantsFilter = (filters: TChatbotFilter[]): Prisma.restauran
     }));
 };
 export const mapPrismaCity = (rule: TChatbotFilter[string]): Prisma.cityWhereInput => {
+    if (!rule) {
+        return undefined;
+    }
     return {
         OR: [
             {
@@ -67,6 +70,9 @@ export const mapPrismaCity = (rule: TChatbotFilter[string]): Prisma.cityWhereInp
 };
 
 export const mapPrismaNumberFilter = (rule: TChatbotFilter[string]): Prisma.IntNullableFilter => {
+    if (!rule) {
+        return undefined;
+    }
     return {
         equals: rule?.equals ? parseInt(rule.equals, 10) : undefined,
         not: rule?.not ? parseInt(rule.not, 10) : undefined,
@@ -82,10 +88,13 @@ export const mapPrismaNumberFilter = (rule: TChatbotFilter[string]): Prisma.IntN
 export const mapPrismaAttractionTagsFilter = (
     rule: TChatbotFilter[string] | undefined
 ): Prisma.Attraction_tagListRelationFilter => {
+    if (!rule) {
+        return undefined;
+    }
     return {
         some: {
             tag: {
-                code: { in: rule?.in, mode: "insensitive", notIn: rule?.notIn },
+                code: { ...rule, mode: "insensitive" },
             },
         },
     };
@@ -96,7 +105,7 @@ export const mapRestaurantPrismaTagsFilter = (
     return {
         some: {
             tag: {
-                code: { in: rule?.in, mode: "insensitive", notIn: rule?.notIn },
+                code: { ...rule, mode: "insensitive" },
             },
         },
     };

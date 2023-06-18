@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Prisma } from "@prisma/client";
+import { chain, filter, mapValues, omit, pickBy, uniq } from "lodash";
 import { flow } from "src/data/ChatbotFlow";
 import { MappingDtos } from "src/helpers/MappingDtos";
 import {
@@ -39,18 +40,22 @@ export class TripService {
 
     deduceFiltersByTarget(submissions: TChatbotSubmission[]) {
         // TODO : group submission by question code, if a question has multiple answers, we should treat them as OR not AND
-        return submissions.reduce((filtersByTarget, submission) => {
-            const question = flow.questions.find(
-                question => question.code === submission.questionCode
-            );
-            const filter = this.deduceFilterFromSubmission(submission, question);
-            if (filter && Object.keys(filter).length > 0) {
-                question.searchTargets.forEach(target => {
-                    filtersByTarget[target] = [...(filtersByTarget[target] || []), filter];
-                });
-            }
-            return filtersByTarget;
-        }, {} as Record<TChatbotQuestionSearchTarget, TChatbotFilter[]>);
+        return chain(submissions)
+            .groupBy(s => s.questionCode)
+            .reduce((filtersByTarget, submissions, questionCode) => {
+                const question = flow.questions.find(question => question.code === questionCode);
+                const filters = submissions.map(submission =>
+                    this.deduceFilterFromSubmission(submission, question)
+                );
+                const filter = this.mergeFilters(filters);
+                if (filter && Object.keys(filter).length > 0) {
+                    question.searchTargets.forEach(target => {
+                        filtersByTarget[target] = [...(filtersByTarget[target] || []), filter];
+                    });
+                }
+                return filtersByTarget;
+            }, {} as Record<TChatbotQuestionSearchTarget, TChatbotFilter[]>)
+            .value();
     }
 
     deduceFilterFromSubmission(submission: TChatbotSubmission, question: TChatbotQuestion) {
@@ -65,6 +70,34 @@ export class TripService {
                 return selectedAnswer.filter;
             }
         }
+    }
+
+    mergeFilters(filters: TChatbotFilter[]): TChatbotFilter {
+        if (filters.length === 1) {
+            return filters[0];
+        }
+        const merge2Filters = (filter1: TChatbotFilter, filter2: TChatbotFilter) => {
+            const commonKeys = pickBy(filter1, (value, key) => filter2[key] !== undefined);
+
+            const mergedCommonKeys: TChatbotFilter = mapValues(commonKeys, (value, key) => ({
+                in: uniq([...(value.in || []), ...(filter2[key].in || [])]),
+                notIn: uniq([...(value.notIn || []), ...(filter2[key].notIn || [])]),
+            }));
+
+            return {
+                ...filter1,
+                ...filter2,
+                ...mergedCommonKeys,
+            };
+        };
+
+        return chain(filters)
+            .filter(filter => filter && Object.keys(filter).length > 0)
+            .reduce(
+                (mergedFilter, filter) => merge2Filters(mergedFilter, filter),
+                {} as TChatbotFilter
+            )
+            .value();
     }
 
     async findAttractionPool(filters: TChatbotFilter[]) {
