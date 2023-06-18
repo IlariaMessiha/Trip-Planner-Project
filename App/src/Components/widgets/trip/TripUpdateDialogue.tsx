@@ -6,9 +6,11 @@ import { postData } from "../../../api/PostData";
 export interface TripUpdateDialogueProps {
     open: boolean;
     tripId: number;
+    onClose: () => void;
 }
-export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({ open, tripId }) => {
+export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({ open, tripId, onClose }) => {
     const [label, setLabel] = useState<string>("");
+
     const updateTrip = (e: React.FormEvent) => {
         postData.updateTrip({
             tripId,
@@ -16,7 +18,7 @@ export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({ open, tripId }
         });
     };
     return (
-        <Dialog open={open}>
+        <Dialog open={open} onClose={onClose}>
             <DialogTitle>Update Your Trip</DialogTitle>
             <form className={styles.form} onSubmit={updateTrip}>
                 <TextField
@@ -28,6 +30,7 @@ export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({ open, tripId }
                         setLabel(e.target.value);
                     }}
                 />
+
                 <Button variant="contained" sx={{ marginTop: "20px" }} type="submit">
                     Update
                 </Button>

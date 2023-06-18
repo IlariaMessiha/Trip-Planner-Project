@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, UseGuards } from "@nestjs/common";
+import dayjs from "dayjs";
 import { find } from "lodash";
 import { AuthGuard } from "src/auth/auth.guard";
 import { AuthUserPayload } from "src/auth/authUser.decorator";
@@ -7,6 +8,7 @@ import { mapTripToDto } from "src/helpers/MappingDtos";
 import { TripService } from "src/services/trip.service";
 import { AuthUser } from "src/types/AuthUser";
 import { TChatbotSubmission } from "src/types/TChatbot";
+import { UpdateTripBodyDto } from "src/types/dto/trips/UpdateTripBodyDto";
 
 @Controller("/trip")
 export class TripController {
@@ -51,5 +53,14 @@ export class TripController {
     @UseGuards(AuthGuard)
     async getTrip(@Param("id", ParseIntPipe) id: number) {
         return mapTripToDto(await this.tripService.findTrip(id));
+    }
+    @Post("/update")
+    @UseGuards(AuthGuard)
+    async updateTrip(
+        @Body() updateTripBody: UpdateTripBodyDto,
+        @AuthUserPayload() authUser: AuthUser
+    ) {
+        const updatedTrip = await this.tripService.updateTrip(updateTripBody);
+        return mapTripToDto(updatedTrip);
     }
 }

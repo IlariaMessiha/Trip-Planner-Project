@@ -18,6 +18,7 @@ import {
 } from "src/types/TChatbot";
 import { Trip } from "src/types/Trip";
 import { GetDestinationNameDto } from "src/types/dto/destination/GetDestinationNameDto";
+import { UpdateTripBodyDto } from "src/types/dto/trips/UpdateTripBodyDto";
 
 @Injectable()
 export class TripService {
@@ -180,6 +181,34 @@ export class TripService {
                         },
                     },
                 },
+            },
+        });
+    }
+    async updateTrip(updateTripBody: UpdateTripBodyDto) {
+        return await this.prisma.trip.update({
+            where: {
+                id: updateTripBody.tripId,
+            },
+            include: {
+                trip_items: {
+                    include: {
+                        attraction: {
+                            include: {
+                                directus_files: true,
+                            },
+                        },
+                        restaurant: {
+                            include: {
+                                directus_files: true,
+                            },
+                        },
+                    },
+                },
+            },
+            data: {
+                label: updateTripBody.tripLabel,
+                start_date: updateTripBody.startDate,
+                end_date: updateTripBody.endDate,
             },
         });
     }

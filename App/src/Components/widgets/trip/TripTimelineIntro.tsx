@@ -5,6 +5,7 @@ import { FC, useState } from "react";
 import { TripDto } from "../../../types/dto/common/TripDto";
 import styles from "./TripTimelineIntro.module.css";
 import { TripUpdateDialogue } from "./TripUpdateDialogue";
+import { TripAddItemDialogue } from "./TripAddItemDialogue";
 
 interface TripTimelineIntroProps {
     trip: TripDto;
@@ -21,6 +22,7 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
     const tripDurationInDays = dayjs(trip.endDate).diff(dayjs(trip.startDate), "day") + 1;
     const tabValue = visibleDay ? dayjs(visibleDay).diff(dayjs(trip.startDate), "day") : 0;
     const [updatePopupState, setUpdatePopupState] = useState<boolean>(false);
+    const [addItemPopupState, setAddItemPopupState] = useState<boolean>(false);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setVisibleDay(dayjs(trip.startDate).add(newValue, "day").toISOString());
@@ -32,8 +34,14 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
         // If user updates the start date, all the destinations will be updated accordingly.
         // If user updates the duration, a new recalculation for the trip is necessary
     };
-
+    const onCloseAddItemPopup = () => {
+        setAddItemPopupState(false);
+    };
+    const onCloseUpdatePopup = () => {
+        setUpdatePopupState(false);
+    };
     const handleAdd = () => {
+        setAddItemPopupState(true);
         // TODO :  A user can add a new restaurant or attraction to the trip.
     };
 
@@ -58,7 +66,16 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
                     />
                 ))}
             </Tabs>
-            <TripUpdateDialogue open={updatePopupState} tripId={trip.id} />
+            <TripUpdateDialogue
+                open={updatePopupState}
+                tripId={trip.id}
+                onClose={onCloseUpdatePopup}
+            />
+            <TripAddItemDialogue
+                open={addItemPopupState}
+                tripId={trip.id}
+                onClose={onCloseAddItemPopup}
+            />
         </div>
     );
 };
