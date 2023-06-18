@@ -22,10 +22,6 @@ interface CardRestaurantProps {
     restaurant: RestaurantDto;
     liked: boolean;
 }
-interface FavoriteButtonProps {
-    liked: boolean;
-    onClick: () => void;
-}
 
 const FavoriteButton = styled(IconButton)(() => ({
     position: "absolute",
@@ -86,7 +82,7 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
         setLikedLoc(liked);
         console.log("liked use effect");
     }, [liked]);
-   
+
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>

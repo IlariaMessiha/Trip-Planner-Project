@@ -1,11 +1,12 @@
 import { Button, Container, IconButton, styled, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./RestaurantPage.module.css";
 
@@ -20,6 +21,7 @@ import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -37,9 +39,12 @@ export const RestaurantPage = () => {
     const { t } = useTranslation();
     const [restaurant, setRestaurant] = React.useState<RestaurantDto | null>(null);
     const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
+    const [userFavs, setUserFavs] = useState<FavoriteItem[]>([]);
+    const [likedLoc, setLikedLoc] = useState<boolean>(false);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
+
     const like = (restaurant: RestaurantDto) => {
         const token = localStorage.getItem("accessToken");
         if (loggedInUser && token) {
@@ -51,11 +56,29 @@ export const RestaurantPage = () => {
                 },
                 token
             );
+            setLikedLoc(true);
         } else {
             navigate("/auth/login");
         }
     };
-    React.useEffect(() => {
+    const dislike = (restaurant: RestaurantDto) => {
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            postData.dislike(
+                {
+                    item: restaurant,
+                    type: "restaurants",
+                    userId: loggedInUser.id,
+                },
+                token
+            );
+            setLikedLoc(false);
+        } else {
+            navigate("/auth/login");
+        }
+    };
+
+    useEffect(() => {
         const onMount = async () => {
             if (id) {
                 const response = await fetchData.getRestaurant(id);
@@ -65,6 +88,30 @@ export const RestaurantPage = () => {
         };
         onMount();
     }, [id]);
+
+    useEffect(() => {
+        const getUserLikes = async (id: number, token: string) => {
+            const userFavs = await fetchData.getProfileFavorites(id, token);
+            setUserFavs(userFavs);
+        };
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            getUserLikes(loggedInUser.id, token);
+        } else {
+            setUserFavs([]);
+        }
+    }, [loggedInUser]);
+
+    useEffect(() => {
+        if (restaurant) {
+            const isLocationLiked = userFavs?.some(
+                favorite => favorite.item.id === restaurant.id && favorite.type === "restaurant"
+            );
+
+            setLikedLoc(isLocationLiked);
+        }
+    }, [restaurant, userFavs]);
+
     const handleClickOpen = () => {
         setSharePopupState(true);
     };
@@ -119,10 +166,14 @@ export const RestaurantPage = () => {
                     />
                     <FavoriteButton
                         onClick={() => {
-                            like(restaurant);
+                            if (likedLoc) {
+                                dislike(restaurant);
+                            } else {
+                                like(restaurant);
+                            }
                         }}
                     >
-                        <FavoriteBorderIcon />
+                        {likedLoc ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </FavoriteButton>
                     <Tooltip title={t("common.review")}>
                         <ReviewButton>
