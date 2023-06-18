@@ -27,6 +27,9 @@ import { UsersService } from "./services/users.service";
 import { TripController } from "./controllers/trip.controller";
 import { TripService } from "./services/trip.service";
 
+import { AutoCompleteController } from "./controllers/autocomplete.controller";
+import { AutoCompleteService } from "./services/autocomplete.service";
+
 @Module({
     controllers: [
         AttractionsController,
@@ -39,6 +42,7 @@ import { TripService } from "./services/trip.service";
         RestaurantsController,
         HotelsController,
         TripController,
+        AutoCompleteController,
     ],
     providers: [
         AttractionsService,
@@ -53,6 +57,7 @@ import { TripService } from "./services/trip.service";
         RestaurantsService,
         HotelsService,
         TripService,
+        AutoCompleteService,
     ],
     imports: [
         ServeStaticModule.forRoot({

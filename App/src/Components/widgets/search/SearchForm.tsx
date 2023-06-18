@@ -1,5 +1,5 @@
 import { Autocomplete, Button, styled, TextField } from "@mui/material";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { postData } from "../../../api/PostData";
@@ -45,10 +45,12 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
 
     const handleSubmit = async (e: any): Promise<void> => {
         e.preventDefault();
-        if (label) {
+        const new_label = label ? label : initialLabel;
+        console.log(`label ${label} - initial ${initialLabel} - new ${new_label}`); 
+        if (new_label) {
             try {
                 const _results = await postData.search({
-                    label: label,
+                    label: new_label,
                     type: searchResultType,
                 });
                 // setResults(_results);
@@ -58,17 +60,21 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                     onSubmit(
                         _results,
                         {
-                            label: label,
+                            label: new_label,
                             type: searchResultType,
                         },
                         error
                     );
                 }
             } catch (error) {
-                console.error("search form error : ", error);
+                console.error("search form error: ", error);
             }
         }
     };
+
+    useEffect(() => {
+        handleSubmit({ preventDefault: () => {} });
+    }, [initialLabel]);
 
     return (
         <form className={styles.searchContainer} onSubmit={handleSubmit}>
