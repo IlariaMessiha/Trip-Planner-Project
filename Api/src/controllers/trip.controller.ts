@@ -7,6 +7,7 @@ import { mapTripToDto } from "src/helpers/MappingDtos";
 import { TripService } from "src/services/trip.service";
 import { AuthUser } from "src/types/AuthUser";
 import { TChatbotSubmission } from "src/types/TChatbot";
+import { UpdateTripBodyDto } from "src/types/dto/trips/UpdateTripBodyDto";
 
 @Controller("/trip")
 export class TripController {
@@ -47,9 +48,20 @@ export class TripController {
         const savedTrip = await this.tripService.saveTrip(trip, authUser.id);
         return mapTripToDto(savedTrip);
     }
+
     @Get("/:id")
     @UseGuards(AuthGuard)
     async getTrip(@Param("id", ParseIntPipe) id: number) {
         return mapTripToDto(await this.tripService.findTrip(id));
+    }
+
+    @Post("/update/:id")
+    @UseGuards(AuthGuard)
+    async updateTrip(
+        @Param("id", ParseIntPipe) id: number,
+        @Body() updateTripBody: UpdateTripBodyDto
+    ) {
+        const updatedTrip = await this.tripService.updateTrip(id, updateTripBody);
+        return mapTripToDto(updatedTrip);
     }
 }

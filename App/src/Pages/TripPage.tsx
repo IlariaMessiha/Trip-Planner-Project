@@ -1,14 +1,15 @@
 import { Typography } from "@mui/material";
+import dayjs from "dayjs";
 import { PageLayout } from "../Components/core/layout/PageLayout";
 import { TripTimeline } from "../Components/widgets/trip/TripTimeline";
 import { TripTimelineIntro } from "../Components/widgets/trip/TripTimelineIntro";
 import { TripTimelineMap } from "../Components/widgets/trip/TripTimelineMap";
 import { useTripTimeline } from "../hooks/useTripTimeline";
 import styles from "./TripPage.module.css";
-import dayjs from "dayjs";
 
 export const TripPage = () => {
-    const { trip, setVisibleDay, visibleDay } = useTripTimeline();
+    const { loading, trip, visibleDay, updateTrip, setVisibleDay } = useTripTimeline();
+
     // TODO : Create a TripTimelineEmpty component to be displayed here.
     if (!trip) return <Typography variant="h4">No trip found</Typography>;
 
@@ -16,6 +17,7 @@ export const TripPage = () => {
     const filteredTripItems = trip.tripItems.filter(item =>
         dayjs(item.dateTime).isSame(visibleDay, "day")
     );
+
     return (
         <PageLayout className={styles.page}>
             <div className={styles.content}>
@@ -23,7 +25,9 @@ export const TripPage = () => {
                     <TripTimelineIntro
                         trip={trip}
                         visibleDay={visibleDay}
+                        loading={loading}
                         setVisibleDay={setVisibleDay}
+                        onUpdateTrip={updateTrip}
                     />
                     <div className={styles.contentTimeline}>
                         <TripTimeline tripItems={filteredTripItems} />
