@@ -31,8 +31,7 @@ export const SearchPage = () => {
 
     useEffect(() => {
         setPagedResults(paginate(unPagedResults, currentPage, pageSize));
-        console.log("paged results :  ", pagedResults);
-    }, [currentPage, unPagedResults, pageError, pagedResults]);
+    }, [currentPage, unPagedResults, pageError]);
 
     const handlePageChange = (page: number) => {
         console.log("page number : ", page);
