@@ -184,10 +184,10 @@ export class TripService {
             },
         });
     }
-    async updateTrip(updateTripBody: UpdateTripBodyDto) {
+    async updateTrip(tripId: number, updateTripBody: UpdateTripBodyDto) {
         return await this.prisma.trip.update({
             where: {
-                id: updateTripBody.tripId,
+                id: tripId,
             },
             include: {
                 trip_items: {

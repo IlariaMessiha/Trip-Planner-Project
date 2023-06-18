@@ -38,9 +38,9 @@ export class PostData {
         });
         return res.data;
     }
-    public async updateTrip(updateTrip: UpdateTripBodyDto) {
+    public async updateTrip(tripId: number, updateTrip: UpdateTripBodyDto) {
         const token = localStorage.getItem("accessToken");
-        const res = await Axios.post<ReviewDto>(`${API_BASE_URL}/trip/update`, updateTrip, {
+        const res = await Axios.post<TripDto>(`${API_BASE_URL}/trip/update/${tripId}`, updateTrip, {
             headers: { Authorization: `Bearer ${token}` },
         });
         return res.data;

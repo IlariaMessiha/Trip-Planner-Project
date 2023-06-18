@@ -8,7 +8,7 @@ import { useTripTimeline } from "../hooks/useTripTimeline";
 import styles from "./TripPage.module.css";
 
 export const TripPage = () => {
-    const { trip, setVisibleDay, visibleDay } = useTripTimeline();
+    const { loading, trip, visibleDay, updateTrip, setVisibleDay } = useTripTimeline();
 
     // TODO : Create a TripTimelineEmpty component to be displayed here.
     if (!trip) return <Typography variant="h4">No trip found</Typography>;
@@ -25,7 +25,9 @@ export const TripPage = () => {
                     <TripTimelineIntro
                         trip={trip}
                         visibleDay={visibleDay}
+                        loading={loading}
                         setVisibleDay={setVisibleDay}
+                        onUpdateTrip={updateTrip}
                     />
                     <div className={styles.contentTimeline}>
                         <TripTimeline tripItems={filteredTripItems} />

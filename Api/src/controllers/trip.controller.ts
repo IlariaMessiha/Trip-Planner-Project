@@ -48,15 +48,20 @@ export class TripController {
         const savedTrip = await this.tripService.saveTrip(trip, authUser.id);
         return mapTripToDto(savedTrip);
     }
+
     @Get("/:id")
     @UseGuards(AuthGuard)
     async getTrip(@Param("id", ParseIntPipe) id: number) {
         return mapTripToDto(await this.tripService.findTrip(id));
     }
-    @Post("/update")
+
+    @Post("/update/:id")
     @UseGuards(AuthGuard)
-    async updateTrip(@Body() updateTripBody: UpdateTripBodyDto) {
-        const updatedTrip = await this.tripService.updateTrip(updateTripBody);
+    async updateTrip(
+        @Param("id", ParseIntPipe) id: number,
+        @Body() updateTripBody: UpdateTripBodyDto
+    ) {
+        const updatedTrip = await this.tripService.updateTrip(id, updateTripBody);
         return mapTripToDto(updatedTrip);
     }
 }

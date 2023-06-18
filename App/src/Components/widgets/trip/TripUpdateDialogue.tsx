@@ -1,39 +1,67 @@
-import { Button, Dialog, DialogTitle, TextField } from "@mui/material";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    LinearProgress,
+    TextField,
+} from "@mui/material";
 import { FC, useState } from "react";
-import styles from "./TripUpdateDialogue.module.css";
-import { postData } from "../../../api/PostData";
 
 export interface TripUpdateDialogueProps {
     open: boolean;
-    tripId: number;
+    tripLabel: string;
+    loading: boolean;
+    onUpdateTrip: (label: string) => Promise<void>;
     onClose: () => void;
 }
-export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({ open, tripId, onClose }) => {
-    const [label, setLabel] = useState<string>("");
+export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({
+    open,
+    loading,
+    tripLabel,
+    onUpdateTrip,
+    onClose,
+}) => {
+    const [label, setLabel] = useState<string>(tripLabel);
 
-    const updateTrip = (e: React.FormEvent) => {
-        postData.updateTrip({
-            tripId,
-            tripLabel: label,
-        });
+    const updateTrip = async () => {
+        await onUpdateTrip(label);
+        onClose();
     };
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Update Your Trip</DialogTitle>
-            <form className={styles.form} onSubmit={updateTrip}>
-                <TextField
-                    id="outlined-basic"
-                    label="Trip Label"
-                    variant="outlined"
-                    fullWidth
-                    onChange={e => {
-                        setLabel(e.target.value);
-                    }}
-                />
+            <form onSubmit={e => e.preventDefault()}>
+                <DialogContent>
+                    <TextField
+                        id="outlined-basic"
+                        label="Trip Label"
+                        variant="outlined"
+                        fullWidth
+                        value={label}
+                        onChange={e => {
+                            setLabel(e.target.value);
+                        }}
+                    />
+                </DialogContent>
+                <DialogContent dividers>
+                    <DialogContentText>
+                        You can update your trip label to match your preferences.
+                        {/* TODO put the next description instead if you implemented (update start date) or update duration */}
+                        {/* If you update the start date or duration, all the items will be updated
+                        accordingly. */}
+                    </DialogContentText>
+                </DialogContent>
+                {loading && <LinearProgress />}
 
-                <Button variant="contained" sx={{ marginTop: "20px" }} type="submit">
-                    Update
-                </Button>
+                <DialogActions>
+                    <Button onClick={onClose}>cancel</Button>
+                    <Button onClick={updateTrip} autoFocus>
+                        Agree
+                    </Button>
+                </DialogActions>
             </form>
         </Dialog>
     );
