@@ -66,16 +66,37 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
             navigate("/auth/login");
         }
     };
-
+    const dislike = (restaurant: RestaurantDto) => {
+        const token = localStorage.getItem("accessToken");
+        if (loggedInUser && token) {
+            postData.dislike(
+                {
+                    item: restaurant,
+                    type: "restaurants",
+                    userId: loggedInUser.id,
+                },
+                token
+            );
+            setLikedLoc(false);
+        } else {
+            navigate("/auth/login");
+        }
+    };
     useEffect(() => {
         setLikedLoc(liked);
+        console.log("liked use effect");
     }, [liked]);
+   
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>
                 <FavoriteButton
                     onClick={() => {
-                        like(restaurant);
+                        if (likedLoc) {
+                            dislike(restaurant);
+                        } else {
+                            like(restaurant);
+                        }
                     }}
                 >
                     {likedLoc ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}

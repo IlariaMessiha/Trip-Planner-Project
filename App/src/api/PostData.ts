@@ -20,6 +20,13 @@ export class PostData {
         });
         return res.data;
     }
+
+    public async dislike(likedItem: LikedItem, token: string) {
+        const res = await Axios.post<LikedItem>(`${API_BASE_URL}/api/users/dislike`, likedItem, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return res.data;
+    }
     public async writeReview(review: ReviewDto, token: string) {
         const res = await Axios.post<ReviewDto>(`${API_BASE_URL}/api/users/review`, review, {
             headers: { Authorization: `Bearer ${token}` },

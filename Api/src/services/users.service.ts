@@ -143,6 +143,24 @@ export class UsersService {
         }
         return likedItem;
     }
+
+    async dislike(likedItem: LikedItem): Promise<void> {
+        if (likedItem.type === "attraction") {
+            await this.prisma.user_attraction.deleteMany({
+                where: {
+                    user_id: likedItem.userId,
+                    attraction_id: likedItem.item.id,
+                },
+            });
+        } else if (likedItem.type === "restaurants") {
+            await this.prisma.user_restaurant.deleteMany({
+                where: {
+                    user_id: likedItem.userId,
+                    restaurant_id: likedItem.item.id,
+                },
+            });
+        }
+    }
     async writeReview(item: ReviewDto): Promise<ReviewDto> {
         if (item.type === "attractionReview") {
             await this.prisma.attraction_review.create({
