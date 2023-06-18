@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { TripDto } from "../types/dto/common/TripDto";
-import { mockTrip } from "../mock";
+
 import { fetchData } from "../api/FetchData";
 import { useParams } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export const useTripTimeline = () => {
             if (id) {
                 const _trip = await fetchData.getTrip(parseInt(id));
                 setTrip(_trip);
-                setVisibleDay(mockTrip.tripItems[0].dateTime);
+                setVisibleDay(_trip.tripItems[0].dateTime);
             }
         };
         onMount();
