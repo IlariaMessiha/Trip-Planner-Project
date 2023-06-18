@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, UseGuards } from "@nestjs/common";
-import dayjs from "dayjs";
 import { find } from "lodash";
 import { AuthGuard } from "src/auth/auth.guard";
 import { AuthUserPayload } from "src/auth/authUser.decorator";
@@ -56,10 +55,7 @@ export class TripController {
     }
     @Post("/update")
     @UseGuards(AuthGuard)
-    async updateTrip(
-        @Body() updateTripBody: UpdateTripBodyDto,
-        @AuthUserPayload() authUser: AuthUser
-    ) {
+    async updateTrip(@Body() updateTripBody: UpdateTripBodyDto) {
         const updatedTrip = await this.tripService.updateTrip(updateTripBody);
         return mapTripToDto(updatedTrip);
     }
