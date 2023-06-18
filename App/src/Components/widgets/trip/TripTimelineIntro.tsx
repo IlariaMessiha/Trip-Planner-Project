@@ -16,6 +16,7 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
     visibleDay,
     setVisibleDay,
 }) => {
+    // TODO : fix - sometimes tripDurationInDays is 1 day less than the actual duration
     const tripDurationInDays = dayjs(trip.endDate).diff(dayjs(trip.startDate), "day");
     const tabValue = visibleDay ? dayjs(visibleDay).diff(dayjs(trip.startDate), "day") : 0;
 

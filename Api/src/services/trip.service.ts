@@ -38,6 +38,7 @@ export class TripService {
     }
 
     deduceFiltersByTarget(submissions: TChatbotSubmission[]) {
+        // TODO : group submission by question code, if a question has multiple answers, we should treat them as OR not AND
         return submissions.reduce((filtersByTarget, submission) => {
             const question = flow.questions.find(
                 question => question.code === submission.questionCode
