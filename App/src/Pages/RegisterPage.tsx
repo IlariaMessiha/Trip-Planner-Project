@@ -19,6 +19,30 @@ import { toast } from "react-toastify";
 import { object, string, TypeOf } from "zod";
 import { useTranslation } from "react-i18next";
 
+
+// const GetTranslatedMessage = (param: string) => {
+//     const { t } = useTranslation().i18n;
+//     return t(param);
+// }
+
+// const registerSchema = object({
+//     firstName: string()
+//         .nonempty(GetTranslatedMessage("registration.reqFirstName"))
+//         .max(32, GetTranslatedMessage("registration.firstNameLen")),
+//     lastName: string()
+//         .nonempty(GetTranslatedMessage("registration.reqLastName"))
+//         .max(32, GetTranslatedMessage("registration.lastNameLen")),
+//     email: string().nonempty(GetTranslatedMessage("registration.reqEmail")).email(GetTranslatedMessage("registration.invalidEmail")),
+//     password: string()
+//         .nonempty(GetTranslatedMessage("registration.reqPw"))
+//         .min(8, GetTranslatedMessage("registration.pwMinLen"))
+//         .max(32, GetTranslatedMessage("registration.pwMaxLen")),
+//     confirmPassword: string().nonempty(GetTranslatedMessage("registration.pwConfirmation")),
+// }).refine(data => data.password === data.confirmPassword, {
+//     path: ["confirmPassword"],
+//     message: GetTranslatedMessage("registration.pwError"),
+// });
+
 const registerSchema = object({
     firstName: string()
         .nonempty("Name is required")
