@@ -12,6 +12,7 @@ import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 import { UserDto } from "../types/dto/common/UserDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import { TripDto } from "../types/dto/common/TripDto";
+import { SearchQuery, SearchResult } from "../types/Search";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -48,6 +49,17 @@ export class FetchData {
     public async getUsers() {
         const response = await Axios.get(`${API_BASE_URL}/users`);
         return response.data;
+    }
+
+    public async search2() {
+        const response = await Axios.get(`${API_BASE_URL}/search`);
+        return response.data;
+    }
+    public async search(searchQuery: SearchQuery) {
+        const res = await Axios.get<SearchResult[]>(`${API_BASE_URL}/search2`, {
+            params: { q: searchQuery.label, filter: searchQuery.type },
+        });
+        return res.data;
     }
 
     public async getCity(id: string) {

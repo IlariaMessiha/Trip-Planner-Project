@@ -1,14 +1,13 @@
 import { Autocomplete, Button, styled, TextField } from "@mui/material";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import { postData } from "../../../api/PostData";
 import { SearchQuery, SearchResult, SearchResultType } from "../../../types/Search";
 import { InputText } from "../../core/InputText";
 import styles from "./SearchForm.module.css";
+import { useNavigate } from "react-router-dom";
+import { fetchData } from "../../../api/FetchData";
 
 interface SearchFormProps {
-    initialLabel: string;
     onSubmit: (results: SearchResult[], query: SearchQuery, error: string) => void;
 }
 const SearchButton = styled(Button)({
@@ -31,27 +30,21 @@ const TypeTextField = styled(TextField)({
     },
 });
 
-export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
+export const SearchForm: FC<SearchFormProps> = ({ onSubmit }) => {
     const { t } = useTranslation();
-
-    const [label, setLabel] = useState<string>(initialLabel);
-
+    const navigate = useNavigate();
+    const [label, setLabel] = useState<string>();
     const [searchResultType, setSearchResultType] = useState<SearchResultType[] | undefined>(
         undefined
     );
-    // const [results, setResults] = useState<SearchResult[] | undefined>(undefined);
-
     const resultOptions: SearchResultType[] = ["City", "Restaurant", "Hotel", "Attraction"];
 
-    const handleSubmit = async (e: any): Promise<void> => {
-        e.preventDefault();
-        const new_label = label ? label : initialLabel;
-        console.log(`label ${label} - initial ${initialLabel} - new ${new_label}`);
-        if (new_label) {
+    const getResData = async (query?: string, filters?: SearchResultType[]) => {
+        if (query) {
             try {
-                const _results = await postData.search({
-                    label: new_label,
-                    type: searchResultType,
+                const _results = await fetchData.search({
+                    label: query,
+                    type: filters?.length !== 0 ? filters : searchResultType,
                 });
 
                 if (_results) {
@@ -59,7 +52,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                     onSubmit(
                         _results,
                         {
-                            label: new_label,
+                            label: query,
                             type: searchResultType,
                         },
                         error
@@ -71,9 +64,36 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
         }
     };
 
-    // useEffect(() => {
-    //     handleSubmit({ preventDefault: () => {} });
-    // }, [handleSubmit]);
+    const handleSubmit = async (e: any): Promise<void> => {
+        e.preventDefault();
+        let searchString = `&filter=`;
+        if (searchResultType) {
+            searchString += searchResultType.join("&filter=");
+        } else {
+            searchString = "";
+        }
+        navigate({
+            pathname: `/search`,
+            search: `q=${label}${searchString}`,
+        });
+    };
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get("q");
+        const filters = params.getAll("filter");
+
+        if (query !== null && filters.length !== 0) {
+            const castedResults: SearchResultType[] = filters as SearchResultType[];
+            setLabel(query);
+            setSearchResultType(castedResults);
+            getResData(query, castedResults);
+        } else if (query !== null) {
+            setLabel(query);
+            setSearchResultType(undefined);
+            getResData(query);
+        }
+    }, [window.location.search]);
 
     return (
         <form className={styles.searchContainer} onSubmit={handleSubmit}>
@@ -92,6 +112,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                 disablePortal
                 options={resultOptions}
                 renderInput={params => <TypeTextField {...params} label={t("common.filterBy")} />}
+                value={searchResultType || []}
                 onChange={(event, values) => {
                     if (values.length > 0) {
                         setSearchResultType(values);

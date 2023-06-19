@@ -10,13 +10,14 @@ import { paginate } from "../utils/paginate";
 import { SearchTypeItem } from "../Components/widgets/SearchTypeItem";
 
 export const SearchPage = () => {
-    const { initialSearchLabel } = useInitialSearchFromUrl();
+    // const { initialSearchLabel } = useInitialSearchFromUrl();
+    // const storedResults = localStorage.getItem("searchResults");
     const [results, setResults] = useState<SearchResult[]>([]);
     const [unPagedResults, setUnPagedResults] = useState<SearchResult[]>([]);
     const [pagedResults, setPagedResults] = useState<SearchResult[]>([]);
     const [totalItemsCount, setTotalItemCount] = useState<number>(0);
     const [pageError, setPageError] = useState<string>("");
-    const pageSize = 3;
+    const pageSize = 6;
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     useEffect(() => {
@@ -42,7 +43,6 @@ export const SearchPage = () => {
         <>
             <Container className={styles.searchContainer}>
                 <SearchForm
-                    initialLabel={initialSearchLabel}
                     onSubmit={(results, query, error) => {
                         setResults(results);
                         setPageError(error);
@@ -87,17 +87,17 @@ export const SearchPage = () => {
     );
 };
 
-const useInitialSearchFromUrl = () => {
-    const [searchWord, setSearchWord] = useState("");
+// const useInitialSearchFromUrl = () => {
+//     const [searchWord, setSearchWord] = useState("");
 
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const searchWord = params.get("q");
-        console.log(searchWord, "from oustide");
-        if (searchWord) {
-            setSearchWord(searchWord);
-        }
-    }, []);
+//     useEffect(() => {
+//             const params = new URLSearchParams(window.location.search);
+//             const searchWord = params.get("q");
+//         console.log(searchWord, "from oustide");
+//         if (searchWord) {
+//             setSearchWord(searchWord);
+//         }
+//     }, []);
 
-    return { initialSearchLabel: searchWord };
-};
+//     return { initialSearchLabel: searchWord };
+// };
