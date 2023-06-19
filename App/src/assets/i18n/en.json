@@ -104,7 +104,10 @@
         "noAccount": "Don't have an account? Sign up now",
         "haveAccount": "Already have an account? Sign in",
         "profile": "Profile",
-        "updateTrip": "Update your trip"
+        "updateTrip": "Update your trip",
+        "search": "Search for",
+        "favorites": "Favorites",
+        "trips": "Trips"
     },
     "trip": {
         "updateLabel": "You can update your trip label to match your preferences.",

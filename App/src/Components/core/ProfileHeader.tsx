@@ -4,6 +4,7 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserDto } from "../../types/dto/common/UserDto";
 import styles from "./ProfileHeader.module.css";
+import { useTranslation } from "react-i18next";
 
 interface ProfileHeaderProps {
     loggedInUser: UserDto;
@@ -12,6 +13,7 @@ interface ProfileHeaderProps {
 }
 export const ProfileHeader: FC<ProfileHeaderProps> = ({ loggedInUser, logOut }) => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     return (
         <Paper className={styles.header}>
             <div className={styles.userInfo}>
@@ -34,7 +36,7 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({ loggedInUser, logOut }) 
                 }}
             >
                 <LogoutIcon />
-                <Typography variant="subtitle2">LOGOUT</Typography>
+                <Typography variant="subtitle2">{t("user.logOut")}</Typography>
             </Button>
         </Paper>
     );

@@ -5,16 +5,18 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import { Box, Tab } from "@mui/material";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 interface ProfileTabsProps {
     value: string;
     handleChange: (event: React.SyntheticEvent, newValue: string) => void;
 }
 export const ProfileTabs: FC<ProfileTabsProps> = ({ value, handleChange }) => {
+    const { t } = useTranslation();
     return (
         <Box sx={{ width: "20%", typography: "body1" }}>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <TabList
+                    <TabList    
                         aria-label="lab API tabs example"
                         onChange={handleChange}
                         orientation="vertical"
@@ -23,13 +25,13 @@ export const ProfileTabs: FC<ProfileTabsProps> = ({ value, handleChange }) => {
                         <Tab
                             icon={<FavoriteIcon />}
                             iconPosition="start"
-                            label="Favorites"
+                            label={t("user.favorites")}
                             value="2"
                         />
                         <Tab
                             icon={<LocalAirportIcon />}
                             iconPosition="start"
-                            label="Trips"
+                            label={t("user.trips")}
                             value="3"
                         />
                     </TabList>
