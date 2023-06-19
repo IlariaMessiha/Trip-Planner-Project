@@ -11,23 +11,26 @@
         "hotel": "Hotel",
         "restaurant": "Restaurant",
         "Restaurant": "Restaurant",
-
         "attractions": "Attractions",
         "reviews": "Reviews",
         "cities": "Cities",
         "review": "Review",
         "search": "Search",
         "filterBy": "Filter By",
-        "close": "Close"
+        "close": "Close",
+        "email": "Email",
+        "writeReview": "Write a review",
+        "logout": "Logout",
+        "share": "Share"
     },
     "navBar": {
         "logo": "Trip Planner",
-
         "french": "French",
         "spanish": "Spanish",
-        "english": "English"
+        "english": "English",
+        "german": "German",
+        "portguese": "Portguese"
     },
-
     "dashboard": {
         "slogan": "Dream Your Next Trip"
     },
@@ -49,7 +52,7 @@
         "suggestedDuration": "Suggested Duration",
         "suggestedDurationFormat": "This my take {{duration}} hours",
         "hours": "Hours",
-        "openHours": "Open hours from:{{from}} to:{{to}}",
+        "openHours": "Open hours from: {{from}} to {{to}}",
         "visitWebsite": "Visit Website",
         "call": "Call",
         "ticketPrice": "Ticket Price",
@@ -65,9 +68,25 @@
     "restaurant": {
         "averageMealPerPerson": "${{amount}}/person",
         "averageMealPrice": "Average Meal Price: ",
-        "food": "Cuisine : {{type}}"
+        "food": "Cuisine: {{type}}"
     },
     "reviews": {
-        "rating": "Rating"
+        "rating": "Rating",
+        "userRating": "Rate your experience",
+        "submit": "Submit"
+    },
+    "registration": {
+        "pwError": "Passwords do not match",
+        "reqFirstName": "First Name field is required",
+        "ReqLastName": "Last Name field is required",
+        "reqPw": "Password field is requred",
+        "reqEmail": "Email is required",
+        "firstNameLen": "First Name must be less than 32 characters",
+        "lastNameLen": "Last Name must be less than 32 characters",
+        "invalidEmail": "Email is invalid",
+        "pwMinLen": "Password can't be less than 8 characters",
+        "pwMaxLen": "Password can't be more than 32 characters",
+        "pwConfirmation": "Please confirm your password",
+        "pwNotConfirmed": "Passwords do not match"
     }
 }

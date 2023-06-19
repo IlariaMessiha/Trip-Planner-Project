@@ -1,69 +1,92 @@
 {
     "common": {
-        "locations": "Locations",
+        "locations": "Lieux",
         "activities": "Activités",
-        "attractions": "Attraction",
-        "Attraction": "Attraction",
-        "cities": "Villes",
-        "City": "Ville",
         "Country": "Pays",
+        "City": "Ville",
+        "country": "Pays",
+        "city": "Ville",
+        "attraction": "Attraction",
+        "Attraction": "Attraction",
         "hotel": "Hôtel",
         "restaurant": "Restaurant",
-        "reviews": "Commentaires",
-        "review": "Commenter",
+        "Restaurant": "Restaurant",
+        "attractions": "Attractions",
+        "reviews": "Avis",
+        "cities": "Villes",
+        "review": "Avis",
         "search": "Rechercher",
-        "filterBy": "Flitrer Par",
-        "close": "Fermer"
+        "filterBy": "Filtrer par",
+        "close": "Fermer",
+        "email": "Email",
+        "writeReview": "Écrire un avis",
+        "logout": "Déconnexion",
+        "share": "Partager"
     },
-
     "navBar": {
-        "logo": "Plannificateur De Voyage",
-
-        "french": "Francais",
-        "spanish": "Espagnole",
-        "english": "Anglais"
+        "logo": "Planificateur de voyage",
+        "french": "Français",
+        "spanish": "Espagnol",
+        "english": "Anglais",
+        "german": "Allemand",
+        "portguese": "Portugais"
     },
     "dashboard": {
-        "slogan": "Rêve Ton Prochain Voyage"
+        "slogan": "Rêvez de votre prochain voyage"
     },
     "cities": {
         "cityPage": {
             "seeAllPhotos": "Voir toutes les photos",
-            "photosOf": "Photos De",
-            "topAttraction": "Attraction Principale",
-            "topAttractionSlogan": "Des lieux à voir, des façons de se promener et des expériences emblématiques qui définissent Berlin.",
-            "travelAdvice": "Conseils de Voyage",
-            "advice1": "Meilleur moment pour visiter",
+            "photosOf": "Photos de",
+            "topAttraction": "Attraction principale",
+            "topAttractionSlogan": "Lieux à voir, façons de flâner et expériences marquantes qui définissent Berlin.",
+            "travelAdvice": "Conseils de voyage",
+            "advice1": "Meilleure période pour visiter",
             "advice2": "Se déplacer",
-            "advice3": "Coutumes locales",
-            "advice4": "Conseils de pros"
+            "advice3": "Mœurs locales",
+            "advice4": "Conseils des pros"
         }
     },
     "attractions": {
-        "about": "À propos de",
-        "suggested duration": "Durée suggérée",
+        "about": "À propos",
+        "suggestedDuration": "Durée suggérée",
+        "suggestedDurationFormat": "Cela peut prendre {{duration}} heures",
         "hours": "Heures",
-        "open-hours": "Heures d'Ouverture",
-        "from": "de",
-        "to": "à",
-        "visitWebsite": "Visiter le Site Web",
-        "call": "Appel",
-        "ticket price": "Prix Du Billet",
+        "openHours": "Heures d'ouverture: de {{from}} à {{to}}",
+        "visitWebsite": "Visiter le site web",
+        "call": "Appeler",
+        "ticketPrice": "Prix du billet",
+        "ticketPriceFormat": "{{amount}} €",
         "written": "Écrit",
-        "buy ticket": "Acheter un billet",
-        "type": "{{type}} attraction",
-        "suggestedDuration": "Durée suggérée"
-    },
-    "restaurant": {
-        "averageMealPerPerson": "${{amount}}/person",
-        "food": "Cuisine: {{type}}",
-        "averageMealPrice": "Prix moyen du repas: "
+        "buyTicket": "Acheter un billet",
+        "type": "Attraction {{type}}"
     },
     "hotels": {
-        "startingFromPrice": "De {{amount}}$ / nuit",
-        "bookNow": "Reserve maintenant"
+        "startingFromPrice": "à partir de {{amount}} € / nuit",
+        "bookNow": "Réserver maintenant"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "{{amount}} € / personne",
+        "averageMealPrice": "Prix moyen du repas:",
+        "food": "Cuisine: {{type}}"
     },
     "reviews": {
-        "rating": "Notation"
+        "rating": "Évaluation",
+        "userRating": "Évaluez votre expérience",
+        "submit": "Envoyer"
+    },
+    "registration": {
+        "pwError": "Les mots de passe ne correspondent pas",
+        "reqFirstName": "Le champ du prénom est requis",
+        "ReqLastName": "Le champ du nom de famille est requis",
+        "reqPw": "Le champ du mot de passe est requis",
+        "reqEmail": "Le champ de l'email est requis",
+        "firstNameLen": "Le prénom doit comporter moins de 32 caractères",
+        "lastNameLen": "Le nom de famille doit comporter moins de 32 caractères",
+        "invalidEmail": "L'email est invalide",
+        "pwMinLen": "Le mot de passe ne peut pas comporter moins de 8 caractères",
+        "pwMaxLen": "Le mot de passe ne peut pas comporter plus de 32 caractères",
+        "pwConfirmation": "Veuillez confirmer votre mot de passe",
+        "pwNotConfirmed": "Les mots de passe ne correspondent pas"
     }
 }

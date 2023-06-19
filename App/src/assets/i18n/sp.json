@@ -1,66 +1,92 @@
 {
     "common": {
+        "locations": "Ubicaciones",
+        "activities": "Actividades",
+        "Country": "País",
+        "City": "Ciudad",
+        "country": "País",
+        "city": "Ciudad",
+        "attraction": "Atracción",
+        "Attraction": "Atracción",
+        "hotel": "Hotel",
+        "restaurant": "Restaurante",
+        "Restaurant": "Restaurante",
         "attractions": "Atracciones",
-        "cities": "Ciudades",
         "reviews": "Reseñas",
-        "review": "Reseñar",
+        "cities": "Ciudades",
+        "review": "Reseña",
         "search": "Buscar",
-        "filterBy": "Filtrado por",
-        "close": "Cerca",
-        "city": "ciudad",
-        "country": "país",
-        "hotel": "hotel",
-        "attraction": "atracción",
-        "restaurant": "restaurante"
+        "filterBy": "Filtrar por",
+        "close": "Cerrar",
+        "email": "Correo electrónico",
+        "writeReview": "Escribir una reseña",
+        "logout": "Cerrar sesión",
+        "share": "Compartir"
     },
     "navBar": {
-        "logo": "Planificador De Viajes",
-
+        "logo": "Planificador de viajes",
         "french": "Francés",
         "spanish": "Español",
-        "english": "Inglés"
+        "english": "Inglés",
+        "german": "Alemán",
+        "portguese": "Portugués"
     },
-
     "dashboard": {
-        "slogan": "Sueña Tu Próximo Viaje"
+        "slogan": "Sueña con tu próximo viaje"
     },
     "cities": {
         "cityPage": {
             "seeAllPhotos": "Ver todas las fotos",
             "photosOf": "Fotos de",
             "topAttraction": "Atracción principal",
-            "topAttractionSlogan": "Lugares para ver, formas de caminar y experiencias icónicas que definen a Berlín",
+            "topAttractionSlogan": "Lugares para ver, formas de caminar y experiencias distintivas que definen Berlín.",
             "travelAdvice": "Consejos de viaje",
             "advice1": "Mejor época para visitar",
-            "advice2": "Desplazarse",
+            "advice2": "Cómo moverse",
             "advice3": "Costumbres locales",
-            "advice4": "Consejos de los profesionales"
+            "advice4": "Consejos de los expertos"
         }
     },
     "attractions": {
-        "about": "Sobre",
-        "suggested duration": "Duración sugerida",
+        "about": "Acerca de",
+        "suggestedDuration": "Duración sugerida",
+        "suggestedDurationFormat": "Esto puede llevar {{duration}} horas",
         "hours": "Horas",
-        "open-hours": "Horarios de Apertura",
-        "from": "de",
-        "to": "a",
-        "visitWebsite": "Visita la Página Web",
+        "openHours": "Horario de apertura: de {{from}} a {{to}}",
+        "visitWebsite": "Visitar sitio web",
         "call": "Llamar",
-        "ticket price": "Precio Del Boleto",
+        "ticketPrice": "Precio del boleto",
+        "ticketPriceFormat": "{{amount}} €",
         "written": "Escrito",
-        "buy ticket": "Comprar Boleto",
-        "type": "{{type}} Atraccion"
+        "buyTicket": "Comprar boleto",
+        "type": "Atracción {{type}}"
     },
     "hotels": {
-        "startingFromPrice": "de {{amount}}$ / noche",
+        "startingFromPrice": "a partir de {{amount}} € / noche",
         "bookNow": "Reservar ahora"
     },
     "restaurant": {
-        "averageMealPerPerson": "${{amount}}/person",
-        "food": "Cocina: {{type}}",
-        "averageMealPrice": "Precio medio de la comida : "
+        "averageMealPerPerson": "{{amount}} € / persona",
+        "averageMealPrice": "Precio promedio de la comida:",
+        "food": "Cocina: {{type}}"
     },
     "reviews": {
-        "rating": "Clasificación"
+        "rating": "Valoración",
+        "userRating": "Califique su experiencia",
+        "submit": "Enviar"
+    },
+    "registration": {
+        "pwError": "Las contraseñas no coinciden",
+        "reqFirstName": "Se requiere el campo del nombre",
+        "ReqLastName": "Se requiere el campo del apellido",
+        "reqPw": "Se requiere el campo de la contraseña",
+        "reqEmail": "Se requiere el campo del correo electrónico",
+        "firstNameLen": "El nombre debe tener menos de 32 caracteres",
+        "lastNameLen": "El apellido debe tener menos de 32 caracteres",
+        "invalidEmail": "El correo electrónico es inválido",
+        "pwMinLen": "La contraseña debe tener al menos 8 caracteres",
+        "pwMaxLen": "La contraseña no debe tener más de 32 caracteres",
+        "pwConfirmation": "Confirme su contraseña",
+        "pwNotConfirmed": "Las contraseñas no coinciden"
     }
 }
