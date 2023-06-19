@@ -161,8 +161,8 @@ export class CommonService {
                     }),
                 },
                 {
-                    title: "Places to in Egypt ",
-                    subtitle: "Go to these places for a close-up look at Egypt.",
+                    title: "Sacred Treasures: Discovering Egypt's Holiest Sites ",
+                    subtitle: "Embrace the Serenity, Experience the Divine.",
                     items: egyptReligiousAttractions.map(attraction => {
                         return {
                             type: "attraction",
