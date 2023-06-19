@@ -2,24 +2,17 @@ import { useEffect, useState } from "react";
 
 import { Container } from "../Components/core/layout/Container";
 
+import { useNavigate } from "react-router-dom";
+import { SearchTypeItem } from "../Components/widgets/SearchTypeItem";
+import PaginationComponent from "../Components/widgets/pagination";
 import { SearchForm } from "../Components/widgets/search/SearchForm";
+import { fetchData } from "../api/FetchData";
 import { SearchQuery, SearchResult, SearchResultType } from "../types/Search";
 import styles from "./SearchPage.module.css";
-import PaginationComponent from "../Components/widgets/pagination";
-import { paginate } from "../utils/paginate";
-import { SearchTypeItem } from "../Components/widgets/SearchTypeItem";
-import { fetchData } from "../api/FetchData";
-import { useNavigate } from "react-router-dom";
-interface searchPageProps {
-    onSubmit: (query: SearchQuery) => void;
-}
+
 export const SearchPage = () => {
-    // const { initialSearchLabel } = useInitialSearchFromUrl();
-    // const storedResults = localStorage.getItem("searchResults");
     const [results, setResults] = useState<SearchResult[]>([]);
-    const [query, setQuery] = useState<SearchQuery | undefined>(undefined);
-    const [unPagedResults, setUnPagedResults] = useState<SearchResult[]>([]);
-    const [pagedResults, setPagedResults] = useState<SearchResult[]>([]);
+
     const [totalItemsCount, setTotalItemCount] = useState<number>(0);
     const [pageError, setPageError] = useState<string>("");
     const pageSize = 6;
@@ -29,7 +22,7 @@ export const SearchPage = () => {
     useEffect(() => {
         if (results.length > 0) {
             setTotalItemCount(results.length);
-            setUnPagedResults(results);
+
             setPageError("");
         }
         setCurrentPage(1);
@@ -46,7 +39,6 @@ export const SearchPage = () => {
                 type: filters,
             });
             setResults(_results);
-            // setPagedResults(paginate(unPagedResults, currentPage, pageSize));
         };
         onMount();
     }, []);
