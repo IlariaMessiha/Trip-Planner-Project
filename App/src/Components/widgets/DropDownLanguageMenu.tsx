@@ -4,9 +4,11 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import germanFlag from "../../assets/images/1200px-Flag_of_Germany.svg.webp";
 import americanFlag from "../../assets/images/American flag.jpg";
 import spanishFlag from "../../assets/images/Spanish flag.jpg";
 import frenchFlag from "../../assets/images/french flag.jpg";
+import portgueseFlag from "../../assets/images/portugal-flag.jpg";
 import styles from "./DropDownLanguageMenu.module.css";
 
 export const DropDownLanguageMenu = () => {
@@ -49,22 +51,21 @@ export const DropDownLanguageMenu = () => {
         setAnchorEl(null);
     };
     // TODO: implement German/Portguese if needed
-    // const showGermanFlag = () => {
-    //     setLanguage(3);
-    //     i18n.changeLanguage("gr");
-    //     setAnchorEl(null);
-    // }
-    // const showPortgueseFlag = () => {
-    //     setLanguage(4);
-    //     i18n.changeLanguage("pr");
-    //     setAnchorEl(null);
-    // }
+    const showGermanFlag = () => {
+        setLanguage(3);
+        i18n.changeLanguage("gr");
+        setAnchorEl(null);
+    };
+    const showPortgueseFlag = () => {
+        setLanguage(4);
+        i18n.changeLanguage("pr");
+        setAnchorEl(null);
+    };
     return (
         <div className={styles.container}>
             <IconButton onClick={handleClick} className={styles.menuButton}>
                 <LanguageIcon className={styles.globeIcon} />
             </IconButton>
-
             <Menu
                 sx={{ width: 200 }}
                 className={styles.menu}
@@ -92,27 +93,19 @@ export const DropDownLanguageMenu = () => {
                 </MenuItem>
 
                 {/* TODO: add German flag  under germanFlag */}
-                {/* <MenuItem onClick={showGermanFlag} className={styles.menuItem}>
+                <MenuItem onClick={showGermanFlag} className={styles.menuItem}>
                     <img src={germanFlag} className={styles.flag} alt="German Flag" />
                     <Typography variant="body2">{t("navBar.german")}</Typography>
-                </MenuItem> */}
+                </MenuItem>
 
                 {/* TODO: add Portguese flag  under portgueseFlag */}
-                {/* <MenuItem onClick={showGermanFlag} className={styles.menuItem}>
+                <MenuItem onClick={showPortgueseFlag} className={styles.menuItem}>
                     <img src={portgueseFlag} className={styles.flag} alt="Portguese Flag" />
                     <Typography variant="body2">{t("navBar.portguese")}</Typography>
-                </MenuItem> */}
+                </MenuItem>
             </Menu>
 
-            {language === 2 ? (
-                <img src={spanishFlag} className={styles.currentLanguage} alt="Spanish Flag" />
-            ) : language === 1 ? (
-                <img src={frenchFlag} className={styles.currentLanguage} alt="French Flag" />
-            ) : (
-                <img src={americanFlag} className={styles.currentLanguage} alt="American Flag" />
-            )}
-
-            {/* {language === 4 ? (
+            {language === 4 ? (
                 <img src={portgueseFlag} className={styles.currentLanguage} alt="Portguese Flag" />
             ) : language === 3 ? (
                 <img src={germanFlag} className={styles.currentLanguage} alt="German Flag" />
@@ -122,7 +115,7 @@ export const DropDownLanguageMenu = () => {
                 <img src={frenchFlag} className={styles.currentLanguage} alt="French Flag" />
             ) : (
                 <img src={americanFlag} className={styles.currentLanguage} alt="American Flag" />
-            )} */}
+            )}
         </div>
     );
 };
