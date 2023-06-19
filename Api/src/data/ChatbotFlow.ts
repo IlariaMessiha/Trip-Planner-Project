@@ -66,50 +66,7 @@ export const flow: TChatbotFlow = {
                 minAge: { lte: "$value" },
             },
         },
-        {
-            code: "estimatedBudget",
-            sort: 3,
-            text: "What is you estimated budget for this trip, excluding accommodation ?",
-            type: "single-choice",
-            searchTargets: ["global"],
-            answers: [
-                {
-                    code: "lessThan1000",
-                    text: "Less than $1000",
-                    filter: {
-                        tags: { in: ["budget", "cheap", "low-cost"] },
-                        budget: { lte: "1000" },
-                    },
-                },
-                {
-                    code: "1000-2000",
-                    text: "$1000 - $2000",
-                    filter: {
-                        budget: { gte: "1000", lte: "2000" },
-                    },
-                },
-                {
-                    code: "2000-3000",
-                    text: "$2000 - $3000",
-                    filter: {
-                        budget: { gte: "2000", lte: "3000" },
-                    },
-                },
-                {
-                    code: "moreThan3000",
-                    text: "more than $3000",
-                    filter: {
-                        tags: { in: ["luxury", "expensive", "high-end", "premium"] },
-                        budget: { gte: "3000" },
-                    },
-                },
-                {
-                    code: "notSure",
-                    text: "I don't know yet",
-                    filter: {},
-                },
-            ],
-        },
+
         {
             code: "tripDuration",
             sort: 4,
@@ -147,7 +104,7 @@ export const flow: TChatbotFlow = {
         {
             code: "preferredThemes",
             sort: 6,
-            text: "Choose a theme for your trip.",
+            text: "What kind of experiences are you seeking during your trip?",
             type: "multiple-choices",
             filterAggregation: "or",
             searchTargets: ["attractions"],
@@ -197,19 +154,6 @@ export const flow: TChatbotFlow = {
                         tags: { in: ["shopping", "boutiques"] },
                     },
                 },
-            ],
-        },
-        {
-            code: "preferredPhysicalActivity",
-            sort: 7,
-            text: "What kind of physical activity do you prefer ?",
-            type: "multiple-choices",
-            searchTargets: ["attractions"],
-            filterAggregation: "or",
-            shouldAskIf: {
-                preferredThemes: { in: ["physicalActivity"] },
-            },
-            answers: [
                 {
                     code: "hiking",
                     text: "Hiking",
@@ -238,13 +182,9 @@ export const flow: TChatbotFlow = {
                         tags: { in: ["skiing", "snowboarding"] },
                     },
                 },
-                {
-                    code: "nothingSpecific",
-                    text: "Nothing specific",
-                    filter: {},
-                },
             ],
         },
+
         {
             code: "foodPreferences",
             sort: 8,
@@ -262,7 +202,7 @@ export const flow: TChatbotFlow = {
                 },
                 {
                     code: "vegetarian",
-                    text: "Vegatarian",
+                    text: "Vegetarian",
                     filter: {
                         tags: { in: ["vegetarian"] },
                     },
