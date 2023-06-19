@@ -13,7 +13,7 @@ export const Section: FC<SectionProps> = ({ title, subtitle, children }) => (
     <div className={styles.section}>
         <div className={styles.sectionHeader}>
             <Typography variant="h4">{title} </Typography>
-            <Typography variant="h6">{subtitle}</Typography>
+            <Typography variant="subtitle1">{subtitle}</Typography>
         </div>
         {children}
     </div>

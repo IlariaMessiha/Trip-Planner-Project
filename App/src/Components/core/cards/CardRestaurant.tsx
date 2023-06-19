@@ -5,6 +5,7 @@ import {
     CardActionArea,
     CardContent,
     CardMedia,
+    Chip,
     IconButton,
     Rating,
     styled,
@@ -85,7 +86,7 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
 
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ width: 280 }}>
+            <Card className={styles.item}>
                 <FavoriteButton
                     onClick={() => {
                         if (likedLoc) {
@@ -114,11 +115,11 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
                             </Typography>
                             {restaurant.rating && (
                                 <StarsRating
+                                    size="small"
                                     name="half-rating"
                                     defaultValue={restaurant.rating}
                                     precision={0.5}
                                     readOnly
-                                    sx={{}}
                                 />
                             )}
                             {restaurant.avgMealPerPerson && (
@@ -129,7 +130,9 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
                                 </Typography>
                             )}
                             {restaurant.food && (
-                                <Typography variant="body2">{restaurant.food} food</Typography>
+                                <span style={{ paddingTop: 4 }}>
+                                    <Chip variant="outlined" size="small" label={restaurant.food} />
+                                </span>
                             )}
                         </CardContent>
                     </CardActionArea>

@@ -26,7 +26,7 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
     const { t } = useTranslation();
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ width: 280 }}>
+            <Card className={styles.item}>
                 <Link key={hotel.id} to={`/hotel/${hotel.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                         {hotel.imageUrl && (
@@ -44,11 +44,11 @@ export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
                             </Typography>
                             {hotel.rating && (
                                 <StarsRating
+                                    size="small"
                                     name="half-rating"
                                     defaultValue={hotel.rating}
                                     precision={0.5}
                                     readOnly
-                                    sx={{}}
                                 />
                             )}
                             {hotel.startingFromPrice && (

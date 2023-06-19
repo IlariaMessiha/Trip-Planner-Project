@@ -17,24 +17,28 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
             className={styles.swiper}
             breakpoints={{
                 0: {
-                    slidesPerView: 1,
+                    slidesPerView: 1.2,
                     spaceBetween: 10,
                 },
-                400: {
-                    slidesPerView: 2,
-                    spaceBetween: 5,
+                450: {
+                    slidesPerView: 1.6,
+                    spaceBetween: 10,
+                },
+                550: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 10,
+                },
+                700: {
+                    slidesPerView: 2.6,
+                    spaceBetween: 10,
                 },
 
                 800: {
-                    slidesPerView: 3,
-                    spaceBetween: 5,
-                },
-                900: {
-                    slidesPerView: 4,
+                    slidesPerView: 3.2,
                     spaceBetween: 10,
                 },
-                1280: {
-                    slidesPerView: 4,
+                1050: {
+                    slidesPerView: 4.2,
                     spaceBetween: 10,
                 },
             }}
