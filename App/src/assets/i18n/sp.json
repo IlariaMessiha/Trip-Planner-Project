@@ -20,7 +20,10 @@
         "close": "Cerrar",
         "email": "Correo electrónico",
         "writeReview": "Escribir una reseña",
-        "share": "Compartir"
+        "share": "Compartir",
+        "cancel": "Cancelar",
+        "agree": "Aceptar",
+        "food": "Comida"
     },
     "navBar": {
         "logo": "Planificador de viajes",
@@ -31,61 +34,87 @@
         "portguese": "Portugués"
     },
     "dashboard": {
-        "slogan": "Sueña con tu próximo viaje"
+        "slogan": "Imagina tu próximo viaje"
     },
     "cities": {
         "cityPage": {
             "seeAllPhotos": "Ver todas las fotos",
             "photosOf": "Fotos de",
             "topAttraction": "Atracción principal",
-            "topAttractionSlogan": "Lugares para ver, formas de caminar y experiencias distintivas que definen Berlín.",
+            "topAttractionSlogan": "Lugares para ver, formas de caminar y experiencias únicas que definen Berlín.",
             "travelAdvice": "Consejos de viaje",
             "advice1": "Mejor época para visitar",
             "advice2": "Cómo moverse",
             "advice3": "Costumbres locales",
-            "advice4": "Consejos de los expertos"
+            "advice4": "Consejos de expertos"
         }
     },
     "attractions": {
         "about": "Acerca de",
         "suggestedDuration": "Duración sugerida",
-        "suggestedDurationFormat": "Esto puede llevar {{duration}} horas",
+        "suggestedDurationFormat": "Esto puede tomar {{duration}} horas",
         "hours": "Horas",
-        "openHours": "Horario de apertura: de {{from}} a {{to}}",
+        "openHours": "Horario de {{from}} a {{to}}",
         "visitWebsite": "Visitar sitio web",
         "call": "Llamar",
-        "ticketPrice": "Precio del boleto",
-        "ticketPriceFormat": "{{amount}} €",
+        "ticketPrice": "Precio de entrada",
+        "ticketPriceFormat": "{{amount}} $",
         "written": "Escrito",
-        "buyTicket": "Comprar boleto",
+        "buyTicket": "Comprar entrada",
         "type": "Atracción {{type}}"
     },
     "hotels": {
-        "startingFromPrice": "a partir de {{amount}} € / noche",
+        "startingFromPrice": "a partir de {{amount}} $ / noche",
         "bookNow": "Reservar ahora"
     },
     "restaurant": {
-        "averageMealPerPerson": "{{amount}} € / persona",
-        "averageMealPrice": "Precio promedio de la comida:",
+        "averageMealPerPerson": "{{amount}} $/persona",
+        "averageMealPrice": "Precio promedio de una comida: ",
         "food": "Cocina: {{type}}"
     },
     "reviews": {
-        "rating": "Valoración",
-        "userRating": "Califique su experiencia",
-        "submit": "Enviar"
+        "rating": "Calificación",
+        "userRating": "Califica tu experiencia",
+        "submit": "ENVIAR",
+        "title": "Título de la reseña",
+        "body": "Cuerpo de la reseña",
+        "rate": "Califica tu experiencia"
     },
     "registration": {
         "pwError": "Las contraseñas no coinciden",
-        "reqFirstName": "Se requiere el campo del nombre",
-        "ReqLastName": "Se requiere el campo del apellido",
-        "reqPw": "Se requiere el campo de la contraseña",
-        "reqEmail": "Se requiere el campo del correo electrónico",
-        "firstNameLen": "El nombre debe tener menos de 32 caracteres",
-        "lastNameLen": "El apellido debe tener menos de 32 caracteres",
-        "invalidEmail": "El correo electrónico es inválido",
+        "reqFirstName": "Se requiere el nombre",
+        "ReqLastName": "Se requiere el apellido",
+        "reqPw": "Se requiere una contraseña",
+        "reqEmail": "Se requiere el correo electrónico",
+        "firstNameLen": "El nombre no debe tener más de 32 caracteres",
+        "lastNameLen": "El apellido no debe tener más de 32 caracteres",
+        "invalidEmail": "El correo electrónico no es válido",
         "pwMinLen": "La contraseña debe tener al menos 8 caracteres",
         "pwMaxLen": "La contraseña no debe tener más de 32 caracteres",
-        "pwConfirmation": "Confirme su contraseña",
-        "pwNotConfirmed": "Las contraseñas no coinciden"
+        "pwConfirmation": "Confirma tu contraseña",
+        "pwNotConfirmed": "Las contraseñas no coinciden",
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "pw": "Contraseña",
+        "confirmPw": "Confirmar contraseña"
+    },
+    "user": {
+        "signUp": "Regístrate",
+        "signIn": "Iniciar sesión",
+        "logOut": "Cerrar sesión",
+        "noAccount": "¿No tienes una cuenta? Regístrate ahora",
+        "haveAccount": "¿Ya tienes una cuenta? Iniciar sesión",
+        "profile": "Perfil",
+        "updateTrip": "Actualizar viaje",
+        "search": "Buscar",
+        "favorites": "Favoritos",
+        "trips": "Viajes"
+    },
+    "trip": {
+        "updateLabel": "Puedes actualizar la etiqueta de tu viaje para que coincida con tus preferencias.",
+        "label": "Etiqueta del viaje"
+    },
+    "chatbot": {
+        "responseLabel": "Respuesta"
     }
 }

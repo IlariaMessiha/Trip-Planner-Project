@@ -1,6 +1,6 @@
 {
     "common": {
-        "locations": "Lieux",
+        "locations": "Emplacements",
         "activities": "Activités",
         "Country": "Pays",
         "City": "Ville",
@@ -15,12 +15,15 @@
         "reviews": "Avis",
         "cities": "Villes",
         "review": "Avis",
-        "search": "Rechercher",
+        "search": "Recherche",
         "filterBy": "Filtrer par",
         "close": "Fermer",
         "email": "Email",
         "writeReview": "Écrire un avis",
-        "share": "Partager"
+        "share": "Partager",
+        "cancel": "Annuler",
+        "agree": "Accepter",
+        "food": "Nourriture"
     },
     "navBar": {
         "logo": "Planificateur de voyage",
@@ -31,19 +34,19 @@
         "portguese": "Portugais"
     },
     "dashboard": {
-        "slogan": "Rêvez de votre prochain voyage"
+        "slogan": "Imaginez votre prochain voyage"
     },
     "cities": {
         "cityPage": {
             "seeAllPhotos": "Voir toutes les photos",
             "photosOf": "Photos de",
             "topAttraction": "Attraction principale",
-            "topAttractionSlogan": "Lieux à voir, façons de flâner et expériences marquantes qui définissent Berlin.",
+            "topAttractionSlogan": "Lieux à voir, façons de flâner et expériences signature qui définissent Berlin.",
             "travelAdvice": "Conseils de voyage",
             "advice1": "Meilleure période pour visiter",
             "advice2": "Se déplacer",
             "advice3": "Mœurs locales",
-            "advice4": "Conseils des pros"
+            "advice4": "Conseils des Pros"
         }
     },
     "attractions": {
@@ -51,41 +54,67 @@
         "suggestedDuration": "Durée suggérée",
         "suggestedDurationFormat": "Cela peut prendre {{duration}} heures",
         "hours": "Heures",
-        "openHours": "Heures d'ouverture: de {{from}} à {{to}}",
+        "openHours": "Heures d'ouverture de {{from}} à {{to}}",
         "visitWebsite": "Visiter le site web",
         "call": "Appeler",
-        "ticketPrice": "Prix du billet",
-        "ticketPriceFormat": "{{amount}} €",
+        "ticketPrice": "Prix des billets",
+        "ticketPriceFormat": "{{amount}} $",
         "written": "Écrit",
         "buyTicket": "Acheter un billet",
         "type": "Attraction {{type}}"
     },
     "hotels": {
-        "startingFromPrice": "à partir de {{amount}} € / nuit",
+        "startingFromPrice": "à partir de {{amount}} $ / nuit",
         "bookNow": "Réserver maintenant"
     },
     "restaurant": {
-        "averageMealPerPerson": "{{amount}} € / personne",
-        "averageMealPrice": "Prix moyen du repas:",
-        "food": "Cuisine: {{type}}"
+        "averageMealPerPerson": "{{amount}} $/personne",
+        "averageMealPrice": "Prix moyen d'un repas : ",
+        "food": "Cuisine : {{type}}"
     },
     "reviews": {
         "rating": "Évaluation",
         "userRating": "Évaluez votre expérience",
-        "submit": "Envoyer"
+        "submit": "SOUMETTRE",
+        "title": "Titre de l'avis",
+        "body": "Corps de l'avis",
+        "rate": "Évaluez votre expérience"
     },
     "registration": {
         "pwError": "Les mots de passe ne correspondent pas",
-        "reqFirstName": "Le champ du prénom est requis",
-        "ReqLastName": "Le champ du nom de famille est requis",
-        "reqPw": "Le champ du mot de passe est requis",
-        "reqEmail": "Le champ de l'email est requis",
-        "firstNameLen": "Le prénom doit comporter moins de 32 caractères",
-        "lastNameLen": "Le nom de famille doit comporter moins de 32 caractères",
-        "invalidEmail": "L'email est invalide",
-        "pwMinLen": "Le mot de passe ne peut pas comporter moins de 8 caractères",
-        "pwMaxLen": "Le mot de passe ne peut pas comporter plus de 32 caractères",
+        "reqFirstName": "Le champ Prénom est requis",
+        "ReqLastName": "Le champ Nom est requis",
+        "reqPw": "Le champ Mot de passe est requis",
+        "reqEmail": "L'adresse email est requise",
+        "firstNameLen": "Le prénom doit contenir moins de 32 caractères",
+        "lastNameLen": "Le nom doit contenir moins de 32 caractères",
+        "invalidEmail": "L'adresse email est invalide",
+        "pwMinLen": "Le mot de passe doit contenir au moins 8 caractères",
+        "pwMaxLen": "Le mot de passe ne doit pas dépasser 32 caractères",
         "pwConfirmation": "Veuillez confirmer votre mot de passe",
-        "pwNotConfirmed": "Les mots de passe ne correspondent pas"
+        "pwNotConfirmed": "Les mots de passe ne correspondent pas",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "pw": "Mot de passe",
+        "confirmPw": "Confirmer le mot de passe"
+    },
+    "user": {
+        "signUp": "S'inscrire",
+        "signIn": "Se connecter",
+        "logOut": "Se déconnecter",
+        "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous maintenant",
+        "haveAccount": "Vous avez déjà un compte ? Connectez-vous",
+        "profile": "Profil",
+        "updateTrip": "Mettre à jour votre voyage",
+        "search": "Rechercher",
+        "favorites": "Favoris",
+        "trips": "Voyages"
+    },
+    "trip": {
+        "updateLabel": "Vous pouvez mettre à jour le libellé de votre voyage pour correspondre à vos préférences.",
+        "label": "Libellé du voyage"
+    },
+    "chatbot": {
+        "responseLabel": "Réponse"
     }
 }
