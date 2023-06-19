@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Navigation } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -38,7 +38,7 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
                     spaceBetween: 10,
                 },
             }}
-            modules={[Navigation]}
+            modules={[Navigation, Pagination]}
             navigation
             pagination={{ clickable: true }}
             centerInsufficientSlides={true}

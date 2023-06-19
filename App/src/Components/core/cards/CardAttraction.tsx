@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../../api/PostData";
 import { useAuthContext } from "../../../context/authContext";
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
+import PlaceholderImage from "../../../assets/images/placeholder.png";
 
 interface CardAttractionProps {
     attraction: AttractionDto;
@@ -101,11 +102,19 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
 
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
-                        {attraction.imageUrl && (
+                        {attraction.imageUrl ? (
                             <CardMedia
                                 component="img"
                                 height="200"
                                 image={attraction.imageUrl}
+                                alt={attraction.label}
+                            />
+                        ) : (
+                            <CardMedia
+                                component="img"
+                                height="200"
+                                loading="lazy"
+                                image={PlaceholderImage}
                                 alt={attraction.label}
                             />
                         )}
