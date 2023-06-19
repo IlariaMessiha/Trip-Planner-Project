@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../../api/PostData";
 import { useAuthContext } from "../../../context/authContext";
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
+import { useTranslation } from "react-i18next";
 
 interface CardAttractionProps {
     attraction: AttractionDto;
@@ -82,6 +83,8 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
         setLikedLoc(liked);
     }, [liked]);
 
+    const { t } = useTranslation();
+    
     return (
         <div className={styles.container}>
             <Card className={styles.item} sx={{ width: 280 }}>
@@ -126,7 +129,7 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
                             )}
                             {attraction.type && (
                                 <Typography variant="body2">
-                                    {attraction.type} attraction
+                                    {attraction.type} {t("common.attraction")}
                                 </Typography>
                             )}
                         </CardContent>

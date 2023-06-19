@@ -1,0 +1,120 @@
+{
+    "common": {
+        "locations": "Orte",
+        "activities": "Aktivitäten",
+        "Country": "Land",
+        "City": "Stadt",
+        "country": "Land",
+        "city": "Stadt",
+        "attraction": "Attraktion",
+        "Attraction": "Attraktion",
+        "hotel": "Hotel",
+        "restaurant": "Restaurant",
+        "Restaurant": "Restaurant",
+        "attractions": "Attraktionen",
+        "reviews": "Bewertungen",
+        "cities": "Städte",
+        "review": "Bewertung",
+        "search": "Suche",
+        "filterBy": "Filtern nach",
+        "close": "Schließen",
+        "email": "E-Mail",
+        "writeReview": "Eine Bewertung schreiben",
+        "share": "Teilen",
+        "cancel": "Abbrechen",
+        "agree": "Zustimmen",
+        "food": "Essen"
+    },
+    "navBar": {
+        "logo": "Reiseplaner",
+        "french": "Französisch",
+        "spanish": "Spanisch",
+        "english": "Englisch",
+        "german": "Deutsch",
+        "portguese": "Portugiesisch"
+    },
+    "dashboard": {
+        "slogan": "Träumen Sie von Ihrer nächsten Reise"
+    },
+    "cities": {
+        "cityPage": {
+            "seeAllPhotos": "Alle Fotos anzeigen",
+            "photosOf": "Fotos von",
+            "topAttraction": "Top-Attraktion",
+            "topAttractionSlogan": "Orte, Wege zum Schlendern und unvergessliche Erlebnisse, die Berlin definieren.",
+            "travelAdvice": "Reisehinweise",
+            "advice1": "Beste Reisezeit",
+            "advice2": "Fortbewegung",
+            "advice3": "Lokale Bräuche",
+            "advice4": "Tipps von Profis"
+        }
+    },
+    "attractions": {
+        "about": "Über",
+        "suggestedDuration": "Empfohlene Dauer",
+        "suggestedDurationFormat": "Dies kann {{duration}} Stunden dauern",
+        "hours": "Stunden",
+        "openHours": "Öffnungszeiten von {{from}} bis {{to}}",
+        "visitWebsite": "Website besuchen",
+        "call": "Anrufen",
+        "ticketPrice": "Ticketpreis",
+        "ticketPriceFormat": "{{amount}} $",
+        "written": "Geschrieben",
+        "buyTicket": "Ticket kaufen",
+        "type": "{{type}} Attraktion"
+    },
+    "hotels": {
+        "startingFromPrice": "ab {{amount}} $ / Nacht",
+        "bookNow": "Jetzt buchen"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "{{amount}} $/Person",
+        "averageMealPrice": "Durchschnittspreis für Mahlzeiten: ",
+        "food": "Küche: {{type}}"
+    },
+    "reviews": {
+        "rating": "Bewertung",
+        "userRating": "Bewerten Sie Ihre Erfahrung",
+        "submit": "EINREICHEN",
+        "title": "Titel der Bewertung",
+        "body": "Text der Bewertung",
+        "rate": "Bewerten Sie Ihre Erfahrung"
+    },
+    "registration": {
+        "pwError": "Passwörter stimmen nicht überein",
+        "reqFirstName": "Vorname ist erforderlich",
+        "ReqLastName": "Nachname ist erforderlich",
+        "reqPw": "Passwort ist erforderlich",
+        "reqEmail": "E-Mail ist erforderlich",
+        "firstNameLen": "Vorname darf nicht länger als 32 Zeichen sein",
+        "lastNameLen": "Nachname darf nicht länger als 32 Zeichen sein",
+        "invalidEmail": "E-Mail ist ungültig",
+        "pwMinLen": "Passwort darf nicht weniger als 8 Zeichen enthalten",
+        "pwMaxLen": "Passwort darf nicht mehr als 32 Zeichen enthalten",
+        "pwConfirmation": "Bitte bestätigen Sie Ihr Passwort",
+        "pwNotConfirmed": "Passwörter stimmen nicht überein",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "pw": "Passwort",
+        "confirmPw": "Passwort bestätigen"
+    },
+    "user": {
+        "signUp": "Registrieren",
+        "signIn": "Anmelden",
+        "logOut": "Abmelden",
+        "noAccount": "Sie haben noch keinen Account? Jetzt anmelden",
+        "haveAccount": "Sie haben bereits einen Account? Einloggen",
+        "profile": "Profil",
+        "updateTrip": "Reise aktualisieren",
+        "searchFor": "Suche",
+        "favorites": "Favoriten",
+        "trips": "Reisen"
+    },
+    "trip": {
+        "updateLabel": "Sie können das Etikett Ihrer Reise aktualisieren, um Ihren Vorlieben zu entsprechen.",
+        "label": "Reiseetikett"
+    },
+    "chatbot": {
+        "responseLabel": "Antwort"
+    }
+}

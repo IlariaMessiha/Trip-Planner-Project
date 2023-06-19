@@ -1,13 +1,14 @@
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { FC, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ChatInputTextProps {
     onSubmit: (value: string) => void;
 }
 export const ChatInputText: FC<ChatInputTextProps> = ({ onSubmit }) => {
     const [inputValue, setInputValue] = useState("");
-
+    const { t } = useTranslation();
     return (
         <form
             onSubmit={e => {
@@ -19,7 +20,7 @@ export const ChatInputText: FC<ChatInputTextProps> = ({ onSubmit }) => {
             <TextField
                 autoFocus
                 value={inputValue}
-                label="Response"
+                label={t("chatbot.responseLabel")}
                 variant="outlined"
                 fullWidth
                 onChange={e => setInputValue(e.target.value)}

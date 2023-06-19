@@ -1,0 +1,120 @@
+{
+    "common": {
+        "locations": "Locais",
+        "activities": "Atividades",
+        "Country": "País",
+        "City": "Cidade",
+        "country": "País",
+        "city": "Cidade",
+        "attraction": "Atração",
+        "Attraction": "Atração",
+        "hotel": "Hotel",
+        "restaurant": "Restaurante",
+        "Restaurant": "Restaurante",
+        "attractions": "Atrações",
+        "reviews": "Avaliações",
+        "cities": "Cidades",
+        "review": "Avaliação",
+        "search": "Busca",
+        "filterBy": "Filtrar por",
+        "close": "Fechar",
+        "email": "E-mail",
+        "writeReview": "Escrever uma avaliação",
+        "share": "Compartilhar",
+        "cancel": "Cancelar",
+        "agree": "Concordar",
+        "food": "Comida"
+    },
+    "navBar": {
+        "logo": "Planejador de viagens",
+        "french": "Francês",
+        "spanish": "Espanhol",
+        "english": "Inglês",
+        "german": "Alemão",
+        "portguese": "Português"
+    },
+    "dashboard": {
+        "slogan": "Imagine sua próxima viagem"
+    },
+    "cities": {
+        "cityPage": {
+            "seeAllPhotos": "Ver todas as fotos",
+            "photosOf": "Fotos de",
+            "topAttraction": "Atração principal",
+            "topAttractionSlogan": "Locais para ver, maneiras de caminhar e experiências únicas que definem Berlim.",
+            "travelAdvice": "Conselhos de viagem",
+            "advice1": "Melhor época para visitar",
+            "advice2": "Como se locomover",
+            "advice3": "Costumes locais",
+            "advice4": "Dicas dos especialistas"
+        }
+    },
+    "attractions": {
+        "about": "Sobre",
+        "suggestedDuration": "Duração sugerida",
+        "suggestedDurationFormat": "Isso pode levar {{duration}} horas",
+        "hours": "Horas",
+        "openHours": "Horário de funcionamento de {{from}} às {{to}}",
+        "visitWebsite": "Visitar o site",
+        "call": "Ligar",
+        "ticketPrice": "Preço do ingresso",
+        "ticketPriceFormat": "{{amount}} $",
+        "written": "Escrito",
+        "buyTicket": "Comprar ingresso",
+        "type": "{{type}} Atração"
+    },
+    "hotels": {
+        "startingFromPrice": "a partir de {{amount}} $ / noite",
+        "bookNow": "Reservar agora"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "{{amount}} $/pessoa",
+        "averageMealPrice": "Preço médio de uma refeição: ",
+        "food": "Cozinha: {{type}}"
+    },
+    "reviews": {
+        "rating": "Classificação",
+        "userRating": "Avalie sua experiência",
+        "submit": "ENVIAR",
+        "title": "Título da avaliação",
+        "body": "Corpo da avaliação",
+        "rate": "Avalie sua experiência"
+    },
+    "registration": {
+        "pwError": "As senhas não coincidem",
+        "reqFirstName": "O campo Nome é obrigatório",
+        "ReqLastName": "O campo Sobrenome é obrigatório",
+        "reqPw": "O campo Senha é obrigatório",
+        "reqEmail": "O campo E-mail é obrigatório",
+        "firstNameLen": "O nome deve conter menos de 32 caracteres",
+        "lastNameLen": "O sobrenome deve conter menos de 32 caracteres",
+        "invalidEmail": "O endereço de e-mail é inválido",
+        "pwMinLen": "A senha deve ter pelo menos 8 caracteres",
+        "pwMaxLen": "A senha não deve exceder 32 caracteres",
+        "pwConfirmation": "Por favor, confirme sua senha",
+        "pwNotConfirmed": "As senhas não coincidem",
+        "firstName": "Nome",
+        "lastName": "Sobrenome",
+        "pw": "Senha",
+        "confirmPw": "Confirmar senha"
+    },
+    "user": {
+        "signUp": "Inscreva-se",
+        "signIn": "Entrar",
+        "logOut": "Sair",
+        "noAccount": "Ainda não tem uma conta? Cadastre-se agora",
+        "haveAccount": "Já tem uma conta? Entre",
+        "profile": "Perfil",
+        "updateTrip": "Atualizar viagem",
+        "searchFor": "Busca",
+        "favorites": "Favoritos",
+        "trips": "Viagens"
+    },
+    "trip": {
+        "updateLabel": "Você pode atualizar a etiqueta de sua viagem para corresponder às suas preferências.",
+        "label": "Etiqueta da Viagem"
+    },
+    "chatbot": {
+        "responseLabel": "Resposta"
+    }
+}

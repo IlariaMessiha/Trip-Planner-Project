@@ -69,7 +69,7 @@ export const HotelPage = () => {
                     {hotel.email && (
                         <a href={`mailto:${hotel.email}`}>
                             <Typography variant="h6" className={styles.headerButtons}>
-                                Email
+                                {t("common.email")}
                             </Typography>
                         </a>
                     )}

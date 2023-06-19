@@ -129,7 +129,7 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
                                 </Typography>
                             )}
                             {restaurant.food && (
-                                <Typography variant="body2">{restaurant.food} food</Typography>
+                                <Typography variant="body2">{restaurant.food} {t("common.food")}</Typography>
                             )}
                         </CardContent>
                     </CardActionArea>

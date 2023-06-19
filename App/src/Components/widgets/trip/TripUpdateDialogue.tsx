@@ -9,6 +9,7 @@ import {
     TextField,
 } from "@mui/material";
 import { FC, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface TripUpdateDialogueProps {
     open: boolean;
@@ -25,6 +26,7 @@ export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({
     onClose,
 }) => {
     const [label, setLabel] = useState<string>(tripLabel);
+    const { t } = useTranslation();
 
     const updateTrip = async () => {
         await onUpdateTrip(label);
@@ -32,12 +34,12 @@ export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({
     };
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Update Your Trip</DialogTitle>
+            <DialogTitle>{t("user.updateTrip")}</DialogTitle>
             <form onSubmit={e => e.preventDefault()}>
                 <DialogContent>
                     <TextField
                         id="outlined-basic"
-                        label="Trip Label"
+                        label={t("trip.label")}
                         variant="outlined"
                         fullWidth
                         value={label}
@@ -48,7 +50,7 @@ export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({
                 </DialogContent>
                 <DialogContent dividers>
                     <DialogContentText>
-                        You can update your trip label to match your preferences.
+                        {t("trip.updateLabel")}
                         {/* TODO put the next description instead if you implemented (update start date) or update duration */}
                         {/* If you update the start date or duration, all the items will be updated
                         accordingly. */}
@@ -57,9 +59,9 @@ export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({
                 {loading && <LinearProgress />}
 
                 <DialogActions>
-                    <Button onClick={onClose}>cancel</Button>
+                    <Button onClick={onClose}>{t("common.cancel")}</Button>
                     <Button onClick={updateTrip} autoFocus>
-                        Agree
+                        {t("common.agree")}
                     </Button>
                 </DialogActions>
             </form>
