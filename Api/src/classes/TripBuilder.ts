@@ -66,7 +66,9 @@ export class TripBuilder {
         const sortedPool = sortBy(attractionsPool, a => a.suggested_duration).reverse();
 
         sortedPool.forEach(attractionItem => {
-            const firstAvailableDay = this.findFirstAvailableDay(attractionItem.suggested_duration);
+            const firstAvailableDay = this.findFirstAvailableDay(
+                attractionItem.suggested_duration ? attractionItem.suggested_duration : 5
+            );
 
             this.tripItemsByDay[firstAvailableDay] = [
                 ...this.tripItemsByDay[firstAvailableDay],
