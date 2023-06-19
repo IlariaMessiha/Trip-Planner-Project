@@ -12,6 +12,7 @@ import { FC } from "react";
 import { DialogTitle, IconButton, styled } from "@mui/material";
 import { Typography } from "../core/Typography";
 import styles from "./SharePopup.module.css";
+import { useTranslation } from "react-i18next";
 interface SharePopupProps {
     url: string;
     open: boolean;
@@ -25,6 +26,7 @@ const ExitButton = styled(IconButton)({
     zIndex: 10,
 });
 export const SharePopup: FC<SharePopupProps> = ({ url, open, onClose }) => {
+    const { t } = useTranslation();
     return (
         <>
             <Dialog open={open}>
@@ -32,7 +34,7 @@ export const SharePopup: FC<SharePopupProps> = ({ url, open, onClose }) => {
                     <CloseIcon />
                 </ExitButton>
                 <DialogTitle>
-                    <Typography text="Share" variant="h3" />
+                    <Typography text={t("common.share")} variant="h3" />
                 </DialogTitle>
                 <div className={styles.shareOptions}>
                     <FacebookShareButton url={url} onClick={() => onClose()}>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
 import styles from "./DropDownProfile.module.css";
+import { useTranslation } from "react-i18next";
 
 export const DropDownProfileMenu = (props: any) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -34,7 +35,7 @@ export const DropDownProfileMenu = (props: any) => {
             window.removeEventListener("click", handleOutsideClick);
         };
     }, [anchorEl]);
-
+    const { t } = useTranslation();
     return (
         <div>
             <IconButton onClick={handleClick}>
@@ -58,7 +59,7 @@ export const DropDownProfileMenu = (props: any) => {
                                 navigate("/profile");
                             }}
                         >
-                            Profile
+                            {t("user.profile")}
                         </MenuItem>
 
                         <MenuItem
@@ -67,7 +68,7 @@ export const DropDownProfileMenu = (props: any) => {
                                 navigate("/auth/login");
                             }}
                         >
-                            Logout
+                            {t("user.logOut")}
                         </MenuItem>
                     </div>
                 )}

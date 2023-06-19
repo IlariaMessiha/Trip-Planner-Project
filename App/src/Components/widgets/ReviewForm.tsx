@@ -3,6 +3,8 @@ import styles from "./ReviewForm.module.css";
 import { FC, useState } from "react";
 import { postData } from "../../api/PostData";
 import { useAuthContext } from "../../context/authContext";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {
@@ -39,12 +41,12 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
         } else if (!loggedInUser) {
         }
     };
-
+    const { t } = useTranslation();
     return (
         <form className={styles.reviewForm} onSubmit={handleSubmit}>
             <TextField
                 id="standard-basic"
-                label="Review Title"
+                label={t("reviews.title")}
                 variant="standard"
                 fullWidth
                 sx={{ padding: "10px", marginBottom: "20px" }}
@@ -54,7 +56,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
             />
             <TextField
                 id="standard-multiline-static"
-                label="Review Body"
+                label={t("reviews.body")}
                 multiline
                 rows={4}
                 variant="standard"
@@ -65,7 +67,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
                 }}
             />
             <Typography component="legend" variant="subtitle2">
-                Rate your experience
+                {t("reviews.rate")}
             </Typography>
             <StarsRating
                 name="simple-controlled"
@@ -77,7 +79,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
             />
 
             <Button variant="text" sx={{ float: "right" }} type="submit">
-                SUBMIT
+                {t("reviews.submit")}
             </Button>
         </form>
     );
