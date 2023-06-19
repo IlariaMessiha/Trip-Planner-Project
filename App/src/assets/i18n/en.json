@@ -109,5 +109,8 @@
     "trip": {
         "updateLabel": "You can update your trip label to match your preferences.",
         "label": "Trip Label"
+    },
+    "chatbot": {
+        "responseLabel": "Response"
     }
 }
