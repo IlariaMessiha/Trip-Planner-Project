@@ -49,7 +49,7 @@ export const flow: TChatbotFlow = {
         {
             code: "minAge",
             sort: 2,
-            text: "What is the minimum age of your group ?",
+            text: "What is the minimum age of your group ?If traveling alone how old are you?",
             type: "text",
             searchTargets: ["attractions", "restaurants"],
             validation: {
