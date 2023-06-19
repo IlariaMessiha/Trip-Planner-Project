@@ -1,0 +1,92 @@
+{
+    "common": {
+        "locations": "Orte",
+        "activities": "Aktivitäten",
+        "Country": "Land",
+        "City": "Stadt",
+        "country": "Land",
+        "city": "Stadt",
+        "attraction": "Attraktion",
+        "Attraction": "Attraktion",
+        "hotel": "Hotel",
+        "restaurant": "Restaurant",
+        "Restaurant": "Restaurant",
+        "attractions": "Sehenswürdigkeiten",
+        "reviews": "Bewertungen",
+        "cities": "Städte",
+        "review": "Bewertung",
+        "search": "Suche",
+        "filterBy": "Filtern nach",
+        "close": "Schließen",
+        "email": "E-Mail",
+        "writeReview": "Eine Bewertung schreiben",
+        "logout": "Abmelden",
+        "share": "Teilen"
+    },
+    "navBar": {
+        "logo": "Reiseplaner",
+        "french": "Französisch",
+        "spanish": "Spanisch",
+        "english": "Englisch",
+        "german": "Deutsch",
+        "portguese": "Portugiesisch"
+    },
+    "dashboard": {
+        "slogan": "Träumen Sie von Ihrer nächsten Reise"
+    },
+    "cities": {
+        "cityPage": {
+            "seeAllPhotos": "Alle Fotos anzeigen",
+            "photosOf": "Fotos von",
+            "topAttraction": "Top-Attraktion",
+            "topAttractionSlogan": "Orte zum Sehen, Möglichkeiten zum Wandern und charakteristische Erfahrungen, die Berlin definieren.",
+            "travelAdvice": "Reiseberatung",
+            "advice1": "Beste Reisezeit",
+            "advice2": "Fortbewegung",
+            "advice3": "Lokale Bräuche",
+            "advice4": "Tipps von Profis"
+        }
+    },
+    "attractions": {
+        "about": "Über",
+        "suggestedDuration": "Vorgeschlagene Dauer",
+        "suggestedDurationFormat": "Dies kann {{duration}} Stunden dauern",
+        "hours": "Stunden",
+        "openHours": "Öffnungszeiten von {{from}} bis {{to}} Uhr",
+        "visitWebsite": "Webseite besuchen",
+        "call": "Anrufen",
+        "ticketPrice": "Ticketpreis",
+        "ticketPriceFormat": "{{amount}} €",
+        "written": "Geschrieben",
+        "buyTicket": "Ticket kaufen",
+        "type": "{{type}} Attraktion"
+    },
+    "hotels": {
+        "startingFromPrice": "ab {{amount}} € / Nacht",
+        "bookNow": "Jetzt buchen"
+    },
+    "restaurant": {
+        "averageMealPerPerson": "{{amount}} €/Person",
+        "averageMealPrice": "Durchschnittlicher Preis pro Mahlzeit:",
+        "food": "Küche: {{type}}"
+    },
+    "reviews": {
+        "rating": "Bewertung",
+        "userRating": "Bewerten Sie Ihre Erfahrung",
+        "submit": "Absenden"
+    },
+    "registration": {
+        "pwError": "Passwörter stimmen nicht überein",
+        "reqFirstName": "Vorname ist ein Pflichtfeld",
+        "ReqLastName": "Nachname ist ein Pflichtfeld",
+        "reqPw": "Passwort ist ein Pflichtfeld",
+        "reqEmail": "E-Mail ist ein Pflichtfeld",
+        "firstNameLen": "Vorname darf nicht länger als 32 Zeichen sein",
+        "lastNameLen": "Nachname darf nicht länger als 32 Zeichen sein",
+        "invalidEmail": "E-Mail ist ungültig",
+        "pwMinLen": "Passwort muss mindestens 8 Zeichen lang sein",
+        "pwMaxLen": "Passwort darf höchstens 32 Zeichen lang sein",
+        "pwConfirmation": "Bitte bestätigen Sie Ihr Passwort",
+        "pwNotConfirmed": "Passwörter stimmen nicht überein"
+    }
+}
