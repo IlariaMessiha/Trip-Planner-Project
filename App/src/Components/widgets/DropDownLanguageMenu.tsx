@@ -48,7 +48,17 @@ export const DropDownLanguageMenu = () => {
         i18n.changeLanguage("sp");
         setAnchorEl(null);
     };
-    // TODO: implement German/Portguese
+    // TODO: implement German/Portguese if needed
+    // const showGermanFlag = () => {
+    //     setLanguage(3);
+    //     i18n.changeLanguage("gr");
+    //     setAnchorEl(null);
+    // }
+    // const showPortgueseFlag = () => {
+    //     setLanguage(4);
+    //     i18n.changeLanguage("pr");
+    //     setAnchorEl(null);
+    // }
     return (
         <div className={styles.container}>
             <IconButton onClick={handleClick} className={styles.menuButton}>
@@ -80,6 +90,18 @@ export const DropDownLanguageMenu = () => {
                     <img src={americanFlag} className={styles.flag} alt="American Flag" />
                     <Typography variant="body2">{t("navBar.english")}</Typography>
                 </MenuItem>
+
+                {/* TODO: add German flag  under germanFlag */}
+                {/* <MenuItem onClick={showGermanFlag} className={styles.menuItem}>
+                    <img src={germanFlag} className={styles.flag} alt="German Flag" />
+                    <Typography variant="body2">{t("navBar.german")}</Typography>
+                </MenuItem> */}
+
+                {/* TODO: add Portguese flag  under portgueseFlag */}
+                {/* <MenuItem onClick={showGermanFlag} className={styles.menuItem}>
+                    <img src={portgueseFlag} className={styles.flag} alt="Portguese Flag" />
+                    <Typography variant="body2">{t("navBar.portguese")}</Typography>
+                </MenuItem> */}
             </Menu>
 
             {language === 2 ? (
@@ -89,6 +111,18 @@ export const DropDownLanguageMenu = () => {
             ) : (
                 <img src={americanFlag} className={styles.currentLanguage} alt="American Flag" />
             )}
+
+            {/* {language === 4 ? (
+                <img src={portgueseFlag} className={styles.currentLanguage} alt="Portguese Flag" />
+            ) : language === 3 ? (
+                <img src={germanFlag} className={styles.currentLanguage} alt="German Flag" />
+            ) : language === 2 ? (
+                <img src={spanishFlag} className={styles.currentLanguage} alt="Spanish Flag" />
+            ) : language === 1 ? (
+                <img src={frenchFlag} className={styles.currentLanguage} alt="French Flag" />
+            ) : (
+                <img src={americanFlag} className={styles.currentLanguage} alt="American Flag" />
+            )} */}
         </div>
     );
 };

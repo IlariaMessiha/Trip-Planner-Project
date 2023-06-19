@@ -5,6 +5,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import translationEN from "./assets/i18n/en.json";
 import translationFR from "./assets/i18n/fr.json";
 import translationSP from "./assets/i18n/sp.json";
+// import translationGR from "./assets/i18n/gr.json";
+// import translationPR from "./assets/i18n/pr.json";
 const resources = {
   en: {
     translation: translationEN,
@@ -15,6 +17,12 @@ const resources = {
   sp: {
     translation: translationSP,
   },
+  // gr: {
+  //   translation: translationGR,
+  // },
+  // pr: {
+  //   translation: translationPR
+  // }
 };
 i18n
   .use(Backend)
