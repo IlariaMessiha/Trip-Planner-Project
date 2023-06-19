@@ -18,6 +18,7 @@ import { object, string, TypeOf } from "zod";
 import { fetchData } from "../api/FetchData";
 import { useAuthContext } from "../context/authContext";
 import AuthService from "../services/auth.service";
+import { useTranslation } from "react-i18next";
 
 const registerSchema = object({
     email: string().nonempty("Email is required").email("Email is invalid"),
@@ -27,11 +28,12 @@ const registerSchema = object({
 type RegisterInput = TypeOf<typeof registerSchema>;
 
 const Copyright = (props: any) => {
+    const { t } = useTranslation();
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {"Copyright © "}
             <Link color="inherit" href="/">
-                Trip Planner
+                {t("navBar.logo")}
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}
@@ -89,7 +91,7 @@ export const LoginPage = () => {
             });
     };
     console.log(errors);
-
+    const { t } = useTranslation();
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -106,7 +108,7 @@ export const LoginPage = () => {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        {t("user.signIn")}
                     </Typography>
                     <Box
                         component="form"
@@ -144,7 +146,7 @@ export const LoginPage = () => {
                         <Grid container>
                             <Grid item>
                                 <Link href="/auth/register" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                    {t("user.noAccount")}
                                 </Link>
                             </Grid>
                         </Grid>

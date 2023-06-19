@@ -17,6 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { object, string, TypeOf } from "zod";
+import { useTranslation } from "react-i18next";
 
 const registerSchema = object({
     firstName: string()
@@ -39,11 +40,12 @@ const registerSchema = object({
 type RegisterInput = TypeOf<typeof registerSchema>;
 
 const Copyright = (props: any) => {
+    const { t } = useTranslation();
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {"Copyright © "}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                {t("navBar.logo")}
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}
@@ -72,6 +74,7 @@ export const RegisterPage = () => {
     }, [isSubmitSuccessful, reset]);
 
     const onSubmitHandler: SubmitHandler<RegisterInput> = async values => {
+
         await AuthService.register({
             firstName: values.firstName,
             lastName: values.lastName,
@@ -99,7 +102,7 @@ export const RegisterPage = () => {
         console.log(values);
     };
     console.log(errors);
-
+    const { t } = useTranslation();
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -116,7 +119,7 @@ export const RegisterPage = () => {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        {t("user.signUp")}
                     </Typography>
                     <Box
                         component="form"
@@ -131,7 +134,7 @@ export const RegisterPage = () => {
                                     required
                                     fullWidth
                                     id="firstName"
-                                    label="First Name"
+                                    label={t("registration.firstName")}
                                     autoFocus
                                     error={!!errors["firstName"]}
                                     helperText={
@@ -145,7 +148,7 @@ export const RegisterPage = () => {
                                     required
                                     fullWidth
                                     id="lastName"
-                                    label="Last Name"
+                                    label={t("registration.lastName")}
                                     autoComplete="family-name"
                                     error={!!errors["lastName"]}
                                     helperText={
@@ -160,7 +163,7 @@ export const RegisterPage = () => {
                                     fullWidth
                                     id="email"
                                     type="email"
-                                    label="Email Address"
+                                    label={t("common.email")}
                                     autoComplete="email"
                                     error={!!errors["email"]}
                                     helperText={errors["email"] ? errors["email"].message : ""}
@@ -171,7 +174,7 @@ export const RegisterPage = () => {
                                 <TextField
                                     required
                                     fullWidth
-                                    label="Password"
+                                    label={t("registration.pw")}
                                     type="password"
                                     id="password"
                                     error={!!errors["password"]}
@@ -186,7 +189,7 @@ export const RegisterPage = () => {
                                     required
                                     autoComplete="confirmPassword"
                                     fullWidth
-                                    label="Confirm Password"
+                                    label={t("registration.confirmPw")}
                                     type="password"
                                     id="confirmPassword"
                                     error={!!errors["confirmPassword"]}
@@ -200,12 +203,12 @@ export const RegisterPage = () => {
                             </Grid>
                         </Grid>
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                            Sign Up
+                            {t("user.signUp")}
                         </Button>
                         <Grid container>
                             <Grid item>
                                 <Link href={"/auth/login"} variant="body2">
-                                    Already have an account? Sign in
+                                    {t("user.haveAccount")}
                                 </Link>
                             </Grid>
                         </Grid>

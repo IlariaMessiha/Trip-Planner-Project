@@ -150,7 +150,7 @@ export const RestaurantPage = () => {
                     {restaurant.email && (
                         <a href={`mailto:${restaurant.email}`}>
                             <Typography variant="h6" className={styles.headerButtons}>
-                                Email
+                                {t("common.email")}
                             </Typography>
                         </a>
                     )}
@@ -204,7 +204,7 @@ export const RestaurantPage = () => {
                         loggedInUser ? openForm() : navigate("/auth/login");
                     }}
                 >
-                    Write a Review
+                    {t("common.writeReview")}
                 </Button>
             ) : (
                 <IconButton onClick={closeForm} sx={{ color: "red" }}>

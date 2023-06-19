@@ -156,7 +156,7 @@ export const AttractionPage = () => {
                     {attraction.email && (
                         <Link to={`mailto:${attraction.email}`}>
                             <Typography variant="h6" className={styles.headerButtons}>
-                                Email
+                            {t("common.email")}
                             </Typography>
                         </Link>
                     )}
@@ -205,7 +205,7 @@ export const AttractionPage = () => {
                         loggedInUser ? openForm() : navigate("/auth/login");
                     }}
                 >
-                    Write a Review
+                    {t("common.writeReview")}
                 </Button>
             ) : (
                 <IconButton onClick={closeForm} sx={{ color: "red" }}>
