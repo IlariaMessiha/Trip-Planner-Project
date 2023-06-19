@@ -125,7 +125,7 @@ export class CommonService {
                     subtitle: "From Timeless Classics to Exquisite Creations, Delight Your Palate.",
                     items: bestRestaurantsInCairo.map(restaurant => {
                         return {
-                            type: "attraction",
+                            type: "restaurant",
                             value: mapRestaurantToDto(restaurant, restaurant.directus_files),
                         };
                     }),
