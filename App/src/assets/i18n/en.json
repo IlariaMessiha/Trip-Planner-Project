@@ -22,7 +22,8 @@
         "writeReview": "Write a review",
         "share": "Share",
         "cancel": "Cancel",
-        "agree": "Agree"
+        "agree": "Agree",
+        "food": "Food"
     },
     "navBar": {
         "logo": "Trip Planner",
