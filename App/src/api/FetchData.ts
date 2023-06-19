@@ -51,12 +51,8 @@ export class FetchData {
         return response.data;
     }
 
-    public async search2() {
-        const response = await Axios.get(`${API_BASE_URL}/search`);
-        return response.data;
-    }
     public async search(searchQuery: SearchQuery) {
-        const res = await Axios.get<SearchResult[]>(`${API_BASE_URL}/search2`, {
+        const res = await Axios.get<SearchResult[]>(`${API_BASE_URL}/search`, {
             params: { q: searchQuery.label, filter: searchQuery.type },
         });
         return res.data;
