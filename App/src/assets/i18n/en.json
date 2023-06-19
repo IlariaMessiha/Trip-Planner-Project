@@ -20,7 +20,9 @@
         "close": "Close",
         "email": "Email",
         "writeReview": "Write a review",
-        "share": "Share"
+        "share": "Share",
+        "cancel": "Cancel",
+        "agree": "Agree"
     },
     "navBar": {
         "logo": "Trip Planner",
@@ -101,6 +103,11 @@
         "logOut": "Logout",
         "noAccount": "Don't have an account? Sign up now",
         "haveAccount": "Already have an account? Sign in",
-        "profile": "Profile"
+        "profile": "Profile",
+        "updateTrip": "Update your trip"
+    },
+    "trip": {
+        "updateLabel": "You can update your trip label to match your preferences.",
+        "label": "Trip Label"
     }
 }
