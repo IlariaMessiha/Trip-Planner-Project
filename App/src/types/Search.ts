@@ -1,9 +1,3 @@
-import { AttractionDto } from "./dto/common/AttractionDto";
-import { CityDto } from "./dto/common/CityDto";
-import { CountryDto } from "./dto/common/CountryDto";
-import { HotelDto } from "./dto/common/HotelDto";
-import { RestaurantDto } from "./dto/common/RestaurantDto";
-
 export type SearchResult<V = any> = {
     type: SearchResultType;
     item: V;

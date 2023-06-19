@@ -1,15 +1,13 @@
 import { Autocomplete, Button, styled, TextField } from "@mui/material";
 import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import { postData } from "../../../api/PostData";
-import { SearchQuery, SearchResult, SearchResultType } from "../../../types/Search";
+import { SearchQuery, SearchResultType } from "../../../types/Search";
 import { InputText } from "../../core/InputText";
 import styles from "./SearchForm.module.css";
 
 interface SearchFormProps {
-    initialLabel: string;
-    onSubmit: (results: SearchResult[], query: SearchQuery, error: string) => void;
+    // onSubmit: (results: SearchResult[], query: SearchQuery, error: string) => void;
+    onSubmit: (query: SearchQuery) => void;
 }
 const SearchButton = styled(Button)({
     backgroundColor: "black",
@@ -31,49 +29,24 @@ const TypeTextField = styled(TextField)({
     },
 });
 
-export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
+export const SearchForm: FC<SearchFormProps> = ({ onSubmit }) => {
     const { t } = useTranslation();
 
-    const [label, setLabel] = useState<string>(initialLabel);
+    const [label, setLabel] = useState<string>();
 
     const [searchResultType, setSearchResultType] = useState<SearchResultType[] | undefined>(
         undefined
     );
-    // const [results, setResults] = useState<SearchResult[] | undefined>(undefined);
-
     const resultOptions: SearchResultType[] = ["City", "Restaurant", "Hotel", "Attraction"];
 
-    const handleSubmit = async (e: any): Promise<void> => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
-        const new_label = label ? label : initialLabel;
-        console.log(`label ${label} - initial ${initialLabel} - new ${new_label}`);
-        if (new_label) {
-            try {
-                const _results = await postData.search({
-                    label: new_label,
-                    type: searchResultType,
-                });
-
-                if (_results) {
-                    const error = _results.length === 0 ? "No Items Found" : "";
-                    onSubmit(
-                        _results,
-                        {
-                            label: new_label,
-                            type: searchResultType,
-                        },
-                        error
-                    );
-                }
-            } catch (error) {
-                console.error("search form error: ", error);
-            }
-        }
+        if (!label) return null;
+        onSubmit({
+            label: label,
+            type: searchResultType,
+        });
     };
-
-    // useEffect(() => {
-    //     handleSubmit({ preventDefault: () => {} });
-    // }, [handleSubmit]);
 
     return (
         <form className={styles.searchContainer} onSubmit={handleSubmit}>
@@ -92,6 +65,7 @@ export const SearchForm: FC<SearchFormProps> = ({ initialLabel, onSubmit }) => {
                 disablePortal
                 options={resultOptions}
                 renderInput={params => <TypeTextField {...params} label={t("common.filterBy")} />}
+                value={searchResultType || []}
                 onChange={(event, values) => {
                     if (values.length > 0) {
                         setSearchResultType(values);
