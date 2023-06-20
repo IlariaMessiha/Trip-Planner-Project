@@ -116,7 +116,9 @@ export const mapRestaurantToDto = (
         email: restaurant.email,
         mapLocation: mapLocation,
         code: restaurant.code,
-        avgMealPerPerson: restaurant.avg_meal_per_person.toNumber(),
+        avgMealPerPerson: restaurant.avg_meal_per_person
+            ? restaurant.avg_meal_per_person.toNumber()
+            : null,
         food: restaurant.food,
     };
 };
