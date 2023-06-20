@@ -35,6 +35,17 @@ export class TripService {
             }),
         };
     }
+    async findCityCodes() {
+        const cities = await this.prisma.city.findMany({
+            select: {
+                city_code: true,
+            },
+            take: 10,
+        });
+        return cities.map(c => {
+            return c.city_code;
+        });
+    }
     findChatbotFlow(): TChatbotFlow {
         return flow;
     }

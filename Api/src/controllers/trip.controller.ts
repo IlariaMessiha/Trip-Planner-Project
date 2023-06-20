@@ -16,6 +16,10 @@ export class TripController {
     getDestinations() {
         return this.tripService.findDestinations();
     }
+    @Get("/cities")
+    getCities() {
+        return this.tripService.findCityCodes();
+    }
     @Get("/chatbotFlow")
     getChatbotFlow() {
         return this.tripService.findChatbotFlow();
