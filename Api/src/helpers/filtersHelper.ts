@@ -10,7 +10,9 @@ export const replaceDynamicValueInFilter = (
         mapValues(rule, val => {
             if (typeof val === "string") {
                 const realValue = val.replace("$value", `${value}`);
-                return realValue === "any" ? realValue.replace("any", "nice") : realValue;
+                return realValue === "any" && filter.preferredDestination
+                    ? realValue.replace("any", "nice")
+                    : realValue;
             } else {
                 return val.map(v => v.replace("$value", `${value}`));
             }
