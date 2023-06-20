@@ -14,7 +14,7 @@ interface CardCityProps {
 
 export const CardCity: FC<CardCityProps> = ({ city }) => {
     return (
-        <Card className={styles.item} sx={{ width: 280 }}>
+        <Card className={styles.item}>
             <Link key={city.id} to={`/city/${city.id}`}>
                 <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                     {city.imageUrl && (

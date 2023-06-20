@@ -1,5 +1,5 @@
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
-import { Avatar, Card, Typography } from "@mui/material";
+import { Avatar, Paper, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { FC } from "react";
 import { TMessage } from "../../../types/TMessage";
@@ -14,14 +14,15 @@ export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message }) => 
                 <Avatar>
                     <SmartToyOutlinedIcon />
                 </Avatar>
-                <Card elevation={0} className={styles.chatbotQuestion}>
-                    <Typography>{message.data.text}</Typography>
-                </Card>
+                <div>
+                    <Paper elevation={0} className={styles.chatbotQuestion}>
+                        <Typography>{message.data.text}</Typography>
+                    </Paper>
+                    <Typography variant="caption" className={styles.date}>
+                        {dayjs(message.sentAt).format("hh:mm a")}
+                    </Typography>
+                </div>
             </div>
-
-            <Typography variant="caption" className={styles.date}>
-                {dayjs(message.sentAt).format("hh:mm a")}
-            </Typography>
         </div>
     );
 };

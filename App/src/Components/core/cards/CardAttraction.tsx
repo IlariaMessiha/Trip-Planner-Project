@@ -1,22 +1,23 @@
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import {
     Card,
     CardActionArea,
     CardContent,
     CardMedia,
+    Chip,
     IconButton,
     Rating,
     Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { FC, useEffect, useState } from "react";
-import styles from "./CardAttraction.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../../api/PostData";
+import PlaceholderImage from "../../../assets/images/placeholder.png";
 import { useAuthContext } from "../../../context/authContext";
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
-import { useTranslation } from "react-i18next";
+import styles from "./CardAttraction.module.css";
 
 interface CardAttractionProps {
     attraction: AttractionDto;
@@ -83,11 +84,9 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
         setLikedLoc(liked);
     }, [liked]);
 
-    const { t } = useTranslation();
-    
     return (
         <div className={styles.container}>
-            <Card className={styles.item} sx={{ width: 280 }}>
+            <Card className={styles.item}>
                 <FavoriteButton
                     onClick={() => {
                         if (likedLoc) {
@@ -104,11 +103,19 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
 
                 <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
                     <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
-                        {attraction.imageUrl && (
+                        {attraction.imageUrl ? (
                             <CardMedia
                                 component="img"
                                 height="200"
                                 image={attraction.imageUrl}
+                                alt={attraction.label}
+                            />
+                        ) : (
+                            <CardMedia
+                                component="img"
+                                height="200"
+                                loading="lazy"
+                                image={PlaceholderImage}
                                 alt={attraction.label}
                             />
                         )}
@@ -120,17 +127,17 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
 
                             {attraction.rating && (
                                 <StarsRating
+                                    size="small"
                                     name="half-rating"
                                     defaultValue={attraction.rating}
                                     precision={0.5}
                                     readOnly
-                                    sx={{}}
                                 />
                             )}
                             {attraction.type && (
-                                <Typography variant="body2">
-                                    {attraction.type} {t("common.attraction")}
-                                </Typography>
+                                <span style={{ paddingTop: 4 }}>
+                                    <Chip variant="outlined" size="small" label={attraction.type} />
+                                </span>
                             )}
                         </CardContent>
                     </CardActionArea>

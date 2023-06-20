@@ -1,8 +1,7 @@
-import { Avatar, Card, Typography } from "@mui/material";
-import styles from "./MessageText.module.css";
-import { TMessage } from "../../../types/TMessage";
+import { Avatar, Paper, Typography } from "@mui/material";
 import { FC } from "react";
-import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
+import { TMessage } from "../../../types/TMessage";
+import styles from "./MessageText.module.css";
 
 import dayjs from "dayjs";
 interface MessageTextProps {
@@ -10,48 +9,32 @@ interface MessageTextProps {
 }
 export const MessageText: FC<MessageTextProps> = ({ message }) => {
     return (
-        <div>
-            {message.sender.id === "0" ? (
-                <>
-                    <div className={styles.chatbotMessage}>
-                        <Avatar>
-                            <SmartToyOutlinedIcon />
-                        </Avatar>
-                        <Card elevation={0} className={styles.botText}>
-                            <Typography>{message.data}</Typography>
-                        </Card>
-                    </div>
-                    <Typography variant="caption" className={styles.date}>
-                        {dayjs(message.sentAt).format("hh:mm a")}
-                    </Typography>
-                </>
-            ) : (
-                <div className={styles.userMessageContainer}>
-                    <div className={styles.userMessage}>
-                        <Card
-                            elevation={0}
-                            className={styles.userText}
+        <div className={styles.container}>
+            <div className={styles.userMessage}>
+                <div>
+                    <Paper
+                        elevation={0}
+                        className={styles.userText}
+                        sx={{
+                            backgroundColor: "#1976d2",
+                            padding: "8px 16px",
+                            borderRadius: "2",
+                        }}
+                    >
+                        <Typography
                             sx={{
-                                backgroundColor: "#1976d2",
-                                padding: "8px 16px",
-                                borderRadius: "2",
+                                color: "white",
                             }}
                         >
-                            <Typography
-                                sx={{
-                                    color: "white",
-                                }}
-                            >
-                                {message.data}
-                            </Typography>
-                        </Card>
-                        <Avatar>{message.sender.displayName[0]}</Avatar>
-                    </div>
+                            {message.data}
+                        </Typography>
+                    </Paper>
                     <Typography variant="caption" className={styles.date}>
                         {dayjs(message.sentAt).format("hh:mm a")}
                     </Typography>
                 </div>
-            )}
+                <Avatar>{message.sender.displayName[0]}</Avatar>
+            </div>
         </div>
     );
 };
