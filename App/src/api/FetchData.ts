@@ -7,12 +7,12 @@ import { GetDestinationNameDto } from "../types/dto/destination/GetDestinationsD
 import { GetHotelResponseDto } from "../types/dto/hotel/GetHotelResponseDto";
 import { GetRestaurantResponseDto } from "../types/dto/restaurants/GetRestaurantResponseDto";
 
-import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
-
+import { SearchQuery, SearchResult } from "../types/Search";
+import { SectionItemDto } from "../types/dto/common/SectionItemDto";
+import { TripDto } from "../types/dto/common/TripDto";
 import { UserDto } from "../types/dto/common/UserDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
-import { TripDto } from "../types/dto/common/TripDto";
-import { SearchQuery, SearchResult } from "../types/Search";
+import { GetMyTripsResponseDto } from "../types/dto/trips/GetMyTripsResponseDto";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -79,7 +79,7 @@ export class FetchData {
         return response.data;
     }
     public async getProfileFavorites(id: number, token: string) {
-        const response = await Axios.get<FavoriteItem[]>(
+        const response = await Axios.get<SectionItemDto[]>(
             `${API_BASE_URL}/api/users/${id}/favorites`,
             {
                 headers: { Authorization: `Bearer ${token}` },
@@ -87,6 +87,18 @@ export class FetchData {
         );
         return response.data;
     }
+
+    public async getMyTrips() {
+        const token = localStorage.getItem("accessToken");
+        const response = await Axios.get<GetMyTripsResponseDto>(
+            `${API_BASE_URL}/trip/get-my-trips`,
+            {
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
+        return response.data;
+    }
+
     public async getTrip(id: number) {
         const token = localStorage.getItem("accessToken");
         const response = await Axios.get<TripDto>(`${API_BASE_URL}/trip/${id}`, {

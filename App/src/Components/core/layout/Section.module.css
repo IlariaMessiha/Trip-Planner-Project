@@ -1,7 +1,15 @@
 .section {
-  margin: 36px 0;
+    margin: 36px 0;
 }
 
 .sectionHeader {
-  padding-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.sectionHeader_clickable {
+    cursor: pointer;
+}
+
+.sectionHeader_clickable:hover {
+    text-decoration: underline;
 }

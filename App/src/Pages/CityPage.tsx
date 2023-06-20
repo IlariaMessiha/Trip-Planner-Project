@@ -1,5 +1,5 @@
 import { Container, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
 import { LocationTopAttraction } from "../Components/widgets/LocationTopAtrraction";
@@ -8,12 +8,12 @@ import { useAuthContext } from "../context/authContext";
 import { CityDto } from "../types/dto/common/CityDto";
 import { SectionDto } from "../types/dto/common/SectionDto";
 import styles from "./CityPage.module.css";
-import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
+import { SectionItemDto } from "../types/dto/common/SectionItemDto";
 
 export const CityPage = () => {
     const [city, setCity] = useState<CityDto | undefined>(undefined);
     const [sections, setSections] = useState<SectionDto[] | undefined>(undefined);
-    const [userFavs, setUserFavs] = useState<FavoriteItem[]>([]);
+    const [userFavs, setUserFavs] = useState<SectionItemDto[]>([]);
     const { loggedInUser } = useAuthContext();
     const { id } = useParams();
     React.useEffect(() => {

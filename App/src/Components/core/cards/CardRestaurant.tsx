@@ -1,42 +1,17 @@
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import {
-    Card,
-    CardActionArea,
-    CardContent,
-    CardMedia,
-    Chip,
-    IconButton,
-    Rating,
-    styled,
-    Typography,
-} from "@mui/material";
+import { CardContent, Chip, Rating, styled, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postData } from "../../../api/PostData";
 import { useAuthContext } from "../../../context/authContext";
 import { RestaurantDto } from "../../../types/dto/common/RestaurantDto";
-import styles from "./CardRestaurant.module.css";
+import { CardBase } from "./CardBase";
 
 interface CardRestaurantProps {
     restaurant: RestaurantDto;
     liked: boolean;
 }
 
-const FavoriteButton = styled(IconButton)(() => ({
-    position: "absolute",
-    backgroundColor: "white",
-    color: "black",
-    top: 6,
-    right: 10,
-    zIndex: 10,
-
-    // Additional styles for the icon
-    "& .MuiSvgIcon-root": {
-        fill: "black",
-    },
-}));
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {
         color: "blue",
@@ -46,7 +21,7 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const [likedLoc, setLikedLoc] = useState<boolean>(liked);
+    const [isFavorite, setIsFavorite] = useState<boolean>(liked);
     const like = (restaurant: RestaurantDto) => {
         const token = localStorage.getItem("accessToken");
         if (loggedInUser && token) {
@@ -58,7 +33,7 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
                 },
                 token
             );
-            setLikedLoc(true);
+            setIsFavorite(true);
         } else {
             navigate("/auth/login");
         }
@@ -74,70 +49,57 @@ export const CardRestaurant: FC<CardRestaurantProps> = ({ restaurant, liked }) =
                 },
                 token
             );
-            setLikedLoc(false);
+            setIsFavorite(false);
         } else {
             navigate("/auth/login");
         }
     };
     useEffect(() => {
-        setLikedLoc(liked);
+        setIsFavorite(liked);
         console.log("liked use effect");
     }, [liked]);
 
     return (
-        <div className={styles.container}>
-            <Card className={styles.item}>
-                <FavoriteButton
-                    onClick={() => {
-                        if (likedLoc) {
-                            dislike(restaurant);
-                        } else {
-                            like(restaurant);
-                        }
-                    }}
-                >
-                    {likedLoc ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
-                </FavoriteButton>
-                <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
-                    <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
-                        {restaurant.imageUrl && (
-                            <CardMedia
-                                component="img"
-                                height="200"
-                                image={restaurant.imageUrl}
-                                alt={restaurant.label}
-                            />
-                        )}
-
-                        <CardContent className={styles.restaurantContent}>
-                            <Typography variant="body1" className={styles.label}>
-                                {restaurant.label}
-                            </Typography>
-                            {restaurant.rating && (
-                                <StarsRating
-                                    size="small"
-                                    name="half-rating"
-                                    defaultValue={restaurant.rating}
-                                    precision={0.5}
-                                    readOnly
-                                />
-                            )}
-                            {restaurant.avgMealPerPerson && (
-                                <Typography variant="body2">
-                                    {t("restaurant.averageMealPerPerson", {
-                                        amount: restaurant.avgMealPerPerson,
-                                    })}
-                                </Typography>
-                            )}
-                            {restaurant.food && (
-                                <span style={{ paddingTop: 4 }}>
-                                    <Chip variant="outlined" size="small" label={restaurant.food} />
-                                </span>
-                            )}
-                        </CardContent>
-                    </CardActionArea>
-                </Link>
-            </Card>
-        </div>
+        <CardBase
+            navigateTo={`/restaurant/${restaurant.id}`}
+            imageAlt={restaurant.label}
+            imageUrl={restaurant.imageUrl}
+            isFavoriteEnabled={true}
+            isFavorite={isFavorite}
+            onFavoriteClick={() => {
+                if (isFavorite) {
+                    dislike(restaurant);
+                } else {
+                    like(restaurant);
+                }
+            }}
+        >
+            <CardContent>
+                <Typography variant="body1">{restaurant.label}</Typography>
+                <div>
+                    {restaurant.rating && (
+                        <StarsRating
+                            size="small"
+                            name="half-rating"
+                            defaultValue={restaurant.rating}
+                            precision={0.5}
+                            readOnly
+                        />
+                    )}
+                </div>
+                {restaurant.avgMealPerPerson && (
+                    <Typography variant="body2">
+                        {t("restaurant.averageMealPerPerson", {
+                            amount: restaurant.avgMealPerPerson,
+                        })}
+                    </Typography>
+                )}
+                {restaurant.food && (
+                    <span style={{ paddingTop: 4 }}>
+                        <Chip variant="outlined" size="small" label={restaurant.food} />
+                    </span>
+                )}
+            </CardContent>
+        </CardBase>
     );
 };

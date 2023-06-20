@@ -23,7 +23,8 @@
         "share": "Share",
         "cancel": "Cancel",
         "agree": "Agree",
-        "food": "Food"
+        "food": "Food",
+        "dateRange": "from {{from}} to {{to}}"
     },
     "navBar": {
         "logo": "Trip Planner",

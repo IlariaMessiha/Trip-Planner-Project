@@ -140,32 +140,43 @@ export const mapTripToDto = (trip: TripFull): TripDto => {
         }),
     };
 };
+export const mapCityToDto = (city: city, image: directus_files, country: CountryDto): CityDto => {
+    const long = city.long ? city.long.toNumber() : null;
+    const lat = city.lat ? city.lat.toNumber() : null;
+
+    const mapLocation = lat && long ? { lat, long } : null;
+    const imageUrl = image ? `${process.env.ASSETS_PATH}/${image.filename_disk}` : null;
+
+    return {
+        id: city.id,
+        label: city.label,
+        cityCode: city.city_code,
+        mapLocation: mapLocation,
+        imageUrl: imageUrl,
+        country: country,
+    };
+};
+export const mapCountryToDto = (country: country): CountryDto => {
+    return {
+        id: country.id,
+        code: country.country_code,
+        label: country.label,
+    };
+};
+
+// export const mapTripsToDto = (trips: TripFull[]): TripDto[] => {
+//     return trips.map(trip => {
+//         return {
+//             id: trip.id,
+//             label: trip.label,
+//             startDate: trip.start_date.toISOString(),
+//             endDate: trip.end_date.toISOString(),
+//             tripItems: [],
+//         };
+//     });
+// };
 
 export class MappingDtos {
-    mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
-        const long = city.long ? city.long.toNumber() : null;
-        const lat = city.lat ? city.lat.toNumber() : null;
-
-        const mapLocation = lat && long ? { lat, long } : null;
-        const imageUrl = image ? `${process.env.ASSETS_PATH}/${image.filename_disk}` : null;
-
-        return {
-            id: city.id,
-            label: city.label,
-            cityCode: city.city_code,
-            mapLocation: mapLocation,
-            imageUrl: imageUrl,
-            country: country,
-        };
-    }
-    mapCountryToDto(country: country): CountryDto {
-        return {
-            id: country.id,
-            code: country.country_code,
-            label: country.label,
-        };
-    }
-
     mapHotelToDto(hotel: hotel, image: directus_files): HotelDto {
         const long = hotel.long ? hotel.long.toNumber() : null;
         const lat = hotel.lat ? hotel.lat.toNumber() : null;

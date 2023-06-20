@@ -1,40 +1,16 @@
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import {
-    Card,
-    CardActionArea,
-    CardContent,
-    CardMedia,
-    Chip,
-    IconButton,
-    Rating,
-    Typography,
-} from "@mui/material";
+import { CardContent, Chip, Rating, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { FC, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postData } from "../../../api/PostData";
-import PlaceholderImage from "../../../assets/images/placeholder.png";
 import { useAuthContext } from "../../../context/authContext";
 import { AttractionDto } from "../../../types/dto/common/AttractionDto";
-import styles from "./CardAttraction.module.css";
+import { CardBase } from "./CardBase";
 
 interface CardAttractionProps {
     attraction: AttractionDto;
     liked: boolean;
 }
-const FavoriteButton = styled(IconButton)(() => ({
-    position: "absolute",
-    backgroundColor: "white",
-    color: "black",
-    top: 6,
-    right: 10,
-    zIndex: 10,
-    // Additional styles for the icon
-    // "& .MuiSvgIcon-root": {
-    //     fill: "black",
-    // },
-}));
 
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {
@@ -44,7 +20,7 @@ const StarsRating = styled(Rating)({
 export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) => {
     const { loggedInUser } = useAuthContext();
     const navigate = useNavigate();
-    const [likedLoc, setLikedLoc] = useState<boolean>(liked);
+    const [isFavorite, setIsFavorite] = useState<boolean>(liked);
 
     const like = (attraction: AttractionDto) => {
         const token = localStorage.getItem("accessToken");
@@ -57,7 +33,7 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
                 },
                 token
             );
-            setLikedLoc(true);
+            setIsFavorite(true);
         } else {
             navigate("/auth/login");
         }
@@ -74,75 +50,50 @@ export const CardAttraction: FC<CardAttractionProps> = ({ attraction, liked }) =
                 },
                 token
             );
-            setLikedLoc(false);
+            setIsFavorite(false);
         } else {
             navigate("/auth/login");
         }
     };
 
     useEffect(() => {
-        setLikedLoc(liked);
+        setIsFavorite(liked);
     }, [liked]);
 
     return (
-        <div className={styles.container}>
-            <Card className={styles.item}>
-                <FavoriteButton
-                    onClick={() => {
-                        if (likedLoc) {
-                            dislike(attraction);
-                            console.log("dislike");
-                        } else {
-                            like(attraction);
-                            console.log("like");
-                        }
-                    }}
-                >
-                    {likedLoc ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
-                </FavoriteButton>
-
-                <Link key={attraction.id} to={`/attraction/${attraction.id}`}>
-                    <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
-                        {attraction.imageUrl ? (
-                            <CardMedia
-                                component="img"
-                                height="200"
-                                image={attraction.imageUrl}
-                                alt={attraction.label}
-                            />
-                        ) : (
-                            <CardMedia
-                                component="img"
-                                height="200"
-                                loading="lazy"
-                                image={PlaceholderImage}
-                                alt={attraction.label}
-                            />
-                        )}
-
-                        <CardContent className={styles.AttractionContent}>
-                            <Typography variant="body1" className={styles.label}>
-                                {attraction.label}
-                            </Typography>
-
-                            {attraction.rating && (
-                                <StarsRating
-                                    size="small"
-                                    name="half-rating"
-                                    defaultValue={attraction.rating}
-                                    precision={0.5}
-                                    readOnly
-                                />
-                            )}
-                            {attraction.type && (
-                                <span style={{ paddingTop: 4 }}>
-                                    <Chip variant="outlined" size="small" label={attraction.type} />
-                                </span>
-                            )}
-                        </CardContent>
-                    </CardActionArea>
-                </Link>
-            </Card>
-        </div>
+        <CardBase
+            isFavoriteEnabled={true}
+            isFavorite={isFavorite}
+            navigateTo={`/attraction/${attraction.id}`}
+            imageAlt={attraction.label}
+            imageUrl={attraction.imageUrl}
+            onFavoriteClick={() => {
+                if (isFavorite) {
+                    dislike(attraction);
+                } else {
+                    like(attraction);
+                }
+            }}
+        >
+            <CardContent>
+                <Typography variant="body1">{attraction.label}</Typography>
+                <div>
+                    {attraction.rating && (
+                        <StarsRating
+                            size="small"
+                            name="half-rating"
+                            defaultValue={attraction.rating}
+                            precision={0.5}
+                            readOnly
+                        />
+                    )}
+                </div>
+                {attraction.type && (
+                    <span style={{ paddingTop: 4 }}>
+                        <Chip variant="outlined" size="small" label={attraction.type} />
+                    </span>
+                )}
+            </CardContent>
+        </CardBase>
     );
 };

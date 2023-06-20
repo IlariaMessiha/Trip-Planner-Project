@@ -23,7 +23,8 @@
         "share": "Teilen",
         "cancel": "Abbrechen",
         "agree": "Zustimmen",
-        "food": "Essen"
+        "food": "Essen",
+        "dateRange": "der {{from}} bis {{to}}"
     },
     "navBar": {
         "logo": "Reiseplaner",

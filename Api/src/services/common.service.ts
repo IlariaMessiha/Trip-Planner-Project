@@ -1,5 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import { mapAttractionToDto, MappingDtos, mapRestaurantToDto } from "src/helpers/MappingDtos";
+import {
+    mapAttractionToDto,
+    mapCityToDto,
+    mapCountryToDto,
+    MappingDtos,
+    mapRestaurantToDto,
+} from "src/helpers/MappingDtos";
 import { PrismaService } from "src/prisma.service";
 
 import { GetDashboardResponseDto } from "src/types/dto/dashboard/GetDashboardResponseDto";
@@ -176,10 +182,10 @@ export class CommonService {
                     items: cities.map(city => {
                         return {
                             type: "city",
-                            value: this.mappingDtos.mapCityToDto(
+                            value: mapCityToDto(
                                 city,
                                 city.directus_files,
-                                this.mappingDtos.mapCountryToDto(city.country)
+                                mapCountryToDto(city.country)
                             ),
                         };
                     }),

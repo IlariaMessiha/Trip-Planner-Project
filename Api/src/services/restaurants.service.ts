@@ -3,6 +3,8 @@ import { PrismaService } from "src/prisma.service";
 import { GetRestaurantResponseDto } from "src/types/dto/restaurants/GetRestaurantResponseDto";
 import {
     MappingDtos,
+    mapCityToDto,
+    mapCountryToDto,
     mapRestaurantReviewToDto,
     mapRestaurantToDto,
     mapUserToDto,
@@ -51,11 +53,7 @@ export class RestaurantsService {
                     type: "restaurantReview",
                 };
             }),
-            city: this.mappingDto.mapCityToDto(
-                city,
-                city.directus_files,
-                this.mappingDto.mapCountryToDto(city.country)
-            ),
+            city: mapCityToDto(city, city.directus_files, mapCountryToDto(city.country)),
         };
     }
 

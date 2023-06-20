@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { Container } from "../Components/core/layout/Container";
 import { Section } from "../Components/core/layout/Section";
 import { ChatbotButton } from "../Components/widgets/ChatbotButton";
-import { fetchData } from "../api/FetchData";
-import styles from "./Dashboard.module.css";
 import { SectionItemType } from "../Components/widgets/SectionItemType";
 import { Swiper } from "../Components/widgets/Swiper";
+import { fetchData } from "../api/FetchData";
 import { useAuthContext } from "../context/authContext";
-import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
+import styles from "./Dashboard.module.css";
 
-import { SectionDto } from "../types/dto/common/SectionDto";
 import { SearchEngineAutocomplete } from "../Components/widgets/SearchEngineAutocomplete";
+import { SectionDto } from "../types/dto/common/SectionDto";
+import { SectionItemDto } from "../types/dto/common/SectionItemDto";
 
 export const Dashboard = () => {
     const [sections, setSections] = useState<SectionDto[]>([]);
-    const [userFavs, setUserFavs] = useState<FavoriteItem[]>([]);
+    const [userFavs, setUserFavs] = useState<SectionItemDto[]>([]);
     const { loggedInUser } = useAuthContext();
 
     useEffect(() => {

@@ -1,12 +1,14 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma.service";
-import { GetAttractionResponseDto } from "src/types/dto/attractions/GetAttractionResponseDto";
 import {
     MappingDtos,
     mapAttractionReviewToDto,
     mapAttractionToDto,
+    mapCityToDto,
+    mapCountryToDto,
     mapUserToDto,
 } from "src/helpers/MappingDtos";
+import { PrismaService } from "src/prisma.service";
+import { GetAttractionResponseDto } from "src/types/dto/attractions/GetAttractionResponseDto";
 
 @Injectable()
 export class AttractionsService {
@@ -52,11 +54,7 @@ export class AttractionsService {
                     type: "attractionReview",
                 };
             }),
-            city: this.mappingDto.mapCityToDto(
-                city,
-                city.directus_files,
-                this.mappingDto.mapCountryToDto(city.country)
-            ),
+            city: mapCityToDto(city, city.directus_files, mapCountryToDto(city.country)),
         };
     }
 

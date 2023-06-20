@@ -7,6 +7,7 @@ import { mapTripToDto } from "src/helpers/MappingDtos";
 import { TripService } from "src/services/trip.service";
 import { AuthUser } from "src/types/AuthUser";
 import { TChatbotSubmission } from "src/types/TChatbot";
+import { GetMyTripsResponseDto } from "src/types/dto/trips/GetMyTripsResponseDto";
 import { UpdateTripBodyDto } from "src/types/dto/trips/UpdateTripBodyDto";
 
 @Controller("/trip")
@@ -51,6 +52,16 @@ export class TripController {
 
         const savedTrip = await this.tripService.saveTrip(trip, authUser.id);
         return mapTripToDto(savedTrip);
+    }
+
+    @Get("/get-my-trips")
+    @UseGuards(AuthGuard)
+    async getUserTrips(@AuthUserPayload() authUser: AuthUser): Promise<GetMyTripsResponseDto> {
+        const trips = await this.tripService.findUserTrips(authUser.id);
+
+        return {
+            trips: trips.map(mapTripToDto),
+        };
     }
 
     @Get("/:id")

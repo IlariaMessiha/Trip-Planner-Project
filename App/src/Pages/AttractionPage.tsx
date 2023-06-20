@@ -16,7 +16,7 @@ import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
-import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
+import { SectionItemDto } from "../types/dto/common/SectionItemDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import styles from "./AttractionPage.module.css";
 
@@ -33,7 +33,7 @@ export const AttractionPage = () => {
     const { t } = useTranslation();
     const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
     const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
-    const [userFavs, setUserFavs] = useState<FavoriteItem[]>([]);
+    const [userFavs, setUserFavs] = useState<SectionItemDto[]>([]);
     const [likedLoc, setLikedLoc] = useState<boolean>(false);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
@@ -67,7 +67,7 @@ export const AttractionPage = () => {
     useEffect(() => {
         if (attraction) {
             const isLocationLiked = userFavs?.some(
-                favorite => favorite.item.id === attraction.id && favorite.type === "attraction"
+                favorite => favorite.value.id === attraction.id && favorite.type === "attraction"
             );
             setLikedLoc(isLocationLiked);
         }
@@ -128,40 +128,38 @@ export const AttractionPage = () => {
         <Container className={styles.container}>
             <Typography variant="h3">{attraction.label}</Typography>
             <div className={styles.header}>
-                <div className={styles.communicate}>
-                    {attraction.openingHours && dayjs(attraction.openingHours?.from).isValid() && (
-                        <div className={styles.openHours}>
-                            <Typography variant="h6">
-                                {t("attractions.openHours", {
-                                    from: dayjs(attraction.openingHours?.from).format("HH:mm"),
-                                    to: dayjs(attraction.openingHours?.to).format("HH:mm"),
-                                })}
-                            </Typography>
-                        </div>
-                    )}
-                    {attraction.website && (
-                        <a href={attraction.website}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("attractions.visitWebsite")}
-                            </Typography>
-                        </a>
-                    )}
-                    {attraction.phone && (
-                        <a href={`tel:${attraction.phone}`}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("attractions.call")}
-                            </Typography>
-                        </a>
-                    )}
-                    {attraction.email && (
-                        <a href={`mailto:${attraction.email}`}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("common.email")}
-                            </Typography>
-                        </a>
-                    )}
-                </div>
-                <div className={styles.icons}>
+                {attraction.openingHours && dayjs(attraction.openingHours?.from).isValid() && (
+                    <div className={styles.openHours}>
+                        <Typography variant="h6">
+                            {t("attractions.openHours", {
+                                from: dayjs(attraction.openingHours?.from).format("HH:mm"),
+                                to: dayjs(attraction.openingHours?.to).format("HH:mm"),
+                            })}
+                        </Typography>
+                    </div>
+                )}
+                {attraction.website && (
+                    <a href={attraction.website}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("attractions.visitWebsite")}
+                        </Typography>
+                    </a>
+                )}
+                {attraction.phone && (
+                    <a href={`tel:${attraction.phone}`}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("attractions.call")}
+                        </Typography>
+                    </a>
+                )}
+                {attraction.email && (
+                    <a href={`mailto:${attraction.email}`}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("common.email")}
+                        </Typography>
+                    </a>
+                )}
+                <div>
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
@@ -184,13 +182,15 @@ export const AttractionPage = () => {
                 </div>
             </div>
             <div className={styles.imageAndDescription}>
-                <AttractionInfo attraction={attraction} />
+                <AttractionInfo className={styles.infoContainer} attraction={attraction} />
                 {attraction.imageUrl && (
-                    <img
-                        src={attraction.imageUrl}
-                        className={styles.image}
-                        alt={attraction.label}
-                    />
+                    <div className={styles.imageContainer}>
+                        <img
+                            className={styles.image}
+                            src={attraction.imageUrl}
+                            alt={attraction.label}
+                        />
+                    </div>
                 )}
             </div>
             <Typography variant="h4" className={styles.reviewsTitle}>

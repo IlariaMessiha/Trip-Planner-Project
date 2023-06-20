@@ -16,3 +16,8 @@
 .swiper {
     padding-bottom: 40px !important;
 }
+
+.swiperSlide {
+    display: flex;
+    height: auto;
+}

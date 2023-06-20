@@ -4,13 +4,13 @@ import styles from "./LocationTopAttraction.module.css";
 import { Swiper } from "./Swiper";
 
 import { SectionDto } from "../../types/dto/common/SectionDto";
+import { SectionItemDto } from "../../types/dto/common/SectionItemDto";
 import { Section } from "../core/layout/Section";
 import { SectionItemType } from "./SectionItemType";
-import { FavoriteItem } from "../../types/dto/common/FavoriteItemDto";
 
 interface LocationTopAttractionProps {
     sections: SectionDto[];
-    userFavs?: FavoriteItem[];
+    userFavs?: SectionItemDto[];
 }
 export const LocationTopAttraction: FC<LocationTopAttractionProps> = ({ sections, userFavs }) => {
     return (

@@ -1,7 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
 
-import { MappingDtos, mapAttractionToDto, mapRestaurantToDto } from "src/helpers/MappingDtos";
+import {
+    MappingDtos,
+    mapAttractionToDto,
+    mapCityToDto,
+    mapCountryToDto,
+    mapRestaurantToDto,
+} from "src/helpers/MappingDtos";
 import { SearchQuery, SearchResult } from "src/types/dto/search/searchDto";
 
 @Injectable()
@@ -114,11 +120,7 @@ export class SearchService {
 
         const cityItems: SearchResult[] = cities.map(city => {
             return {
-                item: this.mappingDtos.mapCityToDto(
-                    city,
-                    city.directus_files,
-                    this.mappingDtos.mapCountryToDto(city.country)
-                ),
+                item: mapCityToDto(city, city.directus_files, mapCountryToDto(city.country)),
                 type: "City",
             };
         });

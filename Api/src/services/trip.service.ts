@@ -223,4 +223,28 @@ export class TripService {
             },
         });
     }
+
+    async findUserTrips(userId: number) {
+        return await this.prisma.trip.findMany({
+            where: {
+                user_id: userId,
+            },
+            include: {
+                trip_items: {
+                    include: {
+                        attraction: {
+                            include: {
+                                directus_files: true,
+                            },
+                        },
+                        restaurant: {
+                            include: {
+                                directus_files: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    }
 }

@@ -1,16 +1,5 @@
-.container {
-    padding-top: 100px;
-}
-
-
-
 .content {
     margin-top: 20px;
-    display: flex;
-    gap: 100px;
-    justify-content: space-between;
-}
-
-.tabContent {
-    width: 100%;
+    /* display: flex; */
+    /* gap: 20px; */
 }
