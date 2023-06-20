@@ -128,40 +128,38 @@ export const AttractionPage = () => {
         <Container className={styles.container}>
             <Typography variant="h3">{attraction.label}</Typography>
             <div className={styles.header}>
-                <div className={styles.communicate}>
-                    {attraction.openingHours && dayjs(attraction.openingHours?.from).isValid() && (
-                        <div className={styles.openHours}>
-                            <Typography variant="h6">
-                                {t("attractions.openHours", {
-                                    from: dayjs(attraction.openingHours?.from).format("HH:mm"),
-                                    to: dayjs(attraction.openingHours?.to).format("HH:mm"),
-                                })}
-                            </Typography>
-                        </div>
-                    )}
-                    {attraction.website && (
-                        <a href={attraction.website}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("attractions.visitWebsite")}
-                            </Typography>
-                        </a>
-                    )}
-                    {attraction.phone && (
-                        <a href={`tel:${attraction.phone}`}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("attractions.call")}
-                            </Typography>
-                        </a>
-                    )}
-                    {attraction.email && (
-                        <a href={`mailto:${attraction.email}`}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("common.email")}
-                            </Typography>
-                        </a>
-                    )}
-                </div>
-                <div className={styles.icons}>
+                {attraction.openingHours && dayjs(attraction.openingHours?.from).isValid() && (
+                    <div className={styles.openHours}>
+                        <Typography variant="h6">
+                            {t("attractions.openHours", {
+                                from: dayjs(attraction.openingHours?.from).format("HH:mm"),
+                                to: dayjs(attraction.openingHours?.to).format("HH:mm"),
+                            })}
+                        </Typography>
+                    </div>
+                )}
+                {attraction.website && (
+                    <a href={attraction.website}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("attractions.visitWebsite")}
+                        </Typography>
+                    </a>
+                )}
+                {attraction.phone && (
+                    <a href={`tel:${attraction.phone}`}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("attractions.call")}
+                        </Typography>
+                    </a>
+                )}
+                {attraction.email && (
+                    <a href={`mailto:${attraction.email}`}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("common.email")}
+                        </Typography>
+                    </a>
+                )}
+                <div>
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
@@ -184,13 +182,15 @@ export const AttractionPage = () => {
                 </div>
             </div>
             <div className={styles.imageAndDescription}>
-                <AttractionInfo attraction={attraction} />
+                <AttractionInfo className={styles.infoContainer} attraction={attraction} />
                 {attraction.imageUrl && (
-                    <img
-                        src={attraction.imageUrl}
-                        className={styles.image}
-                        alt={attraction.label}
-                    />
+                    <div className={styles.imageContainer}>
+                        <img
+                            className={styles.image}
+                            src={attraction.imageUrl}
+                            alt={attraction.label}
+                        />
+                    </div>
                 )}
             </div>
             <Typography variant="h4" className={styles.reviewsTitle}>
