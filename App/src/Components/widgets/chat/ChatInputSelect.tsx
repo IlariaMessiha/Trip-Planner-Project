@@ -29,20 +29,22 @@ export const ChatInputSelect: FC<ChatInputSelectProps> = ({ onSubmit, options, i
     };
 
     return (
-        <div className={styles.choices}>
-            {options.map((choice, i: any) => {
-                const isSelected = selectedValues.includes(choice.code);
-                return (
-                    <Chip
-                        key={choice.code}
-                        label={choice.text}
-                        color="primary"
-                        variant={isSelected ? "filled" : "outlined"}
-                        icon={isSelected ? <DoneIcon fontSize="small" /> : undefined}
-                        onClick={e => handleClick(choice.code)}
-                    />
-                );
-            })}
+        <div className={styles.input}>
+            <div className={styles.choices}>
+                {options.map((choice, i: any) => {
+                    const isSelected = selectedValues.includes(choice.code);
+                    return (
+                        <Chip
+                            key={choice.code}
+                            label={choice.text}
+                            color="primary"
+                            variant={isSelected ? "filled" : "outlined"}
+                            icon={isSelected ? <DoneIcon fontSize="small" /> : undefined}
+                            onClick={e => handleClick(choice.code)}
+                        />
+                    );
+                })}
+            </div>
             <IconButton color="primary" edge="end" onClick={handleSubmit}>
                 <SendIcon />
             </IconButton>
