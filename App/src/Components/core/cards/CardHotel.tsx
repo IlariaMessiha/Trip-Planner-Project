@@ -1,17 +1,8 @@
-import {
-    Card,
-    CardActionArea,
-    CardContent,
-    CardMedia,
-    Rating,
-    styled,
-    Typography,
-} from "@mui/material";
+import { CardContent, Rating, styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { HotelDto } from "../../../types/dto/common/HotelDto";
-import styles from "./CardHotel.module.css";
+import { CardBase } from "./CardBase";
 
 interface CardHotelProps {
     hotel: HotelDto;
@@ -25,43 +16,30 @@ const StarsRating = styled(Rating)({
 export const CardHotel: FC<CardHotelProps> = ({ hotel }) => {
     const { t } = useTranslation();
     return (
-        <div className={styles.container}>
-            <Card className={styles.item}>
-                <Link key={hotel.id} to={`/hotel/${hotel.id}`}>
-                    <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
-                        {hotel.imageUrl && (
-                            <CardMedia
-                                component="img"
-                                height="194"
-                                image={hotel.imageUrl}
-                                alt={hotel.label}
-                            />
-                        )}
-
-                        <CardContent className={styles.hotelContent}>
-                            <Typography variant="body1" className={styles.label}>
-                                {hotel.label}
-                            </Typography>
-                            {hotel.rating && (
-                                <StarsRating
-                                    size="small"
-                                    name="half-rating"
-                                    defaultValue={hotel.rating}
-                                    precision={0.5}
-                                    readOnly
-                                />
-                            )}
-                            {hotel.startingFromPrice && (
-                                <Typography variant="body2">
-                                    {t("hotels.startingFromPrice", {
-                                        amount: hotel.startingFromPrice,
-                                    })}
-                                </Typography>
-                            )}
-                        </CardContent>
-                    </CardActionArea>
-                </Link>
-            </Card>
-        </div>
+        <CardBase
+            navigateTo={`/hotel/${hotel.id}`}
+            imageAlt={hotel.label}
+            imageUrl={hotel.imageUrl}
+        >
+            <CardContent>
+                <Typography variant="body1">{hotel.label}</Typography>
+                {hotel.rating && (
+                    <StarsRating
+                        size="small"
+                        name="half-rating"
+                        defaultValue={hotel.rating}
+                        precision={0.5}
+                        readOnly
+                    />
+                )}
+                {hotel.startingFromPrice && (
+                    <Typography variant="body2">
+                        {t("hotels.startingFromPrice", {
+                            amount: hotel.startingFromPrice,
+                        })}
+                    </Typography>
+                )}
+            </CardContent>
+        </CardBase>
     );
 };

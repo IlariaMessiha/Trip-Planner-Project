@@ -25,7 +25,7 @@ export const TripProfileItem: FC<TripProfileItemProps> = ({ trip }) => {
             navigateTo={`/profile/trip/${trip.id}`}
         >
             <Swiper
-                items={trip.tripItems}
+                items={trip.tripItems.slice(0, 6)}
                 renderItem={item => <SectionItemType item={item} key={item.value.id} />}
             />
         </Section>

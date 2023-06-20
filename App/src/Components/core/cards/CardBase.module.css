@@ -1,0 +1,8 @@
+.card {
+    width: 100%;
+    position: relative;
+}
+
+.card:hover {
+    text-decoration: underline;
+}
