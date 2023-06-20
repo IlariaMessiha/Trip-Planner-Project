@@ -12,6 +12,7 @@ import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 import styles from "./ProfilePage.module.css";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import { TripDto } from "../types/dto/common/TripDto";
+import { TripsList } from "../Components/widgets/TripsList";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
@@ -45,7 +46,7 @@ export const ProfilePage = () => {
             setFavorites(response);
         }
         if (newValue === "3") {
-            const response = await fetchData.getProfileTrips(loggedInUser.id, token);
+            const response = await fetchData.getProfileTrips();
             setTrips(response);
             console.log(response);
         }
@@ -64,6 +65,7 @@ export const ProfilePage = () => {
                 <div className={styles.tabContent}>
                     {value === "1" && <ReviewList reviews={reviews} />}
                     {value === "2" && favorites && <FavoritesList favorites={favorites} />}
+                    {value === "3" && trips && <TripsList trips={trips} />}
                 </div>
             </div>
         </Container>

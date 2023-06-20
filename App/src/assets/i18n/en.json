@@ -23,7 +23,9 @@
         "share": "Share",
         "cancel": "Cancel",
         "agree": "Agree",
-        "food": "Food"
+        "food": "Food",
+        "startDate": "Start Date",
+        "endDate": "End Date"
     },
     "navBar": {
         "logo": "Trip Planner",
