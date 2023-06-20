@@ -13,13 +13,13 @@ interface ProfileTabsProps {
 export const ProfileTabs: FC<ProfileTabsProps> = ({ value, handleChange }) => {
     const { t } = useTranslation();
     return (
-        <Box sx={{ width: "20%", typography: "body1" }}>
+        <Box sx={{ typography: "body1" }}>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <TabList    
+                    <TabList
+                        variant="fullWidth"
                         aria-label="lab API tabs example"
                         onChange={handleChange}
-                        orientation="vertical"
                     >
                         <Tab icon={<CreateIcon />} iconPosition="start" label="Reviews" value="1" />
                         <Tab

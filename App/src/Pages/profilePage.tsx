@@ -13,6 +13,7 @@ import styles from "./ProfilePage.module.css";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import { TripDto } from "../types/dto/common/TripDto";
 import { TripProfileItems } from "../Components/widgets/trip/TripProfileItems";
+import { PageLayout } from "../Components/core/layout/PageLayout";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
@@ -56,17 +57,21 @@ export const ProfilePage = () => {
     };
 
     return (
-        <Container className={styles.container}>
-            <ProfileHeader loggedInUser={loggedInUser} logOut={logOut} />
+        <PageLayout>
+            <Container className={styles.container}>
+                <ProfileHeader loggedInUser={loggedInUser} logOut={logOut} />
 
-            <div className={styles.content}>
-                <ProfileTabs handleChange={handleChange} value={value} />
-                <div className={styles.tabContent}>
-                    {value === "1" && <ReviewList reviews={reviews} />}
-                    {value === "2" && favorites && <FavoritesList favorites={favorites} />}
-                    {value === "3" && trips && <TripProfileItems trips={trips} />}
+                <div className={styles.content}>
+                    <div className={styles.tabWrapper}>
+                        <ProfileTabs handleChange={handleChange} value={value} />
+                    </div>
+                    <div className={styles.tabContent}>
+                        {value === "1" && <ReviewList reviews={reviews} />}
+                        {value === "2" && favorites && <FavoritesList favorites={favorites} />}
+                        {value === "3" && trips && <TripProfileItems trips={trips} />}
+                    </div>
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </PageLayout>
     );
 };

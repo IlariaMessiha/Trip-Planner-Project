@@ -23,7 +23,8 @@
         "share": "Compartilhar",
         "cancel": "Cancelar",
         "agree": "Concordar",
-        "food": "Comida"
+        "food": "Comida",
+        "dateRange": "de {{from}} a {{to}}"
     },
     "navBar": {
         "logo": "Planejador de viagens",

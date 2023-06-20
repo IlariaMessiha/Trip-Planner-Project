@@ -24,8 +24,7 @@
         "cancel": "Cancel",
         "agree": "Agree",
         "food": "Food",
-        "startDate": "Start Date",
-        "endDate": "End Date"
+        "dateRange": "from {{from}} to {{to}}"
     },
     "navBar": {
         "logo": "Trip Planner",

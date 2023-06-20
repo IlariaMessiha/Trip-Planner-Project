@@ -23,7 +23,8 @@
         "share": "Partager",
         "cancel": "Annuler",
         "agree": "Accepter",
-        "food": "Nourriture"
+        "food": "Nourriture",
+        "dateRange": "de {{from}} à {{to}}"
     },
     "navBar": {
         "logo": "Planificateur de voyage",

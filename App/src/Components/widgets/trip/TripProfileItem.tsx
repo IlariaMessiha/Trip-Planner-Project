@@ -1,10 +1,13 @@
-import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
-import { Paper, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { TripDto } from "../../../types/dto/common/TripDto";
-import styles from "./TripProfileItem.module.css";
+import { Section } from "../../core/layout/Section";
+import { SectionItemType } from "../SectionItemType";
+import { Swiper } from "../Swiper";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import { upperFirst } from "lodash";
+dayjs.extend(LocalizedFormat);
 
 interface TripProfileItemProps {
     trip: TripDto;
@@ -12,35 +15,19 @@ interface TripProfileItemProps {
 export const TripProfileItem: FC<TripProfileItemProps> = ({ trip }) => {
     const { t } = useTranslation();
 
-    if (!trip) {
-        return null;
-    }
+    const from = dayjs(trip.startDate).format("LL");
+    const to = dayjs(trip.endDate).format("LL");
+
     return (
-        <Paper className={styles.searchResultElement}>
-            {/* <div className={styles.flightIconContainer}> */}
-            <Link to={`/profile/trip/${trip.id}`}>
-                <FlightTakeoffIcon className={styles.flightIcon} />
-            </Link>
-            {/* </div> */}
-
-            <div className={styles.rightSide}>
-                <Link to={`/profile/trip/${trip.id}`}>
-                    <Typography variant="h4" className={styles.title}>
-                        {trip.label}
-                    </Typography>
-                </Link>
-
-                <Typography variant="body1">
-                    {t("common.startDate")}
-                    {" : "}
-                    {new Date(trip.startDate).toLocaleDateString()}{" "}
-                </Typography>
-                <Typography variant="body1">
-                    {t("common.endDate")}
-                    {" : "}
-                    {new Date(trip.endDate).toLocaleDateString()}{" "}
-                </Typography>
-            </div>
-        </Paper>
+        <Section
+            title={trip.label}
+            subtitle={upperFirst(t("common.dateRange", { from, to }))}
+            navigateTo={`/profile/trip/${trip.id}`}
+        >
+            <Swiper
+                items={trip.tripItems}
+                renderItem={item => <SectionItemType item={item} key={item.value.id} />}
+            />
+        </Section>
     );
 };

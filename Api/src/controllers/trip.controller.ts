@@ -55,6 +55,7 @@ export class TripController {
     }
 
     @Get("/get-my-trips")
+    @UseGuards(AuthGuard)
     async getUserTrips(@AuthUserPayload() authUser: AuthUser): Promise<GetMyTripsResponseDto> {
         const trips = await this.tripService.findUserTrips(authUser.id);
 
