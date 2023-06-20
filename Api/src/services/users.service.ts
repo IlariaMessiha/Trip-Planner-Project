@@ -14,6 +14,7 @@ import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 import { FavoriteItem } from "src/types/dto/common/FavouriteItemDto";
 import { LikedItem } from "src/types/dto/likes/LikedItemDto";
 import { ReviewDto } from "src/types/dto/reviews/ReviewDto";
+import { getTripsDto } from "src/types/dto/trips/GetTripsDto";
 
 @Injectable()
 export class UsersService {
@@ -87,11 +88,20 @@ export class UsersService {
         return [...attractionReviewsItems, ...restaurantReviewsItems];
     }
 
-    async findUserTrips(userId: number) {
-        return await this.prisma.trip.findMany({
+    async findUserTrips(userId: number): Promise<getTripsDto[]> {
+        const trips = await this.prisma.trip.findMany({
             where: {
                 user_id: userId,
             },
+        });
+
+        return trips.map(trip => {
+            return {
+                id: trip.id,
+                endDate: trip.end_date.toISOString(),
+                startDate: trip.start_date.toISOString(),
+                label: trip.label,
+            };
         });
     }
     async findUserFavorites(userId: number): Promise<FavoriteItem[]> {
