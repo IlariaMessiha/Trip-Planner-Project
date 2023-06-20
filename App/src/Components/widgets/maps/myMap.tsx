@@ -29,10 +29,7 @@ const Map: FC<MapProps> = ({ long, lat, zoom, tripItems }) => {
             lat: lat ? lat : tripItems?.length ? totalLat / tripItems.length : 0,
             lng: long ? long : tripItems?.length ? totalLng / tripItems.length : 0,
         }),
-        [
-            lat ? lat : tripItems?.length ? totalLat / tripItems.length : 0,
-            long ? long : tripItems?.length ? totalLng / tripItems.length : 0,
-        ]
+        [lat, long, totalLat, totalLng, tripItems?.length]
     );
 
     return (
