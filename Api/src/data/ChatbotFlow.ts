@@ -197,56 +197,56 @@ export const flow: TChatbotFlow = {
                     code: "vegan",
                     text: "Vegan",
                     filter: {
-                        tags: { in: ["vegan"] },
+                        tags: { in: ["food-category:vegan"] },
                     },
                 },
                 {
                     code: "vegetarian",
                     text: "Vegetarian",
                     filter: {
-                        tags: { in: ["vegetarian"] },
+                        tags: { in: ["food-category:vegetarian"] },
                     },
                 },
                 {
                     code: "halal",
                     text: "Halal",
                     filter: {
-                        tags: { in: ["halal"] },
+                        tags: { in: ["food-category:halal"] },
                     },
                 },
                 {
                     code: "healthy",
                     text: "Healthy",
                     filter: {
-                        tags: { in: ["healthy"] },
+                        tags: { in: ["food-category:healthy"] },
                     },
                 },
                 {
                     code: "mediterranean",
                     text: "Mediterranean",
                     filter: {
-                        tags: { in: ["mediterranean "] },
+                        tags: { in: ["food-category:mediterranean "] },
                     },
                 },
                 {
                     code: "asian",
                     text: "Asian",
                     filter: {
-                        tags: { in: ["asian"] },
+                        tags: { in: ["food-category:asian"] },
                     },
                 },
                 {
                     code: "pescatarian",
                     text: "Pescatarian",
                     filter: {
-                        tags: { in: ["pescatarian"] },
+                        tags: { in: ["food-category:pescatarian"] },
                     },
                 },
                 {
                     code: "italian",
                     text: "Italian",
                     filter: {
-                        tags: { in: ["Italian"] },
+                        tags: { in: ["food-category:Italian"] },
                     },
                 },
                 {
