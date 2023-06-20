@@ -11,12 +11,14 @@ import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 
 import styles from "./ProfilePage.module.css";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { TripDto } from "../types/dto/common/TripDto";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
     const [value, setValue] = useState<string>("1");
     const [reviews, setReviews] = useState<ReviewDto[]>([]);
     const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+    const [trips, setTrips] = useState<TripDto[]>([]);
     const token = localStorage.getItem("accessToken");
 
     useEffect(() => {
@@ -41,6 +43,11 @@ export const ProfilePage = () => {
         if (newValue === "2") {
             const response = await fetchData.getProfileFavorites(loggedInUser.id, token);
             setFavorites(response);
+        }
+        if (newValue === "3") {
+            const response = await fetchData.getProfileTrips(loggedInUser.id, token);
+            setTrips(response);
+            console.log(response);
         }
     };
     const logOut = () => {

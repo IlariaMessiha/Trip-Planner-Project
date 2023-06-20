@@ -86,6 +86,14 @@ export class UsersService {
 
         return [...attractionReviewsItems, ...restaurantReviewsItems];
     }
+
+    async findUserTrips(userId: number) {
+        return await this.prisma.trip.findMany({
+            where: {
+                user_id: userId,
+            },
+        });
+    }
     async findUserFavorites(userId: number): Promise<FavoriteItem[]> {
         const attractions = await this.prisma.attraction.findMany({
             where: {

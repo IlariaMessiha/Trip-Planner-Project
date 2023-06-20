@@ -141,6 +141,18 @@ export const mapTripToDto = (trip: TripFull): TripDto => {
     };
 };
 
+export const mapTripsToDto = (trips): TripDto[] => {
+    return trips.map(trip => {
+        return {
+            id: trip.id,
+            label: trip.label,
+            startDate: trip.start_date.toISOString(),
+            endDate: trip.end_date.toISOString(),
+            tripItems: [],
+        };
+    });
+};
+
 export class MappingDtos {
     mapCityToDto(city: city, image: directus_files, country: CountryDto): CityDto {
         const long = city.long ? city.long.toNumber() : null;

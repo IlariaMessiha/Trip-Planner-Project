@@ -6,7 +6,7 @@ import { UsersService } from "src/services/users.service";
 import { AuthUser } from "src/types/AuthUser";
 import { LikedItem } from "src/types/dto/likes/LikedItemDto";
 import { ReviewDto } from "src/types/dto/reviews/ReviewDto";
-
+import { mapTripsToDto } from "src/helpers/MappingDtos";
 @UseGuards(AuthGuard)
 @Controller("/api/users")
 export class UsersController {
@@ -24,6 +24,10 @@ export class UsersController {
     @Get("/:userId/favorites")
     getUserFavorites(@Param("userId", ParseIntPipe) id: number) {
         return this.usersService.findUserFavorites(id);
+    }
+    @Get("/:userId/trips")
+    async getUserTrips(@Param("userId", ParseIntPipe) id: number) {
+        return mapTripsToDto(await this.usersService.findUserTrips(id));
     }
     @Post("/like")
     like(@Body() likedItem: LikedItem) {

@@ -87,6 +87,14 @@ export class FetchData {
         );
         return response.data;
     }
+
+    public async getProfileTrips(id: number, token: string) {
+        const response = await Axios.get<TripDto[]>(`${API_BASE_URL}/api/users/${id}/trips`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return response.data;
+    }
+
     public async getTrip(id: number) {
         const token = localStorage.getItem("accessToken");
         const response = await Axios.get<TripDto>(`${API_BASE_URL}/trip/${id}`, {
