@@ -13,6 +13,7 @@ import { UserDto } from "../types/dto/common/UserDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import { TripDto } from "../types/dto/common/TripDto";
 import { SearchQuery, SearchResult } from "../types/Search";
+import { GetMyTripsResponseDto } from "../types/dto/trips/GetMyTripsResponseDto";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -88,11 +89,14 @@ export class FetchData {
         return response.data;
     }
 
-    public async getProfileTrips() {
+    public async getMyTrips() {
         const token = localStorage.getItem("accessToken");
-        const response = await Axios.get<TripDto[]>(`${API_BASE_URL}/api/users/trips`, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await Axios.get<GetMyTripsResponseDto>(
+            `${API_BASE_URL}/trip/get-my-trips`,
+            {
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
         return response.data;
     }
 

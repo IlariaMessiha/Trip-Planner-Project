@@ -25,10 +25,6 @@ export class UsersController {
     getUserFavorites(@Param("userId", ParseIntPipe) id: number) {
         return this.usersService.findUserFavorites(id);
     }
-    @Get("/trips")
-    async getUserTrips(@AuthUserPayload() authUser: AuthUser) {
-        return await this.usersService.findUserTrips(authUser.id);
-    }
     @Post("/like")
     like(@Body() likedItem: LikedItem) {
         return this.usersService.like(likedItem);
