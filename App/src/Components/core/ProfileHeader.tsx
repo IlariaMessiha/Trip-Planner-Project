@@ -17,7 +17,7 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({ loggedInUser, logOut }) 
     return (
         <Paper className={styles.header}>
             <div className={styles.userInfo}>
-                <Avatar sx={{ width: 80, height: 80, fontSize: "xx-large" }}>
+                <Avatar sx={{ width: 40, height: 40, fontSize: "xx-large" }}>
                     {loggedInUser.firstName.charAt(0)}
                 </Avatar>
                 <div>

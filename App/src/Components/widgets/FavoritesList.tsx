@@ -1,17 +1,20 @@
 import { FC } from "react";
-import { FavoriteItem } from "../../types/dto/common/FavoriteItemDto";
-import { FavoriteItemType } from "./FavoriteItemType";
+import { SectionItemDto } from "../../types/dto/common/SectionItemDto";
+import { SectionItemType } from "./SectionItemType";
+import { Grid } from "@mui/material";
 
 interface FavoriteList {
-    favorites: FavoriteItem[];
+    favorites: SectionItemDto[];
 }
 
 export const FavoritesList: FC<FavoriteList> = ({ favorites }) => {
     return (
-        <div>
-            {favorites.map((favorite, i) => {
-                return <FavoriteItemType item={favorite} key={i} />;
-            })}
-        </div>
+        <Grid container spacing={2}>
+            {favorites.map((favorite, i) => (
+                <Grid item xs={12} sm={6} md={3}>
+                    <SectionItemType item={favorite} key={i} />
+                </Grid>
+            ))}
+        </Grid>
     );
 };

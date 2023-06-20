@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchData } from "../api/FetchData";
 
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./RestaurantPage.module.css";
 
@@ -20,8 +20,8 @@ import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { RestaurantDto } from "../types/dto/common/RestaurantDto";
+import { SectionItemDto } from "../types/dto/common/SectionItemDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
-import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -39,7 +39,7 @@ export const RestaurantPage = () => {
     const { t } = useTranslation();
     const [restaurant, setRestaurant] = React.useState<RestaurantDto | null>(null);
     const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
-    const [userFavs, setUserFavs] = useState<FavoriteItem[]>([]);
+    const [userFavs, setUserFavs] = useState<SectionItemDto[]>([]);
     const [likedLoc, setLikedLoc] = useState<boolean>(false);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
@@ -105,7 +105,7 @@ export const RestaurantPage = () => {
     useEffect(() => {
         if (restaurant) {
             const isLocationLiked = userFavs?.some(
-                favorite => favorite.item.id === restaurant.id && favorite.type === "restaurant"
+                favorite => favorite.value.id === restaurant.id && favorite.type === "restaurant"
             );
 
             setLikedLoc(isLocationLiked);

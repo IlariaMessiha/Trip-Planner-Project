@@ -44,7 +44,11 @@ export const Swiper = <T extends any>({ renderItem, items }: SwiperProps<T>) => 
             pagination={{ clickable: true }}
         >
             {items.map((item, i) => {
-                return <SwiperSlide key={i}>{renderItem(item)}</SwiperSlide>;
+                return (
+                    <SwiperSlide className={styles.swiperSlide} key={i}>
+                        {renderItem(item)}
+                    </SwiperSlide>
+                );
             })}
         </ReactSwiper>
     );

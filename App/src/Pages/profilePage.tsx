@@ -7,19 +7,19 @@ import { Container } from "../Components/core/layout/Container";
 import { FavoritesList } from "../Components/widgets/FavoritesList";
 import { ReviewList } from "../Components/widgets/ReviewList";
 import { fetchData } from "../api/FetchData";
-import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
 
-import styles from "./ProfilePage.module.css";
-import { ReviewDto } from "../types/dto/reviews/ReviewDto";
-import { TripDto } from "../types/dto/common/TripDto";
-import { TripProfileItems } from "../Components/widgets/trip/TripProfileItems";
 import { PageLayout } from "../Components/core/layout/PageLayout";
+import { TripProfileItems } from "../Components/widgets/trip/TripProfileItems";
+import { SectionItemDto } from "../types/dto/common/SectionItemDto";
+import { TripDto } from "../types/dto/common/TripDto";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import styles from "./ProfilePage.module.css";
 
 export const ProfilePage = () => {
     const { loggedInUser, setUserInContext } = useAuthContext();
     const [value, setValue] = useState<string>("1");
     const [reviews, setReviews] = useState<ReviewDto[]>([]);
-    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+    const [favorites, setFavorites] = useState<SectionItemDto[]>([]);
     const [trips, setTrips] = useState<TripDto[]>([]);
     const token = localStorage.getItem("accessToken");
 

@@ -11,7 +11,7 @@ import {
 } from "src/helpers/MappingDtos";
 import { RegisterBody } from "src/types/dto/auth/RegisterBody";
 
-import { FavoriteItem } from "src/types/dto/common/FavouriteItemDto";
+import { SectionItemDto } from "src/types/dto/common/SectionItemDto";
 import { LikedItem } from "src/types/dto/likes/LikedItemDto";
 import { ReviewDto } from "src/types/dto/reviews/ReviewDto";
 
@@ -86,7 +86,7 @@ export class UsersService {
 
         return [...attractionReviewsItems, ...restaurantReviewsItems];
     }
-    async findUserFavorites(userId: number): Promise<FavoriteItem[]> {
+    async findUserFavorites(userId: number) {
         const attractions = await this.prisma.attraction.findMany({
             where: {
                 user_attraction: {
@@ -111,15 +111,15 @@ export class UsersService {
                 directus_files: true,
             },
         });
-        const attractionsItems: FavoriteItem[] = attractions.map(attraction => {
+        const attractionsItems: SectionItemDto[] = attractions.map(attraction => {
             return {
-                item: mapAttractionToDto(attraction, attraction.directus_files),
+                value: mapAttractionToDto(attraction, attraction.directus_files),
                 type: "attraction",
             };
         });
-        const restaurantsItems: FavoriteItem[] = restaurants.map(restaurant => {
+        const restaurantsItems: SectionItemDto[] = restaurants.map(restaurant => {
             return {
-                item: mapRestaurantToDto(restaurant, restaurant.directus_files),
+                value: mapRestaurantToDto(restaurant, restaurant.directus_files),
                 type: "restaurant",
             };
         });

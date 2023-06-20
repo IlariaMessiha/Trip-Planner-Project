@@ -8,15 +8,14 @@ import { CardAttraction } from "../core/cards/CardAttraction";
 import { CardCity } from "../core/cards/CardCity";
 import { CardHotel } from "../core/cards/CardHotel";
 import { CardRestaurant } from "../core/cards/CardRestaurant";
-import { FavoriteItem } from "../../types/dto/common/FavoriteItemDto";
 
 interface SectionItemTypeProps {
     item: SectionItemDto;
-    userFavs?: FavoriteItem[];
+    userFavs?: SectionItemDto[];
 }
 export const SectionItemType: FC<SectionItemTypeProps> = ({ item, userFavs }) => {
     const isLocationLiked = userFavs?.some(
-        favorite => favorite.item.id === item.value.id && favorite.type === item.type
+        favorite => favorite.value.id === item.value.id && favorite.type === item.type
     );
     if (isSectionItemAttraction(item))
         return <CardAttraction attraction={item.value} liked={isLocationLiked || false} />;

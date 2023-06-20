@@ -16,7 +16,7 @@ import { ReviewList } from "../Components/widgets/ReviewList";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { useAuthContext } from "../context/authContext";
 import { AttractionDto } from "../types/dto/common/AttractionDto";
-import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
+import { SectionItemDto } from "../types/dto/common/SectionItemDto";
 import { ReviewDto } from "../types/dto/reviews/ReviewDto";
 import styles from "./AttractionPage.module.css";
 
@@ -33,7 +33,7 @@ export const AttractionPage = () => {
     const { t } = useTranslation();
     const [attraction, setAttraction] = React.useState<AttractionDto | null>(null);
     const [reviews, setReviews] = useState<ReviewDto[] | undefined>(undefined);
-    const [userFavs, setUserFavs] = useState<FavoriteItem[]>([]);
+    const [userFavs, setUserFavs] = useState<SectionItemDto[]>([]);
     const [likedLoc, setLikedLoc] = useState<boolean>(false);
     const { id } = useParams();
     const { loggedInUser } = useAuthContext();
@@ -67,7 +67,7 @@ export const AttractionPage = () => {
     useEffect(() => {
         if (attraction) {
             const isLocationLiked = userFavs?.some(
-                favorite => favorite.item.id === attraction.id && favorite.type === "attraction"
+                favorite => favorite.value.id === attraction.id && favorite.type === "attraction"
             );
             setLikedLoc(isLocationLiked);
         }
