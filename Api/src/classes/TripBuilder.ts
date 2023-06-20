@@ -69,6 +69,7 @@ export class TripBuilder {
             const firstAvailableDay = this.findFirstAvailableDay(
                 attractionItem.suggested_duration ? attractionItem.suggested_duration : 5
             );
+            if (!firstAvailableDay) return;
 
             this.tripItemsByDay[firstAvailableDay] = [
                 ...this.tripItemsByDay[firstAvailableDay],
