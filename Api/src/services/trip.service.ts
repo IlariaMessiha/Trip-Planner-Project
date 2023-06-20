@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Prisma } from "@prisma/client";
-import { chain, filter, mapValues, omit, pickBy, uniq } from "lodash";
+import { chain, mapValues, pickBy, uniq } from "lodash";
 import { flow } from "src/data/ChatbotFlow";
 import { MappingDtos } from "src/helpers/MappingDtos";
 import {
