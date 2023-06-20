@@ -7,11 +7,13 @@ import { postData } from "../api/PostData";
 import { validateMap } from "../helpers/ValidateChatbotAnswers";
 import { TChatbotAnswer, TChatbotQuestion, TChatbotSubmission } from "../types/TChatbot";
 import { TMessage, TMessageBotQuestionData } from "../types/TMessage";
+import { useAuthContext } from "../context/authContext";
 
 export const useChatbotController = () => {
     const [messages, setMessages] = useState<TMessage[]>([]);
     const [questions, setQuestions] = useState<TChatbotQuestion[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const { loggedInUser } = useAuthContext();
 
     const [submissions, setSubmissions] = useState<TChatbotSubmission[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,7 +43,7 @@ export const useChatbotController = () => {
             sender: {
                 avatar: "",
                 displayName: "bot",
-                id: "0",
+                id: 0,
             },
             sentAt: dayjs().toISOString(),
         };
@@ -60,13 +62,14 @@ export const useChatbotController = () => {
     }, [displayQuestion]);
 
     const handleChatInput = (value: string) => {
+        if (!loggedInUser) return;
         const newMessage: TMessage = {
             data: value,
             dataType: "text",
             sender: {
                 avatar: "",
-                displayName: "ilaria",
-                id: "1",
+                displayName: loggedInUser.firstName,
+                id: loggedInUser.id,
             },
             sentAt: dayjs().toISOString(),
         };
@@ -75,6 +78,7 @@ export const useChatbotController = () => {
         treatTextAnswer(value);
     };
     const handleAnswerSelect = (values: TChatbotAnswer[]) => {
+        if (!loggedInUser) return;
         if (values.length === 0) {
             return;
         }
@@ -84,8 +88,8 @@ export const useChatbotController = () => {
             dataType: "text",
             sender: {
                 avatar: "",
-                displayName: "ilaria",
-                id: "1",
+                displayName: loggedInUser?.firstName,
+                id: loggedInUser.id,
             },
             sentAt: dayjs().toISOString(),
         };
@@ -136,7 +140,7 @@ export const useChatbotController = () => {
                 sender: {
                     avatar: "",
                     displayName: "bot",
-                    id: "0",
+                    id: 0,
                 },
                 sentAt: dayjs().toISOString(),
             };
@@ -164,5 +168,6 @@ export const useChatbotController = () => {
         handleChatInput,
         handleAnswerSelect,
         submitAndGoToTrip,
+        loggedInUser,
     };
 };

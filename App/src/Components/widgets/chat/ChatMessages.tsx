@@ -10,7 +10,7 @@ interface ChatMessagesProps {
 const isTMessageBotQuestionData = (
     message: TMessage
 ): message is TMessage<TMessageBotQuestionData> => {
-    return message.dataType === "bot-question";
+    return message.sender.id === 0;
 };
 export const ChatMessages: FC<ChatMessagesProps> = ({ messages }) => {
     return (
