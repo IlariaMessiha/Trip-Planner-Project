@@ -13,7 +13,6 @@ export const ChatbotPage = () => {
         handleChatInput,
         handleAnswerSelect,
         submitAndGoToTrip,
-        loggedInUser,
     } = useChatbotController();
 
     return (
