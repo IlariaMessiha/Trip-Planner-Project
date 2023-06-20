@@ -1,6 +1,7 @@
 import { Paper } from "@mui/material";
 import { FC } from "react";
 import { TripItemDto } from "../../../types/dto/common/TripDto";
+import Map from "../maps/myMap";
 
 interface TripTimelineMapProps {
     tripItems: TripItemDto[];
@@ -20,7 +21,7 @@ export const TripTimelineMap: FC<TripTimelineMapProps> = ({ tripItems }) => {
                 color: "white",
             }}
         >
-            Display Map Here
+            <Map tripItems={tripItems} zoom={11} />
         </Paper>
     );
 };
