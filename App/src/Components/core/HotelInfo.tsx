@@ -1,7 +1,7 @@
 import { Button, Paper, styled, Typography } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
-import Map from "../widgets/maps/myMap";
+import { Map } from "../widgets/maps/Map";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import { FC } from "react";
@@ -25,7 +25,6 @@ const BuyTicketButton = styled(Button)({
 });
 export const HotelInfo: FC<HotelInfoProps> = ({ hotel }) => {
     const { t } = useTranslation();
-    console.log(hotel.mapLocation?.lat);
     return (
         <Paper
             sx={{
@@ -66,8 +65,17 @@ export const HotelInfo: FC<HotelInfoProps> = ({ hotel }) => {
                 </BuyTicketButton>
             )}
 
-            {hotel.mapLocation?.lat && (
-                <Map long={hotel.mapLocation?.long} lat={hotel.mapLocation?.lat} zoom={15} />
+            {hotel.mapLocation && (
+                <Map
+                    items={[
+                        {
+                            lat: hotel.mapLocation.lat,
+                            long: hotel.mapLocation.long,
+                            label: hotel.label,
+                        },
+                    ]}
+                    zoom={15}
+                />
             )}
         </Paper>
     );

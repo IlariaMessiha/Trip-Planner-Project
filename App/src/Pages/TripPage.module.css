@@ -10,6 +10,7 @@
 .contentTrip {
     height: 100%;
     flex-basis: 50%;
+    max-width: 50%;
     display: flex;
     flex-direction: column;
 }
@@ -18,5 +19,22 @@
 }
 
 .contentMap {
+    min-height: 500px;
     flex-basis: 50%;
+}
+
+@media (max-width: 860px) {
+    .contentTrip {
+        max-width: 60%;
+    }
+}
+
+@media (max-width: 680px) {
+    .contentTrip {
+        height: auto;
+        max-width: unset;
+    }
+    .content {
+        flex-direction: column;
+    }
 }

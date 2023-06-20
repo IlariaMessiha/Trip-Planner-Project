@@ -55,7 +55,14 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
                 </Button>
             </div>
 
-            <Tabs value={tabValue} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs
+                sx={{ width: "100%" }}
+                variant="scrollable"
+                scrollButtons="auto"
+                value={tabValue}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+            >
                 {range(tripDurationInDays).map(day => (
                     <Tab
                         key={day}

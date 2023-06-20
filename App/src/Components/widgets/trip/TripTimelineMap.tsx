@@ -1,27 +1,23 @@
-import { Paper } from "@mui/material";
 import { FC } from "react";
 import { TripItemDto } from "../../../types/dto/common/TripDto";
-import Map from "../maps/myMap";
+import { Map, MapItem } from "../maps/Map";
+import { RestaurantDto } from "../../../types/dto/common/RestaurantDto";
+import { AttractionDto } from "../../../types/dto/common/AttractionDto";
 
 interface TripTimelineMapProps {
-    tripItems: TripItemDto[];
+    tripItems: TripItemDto<RestaurantDto | AttractionDto>[];
 }
 
 export const TripTimelineMap: FC<TripTimelineMapProps> = ({ tripItems }) => {
-    // TODO : Add here a map with all the destinations
-    return (
-        <Paper
-            style={{
-                height: "100%",
-                display: "flex",
-                backgroundColor: "#DDD",
-                boxSizing: "border-box",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-            }}
-        >
-            <Map tripItems={tripItems} zoom={11} />
-        </Paper>
-    );
+    const mapItems = tripItems
+        .map(item => {
+            if (!item.value.mapLocation) return null;
+            return {
+                lat: item.value.mapLocation?.lat,
+                long: item.value.mapLocation?.long,
+                label: item.value.label,
+            };
+        })
+        .filter(item => item !== null) as MapItem[];
+    return <Map items={mapItems} zoom={11} />;
 };
