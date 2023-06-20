@@ -222,6 +222,34 @@ export const flow: TChatbotFlow = {
                     },
                 },
                 {
+                    code: "mediterranean",
+                    text: "Mediterranean",
+                    filter: {
+                        tags: { in: ["mediterranean "] },
+                    },
+                },
+                {
+                    code: "asian",
+                    text: "Asian",
+                    filter: {
+                        tags: { in: ["asian"] },
+                    },
+                },
+                {
+                    code: "pescatarian",
+                    text: "Pescatarian",
+                    filter: {
+                        tags: { in: ["pescatarian"] },
+                    },
+                },
+                {
+                    code: "italian",
+                    text: "Italian",
+                    filter: {
+                        tags: { in: ["Italian"] },
+                    },
+                },
+                {
                     code: "nothingSpecific",
                     text: "Nothing specific",
                     filter: {},
