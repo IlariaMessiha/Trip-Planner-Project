@@ -16,7 +16,11 @@ export const MessageBotQuestion: FC<MessageBotQuestionProps> = ({ message }) => 
                 </Avatar>
                 <div>
                     <Paper elevation={0} className={styles.chatbotQuestion}>
-                        <Typography>{message.data.text}</Typography>
+                        {message.dataType === "bot-question" ? (
+                            <Typography>{message.data.text}</Typography>
+                        ) : (
+                            <Typography>{message.data}</Typography>
+                        )}
                     </Paper>
                     <Typography variant="caption" className={styles.date}>
                         {dayjs(message.sentAt).format("hh:mm a")}

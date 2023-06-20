@@ -1,6 +1,7 @@
 .container {
     max-width: 80%;
 }
+
 .chatbotQuestion {
     width: fit-content;
     padding: 8px 16px;
@@ -8,11 +9,13 @@
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 2px;
+
 }
 
 .chatbotMessage {
     display: flex;
     gap: 10px;
+
 }
 
 .choices {

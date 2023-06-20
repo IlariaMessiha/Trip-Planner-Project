@@ -10,7 +10,7 @@ export type TMessage<V = any> = {
 export type TMessageUser = {
     displayName: string;
     avatar: string;
-    id: string;
+    id: number;
 };
 export type TMessageBotQuestionData = {
     code: string;
