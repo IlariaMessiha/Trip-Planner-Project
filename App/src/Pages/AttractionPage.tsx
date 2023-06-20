@@ -1,24 +1,24 @@
-import { Button, Container, IconButton, styled, Typography } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import EditIcon from "@mui/icons-material/Edit";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { fetchData } from "../api/FetchData";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IosShareIcon from "@mui/icons-material/IosShare";
-import styles from "./AttractionPage.module.css";
+import { Button, Container, IconButton, styled, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import { AttractionInfo } from "../Components/core/AttractionInfo";
-import { SharePopup } from "../Components/widgets/SharePopup";
-import { AttractionDto } from "../types/dto/common/AttractionDto";
-import EditIcon from "@mui/icons-material/Edit";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchData } from "../api/FetchData";
 import { postData } from "../api/PostData";
-import { ReviewList } from "../Components/widgets/ReviewList";
-import { useAuthContext } from "../context/authContext";
-import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { AttractionInfo } from "../Components/core/AttractionInfo";
 import { ReviewForm } from "../Components/widgets/ReviewForm";
-import CloseIcon from "@mui/icons-material/Close";
+import { ReviewList } from "../Components/widgets/ReviewList";
+import { SharePopup } from "../Components/widgets/SharePopup";
+import { useAuthContext } from "../context/authContext";
+import { AttractionDto } from "../types/dto/common/AttractionDto";
 import { FavoriteItem } from "../types/dto/common/FavoriteItemDto";
+import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import styles from "./AttractionPage.module.css";
 
 const ShareButton = styled(IconButton)({
     color: "black",
@@ -140,25 +140,25 @@ export const AttractionPage = () => {
                         </div>
                     )}
                     {attraction.website && (
-                        <Link to={attraction.website}>
+                        <a href={attraction.website}>
                             <Typography variant="h6" className={styles.headerButtons}>
                                 {t("attractions.visitWebsite")}
                             </Typography>
-                        </Link>
+                        </a>
                     )}
                     {attraction.phone && (
-                        <Link to={`tel:${attraction.phone}`}>
+                        <a href={`tel:${attraction.phone}`}>
                             <Typography variant="h6" className={styles.headerButtons}>
                                 {t("attractions.call")}
                             </Typography>
-                        </Link>
+                        </a>
                     )}
                     {attraction.email && (
-                        <Link to={`mailto:${attraction.email}`}>
+                        <a href={`mailto:${attraction.email}`}>
                             <Typography variant="h6" className={styles.headerButtons}>
-                            {t("common.email")}
+                                {t("common.email")}
                             </Typography>
-                        </Link>
+                        </a>
                     )}
                 </div>
                 <div className={styles.icons}>
