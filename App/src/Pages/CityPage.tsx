@@ -1,14 +1,14 @@
 import { Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
 import { LocationTopAttraction } from "../Components/widgets/LocationTopAtrraction";
 import { fetchData } from "../api/FetchData";
 import { useAuthContext } from "../context/authContext";
 import { CityDto } from "../types/dto/common/CityDto";
 import { SectionDto } from "../types/dto/common/SectionDto";
-import styles from "./CityPage.module.css";
 import { SectionItemDto } from "../types/dto/common/SectionItemDto";
+import styles from "./CityPage.module.css";
+import { LocationTravelAdvice } from "../Components/core/LocationTravelAdvice";
 
 export const CityPage = () => {
     const [city, setCity] = useState<CityDto | undefined>(undefined);
@@ -46,7 +46,7 @@ export const CityPage = () => {
 
     return (
         <Container className={styles.container}>
-            <Typography variant="h4"> {city.label}</Typography>
+            <Typography variant="h3"> {city.label}</Typography>
             <LocationTravelAdvice />
             {sections && <LocationTopAttraction sections={sections} userFavs={userFavs} />}
         </Container>
