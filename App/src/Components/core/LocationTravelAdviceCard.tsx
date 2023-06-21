@@ -15,7 +15,6 @@ export const LocationTravelAdviceCard: FC<LocationTravelAdviceCardProps> = ({ ch
                 display: "flex",
                 alignItems: "center",
                 gap: 2,
-                padding: "5px",
             }}
         >
             {children}
