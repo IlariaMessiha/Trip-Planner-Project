@@ -12,16 +12,17 @@ import styles from "./RestaurantInfo.module.css";
 
 interface RestaurantInfoProps {
     restaurant: RestaurantDto;
+    className?: string;
 }
 
-export const RestaurantInfo: FC<RestaurantInfoProps> = ({ restaurant }) => {
+export const RestaurantInfo: FC<RestaurantInfoProps> = ({ restaurant, className }) => {
     const { t } = useTranslation();
     return (
         <Paper
             sx={{
                 padding: "20px",
-                width: "30%",
             }}
+            className={className}
         >
             <Typography variant="h6">{t("restaurant.food", { type: restaurant.food })}</Typography>
             {restaurant.rating && (
@@ -46,19 +47,20 @@ export const RestaurantInfo: FC<RestaurantInfoProps> = ({ restaurant }) => {
                     </Typography>
                 </div>
             )}
-
-            {restaurant.mapLocation && (
-                <Map
-                    items={[
-                        {
-                            lat: restaurant.mapLocation.lat,
-                            long: restaurant.mapLocation.long,
-                            label: restaurant.label,
-                        },
-                    ]}
-                    zoom={15}
-                />
-            )}
+            <div className={styles.mapContainer}>
+                {restaurant.mapLocation && (
+                    <Map
+                        items={[
+                            {
+                                lat: restaurant.mapLocation.lat,
+                                long: restaurant.mapLocation.long,
+                                label: restaurant.label,
+                            },
+                        ]}
+                        zoom={15}
+                    />
+                )}
+            </div>
         </Paper>
     );
 };

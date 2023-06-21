@@ -1,8 +1,8 @@
-import { Button, Paper, styled, Typography } from "@mui/material";
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
-import { Map } from "../widgets/maps/Map";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { Button, Paper, styled, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import { Map } from "../widgets/maps/Map";
 
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,7 @@ import styles from "./HotelInfo.module.css";
 
 interface HotelInfoProps {
     hotel: HotelDto;
+    className?: string;
 }
 const BuyTicketButton = styled(Button)({
     borderRadius: "20px",
@@ -23,14 +24,14 @@ const BuyTicketButton = styled(Button)({
         color: "black",
     },
 });
-export const HotelInfo: FC<HotelInfoProps> = ({ hotel }) => {
+export const HotelInfo: FC<HotelInfoProps> = ({ hotel, className }) => {
     const { t } = useTranslation();
     return (
         <Paper
             sx={{
                 padding: "20px",
-                width: "30%",
             }}
+            className={className}
         >
             {hotel.address && (
                 <div>
@@ -46,8 +47,7 @@ export const HotelInfo: FC<HotelInfoProps> = ({ hotel }) => {
                     <Rating name="rating-bar" value={hotel.rating} precision={0.5} readOnly />
                 </Box>
             )}
-            <br />
-            <br />
+
             <div className={styles.tickets}>
                 <Typography variant="h6">
                     {t("hotels.startingFromPrice", { amount: hotel.startingFromPrice })}
@@ -64,19 +64,20 @@ export const HotelInfo: FC<HotelInfoProps> = ({ hotel }) => {
                     <Typography variant="button">{t("hotels.bookNow")}</Typography>
                 </BuyTicketButton>
             )}
-
-            {hotel.mapLocation && (
-                <Map
-                    items={[
-                        {
-                            lat: hotel.mapLocation.lat,
-                            long: hotel.mapLocation.long,
-                            label: hotel.label,
-                        },
-                    ]}
-                    zoom={15}
-                />
-            )}
+            <div className={styles.mapContainer}>
+                {hotel.mapLocation && (
+                    <Map
+                        items={[
+                            {
+                                lat: hotel.mapLocation.lat,
+                                long: hotel.mapLocation.long,
+                                label: hotel.label,
+                            },
+                        ]}
+                        zoom={15}
+                    />
+                )}
+            </div>
         </Paper>
     );
 };
