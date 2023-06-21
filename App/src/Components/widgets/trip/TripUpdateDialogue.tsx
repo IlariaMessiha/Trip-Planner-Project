@@ -3,7 +3,6 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
     LinearProgress,
     TextField,
@@ -48,14 +47,7 @@ export const TripUpdateDialogue: FC<TripUpdateDialogueProps> = ({
                         }}
                     />
                 </DialogContent>
-                <DialogContent dividers>
-                    <DialogContentText>
-                        {t("trip.updateLabel")}
-                        {/* TODO put the next description instead if you implemented (update start date) or update duration */}
-                        {/* If you update the start date or duration, all the items will be updated
-                        accordingly. */}
-                    </DialogContentText>
-                </DialogContent>
+
                 {loading && <LinearProgress />}
 
                 <DialogActions>

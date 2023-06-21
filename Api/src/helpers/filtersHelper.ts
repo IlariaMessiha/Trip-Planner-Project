@@ -97,7 +97,10 @@ export const mapPrismaAttractionTagsFilter = (
     return {
         some: {
             tag: {
-                code: { ...rule, mode: "insensitive" },
+                OR: [
+                    { code: { ...rule, mode: "insensitive" } },
+                    { label: { ...rule, mode: "insensitive" } },
+                ],
             },
         },
     };
@@ -108,7 +111,10 @@ export const mapRestaurantPrismaTagsFilter = (
     return {
         some: {
             tag: {
-                code: { ...rule, mode: "insensitive" },
+                OR: [
+                    { code: { ...rule, mode: "insensitive" } },
+                    { label: { ...rule, mode: "insensitive" } },
+                ],
             },
         },
     };

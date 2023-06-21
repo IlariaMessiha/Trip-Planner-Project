@@ -39,9 +39,6 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
     const onCloseUpdatePopup = () => {
         setUpdatePopupState(false);
     };
-    const handleAdd = () => {
-        // TODO :  A user can add a new restaurant or attraction to the trip.
-    };
 
     return (
         <div className={styles.intro}>
@@ -49,9 +46,6 @@ export const TripTimelineIntro: FC<TripTimelineIntroProps> = ({
             <div className={styles.actions}>
                 <Button variant="outlined" onClick={handleUpdateTrip}>
                     Update
-                </Button>
-                <Button variant="outlined" onClick={handleAdd}>
-                    Add new destination
                 </Button>
             </div>
 
