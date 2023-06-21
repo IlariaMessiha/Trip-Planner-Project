@@ -8,17 +8,11 @@ import { fetchData } from "../api/FetchData";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styles from "./HotelPage.module.css";
 
-import EditIcon from "@mui/icons-material/Edit";
-import Tooltip from "@mui/material/Tooltip";
 import { HotelInfo } from "../Components/core/HotelInfo";
 import { SharePopup } from "../Components/widgets/SharePopup";
 import { HotelDto } from "../types/dto/common/HotelDto";
 
 const ShareButton = styled(IconButton)({
-    color: "black",
-});
-
-const ReviewButton = styled(IconButton)({
     color: "black",
 });
 
@@ -51,45 +45,41 @@ export const HotelPage = () => {
         <Container className={styles.container}>
             <Typography variant="h3">{hotel.label}</Typography>
             <div className={styles.header}>
-                <div className={styles.communicate}>
-                    {hotel.website && (
-                        <a href={hotel.website}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("attractions.visitWebsite")}
-                            </Typography>
-                        </a>
-                    )}
-                    {hotel.phone && (
-                        <a href={`tel:${hotel.phone}`}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("attractions.call")}
-                            </Typography>
-                        </a>
-                    )}
-                    {hotel.email && (
-                        <a href={`mailto:${hotel.email}`}>
-                            <Typography variant="h6" className={styles.headerButtons}>
-                                {t("common.email")}
-                            </Typography>
-                        </a>
-                    )}
-                </div>
-                <div className={styles.icons}>
+                {hotel.website && (
+                    <a href={hotel.website}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("attractions.visitWebsite")}
+                        </Typography>
+                    </a>
+                )}
+                {hotel.phone && (
+                    <a href={`tel:${hotel.phone}`}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("attractions.call")}
+                        </Typography>
+                    </a>
+                )}
+                {hotel.email && (
+                    <a href={`mailto:${hotel.email}`}>
+                        <Typography variant="h6" className={styles.headerButtons}>
+                            {t("common.email")}
+                        </Typography>
+                    </a>
+                )}
+
+                <div>
                     <ShareButton className={styles.shareButton} onClick={handleClickOpen}>
                         <IosShareIcon />
                     </ShareButton>
                     <SharePopup url={window.location.href} open={open} onClose={handleClose} />
-                    <Tooltip title={t("common.review")}>
-                        <ReviewButton>
-                            <EditIcon className={styles.icon} />
-                        </ReviewButton>
-                    </Tooltip>
                 </div>
             </div>
             <div className={styles.imageAndDescription}>
-                <HotelInfo hotel={hotel} />
+                <HotelInfo className={styles.infoContainer} hotel={hotel} />
                 {hotel.imageUrl && (
-                    <img src={hotel.imageUrl} className={styles.image} alt={hotel.label} />
+                    <div className={styles.imageContainer}>
+                        <img src={hotel.imageUrl} className={styles.image} alt={hotel.label} />
+                    </div>
                 )}
             </div>
         </Container>
