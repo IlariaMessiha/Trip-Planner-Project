@@ -8,12 +8,8 @@ export const validateMap = {
             cityName => cityName.toLowerCase() === answerValue.toLowerCase()
         );
         console.log(city);
-        const country = destinations?.countriesName.find(
-            countryName => countryName.toLowerCase() === answerValue.toLowerCase()
-        );
-        console.log(country);
 
-        if (city || country || answerValue === "any") {
+        if (city || answerValue === "any") {
             return true;
         }
     },
