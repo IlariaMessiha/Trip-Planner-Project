@@ -25,13 +25,9 @@ export class TripService {
     constructor(private prisma: PrismaService, private mappingDtos: MappingDtos) {}
     async findDestinations(): Promise<GetDestinationNameDto> {
         const cities = await this.prisma.city.findMany();
-        const countries = await this.prisma.country.findMany();
         return {
             citiesName: cities.map(city => {
                 return city.label;
-            }),
-            countriesName: countries.map(country => {
-                return country.label;
             }),
         };
     }

@@ -87,7 +87,7 @@ export const flow: TChatbotFlow = {
         {
             code: "preferredDestination",
             sort: 5,
-            text: "What is your preferred destination (country, city) ? type 'any' if you don't have a preference",
+            text: "What is your preferred destination (city) ? type 'any' if you don't have a preference",
             type: "text",
             searchTargets: ["attractions", "restaurants"],
             validation: {
