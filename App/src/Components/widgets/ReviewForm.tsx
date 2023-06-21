@@ -22,9 +22,9 @@ export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
     const [body, setBody] = useState<string | null>(null);
     const { loggedInUser } = useAuthContext();
     const token = localStorage.getItem("accessToken");
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         if (body && title && rating && loggedInUser && token) {
-            postData.writeReview(
+            await postData.writeReview(
                 {
                     review: {
                         body: body,
