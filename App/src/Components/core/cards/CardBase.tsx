@@ -45,7 +45,13 @@ export const CardBase: FC<CardBaseProps> = ({
             <Link to={navigateTo}>
                 <CardActionArea sx={{ ":hover": { opacity: 0.9 } }}>
                     {imageUrl ? (
-                        <CardMedia component="img" height="200" image={imageUrl} alt={imageAlt} />
+                        <CardMedia
+                            loading="lazy"
+                            component="img"
+                            height="200"
+                            image={imageUrl}
+                            alt={imageAlt}
+                        />
                     ) : (
                         <CardMedia
                             component="img"

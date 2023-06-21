@@ -5,6 +5,9 @@ import { useAuthContext } from "../../context/authContext";
 import styles from "./ReviewForm.module.css";
 
 import { useTranslation } from "react-i18next";
+import { ReviewDto } from "../../types/dto/reviews/ReviewDto";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const StarsRating = styled(Rating)({
     "&.MuiRating-root": {
@@ -14,31 +17,50 @@ const StarsRating = styled(Rating)({
 interface ReviewFormProps {
     type: "attractionReview" | "restaurantReview";
     itemId: number;
+    onSuccess: (review: ReviewDto) => void;
 }
 
-export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId }) => {
+export const ReviewForm: FC<ReviewFormProps> = ({ type, itemId, onSuccess }) => {
     const [rating, setRating] = useState<number | null>(0);
     const [title, setTitle] = useState<string | null>(null);
     const [body, setBody] = useState<string | null>(null);
     const { loggedInUser } = useAuthContext();
-    const token = localStorage.getItem("accessToken");
+    const navigate = useNavigate();
     const handleSubmit = async (e: React.FormEvent) => {
-        if (body && title && rating && loggedInUser && token) {
-            await postData.writeReview(
-                {
+        e.preventDefault();
+        if (!loggedInUser) {
+            navigate("/auth/login");
+            return;
+        }
+        if (body && title && rating) {
+            try {
+                const createdReview = await postData.writeReview({
                     review: {
                         body: body,
                         title: title,
                         rating: rating,
                         user: loggedInUser,
-                        id: NaN,
                         itemId: itemId,
                     },
                     type: type,
-                },
-                token
-            );
-        } else if (!loggedInUser) {
+                });
+                onSuccess(createdReview);
+                setRating(0);
+                setTitle("");
+                setBody("");
+            } catch (e) {
+                toast.error("Try Again", {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                });
+            }
+        } else {
+            toast.error("Enter All The Fields", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 4000,
+                hideProgressBar: true,
+            });
         }
     };
     const { t } = useTranslation();

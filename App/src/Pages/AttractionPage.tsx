@@ -213,7 +213,16 @@ export const AttractionPage = () => {
                 </IconButton>
             )}
             <div className={styles.reviewsContainer}>
-                {formState && <ReviewForm type="attractionReview" itemId={attraction.id} />}
+                {formState && (
+                    <ReviewForm
+                        type="attractionReview"
+                        itemId={attraction.id}
+                        onSuccess={(review: ReviewDto) => {
+                            setReviews(reviews => [...(reviews || []), review]);
+                            setFormState(false);
+                        }}
+                    />
+                )}
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>

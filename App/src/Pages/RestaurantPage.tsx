@@ -204,7 +204,16 @@ export const RestaurantPage = () => {
                 </IconButton>
             )}
             <div className={styles.reviewsContainer}>
-                {formState && <ReviewForm type="restaurantReview" itemId={restaurant.id} />}
+                {formState && (
+                    <ReviewForm
+                        type="restaurantReview"
+                        itemId={restaurant.id}
+                        onSuccess={(review: ReviewDto) => {
+                            setReviews(reviews => [...(reviews || []), review]);
+                            setFormState(false);
+                        }}
+                    />
+                )}
                 {reviews && <ReviewList reviews={reviews} />}
             </div>
         </Container>

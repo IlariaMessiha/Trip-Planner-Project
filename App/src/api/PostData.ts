@@ -3,7 +3,7 @@ import { SearchQuery, SearchResult } from "../types/Search";
 import { TChatbotSubmission } from "../types/TChatbot";
 import { TripDto } from "../types/dto/common/TripDto";
 import { LikedItem } from "../types/dto/likes/LikedItemDto";
-import { ReviewDto } from "../types/dto/reviews/ReviewDto";
+import { CreateReviewDto, ReviewDto } from "../types/dto/reviews/ReviewDto";
 import { UpdateTripBodyDto } from "../types/dto/trips/UpdateTripBodyDto";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export class PostData {
@@ -32,7 +32,8 @@ export class PostData {
         });
         return res.data;
     }
-    public async writeReview(review: ReviewDto, token: string) {
+    public async writeReview(review: CreateReviewDto) {
+        const token = localStorage.getItem("accessToken");
         const res = await Axios.post<ReviewDto>(`${API_BASE_URL}/api/users/review`, review, {
             headers: { Authorization: `Bearer ${token}` },
         });
