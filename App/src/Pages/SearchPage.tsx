@@ -4,7 +4,7 @@ import { Container } from "../Components/core/layout/Container";
 
 import { useNavigate } from "react-router-dom";
 import { SearchTypeItem } from "../Components/widgets/SearchTypeItem";
-import PaginationComponent from "../Components/widgets/pagination";
+
 import { SearchForm } from "../Components/widgets/search/SearchForm";
 import { fetchData } from "../api/FetchData";
 import { SearchQuery, SearchResult, SearchResultType } from "../types/Search";
@@ -13,20 +13,7 @@ import styles from "./SearchPage.module.css";
 export const SearchPage = () => {
     const [results, setResults] = useState<SearchResult[]>([]);
 
-    const [totalItemsCount, setTotalItemCount] = useState<number>(0);
-    const [pageError, setPageError] = useState<string>("");
-    const pageSize = 6;
-    const [currentPage, setCurrentPage] = useState<number>(1);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (results.length > 0) {
-            setTotalItemCount(results.length);
-
-            setPageError("");
-        }
-        setCurrentPage(1);
-    }, [results]);
 
     useEffect(() => {
         const onMount = async () => {
@@ -43,10 +30,6 @@ export const SearchPage = () => {
         onMount();
     }, []);
 
-    const handlePageChange = (page: number) => {
-        console.log("page number : ", page);
-        setCurrentPage(page);
-    };
     const onSubmit = async (query: SearchQuery) => {
         let searchString = `&filter=`;
         if (query.type) {
@@ -78,28 +61,18 @@ export const SearchPage = () => {
                 <div className={styles.searchResultContainer}>
                     <Container className={styles.searchResult}>
                         <div>
-                            {pageError ? (
-                                <h1>{pageError}</h1>
-                            ) : (
-                                <>
-                                    {results.map(item => {
-                                        return (
-                                            <div key={item.item.label}>
-                                                <SearchTypeItem item={item} />
-                                            </div>
-                                        );
-                                    })}
-                                </>
-                            )}
+                            <>
+                                {results.map(item => {
+                                    return (
+                                        <div key={item.item.label}>
+                                            <SearchTypeItem item={item} />
+                                        </div>
+                                    );
+                                })}
+                            </>
                         </div>
                     </Container>
                 </div>
-                <PaginationComponent
-                    itemsCount={totalItemsCount}
-                    pageSize={pageSize}
-                    currentPage={currentPage}
-                    onPageChange={handlePageChange}
-                />
             </div>
         </>
     );
